@@ -7,6 +7,11 @@ export const center = css`
   align-items: center;
 `;
 
+export const row = css`
+  display: flex;
+  flex-direction: row;
+`;
+
 export const baseBackground = css`
   width: 100vw;
   height: 100vh;
@@ -20,8 +25,29 @@ export const loginWrapper = css`
   align-items: center;
 `;
 
+export const signUpWrapper = css`
+  width: 500px;
+  height: 600px;
+  border: 1px solid red;
+`;
+
+export const inputItem = css`
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+
+  & span {
+    margin-right: 35px;
+  }
+
+  & input {
+    width: 65%;
+  }
+`;
+
 export const inputWrapper = css`
   margin-top: 60px;
+  width: 80%;
 
   & input {
     margin-bottom: 10px;
@@ -72,4 +98,12 @@ export const gitButton = css`
   :hover {
     background-color: black;
   }
+`;
+
+export const NextButton = styled.button`
+  width: 300px;
+  height: 40px;
+  background: #dadada;
+  box-shadow: 0px 2px 6px rgba(119, 119, 119, 0.25);
+  border-radius: 5px;
 `;
