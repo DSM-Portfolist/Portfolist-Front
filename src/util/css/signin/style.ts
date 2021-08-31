@@ -25,7 +25,7 @@ export const inputWrapper = css`
 
   & input {
     margin-bottom: 10px;
-    font-weight: 500;
+    font-size: 15px;
     width: 98%;
     height: 35px;
     padding: 1%;
@@ -39,6 +39,7 @@ interface buttonType {
   btnColor: boolean;
 }
 
+// styled-component button-color props
 export const ButtonWrapper = styled.div`
   margin-top: 50px;
 
