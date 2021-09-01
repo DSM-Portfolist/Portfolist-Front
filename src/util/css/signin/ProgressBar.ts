@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 
 export const progressWrapper = css`
-  margin-top: 30px;
+  margin: 40px 0;
   width: 400px;
   height: 5px;
   background: #f0f0f0;

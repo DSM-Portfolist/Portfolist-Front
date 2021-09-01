@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { CloseEye } from "../../assets";
 
 export const center = css`
   display: flex;
@@ -35,13 +36,22 @@ export const inputItem = css`
   width: 100%;
   justify-content: flex-end;
   align-items: center;
+  margin: 20px 0;
 
   & span {
     margin-right: 35px;
   }
+`;
 
-  & input {
-    width: 65%;
+export const inputItemWrap = css`
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  & p {
+    font-size: 14px;
+    color: #939393;
   }
 `;
 
@@ -50,7 +60,7 @@ export const inputWrapper = css`
   width: 80%;
 
   & input {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-size: 15px;
     width: 98%;
     height: 35px;
@@ -101,9 +111,21 @@ export const gitButton = css`
 `;
 
 export const NextButton = styled.button`
+  cursor: pointer;
+  margin-top: 70px;
+  color: white;
+  font-size: 18px;
   width: 300px;
   height: 40px;
-  background: #dadada;
+  background: ${({ btnColor }: buttonType) =>
+    btnColor ? "#FF7659" : "#DADADA"};
   box-shadow: 0px 2px 6px rgba(119, 119, 119, 0.25);
   border-radius: 5px;
+`;
+
+export const selectIcon = css`
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  bottom: 35px;
 `;
