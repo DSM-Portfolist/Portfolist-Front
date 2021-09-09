@@ -11,7 +11,7 @@ import {
   gitButton,
   inputWrapper,
   loginWrapper,
-} from "../../../util/css/signin/style";
+} from "../../../util/css/signin/LoginEmotion";
 
 const Login = () => {
   const [buttonColor, setButtonColor] = useState<boolean>(false);
@@ -32,7 +32,7 @@ const Login = () => {
           </button>
         </ButtonWrapper>
         <Link
-          to="/sign-in"
+          to="/sign-up"
           css={css`
             color: #8b8b8b;
           `}

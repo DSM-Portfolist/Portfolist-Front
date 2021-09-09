@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { useState } from "react";
+import { useHistory } from "react-router";
 import { CloseEye, Logo, OpenEye, Warning } from "../../../util/assets";
 import {
   inputItem,
@@ -11,7 +12,7 @@ import {
   row,
   selectIcon,
   signUpWrapper,
-} from "../../../util/css/signin/style";
+} from "../../../util/css/signin/LoginEmotion";
 import ProgressBar from "./ProgressBar";
 
 const FirstProgress = () => {
@@ -20,6 +21,8 @@ const FirstProgress = () => {
   const [inputTypeReturn, setInputTypeReturn] = useState<boolean>(false);
 
   let error = false;
+
+  const history = useHistory();
 
   return (
     <form css={[loginWrapper, signUpWrapper]}>
@@ -81,7 +84,12 @@ const FirstProgress = () => {
           </div>
         </div>
       </div>
-      <NextButton btnColor={btnColor}>다음</NextButton>
+      <NextButton
+        btnColor={btnColor}
+        onClick={() => history.push("/sign-up/sec")}
+      >
+        다음
+      </NextButton>
     </form>
   );
 };
