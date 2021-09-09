@@ -32,65 +32,8 @@ export const myPageSection = css`
 `;
 
 export const portfolioList = css`
-    & > a:nth-child(n + 2) > div {
+  & > a:nth-child(n + 2) > div {
     margin-top: 70px;
-  }
-`;
-
-export const profileHeader = css`
-  width: 100%;
-  height: 177px;
-  border-bottom: 2px solid #e7e7e7;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const profileImage = css`
-  width: 150px;
-  height: 150px;
-  border: 1px solid #cccccc;
-  border-radius: 100%;
-  background-size: cover;
-  object-fit: cover;
-`;
-
-export const profileWrapper = css`
-  margin-left: 50px;
-  & h1 {
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 35px;
-  }
-  & #introduce {
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 29px;
-    margin-top: 13px;
-  }
-`;
-
-export const profileBottom = css`
-  margin-top: 13px;
-  & h3 {
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 23px;
-    margin-right: 5px;
-  }
-  & p {
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 23px;
-    margin-right: 24px;
   }
 `;
 
