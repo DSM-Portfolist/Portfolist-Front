@@ -9,7 +9,7 @@ const UserRouter = () => {
     <BrowserRouter>
       <Route path="/login" component={Login} exact />
       <Route path="/sign-up" component={SignUp} exact />
-      <Route path="/mypage" component={MyPage} exact />
+      <Route path="/my-page" component={MyPage} exact />
       <Route path="/user-page" component={UserPage} exact />
     </BrowserRouter>
   );
