@@ -56,7 +56,6 @@ export const inputItemWrap = css`
 `;
 
 export const inputWrapper = css`
-  margin-top: 60px;
   width: 80%;
 
   & input {

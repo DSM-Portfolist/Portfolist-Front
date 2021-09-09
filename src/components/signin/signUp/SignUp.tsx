@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { baseBackground, center } from "../../../util/css/signin/style";
+import { baseBackground, center } from "../../../util/css/signin/LoginEmotion";
 import FirstProgress from "./FirstProgress";
 
 const SignUp = () => {
