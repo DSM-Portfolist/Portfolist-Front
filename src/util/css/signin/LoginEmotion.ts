@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { CloseEye } from "../../assets";
+import { buttonType } from "../../interface/Sign/buttonType";
 
 export const center = css`
   display: flex;
@@ -36,7 +36,7 @@ export const inputItem = css`
   width: 100%;
   justify-content: flex-end;
   align-items: center;
-  margin: 20px 0;
+  margin: 15px 0;
 
   & span {
     margin-right: 35px;
@@ -57,6 +57,8 @@ export const inputItemWrap = css`
 
 export const inputWrapper = css`
   width: 80%;
+  display: flex;
+  flex-direction: column;
 
   & input {
     margin-bottom: 5px;
@@ -69,10 +71,6 @@ export const inputWrapper = css`
     border-bottom: 2px solid #c4c4c4;
   }
 `;
-
-interface buttonType {
-  btnColor: boolean;
-}
 
 // styled-component button-color props
 export const ButtonWrapper = styled.div`
@@ -111,7 +109,7 @@ export const gitButton = css`
 
 export const NextButton = styled.button`
   cursor: pointer;
-  margin-top: 70px;
+  margin-top: 50px;
   color: white;
   font-size: 18px;
   width: 300px;
