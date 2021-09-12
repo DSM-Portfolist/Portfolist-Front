@@ -17,11 +17,7 @@ interface CategoryType {
 const CategoryItem = ({ setText, arrowSelect }: Props) => {
   return (
     <ul
-      style={
-        arrowSelect
-          ? { display: "flex", height: 200 }
-          : { display: "none", height: 0 }
-      }
+      style={arrowSelect ? { height: 200 } : { height: 0 }}
       css={[CategoryItemWrap]}
     >
       {category.map((category) => (
