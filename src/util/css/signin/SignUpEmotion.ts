@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { buttonType } from "../../interface/Sign/buttonType";
 import { loginTextColor, mainColor } from "../color/color";
 
 export const FieldSelectWrap = styled.div`
@@ -23,6 +24,26 @@ export const FieldSelectWrap = styled.div`
       padding-bottom: 2px;
       width: 100%;
     }
+  }
+`;
+
+export const SignBox = styled.div`
+  height: 500px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  button {
+    width: 50%;
+    height: 40px;
+    margin: 0 auto;
+    box-shadow: 0px 2px 6px rgba(119, 119, 119, 0.25);
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    background: ${({ btnColor }: buttonType) =>
+      btnColor ? "#FF7659" : "#DADADA"};
   }
 `;
 
