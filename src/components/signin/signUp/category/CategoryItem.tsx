@@ -1,7 +1,4 @@
-/** @jsxImportSource @emotion/react */
-
-import { NoSelectedArrow } from "../../../util/assets";
-import { CategoryItemWrap } from "../../../util/css/signin/SignUpEmotion";
+import * as S from "./style";
 import { category } from "./dummy.json";
 
 interface Props {
@@ -9,23 +6,20 @@ interface Props {
   arrowSelect: boolean;
 }
 
-interface CategoryType {
+/* interface CategoryType {
   field: string | undefined;
   id: number | undefined;
-}
+} */
 
 const CategoryItem = ({ setText, arrowSelect }: Props) => {
   return (
-    <ul
-      style={arrowSelect ? { height: 200 } : { height: 0 }}
-      css={[CategoryItemWrap]}
-    >
+    <S.CategoryItemWrap style={arrowSelect ? { height: 200 } : { height: 0 }}>
       {category.map((category) => (
         <li key={category.id} onClick={() => setText(category.field)}>
           {category.field}
         </li>
       ))}
-    </ul>
+    </S.CategoryItemWrap>
   );
 };
 

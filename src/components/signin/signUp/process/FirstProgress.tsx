@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useHistory } from "react-router";
-import { CloseEye, Logo, OpenEye, Warning } from "../../../util/assets";
+import { CloseEye, Logo, OpenEye, Warning } from "../../../../util/assets";
 import {
   inputItem,
   inputItemWrap,
@@ -12,8 +12,9 @@ import {
   row,
   selectIcon,
   signUpWrapper,
-} from "../../../util/css/signin/LoginEmotion";
+} from "../../../../util/css/signin/LoginEmotion";
 import ProgressBar from "./ProgressBar";
+import * as S from "./style";
 
 const FirstProgress = () => {
   const [btnColor, setBtnColor] = useState<boolean>(false);
@@ -25,7 +26,7 @@ const FirstProgress = () => {
   const history = useHistory();
 
   return (
-    <form css={[loginWrapper, signUpWrapper]}>
+    <S.SignForm>
       <img src={Logo} alt="Portfolist 로고" />
       <ProgressBar />
       <div css={[inputWrapper]}>
@@ -90,7 +91,7 @@ const FirstProgress = () => {
       >
         다음
       </NextButton>
-    </form>
+    </S.SignForm>
   );
 };
 

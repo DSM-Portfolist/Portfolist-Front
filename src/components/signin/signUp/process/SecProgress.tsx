@@ -1,16 +1,8 @@
-/** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
-import { Logo, NoSelectedArrow } from "../../../util/assets";
-import {
-  baseBackground,
-  center,
-  inputWrapper,
-  loginWrapper,
-  signUpWrapper,
-} from "../../../util/css/signin/LoginEmotion";
+import { Logo, NoSelectedArrow } from "../../../../util/assets";
 import ProgressBar from "./ProgressBar";
-import CategoryItem from "./CategoryItem";
-import * as S from "../../../util/css/signin/SignUpEmotion";
+import CategoryItem from "../category/CategoryItem";
+import * as S from "./style";
 
 const SecProgress = () => {
   const [btnColor, setBtnColor] = useState<boolean>(false);
@@ -19,11 +11,11 @@ const SecProgress = () => {
 
   return (
     <>
-      <div css={[baseBackground, center]}>
-        <form css={[loginWrapper, signUpWrapper]}>
+      <S.Wrapper>
+        <S.SignForm>
           <img src={Logo} alt="Portfolist 로고" />
           <ProgressBar />
-          <S.SignBox btnColor={btnColor} css={[inputWrapper]}>
+          <S.SignBox btnColor={btnColor}>
             <p>분야는 최대 3개까지 선택할 수 있습니다. </p>
             <S.FieldSelectWrap>
               <span>분야</span>
@@ -45,8 +37,8 @@ const SecProgress = () => {
             </S.FieldSelectWrap>
             <button>다음</button>
           </S.SignBox>
-        </form>
-      </div>
+        </S.SignForm>
+      </S.Wrapper>
     </>
   );
 };
