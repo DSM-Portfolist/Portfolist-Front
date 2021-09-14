@@ -3,7 +3,7 @@
 import {
   progressBar,
   progressWrapper,
-} from "../../../util/css/signin/ProgressBar";
+} from "../../../../util/css/signin/ProgressBar";
 
 const ProgressBar = () => {
   return (
