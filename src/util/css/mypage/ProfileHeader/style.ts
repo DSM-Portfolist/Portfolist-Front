@@ -19,6 +19,7 @@ export const profileImage = css`
 `;
 
 export const profileWrapper = css`
+  width: 100%;
   margin: 0 0 10px 50px;
   & h1 {
     font-family: "Noto Sans KR";
@@ -38,6 +39,9 @@ export const profileWrapper = css`
 
 export const profileBottom = css`
   margin-top: 13px;
+  width: 100%;
+  position: relative;
+  align-items: center;
   & h3 {
     font-family: "Noto Sans KR";
     font-style: normal;
@@ -53,5 +57,16 @@ export const profileBottom = css`
     font-size: 18px;
     line-height: 23px;
     margin-right: 24px;
+  }
+  & button {
+    width: 120px;
+    height: 30px;
+    background: #ff7d64;
+    border-radius: 4px;
+    box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
+    color: white;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
   }
 `;
