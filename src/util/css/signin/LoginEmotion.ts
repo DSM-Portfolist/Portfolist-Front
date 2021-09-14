@@ -18,13 +18,6 @@ export const baseBackground = css`
   height: 100vh;
 `;
 
-export const loginWrapper = css`
-  width: 300px;
-  height: 440px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 export const signUpWrapper = css`
   width: 500px;
@@ -99,13 +92,7 @@ export const ButtonWrapper = styled.div`
   }
 `;
 
-export const gitButton = css`
-  background-color: #4d4d4d;
 
-  :hover {
-    background-color: black;
-  }
-`;
 
 export const NextButton = styled.button`
   cursor: pointer;
