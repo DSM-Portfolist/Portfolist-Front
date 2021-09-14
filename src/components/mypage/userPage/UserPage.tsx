@@ -8,7 +8,7 @@ import {
   sectionTitleWrapper,
   center,
 } from "../../../util/css/mypage/UserPage/style";
-import ProfileHeader from "./ProfileHeader/ProfileHeader";
+import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import PortfolioList from "./PortfolioList/PortfolioList";
 
 const UserPage = () => {
@@ -16,7 +16,7 @@ const UserPage = () => {
     <div css={[baseBackground, column]}>
       <header></header>
       <section css={[myPageSection]}>
-        <ProfileHeader />
+        <ProfileHeader isMypage={false} />
         <article>
           <div css={[center, sectionTitleWrapper]}>
             <span>침착맨</span>
