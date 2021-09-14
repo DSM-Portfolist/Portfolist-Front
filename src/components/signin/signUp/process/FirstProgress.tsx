@@ -7,7 +7,6 @@ import {
   inputItem,
   inputItemWrap,
   inputWrapper,
-  loginWrapper,
   NextButton,
   row,
   selectIcon,
