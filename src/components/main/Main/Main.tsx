@@ -1,11 +1,12 @@
 import react from "react";
-import Header from "../header/Header";
+import { Header, Banner } from "../../index";
 import * as S from "./style";
 
 const Main = () => {
   return (
     <S.MainWrapper>
       <Header />
+      <Banner></Banner>
     </S.MainWrapper>
   );
 };
