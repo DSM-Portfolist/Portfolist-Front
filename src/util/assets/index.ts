@@ -8,3 +8,6 @@ export { default as Profile } from "./icon/profile.svg";
 export { default as NoNotification } from "./icon/noNotification.svg";
 export { default as Notification } from "./icon/notification.svg";
 export { default as Mascot } from "./icon/mascot.svg";
+export { default as MainImg1 } from "./img/mainImg1.svg";
+export { default as MainImg2 } from "./img/mainImg2.svg";
+export { default as MainImg3 } from "./img/mainImg3.svg";
