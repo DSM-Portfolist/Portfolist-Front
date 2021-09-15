@@ -5,12 +5,6 @@ interface Props {
   setText: any;
   arrowSelect: boolean;
 }
-
-/* interface CategoryType {
-  field: string | undefined;
-  id: number | undefined;
-} */
-
 const CategoryItem = ({ setText, arrowSelect }: Props) => {
   return (
     <S.CategoryItemWrap style={arrowSelect ? { height: 200 } : { height: 0 }}>
