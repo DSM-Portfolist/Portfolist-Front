@@ -15,14 +15,15 @@ import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import PortfolioList from "../userPage/PortfolioList/PortfolioList";
 
 const MyPage = () => {
-  const [isClickMyPortfolio, setIsClickMyPortfolio] = useState<boolean>(false);
+  const [isClickMyPortfolio, setIsClickMyPortfolio] = useState<boolean>(true);
   const [isClickMyTouching, setIsClickMyTouching] = useState<boolean>(false);
   console.log(isClickMyPortfolio, isClickMyTouching);
   const onClickEvent = (e: any) => {
-    if (e.target.innerHTML === "나의 포트폴리오") {
+    const { innerHTML } = e.target;
+    if (innerHTML === "나의 포트폴리오") {
       !isClickMyPortfolio && setIsClickMyPortfolio(true);
       setIsClickMyTouching(false);
-    } else if (e.target.innerHTML === "나의 터칭") {
+    } else if (innerHTML === "나의 터칭") {
       !isClickMyTouching && setIsClickMyTouching(true);
       setIsClickMyPortfolio(false);
     }
@@ -35,7 +36,10 @@ const MyPage = () => {
         <ProfileHeader isMypage={true} />
         <article>
           <div css={[center, sectionTitleWrapper]}>
-            <NavWrapper isClickMyPortfolio={isClickMyPortfolio} isClickMyTouching={isClickMyTouching}>
+            <NavWrapper
+              isClickMyPortfolio={isClickMyPortfolio}
+              isClickMyTouching={isClickMyTouching}
+            >
               <h1 onClick={onClickEvent}>나의 포트폴리오</h1>
               <h1 onClick={onClickEvent}>나의 터칭</h1>
             </NavWrapper>
