@@ -12,7 +12,7 @@ import {
   sectionTitleWrapper,
 } from "../../../util/css/mypage/UserPage/style";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import PortfolioList from "../userPage/PortfolioList/PortfolioList";
+import PortfolioList from "../PortfolioList/PortfolioList";
 
 const MyPage = () => {
   const [isClickMyPortfolio, setIsClickMyPortfolio] = useState<boolean>(true);
@@ -44,7 +44,7 @@ const MyPage = () => {
               <h1 onClick={onClickEvent}>나의 터칭</h1>
             </NavWrapper>
           </div>
-          <PortfolioList />
+          <PortfolioList isClickMyPortfolio={isClickMyPortfolio} isClickMyTouching={isClickMyTouching}/>
         </article>
       </section>
     </div>
