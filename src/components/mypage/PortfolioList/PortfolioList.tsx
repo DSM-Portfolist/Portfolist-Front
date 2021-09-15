@@ -11,13 +11,14 @@ import {
   initA,
 } from "../../../util/css/mypage/UserPage/style";
 import { row } from "../../../util/css/signin/style";
+import { portfoliolistProps } from "../../../util/interface/MyPage/portfoliolistPropsType";
 
 const portfolioItemImage =
   "https://media.vlpt.us/images/devfolio/post/dd4607f8-b6b3-4647-ba53-90d2d45f7d19/velog-thumbnail.png";
 const baseProfileImage =
   "https://yt3.ggpht.com/ytc/AKedOLSYskiGDIyLCoFETAvHx4tHvHzlBKkpj3pJ36lpwQ=s900-c-k-c0x00ffffff-no-rj";
 
-const PortfolioList = () => {
+const PortfolioList = (props: portfoliolistProps) => {
   const portfolioArr = [
     {
       job: "학생",

@@ -44,7 +44,10 @@ const MyPage = () => {
               <h1 onClick={onClickEvent}>나의 터칭</h1>
             </NavWrapper>
           </div>
-          <PortfolioList />
+          <PortfolioList
+            isClickMyPortfolio={isClickMyPortfolio}
+            isClickMyTouching={isClickMyTouching}
+          />
         </article>
       </section>
     </div>
