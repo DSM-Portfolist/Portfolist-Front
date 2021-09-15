@@ -56,7 +56,7 @@ export const profileBottom = css`
     font-weight: normal;
     font-size: 18px;
     line-height: 23px;
-    margin-right: 24px;
+    margin-right: 15px;
   }
   & button {
     width: 120px;
@@ -68,5 +68,10 @@ export const profileBottom = css`
     position: absolute;
     right: 0;
     cursor: pointer;
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 23px;
   }
 `;

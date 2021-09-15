@@ -24,7 +24,6 @@ const ProfileHeader = (props: any) => {
         <div css={[row, profileBottom]}>
           <h3>분야</h3>
           <p>프론트엔드</p>
-          <h3>직업</h3>
           <p>학생</p>
           {isMypage ? <button css={[center]}>프로필 수정</button> : ""}
         </div>
