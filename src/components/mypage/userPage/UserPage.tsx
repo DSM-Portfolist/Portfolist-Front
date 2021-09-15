@@ -9,7 +9,7 @@ import {
   center,
 } from "../../../util/css/mypage/UserPage/style";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import PortfolioList from "./PortfolioList/PortfolioList";
+import PortfolioList from "../PortfolioList/PortfolioList";
 
 const UserPage = () => {
   return (

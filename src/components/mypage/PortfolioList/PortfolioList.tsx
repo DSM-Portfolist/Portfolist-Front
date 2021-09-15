@@ -9,8 +9,8 @@ import {
   FieldWrapper,
   portfolioItemUnderBar,
   initA,
-} from "../../../../util/css/mypage/UserPage/style";
-import { row } from "../../../../util/css/signin/style";
+} from "../../../util/css/mypage/UserPage/style";
+import { row } from "../../../util/css/signin/style";
 
 const portfolioItemImage =
   "https://media.vlpt.us/images/devfolio/post/dd4607f8-b6b3-4647-ba53-90d2d45f7d19/velog-thumbnail.png";
