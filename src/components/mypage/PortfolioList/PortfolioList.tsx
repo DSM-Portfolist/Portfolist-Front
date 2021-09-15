@@ -19,6 +19,7 @@ const baseProfileImage =
   "https://yt3.ggpht.com/ytc/AKedOLSYskiGDIyLCoFETAvHx4tHvHzlBKkpj3pJ36lpwQ=s900-c-k-c0x00ffffff-no-rj";
 
 const PortfolioList = (props: portfoliolistProps) => {
+  const { isClickMyPortfolio, isClickMyTouching } = props;
   const portfolioArr = [
     {
       job: "학생",
