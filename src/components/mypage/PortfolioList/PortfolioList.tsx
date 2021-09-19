@@ -74,7 +74,7 @@ const PortfolioList = (props: portfoliolistProps) => {
               <div css={[portfolioItemUnderBar, row]}>
                 <div css={[center]}>
                   <img src={baseProfileImage} alt=""></img>
-                  <p>{username}님</p>
+                  <p>{isClickMyPortfolio ? "나의 프로필" : `${username}님 `}</p>
                 </div>
                 <div>
                   <span>댓글 {commment_num}</span>
