@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 
 export const MainWrapper = styled.div`
   width: 100%;
+  overflow-x: hidden;
+  position: relative;
 `;
 
 export const BannerWrapper = styled.div`
