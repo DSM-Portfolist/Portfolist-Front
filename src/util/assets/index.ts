@@ -12,3 +12,4 @@ export { default as MainImg1 } from "./img/mainImg1.svg";
 export { default as MainImg2 } from "./img/mainImg2.svg";
 export { default as MainImg3 } from "./img/mainImg3.svg";
 export { default as Arrow } from "./icon/arrow.svg";
+export { default as Flower } from "./img/flower.svg";
