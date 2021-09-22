@@ -50,15 +50,15 @@ export const NotiWrapper = styled.li`
 export const Notification = styled.div`
   width: 350px;
   background: #ffffff;
-  box-shadow: ${({ notification }: NotificationProp) =>
-    notification ? "0px 7px 6px rgba(164, 164, 164, 0.25)" : "none"};
-  border: 1px solid #eaeaea;
+  border: ${({ notification }: NotificationProp) =>
+    notification ? "1px solid #eaeaea" : "none"};
   position: absolute;
-  top: 60px;
+  top: 62px;
   right: -30px;
   transition: all 0.5s;
-  z-index: -1;
+  z-index: 1;
   overflow: hidden;
+  box-shadow: 0px 7px 6px rgba(164, 164, 164, 0.25);
 `;
 
 export const BeforeLoginHeader = styled(Container)`
@@ -95,4 +95,5 @@ export const MoreItem = styled.ul`
   transition: 0.5s;
   overflow: hidden;
   cursor: auto;
+  z-index: 1;
 `;
