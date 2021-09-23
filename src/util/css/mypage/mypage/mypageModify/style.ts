@@ -58,3 +58,52 @@ export const ProfileImageWrapper = styled.div`
     height: 38px;
   }
 `;
+
+export const MainWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 34px;
+  position: relative;
+  & h1 {
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 70px;
+    color: #000000;
+  }
+  & p {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 41px;
+    color: #000000;
+    margin-top: 23px;
+  }
+  & img {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+  }
+`;
+
+export const FieldWrapper = styled.div`
+  width: 100%;
+  margin-top: 23px;
+  & span {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+  }
+  & span:nth-child(n + 2) {
+    margin-left: 5px;
+  }
+`;
