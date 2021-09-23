@@ -12,6 +12,7 @@ import {
 } from "../../../util/css/mypage/UserPage/style";
 import { row } from "../../../util/css/signin/style";
 import { portfoliolistProps } from "../../../util/interface/MyPage/portfoliolistPropsType";
+import { portfolioArr } from "../../../lib/export/data";
 
 const portfolioItemImage =
   "https://media.vlpt.us/images/devfolio/post/dd4607f8-b6b3-4647-ba53-90d2d45f7d19/velog-thumbnail.png";
@@ -20,28 +21,6 @@ const baseProfileImage =
 
 const PortfolioList = (props: portfoliolistProps) => {
   const { isClickMyPortfolio, isClickMyTouching } = props;
-  const portfolioArr = [
-    {
-      job: "학생",
-      field: "백 엔드",
-      title: "💖 침착맨",
-      content: "트위치 방송 스트리머 침착맨 입니다!",
-      username: "침착맨",
-      commment_num: "7",
-      touching_num: "6",
-      date: "2021-08-25",
-    },
-    {
-      job: "학생",
-      field: "백 엔드",
-      title: "💖 침착맨",
-      content: "트위치 방송 스트리머 침착맨 입니다!",
-      username: "침착맨",
-      commment_num: "7",
-      touching_num: "6",
-      date: "2021-08-25",
-    },
-  ];
   //date문자열 짤라서 가공하는 함수
   function dateSplit(string: string): string {
     let dateArray = string.split("-");
