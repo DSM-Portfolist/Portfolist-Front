@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
 import { column } from "../../../util/css/mypage/UserPage/style";
+import { Link } from "react-router-dom";
 import { row } from "../../../util/css/signin/style";
 import {
   profileBottom,
@@ -25,7 +26,13 @@ const ProfileHeader = (props: any) => {
           <h3>분야</h3>
           <p>프론트엔드</p>
           <p>학생</p>
-          {isMypage ? <button css={[center]}>프로필 수정</button> : ""}
+          {isMypage ? (
+            <Link to="/my-page-modify">
+              <button css={[center]}>프로필 수정</button>
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </header>
