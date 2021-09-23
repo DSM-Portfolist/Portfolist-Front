@@ -14,3 +14,4 @@ export { default as MainImg3 } from "./img/mainImg3.svg";
 export { default as Arrow } from "./icon/arrow.svg";
 export { default as Flower } from "./img/flower.svg";
 export { default as MainContentItem } from "./img/mainContentItem.svg";
+export { default as NewIcon } from "./icon/newIcon.svg";
