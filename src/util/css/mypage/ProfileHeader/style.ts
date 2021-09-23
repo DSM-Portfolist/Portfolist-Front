@@ -58,6 +58,10 @@ export const profileBottom = css`
     line-height: 23px;
     margin-right: 15px;
   }
+  & a {
+    width: 120px;
+    height: 30px;
+  }
   & button {
     width: 120px;
     height: 30px;

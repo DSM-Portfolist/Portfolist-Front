@@ -18,6 +18,7 @@ const MyPage = () => {
   const [isClickMyPortfolio, setIsClickMyPortfolio] = useState<boolean>(true);
   const [isClickMyTouching, setIsClickMyTouching] = useState<boolean>(false);
   console.log(isClickMyPortfolio, isClickMyTouching);
+
   const onClickEvent = (e: any) => {
     const { innerHTML } = e.target;
     if (innerHTML === "나의 포트폴리오") {
@@ -29,6 +30,7 @@ const MyPage = () => {
     }
     console.log(e);
   };
+  
   return (
     <div css={[baseBackground, column]}>
       <header></header>
