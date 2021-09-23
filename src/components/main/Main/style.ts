@@ -17,3 +17,41 @@ export const BannerWrapper = styled.div`
     object-fit: cover;
   }
 `;
+
+export const BannerContent = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  top: 240px;
+  left: 200px;
+
+  .top-content {
+    display: flex;
+    flex-direction: column;
+    color: white;
+
+    span {
+      font-family: "Noto Serif KR", serif;
+      font-weight: 700;
+      font-size: 40px;
+    }
+
+    span:last-child {
+      font-family: "Prociono", serif;
+      font-weight: 300;
+      font-size: 24px;
+    }
+  }
+
+  .title-content {
+    margin-top: 20px;
+    font-size: 60px;
+    color: white;
+    
+    span {
+      font-family: "Prociono", serif;
+      font-weight: 400;
+    }
+  }
+`;
