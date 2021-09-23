@@ -8,3 +8,4 @@ export { default as Profile } from "./icon/profile.svg";
 export { default as NoNotification } from "./icon/noNotification.svg";
 export { default as Notification } from "./icon/notification.svg";
 export { default as Mascot } from "./icon/mascot.svg";
+export { default as ModifyPensil } from "./icon/modifyPensil.svg";
