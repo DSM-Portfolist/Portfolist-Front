@@ -1,6 +1,6 @@
-import react from "react";
-import { Header, Banner } from "../../index";
+import { Header, Banner, List, MonthPortfolio } from "../../index";
 import FilterBar from "./filterBar/FilterBar";
+import Introduce from "./introduce/Introduce";
 import * as S from "./style";
 
 const Main = () => {
@@ -9,6 +9,9 @@ const Main = () => {
       <Header />
       <Banner />
       <FilterBar />
+      <List />
+      <MonthPortfolio />
+      <Introduce />
     </S.MainWrapper>
   );
 };
