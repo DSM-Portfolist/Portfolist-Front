@@ -9,6 +9,7 @@ import {
   column,
 } from "../../../../util/css/mypage/mypage/style";
 import ImageUploadWrapper from "./ImageUploadWrapper";
+import MyInfoModify from "./MyInfoModify";
 
 const MypageModify = () => {
   return (
@@ -17,6 +18,7 @@ const MypageModify = () => {
       <MainSection>
         <MyProfileWrapper>
           <ImageUploadWrapper />
+          <MyInfoModify />
         </MyProfileWrapper>
       </MainSection>
     </div>
