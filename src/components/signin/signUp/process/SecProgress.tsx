@@ -35,6 +35,42 @@ const SecProgress = () => {
                 <CategoryItem arrowSelect={arrowSelect} setText={setText} />
               </div>
             </S.FieldSelectWrap>
+            <S.FieldSelectWrap>
+              <span>분야</span>
+              <div className="categoy_wrap">
+                <p onClick={() => setArrowSelect(!arrowSelect)}>
+                  {text}
+                  <S.ArrowImg
+                    src={NoSelectedArrow}
+                    alt="화살표 상태"
+                    style={
+                      arrowSelect
+                        ? { transform: "rotate(180deg)" }
+                        : { transform: "rotate(0deg)" }
+                    }
+                  />
+                </p>
+                <CategoryItem arrowSelect={arrowSelect} setText={setText} />
+              </div>
+            </S.FieldSelectWrap>
+            <S.FieldSelectWrap>
+              <span>분야</span>
+              <div className="categoy_wrap">
+                <p onClick={() => setArrowSelect(!arrowSelect)}>
+                  {text}
+                  <S.ArrowImg
+                    src={NoSelectedArrow}
+                    alt="화살표 상태"
+                    style={
+                      arrowSelect
+                        ? { transform: "rotate(180deg)" }
+                        : { transform: "rotate(0deg)" }
+                    }
+                  />
+                </p>
+                <CategoryItem arrowSelect={arrowSelect} setText={setText} />
+              </div>
+            </S.FieldSelectWrap>
             <button>다음</button>
           </S.SignBox>
         </S.SignForm>
