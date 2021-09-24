@@ -25,14 +25,18 @@ export const Container = styled.div`
       margin: 0 100px;
     }
 
+    a,
     li {
       margin: 0 15px;
       align-items: center;
       font-weight: 500;
       cursor: pointer;
+      text-decoration: none;
+      color: black;
 
       span {
         font-family: "Prociono", serif;
+        cursor: pointer;
       }
 
       .profile-img {

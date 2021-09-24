@@ -21,12 +21,12 @@ const Header = () => {
           <S.Container>
             <img src={Logo} alt="포트폴리스트 로고" />
             <ul>
-              <li className="list-item">
+              <Link to="/portfolio-list" className="list-item">
                 <span>portfolio list</span> 열람
-              </li>
-              <li className="list-item">
+              </Link>
+              <Link to="/portfolio-make" className="list-item">
                 <span>portfolio make</span> 제작
-              </li>
+              </Link>
             </ul>
             <ul>
               <S.NotiWrapper>
@@ -49,7 +49,7 @@ const Header = () => {
                   onMouseUp={() => setMoreItem(!moreItem)}
                 />
                 <S.MoreItem style={moreItem ? { height: 120 } : { height: 0 }}>
-                  <li>마이페이지</li>
+                  <Link to="/my-page">마이페이지</Link>
                   <li onClick={() => ToastSuccess("로그아웃 되었습니다.")}>
                     로그아웃
                   </li>
