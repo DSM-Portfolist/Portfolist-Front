@@ -12,7 +12,7 @@ import * as S from "./style";
 const Header = () => {
   const [notification, setNotification] = useState<boolean>(false);
   const [moreItem, setMoreItem] = useState<boolean>(false);
-  const test = false;
+  const test = true;
 
   return (
     <S.HeaderWrapper>
