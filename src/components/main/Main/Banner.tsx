@@ -18,7 +18,7 @@ const Banner = () => {
       setVal(i);
 
       if (i === 2) i = -1;
-    }, 3000);
+    }, 10000);
   }, [currentSlider]);
 
   return (
