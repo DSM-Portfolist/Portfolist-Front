@@ -9,3 +9,6 @@ export { default as List } from "./main/Main/portList/List";
 export { default as MonthPortfolio } from "./main/Main/monthPortfolio/MonthPortfolio";
 export { default as Introduce } from "./main/Main/introduce/Introduce";
 export { default as News } from "./main/Main/news/News";
+export { default as PortfolioList } from "./portfolioList/PortfolioList";
+export { default as MainList } from "./portfolioList/list/MainList";
+export { default as ListItem } from "./portfolioList/list/ListItem";
