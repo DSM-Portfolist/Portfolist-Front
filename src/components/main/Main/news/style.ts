@@ -18,7 +18,9 @@ export const NewsItemWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const Title = styled.span`
+export const Title = styled.div`
+  font-size: 20px;
+  font-weight: 500;
   border-bottom: 3px solid ${mainColor};
 `;
 
