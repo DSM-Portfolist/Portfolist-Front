@@ -26,6 +26,7 @@ code {
   outline: none;
   border: none;
   list-style: none;
+  cursor: auto;
 }
 
 .border-bottom {

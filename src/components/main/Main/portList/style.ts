@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const ListWrapper = styled.div`
   margin: 60px auto;
   width: 1200px;
-  height: 500px;
+  height: 400px;
   display: flex;
   flex-direction: row;
   align-items: center;
