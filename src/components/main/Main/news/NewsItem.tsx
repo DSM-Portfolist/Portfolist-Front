@@ -1,4 +1,5 @@
-import react from "react";
+import React from "react";
+import NoticeItem from "./notice/NoticeItem";
 import * as S from "./style";
 
 interface NewsItemProps {
@@ -9,7 +10,9 @@ const NewsItem = ({ title }: NewsItemProps) => {
   return (
     <S.NewsItemWrapper>
       <S.Title>{title}</S.Title>
-      <S.ContentBox></S.ContentBox>
+      <S.ContentBox>
+        <NoticeItem />
+      </S.ContentBox>
     </S.NewsItemWrapper>
   );
 };
