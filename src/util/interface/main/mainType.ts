@@ -10,3 +10,7 @@ export interface MoreExplore {
 export interface TouchingProp {
   touchingBoolean: boolean;
 }
+
+export interface SearchProp {
+  arrowSelect: boolean;
+}
