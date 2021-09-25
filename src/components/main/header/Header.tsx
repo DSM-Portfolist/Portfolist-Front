@@ -19,7 +19,10 @@ const Header = () => {
       {test ? (
         <>
           <S.Container>
-            <img src={Logo} alt="포트폴리스트 로고" />
+            <Link to="/">
+              <img src={Logo} alt="포트폴리스트 로고" />
+            </Link>
+
             <ul>
               <Link to="/portfolio-list" className="list-item">
                 <span>portfolio list</span> 열람
