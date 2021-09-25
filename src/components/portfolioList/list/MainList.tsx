@@ -1,12 +1,13 @@
 import React from "react";
-import ListItem from "./ListItem";
 import * as S from "./style";
 import { list } from "./dummy.json";
+import { Search, ListItem } from "../..";
 
 const MainList = () => {
   return (
     <>
-      <S.MainListWrapper>
+      <S.MainListWrapper className="container">
+        <Search />
         <S.ListWrapper>
           {list.map((list: any, index) => (
             <ListItem

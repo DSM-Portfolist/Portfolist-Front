@@ -1,16 +1,14 @@
 import styled from "@emotion/styled";
-import { mainColor, portfolioBackColor } from "../../../util/css/color/color";
+import { mainColor } from "../../../util/css/color/color";
 import { TouchingProp } from "../../../util/interface/main/mainType";
 
 export const MainListWrapper = styled.section`
-  background-color: ${portfolioBackColor};
+  background-color: white;
   display: flex;
   flex-direction: column;
 `;
 
 export const ListWrapper = styled.div`
-  margin: 0 auto;
-  width: 1400px;
   min-height: 1000px;
   background-color: white;
   display: flex;
