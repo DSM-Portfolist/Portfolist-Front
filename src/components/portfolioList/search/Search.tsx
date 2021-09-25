@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NoSelectedArrow } from "../../../util/assets";
+import FieldItem from "./FieldItem";
 import FieldSelectItem from "./FieldSelectItem";
 import * as S from "./style";
 
@@ -7,6 +8,12 @@ const Search = () => {
   const [text, setText] = useState<string>("원하는 분야를 선택해주세요.");
   const [arrowSelect, setArrowSelect] = useState<boolean>(false);
   const [bottomLine, setBottomList] = useState<boolean>(false);
+
+  const field = [
+    {
+      field: "프론트엔드",
+    },
+  ];
 
   return (
     <S.SearchWrapper>
@@ -30,8 +37,12 @@ const Search = () => {
           </div>
           <FieldSelectItem arrowSelect={arrowSelect} setText={setText} />
         </div>
+        <S.FieldWrapper>
+          {field.map((field) => (
+            <FieldItem field={field.field} />
+          ))}
+        </S.FieldWrapper>
       </S.FieldSelectWrapper>
-      <S.FieldWrapper></S.FieldWrapper>
     </S.SearchWrapper>
   );
 };

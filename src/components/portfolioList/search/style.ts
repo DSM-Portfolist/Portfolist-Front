@@ -13,7 +13,6 @@ export const SearchWrapper = styled.div`
   .field-select {
     display: flex;
     flex-direction: column;
-    width: 60%;
     position: absolute;
     margin-left: 5%;
   }
