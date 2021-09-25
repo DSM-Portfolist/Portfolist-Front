@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Flower } from "../../../../util/assets";
 import * as S from "./style";
 
