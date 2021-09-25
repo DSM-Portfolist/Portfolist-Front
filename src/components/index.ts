@@ -12,3 +12,5 @@ export { default as News } from "./main/Main/news/News";
 export { default as PortfolioList } from "./portfolioList/PortfolioList";
 export { default as MainList } from "./portfolioList/list/MainList";
 export { default as ListItem } from "./portfolioList/list/ListItem";
+export { default as FieldItem } from "./portfolioList/search/FieldItem";
+export { default as Search } from "./portfolioList/search/Search";
