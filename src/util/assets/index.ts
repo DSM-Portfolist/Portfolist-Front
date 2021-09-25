@@ -15,3 +15,5 @@ export { default as Arrow } from "./icon/arrow.svg";
 export { default as Flower } from "./img/flower.svg";
 export { default as MainContentItem } from "./img/mainContentItem.svg";
 export { default as NewIcon } from "./icon/newIcon.svg";
+export { default as Touching } from "./icon/touching.svg";
+export { default as BeforeTouching } from "./icon/beforeTouching.svg";
