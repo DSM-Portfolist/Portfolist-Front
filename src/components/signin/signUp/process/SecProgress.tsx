@@ -8,6 +8,7 @@ const SecProgress = () => {
   const [btnColor, setBtnColor] = useState<boolean>(false);
   const [text, setText] = useState<string>("자신의 전공 분야를 선택해주세요");
   const [arrowSelect, setArrowSelect] = useState<boolean>(false);
+  const [bottomLine, setBottomList] = useState<boolean>(false);
 
   return (
     <>
