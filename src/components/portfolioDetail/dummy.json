@@ -50,19 +50,34 @@
   "file": "dsjkhfkjwehklhksdhklas",
   "comment": [
     {
-      "comment_user_id": 1,
+      "user": {
+        "c_user_id": 1,
+        "c_name": "강은빈",
+        "c_profile": "djfdjkshflahd.com"
+      },
       "comment_id": 1,
       "comment_content": "에라이",
+      "c_date": "2021-09-26",
       "re_comment": [
         {
-          "re_comment_user_id": 1,
+          "user": {
+            "rc_user_id": 1,
+            "rc_name": "강은빈",
+            "rc_profile": "djfdjkshflahd.com"
+          },
           "re_comment_id": 1,
-          "re_comment_content": "에라이"
+          "re_comment_content": "에라이",
+          "rc_date": "2021-09-26"
         },
         {
-          "re_comment_user_id": 2,
+          "user": {
+            "rc_user_id": 1,
+            "rc_name": "강은빈",
+            "rc_profile": "djfdjkshflahd.com"
+          },
           "re_comment_id": 2,
-          "re_comment_content": "춥다"
+          "re_comment_content": "춥다",
+          "rc_date": "2021-09-26"
         }
       ]
     }
