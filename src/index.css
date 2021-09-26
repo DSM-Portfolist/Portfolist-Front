@@ -27,6 +27,7 @@ code {
   border: none;
   list-style: none;
   cursor: auto;
+  text-decoration: none;
 }
 
 .border-bottom {
