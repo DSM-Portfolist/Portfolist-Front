@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { loginTextColor, mainColor } from "../../../util/css/color/color";
+import { loginTextColor } from "../../../util/css/color/color";
 import { SearchProp } from "../../../util/interface/main/mainType";
 
 export const SearchWrapper = styled.div`
