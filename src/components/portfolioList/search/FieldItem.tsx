@@ -9,7 +9,6 @@ interface Props {
 }
 
 const FieldItem = ({ field, setUseField, useField }: Props) => {
-  
   function UseFieldDelete(txt: string) {
     setUseField(useField.filter((txt) => field !== txt));
   }
@@ -20,7 +19,9 @@ const FieldItem = ({ field, setUseField, useField }: Props) => {
       <img
         src={CloseIcon}
         alt="닫기 아이콘"
-        onClick={() => UseFieldDelete(field)}
+        onClick={() => {
+          UseFieldDelete(field);
+        }}
       />
     </S.FieldItemWrapper>
   );
