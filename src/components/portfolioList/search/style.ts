@@ -4,7 +4,7 @@ import { SearchProp } from "../../../util/interface/main/mainType";
 
 export const SearchWrapper = styled.div`
   width: 100%;
-  height: 80px;
+  height: 100px;
   border-bottom: 2px solid #f0f0f0;
   display: flex;
   flex-direction: row;
@@ -53,7 +53,7 @@ export const ArrowImg = styled.img`
 `;
 
 export const FieldWrapper = styled.div`
-  margin-left: 22%;
+  margin-left: 15%;
   display: flex;
   flex-direction: row;
 `;
