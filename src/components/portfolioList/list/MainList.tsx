@@ -19,6 +19,7 @@ const MainList = () => {
               introduce={list.introduce}
               touching={list.touching}
               touched={list.touched}
+              id={list.id}
             />
           ))}
         </S.ListWrapper>
