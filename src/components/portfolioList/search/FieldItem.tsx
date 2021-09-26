@@ -2,11 +2,27 @@ import React from "react";
 import { CloseIcon } from "../../../util/assets";
 import * as S from "./style";
 
-const FieldItem = () => {
+interface Props {
+  field: string;
+  setUseField: any;
+  useField: [];
+}
+
+const FieldItem = ({ field, setUseField, useField }: Props) => {
+  function UseFieldDelete(txt: string) {
+    setUseField(useField.filter((txt) => field !== txt));
+  }
+
   return (
     <S.FieldItemWrapper>
-      <span>프론트엔드</span>
-      <img src={CloseIcon} alt="닫기 아이콘" />
+      <span>{field}</span>
+      <img
+        src={CloseIcon}
+        alt="닫기 아이콘"
+        onClick={() => {
+          UseFieldDelete(field);
+        }}
+      />
     </S.FieldItemWrapper>
   );
 };

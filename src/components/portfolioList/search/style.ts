@@ -4,7 +4,7 @@ import { SearchProp } from "../../../util/interface/main/mainType";
 
 export const SearchWrapper = styled.div`
   width: 100%;
-  height: 80px;
+  height: 100px;
   border-bottom: 2px solid #f0f0f0;
   display: flex;
   flex-direction: row;
@@ -13,7 +13,6 @@ export const SearchWrapper = styled.div`
   .field-select {
     display: flex;
     flex-direction: column;
-    width: 60%;
     position: absolute;
     margin-left: 5%;
   }
@@ -53,9 +52,14 @@ export const ArrowImg = styled.img`
   transition: all 0.5s;
 `;
 
-export const FieldWrapper = styled.div``;
+export const FieldWrapper = styled.div`
+  margin-left: 15%;
+  display: flex;
+  flex-direction: row;
+`;
 
 export const FieldItemWrapper = styled.div`
+  margin: 0 10px;
   background: #ff7659;
   border-radius: 20px;
   padding: 10px 20px;
@@ -64,8 +68,14 @@ export const FieldItemWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
+  span {
+    font-size: 15px;
+    color: white;
+  }
+
   img {
     margin: 0 0 0 10px;
+    cursor: pointer;
   }
 `;
 
