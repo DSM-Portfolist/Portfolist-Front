@@ -4,8 +4,9 @@ import { field } from "./dummy.json";
 
 interface Props {
   setText: any;
-  arrowSelect: boolean;
+  setArrowSelect: any;
   setUseField: any;
+  arrowSelect: boolean;
   useField: [];
 }
 
@@ -14,6 +15,7 @@ const FieldSelectItem = ({
   arrowSelect,
   setUseField,
   useField,
+  setArrowSelect,
 }: Props) => {
   function UseFieldAdd(field: any) {
     setUseField(useField.concat(field));
@@ -30,6 +32,7 @@ const FieldSelectItem = ({
           onClick={() => {
             setText(field.field);
             UseFieldAdd(field.field);
+            setArrowSelect(false);
           }}
         >
           {field.field}
