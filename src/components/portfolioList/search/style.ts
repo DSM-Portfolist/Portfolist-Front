@@ -34,8 +34,6 @@ export const FieldSelectWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: ${({ arrowSelect }: SearchProp) =>
-      arrowSelect ? `2px solid ${mainColor}` : "2px solid #C4C4C4"};
 
     p {
       padding-bottom: 2px;
