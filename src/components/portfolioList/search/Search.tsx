@@ -8,12 +8,7 @@ const Search = () => {
   const [text, setText] = useState<string>("원하는 분야를 선택해주세요.");
   const [arrowSelect, setArrowSelect] = useState<boolean>(false);
   const [bottomLine, setBottomList] = useState<boolean>(false);
-
-  const field = [
-    {
-      field: "프론트엔드",
-    },
-  ];
+  const [useField, setUseField] = useState<any>(["프론트엔드"]);
 
   return (
     <S.SearchWrapper>
@@ -35,11 +30,21 @@ const Search = () => {
               }
             />
           </div>
-          <FieldSelectItem arrowSelect={arrowSelect} setText={setText} />
+          <FieldSelectItem
+            arrowSelect={arrowSelect}
+            setText={setText}
+            setUseField={setUseField}
+            useField={useField}
+          />
         </div>
         <S.FieldWrapper>
-          {field.map((field) => (
-            <FieldItem field={field.field} />
+          {useField?.map((field: any, index: number) => (
+            <FieldItem
+              field={field}
+              key={index}
+              setUseField={setUseField}
+              useField={useField}
+            />
           ))}
         </S.FieldWrapper>
       </S.FieldSelectWrapper>
