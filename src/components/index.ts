@@ -14,3 +14,5 @@ export { default as MainList } from "./portfolioList/list/MainList";
 export { default as ListItem } from "./portfolioList/list/ListItem";
 export { default as FieldItem } from "./portfolioList/search/FieldItem";
 export { default as Search } from "./portfolioList/search/Search";
+export { default as PortfolioDatail } from "./portfolioDetail/PortfolioDetail";
+export { default as Comment } from "./portfolioDetail/comment/Comment";
