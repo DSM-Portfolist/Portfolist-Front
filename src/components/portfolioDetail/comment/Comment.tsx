@@ -16,9 +16,9 @@ const Comment = () => {
             <span>댓글 2개</span>
           </div>
         </S.CommentList>
-        {/*  {comment.map((comment) => (
+        {comment.map((comment) => (
           <CommentItem comment={comment} />
-        ))} */}
+        ))}
         {comment.length >= 5 ? <S.MoreButton>더보기</S.MoreButton> : ""}
       </S.CommentWrapper>
     </>
