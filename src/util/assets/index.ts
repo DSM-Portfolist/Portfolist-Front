@@ -3,6 +3,7 @@ export { default as Github } from "./icon//github.svg";
 export { default as CloseEye } from "./icon/closeEye.svg";
 export { default as OpenEye } from "./icon/openEye.svg";
 export { default as Warning } from "./icon/warning.svg";
+export { default as SelectedArrow } from "./icon/selectedArrow.svg";
 export { default as NoSelectedArrow } from "./icon/noSeletedArrow.svg";
 export { default as Profile } from "./icon/profile.svg";
 export { default as NoNotification } from "./icon/noNotification.svg";
