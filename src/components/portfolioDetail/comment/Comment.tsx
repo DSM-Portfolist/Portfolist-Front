@@ -13,7 +13,7 @@ const Comment = () => {
         </S.InputWrapper>
         <S.CommentList>
           <div className="comment-info">
-            <span>댓글 2개</span>
+            <span>댓글 {comment.length}개</span>
           </div>
         </S.CommentList>
         {comment.map((comment) => (
