@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { mainColor } from "../../../util/css/color/color";
 
 export const CommentWrapper = styled.div`
-  width: 1200px;
+  width: 900px;
   height: 850px;
   margin: 50px auto;
 `;
@@ -52,7 +52,7 @@ export const CommentItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top: 2px solid #f0f0f0;
+  border-top: 1px solid #f0f0f0;
 
   .comment {
     width: 100%;
@@ -134,7 +134,7 @@ export const MoreButton = styled.button`
 export const ReComment = styled.div`
   width: 90%;
   margin-left: 10%;
-  border-top: 2px solid #f0f0f0;
+  border-top: 1px solid #f0f0f0;
 
   display: flex;
   flex-direction: row;
