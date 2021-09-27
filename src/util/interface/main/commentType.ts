@@ -1,4 +1,5 @@
 export interface CommentType {
+  filter?: any;
   user: CommentUser;
   comment_id: number;
   comment_content: string;
