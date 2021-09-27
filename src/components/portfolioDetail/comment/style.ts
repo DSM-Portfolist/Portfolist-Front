@@ -50,10 +50,17 @@ export const CommentList = styled.div`
 export const CommentItemWrapper = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   border-top: 2px solid #f0f0f0;
+
+  .comment {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const Content = styled.div`
@@ -122,4 +129,15 @@ export const MoreButton = styled.button`
     border: none;
     color: white;
   }
+`;
+
+export const ReComment = styled.div`
+  width: 90%;
+  margin-left: 10%;
+  border-top: 2px solid #f0f0f0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
