@@ -5,9 +5,12 @@ import { CommentType } from "../../../util/interface/main/commentType";
 
 interface Prop {
   comment: CommentType;
+  setCommentList: any;
+  CommentDelete: any;
+  ReCommentDelete: any;
 }
 
-const CommentItem = ({ comment }: Prop) => {
+const CommentItem = ({ comment, CommentDelete, ReCommentDelete }: Prop) => {
   return (
     <S.CommentItemWrapper>
       <div className="comment">
@@ -24,12 +27,12 @@ const CommentItem = ({ comment }: Prop) => {
           </div>
         </S.Content>
         <S.Util>
-          <span>삭제</span>
+          <span onClick={() => CommentDelete(comment.comment_id)}>삭제</span>
           <span>신고</span>
         </S.Util>
       </div>
       {comment.re_comment.map((re_comment) => (
-        <S.ReComment>
+        <S.ReComment key={re_comment.re_comment_id}>
           <S.Content>
             <img src={Profile} alt="프로필 사진" />
             <div className="content">
@@ -43,7 +46,13 @@ const CommentItem = ({ comment }: Prop) => {
             </div>
           </S.Content>
           <S.Util>
-            <span>삭제</span>
+            <span
+              onClick={() =>
+                ReCommentDelete(comment.comment_id, re_comment.re_comment_id)
+              }
+            >
+              삭제
+            </span>
             <span>신고</span>
           </S.Util>
         </S.ReComment>
