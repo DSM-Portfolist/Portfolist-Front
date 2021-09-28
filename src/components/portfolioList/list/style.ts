@@ -14,33 +14,39 @@ export const ListWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 export const ListItemWrapper = styled.div`
+  border-radius: 3px;
   margin: 25px;
   width: 220px;
   height: 390px;
   box-shadow: 0px 4px 4px rgba(214, 214, 214, 0.25);
   overflow: hidden;
   cursor: pointer;
+  transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;
 
   .portfoilo-img {
     width: 100%;
     height: 190px;
-    transition: opacity 0.3s ease 0s, transform 0.3s ease 0s;
     overflow: hidden;
 
     img {
+      transition: opacity 0.3s ease 0s, transform 0.3s ease 0s;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      overflow: hidden;
     }
   }
 
-  :hover .portfoilo-img {
+  :hover .portfoilo-img img {
     transform: scale(1.1);
+  }
+
+  :hover {
+    box-shadow: 0px 4px 9px rgb(214 214 214 / 57%);
+    transform: translateY(-10px);
   }
 `;
 
@@ -53,10 +59,20 @@ export const Content = styled.div`
   margin: 0 auto;
 
   .user-profile {
-    padding-bottom: 15px;
+    padding-bottom: 5px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+
+    a {
+      color: black;
+      margin-top: 4px;
+      font-size: 13px;
+
+      strong {
+        cursor: pointer;
+      }
+    }
 
     img {
       margin: 0 5px;
@@ -64,11 +80,6 @@ export const Content = styled.div`
       height: 30px;
       border-radius: 50px;
       object-fit: cover;
-    }
-
-    span {
-      margin-top: 3px;
-      font-size: 14px;
     }
   }
 

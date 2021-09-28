@@ -61,7 +61,7 @@ const ListItem = ({ list }: Prop) => {
         <div className="title">
           <Link
             to={`/portfolio/${list.id}`}
-            title="포트폴리오 상세 페이지 이동"
+            title="포트폴리오 상세 페이지 이동합니다."
           >
             {list.title}
           </Link>
@@ -69,7 +69,7 @@ const ListItem = ({ list }: Prop) => {
         </div>
         <div className="user-profile">
           <img src={Profile} alt="사용자의 프로필 사진" />
-          <Link to={`/user-page`} title="유저 페이지 이동">
+          <Link to={`/user-page`} title="유저 페이지 이동합니다.">
             <strong>{list.user.name}</strong>님이 포트폴리오
           </Link>
         </div>
