@@ -1,10 +1,16 @@
 {
-  "user_id": 1,
+  "user": {
+    "user_id": 1,
+    "name": "강은빈",
+    "profile": "djfdjkshflahd.com"
+  },
+  "create_date": "2342342",
   "touched": true,
   "touching": 30,
   "icon": "swimming",
   "title": "강은빈",
   "introduce": "금처럼 빛나게 될 강은빈입니다",
+  "field": [1, 2],
   "more_info": [
     {
       "key": "전화번호",
