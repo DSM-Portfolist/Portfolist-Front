@@ -38,17 +38,27 @@ export const Container = styled.div`
         font-family: "Prociono", serif;
         cursor: pointer;
       }
-
-      .profile-img {
-        width: 40px;
-        border-radius: 50px;
-      }
     }
   }
 `;
 
 export const NotiWrapper = styled.li`
   position: relative;
+
+  .noti-img {
+    width: 25px;
+    margin-top: 4px;
+    height: 25px;
+    cursor: pointer;
+  }
+
+  .profile-img {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    border-radius: 50px;
+    cursor: pointer;
+  }
 `;
 
 export const Notification = styled.div`

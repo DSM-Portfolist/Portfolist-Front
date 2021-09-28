@@ -34,6 +34,7 @@ const Header = () => {
             <ul>
               <S.NotiWrapper>
                 <img
+                className="noti-img"
                   src={test ? `${NoNotification}` : `${Notification}`}
                   alt="알림아이콘"
                   onClick={() => setNotification(!notification)}
