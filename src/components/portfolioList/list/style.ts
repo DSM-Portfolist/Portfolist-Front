@@ -111,12 +111,14 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
 
-    span:nth-child(1) {
+    a:nth-child(1) {
       font-weight: 500;
       font-size: 16px;
+      color: black;
+      cursor: pointer;
     }
 
-    span:nth-child(2) {
+    span {
       margin: 8px 0 10px 0;
       font-weight: 400;
       color: #8e8e8e;
