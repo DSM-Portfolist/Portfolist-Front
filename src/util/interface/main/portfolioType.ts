@@ -1,17 +1,19 @@
 import { CommentType } from "./commentType";
+import { UserType } from "./portListType";
 
 export interface PortfolioType {
-  id: number;
-  user_id: number;
-  touched: true;
+  default?: any;
+  user: UserType;
+  touched: boolean;
   touching: number;
   icon: string;
   title: string;
   introduce: string;
+  field: number[];
   more_info: MoreInfoType[];
   experience: ExperienceType[];
   project: ProjectType[];
-  certificate: [];
+  certificate: string[];
   link: string;
   file: string;
   comment: CommentType[];
