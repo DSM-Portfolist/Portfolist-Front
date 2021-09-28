@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { mainColor } from "../../../util/css/color/color";
 
 export const CommentWrapper = styled.div`
-  width: 900px;
+  width: 65%;
   height: 850px;
   margin: 50px auto;
 `;
@@ -35,7 +35,6 @@ export const InputWrapper = styled.div`
 `;
 
 export const CommentList = styled.div`
-  width: 100%;
   margin: 40px 0;
 
   .comment-info {

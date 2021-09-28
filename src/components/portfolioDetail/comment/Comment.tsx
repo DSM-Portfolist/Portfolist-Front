@@ -3,43 +3,28 @@ import CommentItem from "./CommentItem";
 import * as S from "./style";
 import { comment } from "../dummy.json";
 import { CommentType } from "../../../util/interface/main/commentType";
+import { ToastSuccess } from "../../../hook/toastHook";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Comment = () => {
-  /* const [commentContent, setCommentContent] = useState<CommentType>({
-    user: {
-      c_user_id: 1,
-      c_name: "강은빈",
-      c_profile: "sdfsdf",
-    },
-    comment_id: 1,
-    comment_content: "ㄴㅇㄹㄴㄹㄴㅇㄹ",
-    c_date: "20201",
-    re_comment: [
-      {
-        user: {
-          rc_user_id: 1,
-          rc_name: "강은빈",
-          rc_profile: "djfdjkshflahd.com",
-        },
-        re_comment_id: 1,
-        re_comment_content: "에라이",
-        rc_date: "2021-09-26",
-      },
-    ],
-  }); */
   const [commentContent, setCommentContent] = useState<string>("");
   const [commentList, setCommentList] = useState<CommentType[]>(comment);
 
+  // 댓글 작성
   function CommentAdd(commentContent: any, e: any) {
     e.preventDefault();
     setCommentList(commentList.concat(commentContent));
     console.log(commentList);
   }
 
+  // 댓글 삭제
   function CommentDelete(id: number) {
     setCommentList(commentList.filter((c_id: any) => c_id.comment_id !== id));
+    ToastSuccess("댓글이 삭제 되었습니다.");
   }
 
+  // 대댓글 삭제
   function ReCommentDelete(c_id: number, re_id: number) {
     console.log(re_id);
     /* setCommentList(
@@ -52,6 +37,7 @@ const Comment = () => {
 
   return (
     <>
+      <ToastContainer />
       <S.CommentWrapper>
         <S.InputWrapper>
           <textarea
