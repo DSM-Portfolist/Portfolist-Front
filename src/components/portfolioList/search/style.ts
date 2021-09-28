@@ -60,7 +60,7 @@ export const FieldItemWrapper = styled.div`
   margin: 0 10px;
   background: #ff7659;
   border-radius: 20px;
-  padding: 10px 20px;
+  padding: 8px 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
