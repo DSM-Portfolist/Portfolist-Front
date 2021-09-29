@@ -1,5 +1,5 @@
 import { CommentType } from "./commentType";
-import { UserType } from "./portListType";
+import { UserType } from "./userType";
 
 export interface PortfolioType {
   default?: any;
