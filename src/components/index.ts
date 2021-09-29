@@ -4,3 +4,13 @@ export { default as FirstProgress } from "./signin/signUp/process/FirstProgress"
 export { default as SecProgress } from "./signin/signUp/process/SecProgress";
 export { default as Main } from "./main/Main/Main";
 export { default as Header } from "./main/header/Header";
+export { default as Banner } from "./main/Main/Banner";
+export { default as List } from "./main/Main/portList/List";
+export { default as MonthPortfolio } from "./main/Main/monthPortfolio/MonthPortfolio";
+export { default as Introduce } from "./main/Main/introduce/Introduce";
+export { default as News } from "./main/Main/news/News";
+export { default as PortfolioList } from "./portfolioList/PortfolioList";
+export { default as MainList } from "./portfolioList/list/MainList";
+export { default as ListItem } from "./portfolioList/list/ListItem";
+export { default as FieldItem } from "./portfolioList/search/FieldItem";
+export { default as Search } from "./portfolioList/search/Search";
