@@ -1,4 +1,5 @@
 import React from "react";
+import { Flower } from "../../../../util/assets";
 import { PortfolioType } from "../../../../util/interface/main/portfolioType";
 import * as S from "./style";
 
@@ -23,12 +24,20 @@ const Title = ({ portfolio }: Props) => {
           })}
         </S.FieldWrapper>
         <S.DateWrapper>
-          <span>2020년 8월 9일</span>
+          <span>게시일 2020년 8월 9일</span>
           <div className="user-profile">
-            <span>{list.user}</span>
+            <span>{list.user.name}</span>
+            <img src={Flower} alt="유저 프로필 이미지" />
           </div>
         </S.DateWrapper>
       </S.TitleInfo>
+      <S.HeadTitle>
+        <span role="img">&#127802;</span>
+        <span className="title">강은빈 (Kang Eun Bin)</span>
+        <span className="sub-title">
+          금처럼 반짝반짝 빛나게 될 강은빈입니다.
+        </span>
+      </S.HeadTitle>
     </S.TitleWrapper>
   );
 };
