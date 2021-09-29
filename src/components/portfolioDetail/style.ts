@@ -6,4 +6,9 @@ export const DetailWrappper = styled.div`
   border-left: 2px solid #f0f0f0;
   border-right: 2px solid #f0f0f0;
   margin: 0 auto;
+
+  .portfolio-container {
+    width: 1000px;
+    margin: 0 auto;
+  }
 `;

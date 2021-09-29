@@ -9,7 +9,9 @@ const PortfolioDetail = () => {
     <>
       <Header />
       <S.DetailWrappper>
-        <Title portfolio={portfolio} />
+        <div className="portfolio-container">
+          <Title portfolio={portfolio} />
+        </div>
       </S.DetailWrappper>
       <Comment />
     </>
