@@ -4,6 +4,7 @@ export interface CommentType {
   comment_id: number;
   comment_content: string;
   c_date: string;
+  is_mine: boolean;
   re_comment: ReCommentType[];
 }
 
@@ -12,6 +13,7 @@ export interface ReCommentType {
   re_comment_id: number;
   re_comment_content: string;
   rc_date: string;
+  is_mine: boolean;
 }
 
 export interface CommentUser {
