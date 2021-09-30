@@ -16,4 +16,4 @@ export { default as FieldItem } from "./portfolioList/search/FieldItem";
 export { default as Search } from "./portfolioList/search/Search";
 export { default as PortfolioDatail } from "./portfolioDetail/PortfolioDetail";
 export { default as Comment } from "./portfolioDetail/comment/Comment";
-export { default as Title } from "./portfolioDetail/items/Title/Title";
+export { default as Title } from "./portfolioDetail/items/title/Title";
