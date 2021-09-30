@@ -1,11 +1,16 @@
 import React from "react";
+import { MoreInfoType } from "../../../../util/interface/main/portfolioType";
 import * as S from "./style";
 
-const MoreInfoItem = () => {
+interface Props {
+  info: MoreInfoType;
+}
+
+const MoreInfoItem = ({ info }: Props) => {
   return (
     <S.InfoItem>
-      <span>github</span>
-      <span>https://github.com/silverbeen</span>
+      <span>{info.key}</span>
+      <span>{info.value}</span>
     </S.InfoItem>
   );
 };
