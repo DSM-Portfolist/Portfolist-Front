@@ -19,6 +19,14 @@
     {
       "key": "이메일",
       "value": "swimmingplayer@gmail.com"
+    },
+    {
+      "key": "전화번호",
+      "value": "112"
+    },
+    {
+      "key": "이메일",
+      "value": "swimmingplayer@gmail.com"
     }
   ],
   "experience": [
@@ -61,9 +69,11 @@
         "c_name": "강은빈",
         "c_profile": "djfdjkshflahd.com"
       },
+
       "comment_id": 1,
       "comment_content": "에라이",
       "c_date": "2021-09-26",
+      "is_mine": true,
       "re_comment": [
         {
           "user": {
@@ -73,7 +83,8 @@
           },
           "re_comment_id": 1,
           "re_comment_content": "에라이",
-          "rc_date": "2021-09-26"
+          "rc_date": "2021-09-26",
+          "is_mine": false
         },
         {
           "user": {
@@ -83,7 +94,8 @@
           },
           "re_comment_id": 2,
           "re_comment_content": "춥다",
-          "rc_date": "2021-09-26"
+          "rc_date": "2021-09-26",
+          "is_mine": false
         }
       ]
     },
@@ -96,6 +108,7 @@
       "comment_id": 2,
       "comment_content": "에라이",
       "c_date": "2021-09-26",
+      "is_mine": false,
       "re_comment": [
         {
           "user": {
@@ -105,7 +118,8 @@
           },
           "re_comment_id": 1,
           "re_comment_content": "에라이",
-          "rc_date": "2021-09-26"
+          "rc_date": "2021-09-26",
+          "is_mine": false
         },
         {
           "user": {
@@ -115,7 +129,8 @@
           },
           "re_comment_id": 2,
           "re_comment_content": "춥다",
-          "rc_date": "2021-09-26"
+          "rc_date": "2021-09-26",
+          "is_mine": false
         }
       ]
     },
@@ -128,6 +143,7 @@
       "comment_id": 3,
       "comment_content": "에라이",
       "c_date": "2021-09-26",
+      "is_mine": false,
       "re_comment": [
         {
           "user": {
@@ -137,7 +153,8 @@
           },
           "re_comment_id": 1,
           "re_comment_content": "에라이",
-          "rc_date": "2021-09-26"
+          "rc_date": "2021-09-26",
+          "is_mine": false
         },
         {
           "user": {
@@ -147,7 +164,8 @@
           },
           "re_comment_id": 2,
           "re_comment_content": "춥다",
-          "rc_date": "2021-09-26"
+          "rc_date": "2021-09-26",
+          "is_mine": false
         }
       ]
     }
