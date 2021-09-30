@@ -27,7 +27,12 @@ const CommentItem = ({ comment, CommentDelete, ReCommentDelete }: Prop) => {
           </div>
         </S.Content>
         <S.Util>
-          <span onClick={() => CommentDelete(comment.comment_id)}>삭제</span>
+          {comment.is_mine ? (
+            <span onClick={() => CommentDelete(comment.comment_id)}>삭제</span>
+          ) : (
+            ""
+          )}
+
           <span>신고</span>
         </S.Util>
       </div>
@@ -46,13 +51,18 @@ const CommentItem = ({ comment, CommentDelete, ReCommentDelete }: Prop) => {
             </div>
           </S.Content>
           <S.Util>
-            <span
-              onClick={() =>
-                ReCommentDelete(comment.comment_id, re_comment.re_comment_id)
-              }
-            >
-              삭제
-            </span>
+            {re_comment.is_mine ? (
+              <span
+                onClick={() =>
+                  ReCommentDelete(comment.comment_id, re_comment.re_comment_id)
+                }
+              >
+                삭제
+              </span>
+            ) : (
+              ""
+            )}
+
             <span>신고</span>
           </S.Util>
         </S.ReComment>
