@@ -14,3 +14,7 @@ export interface TouchingProp {
 export interface SearchProp {
   arrowSelect: boolean;
 }
+
+export interface MagnifierProp {
+  magnifier: boolean;
+}
