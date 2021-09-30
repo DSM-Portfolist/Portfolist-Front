@@ -1,12 +1,24 @@
 import React from "react";
+import {
+  MoreInfoType,
+  PortfolioType,
+} from "../../../../util/interface/main/portfolioType";
+import MoreInfoItem from "./MoreInfoItem";
 import * as S from "./style";
 
-const MoreInfo = () => {
+interface Props {
+  portfolio: PortfolioType;
+}
+
+const MoreInfo = ({ portfolio }: Props) => {
   return (
     <S.MoreInfoWrapper>
-      <input placeholder="자신의 추가 정보를 입력해주세요" />
       <div className="more-wrapper">
-        <S.InfoItem />
+        {portfolio.default.more_info.map(
+          (info: MoreInfoType, index: number) => (
+            <MoreInfoItem key={index} info={info} />
+          )
+        )}
       </div>
     </S.MoreInfoWrapper>
   );
