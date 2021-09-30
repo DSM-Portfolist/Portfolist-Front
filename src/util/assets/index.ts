@@ -19,3 +19,4 @@ export { default as NewIcon } from "./icon/newIcon.svg";
 export { default as Touching } from "./icon/touching.svg";
 export { default as BeforeTouching } from "./icon/beforeTouching.svg";
 export { default as CloseIcon } from "./icon/closeIcon.svg";
+export { default as Magnifier } from "./icon/magnifier.svg";
