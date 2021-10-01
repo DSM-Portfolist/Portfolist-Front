@@ -22,17 +22,17 @@ const Header = () => {
         {test ? (
           <>
             <S.Container>
-              <Link to="/">
-                <img src={Logo} alt="포트폴리스트 로고" />
-              </Link>
-              <ul>
+              <div className="logo">
+                <Link to="/">
+                  <img src={Logo} alt="포트폴리스트 로고" />
+                </Link>
                 <Link to="/portfolio-list" className="list-item">
-                  <span>portfolio list</span>
+                  <span>포트폴리오</span>
                 </Link>
                 <Link to="/portfolio-make" className="list-item">
-                  <span>portfolio make</span>
+                  <span>포트폴리오 제작</span>
                 </Link>
-              </ul>
+              </div>
               <ul>
                 <li>
                   <img

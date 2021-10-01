@@ -26,12 +26,23 @@ export const Container = styled.div`
   position: relative;
   z-index: 5;
 
+  .logo {
+    display: flex;
+    width: 26%;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      color: black;
+    }
+  }
+
   ul {
     display: flex;
     align-items: center;
 
     .list-item {
-      margin: 0 100px;
+      margin: 0 40px;
     }
 
     a,
