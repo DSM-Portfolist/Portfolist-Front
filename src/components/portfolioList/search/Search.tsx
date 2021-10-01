@@ -6,6 +6,7 @@ import { NoSelectedArrow, SelectedArrow } from "../../../util/assets";
 import { mainColor } from "../../../util/css/color/color";
 import FieldItem from "./FieldItem";
 import FieldSelectItem from "./FieldSelectItem";
+import SearchInput from "./SearchInput";
 import * as S from "./style";
 
 const Search = () => {
@@ -15,9 +16,8 @@ const Search = () => {
   const [useField, setUseField] = useState<any>([]);
 
   useEffect(() => {
-    if (useField.length >= 5) {
+    if (useField.length >= 6) {
       ToastError("필터는 최대 5개까지 가능합니다.");
-      console.log(false);
     }
   }, [useField]);
 
@@ -67,6 +67,7 @@ const Search = () => {
           ))}
         </S.FieldWrapper>
       </S.FieldSelectWrapper>
+      <SearchInput />
     </S.SearchWrapper>
   );
 };

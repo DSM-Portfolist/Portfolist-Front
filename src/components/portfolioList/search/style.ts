@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { loginTextColor } from "../../../util/css/color/color";
+import { loginTextColor, mainColor } from "../../../util/css/color/color";
 import { SearchProp } from "../../../util/interface/main/mainType";
 
 export const SearchWrapper = styled.div`
@@ -95,5 +95,40 @@ export const FieldSelectItemWrapper = styled.ul`
     text-align: center;
     padding: 3px;
     cursor: pointer;
+  }
+`;
+
+export const SearchInput = styled.div`
+  width: 30%;
+  height: 35px;
+  border: 2px solid ${mainColor};
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .select-box {
+    padding: 8px;
+    background-color: ${mainColor};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    span {
+      cursor: pointer;
+    }
+  }
+
+  input {
+    margin-left: 6px;
+    width: 70%;
+  }
+
+  img {
+    width: 20px;
+    cursor: pointer;
+    margin-right: 10px;
   }
 `;
