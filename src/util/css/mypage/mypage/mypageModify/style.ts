@@ -1,4 +1,9 @@
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
+interface ChangeProps {
+  isClickPasswordButton: boolean;
+}
 
 export const MainSection = styled.section`
   width: 760px;
@@ -106,4 +111,59 @@ export const FieldWrapper = styled.div`
   & span:nth-child(n + 2) {
     margin-left: 5px;
   }
+`;
+
+export const MainContentWrapper = styled.div`
+  width: 770px;
+  margin-top: 82px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ContentItem = css`
+  width: 100%;
+  height: 120px;
+  border-bottom: 2px solid #e7e7e7;
+  transform: rotate(-0.08deg);
+  position: relative;
+  & h1 {
+    margin-top: 15px;
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 27px;
+    line-height: 35px;
+  }
+  & p {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+    color: rgba(0, 0, 0, 0.45);
+    margin-top: 25px;
+  }
+  & span {
+    position: absolute;
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
+    color: #ff7d64;
+    top: 19px;
+    right: 2px;
+    cursor: pointer;
+  }
+`;
+
+export const ChangePasswordWrraper = styled.div<ChangeProps>`
+  width: 100%;
+  height: ${(props) => (props.isClickPasswordButton ? "300px" : "0px")};
+  display: flex;
+  opacity: ${(props) => (props.isClickPasswordButton ? "1" : "0")};
+  flex-direction: column;
+  border-bottom: 2px solid #e7e7e7;
+  transform: rotate(-0.08deg);
+  transition: 0.5s;
 `;
