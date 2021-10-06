@@ -167,3 +167,37 @@ export const ChangePasswordWrraper = styled.div<ChangeProps>`
   transform: rotate(-0.08deg);
   transition: 0.5s;
 `;
+
+export const ChangePasswordItem = styled.div`
+  width: 100%;
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+  & h1 {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 26px;
+    color: #000000;
+    width: 231px;
+  }
+  & input {
+    width: 455px;
+    height: 38px;
+    background: #ffffff;
+    border: 1px solid #d5d5d5;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-decoration: none;
+    padding-left: 12px;
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  & img {
+    cursor: pointer;
+  }
+`;
