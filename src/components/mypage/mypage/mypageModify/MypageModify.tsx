@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
+import { Header } from "../../..";
 import {
   MainSection,
   MyProfileWrapper,
@@ -14,7 +15,7 @@ import MyInfoModify from "./MyInfoModify";
 const MypageModify = () => {
   return (
     <div css={[baseBackground, column]}>
-      <header></header>
+      <Header></Header>
       <MainSection>
         <MyProfileWrapper>
           <ImageUploadWrapper />

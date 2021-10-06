@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import { Login, SignUp } from "../components";
+import { Login, Main, SignUp } from "../components";
 import MyPage from "../components/mypage/mypage/Mypage";
 import UserPage from "../components/mypage/userPage/UserPage";
 import MypageModify from "../components/mypage/mypage/mypageModify/MypageModify";
@@ -8,6 +8,7 @@ import MypageModify from "../components/mypage/mypage/mypageModify/MypageModify"
 const UserRouter = () => {
   return (
     <BrowserRouter>
+      <Route path="/" component={Main} exact />
       <Route path="/login" component={Login} exact />
       <Route path="/sign-up" component={SignUp} exact />
       <Route path="/my-page" component={MyPage} exact />

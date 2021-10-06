@@ -13,6 +13,7 @@ import {
 } from "../../../util/css/mypage/UserPage/style";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import PortfolioList from "../PortfolioList/PortfolioList";
+import { Header } from "../..";
 
 const MyPage = () => {
   const [isClickMyPortfolio, setIsClickMyPortfolio] = useState<boolean>(true);
@@ -30,10 +31,10 @@ const MyPage = () => {
     }
     console.log(e);
   };
-  
+
   return (
     <div css={[baseBackground, column]}>
-      <header></header>
+      <Header></Header>
       <section css={[myPageSection]}>
         <ProfileHeader isMypage={true} />
         <article>
