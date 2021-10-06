@@ -9,9 +9,7 @@ const PasswordModify = () => {
   const [isClickPasswordButton, setIsClickPasswordButton] =
     useState<boolean>(false);
   const toggleButton = () => {
-    if (isClickPasswordButton) {
-      setIsClickPasswordButton(false);
-    } else {
+    if (!isClickPasswordButton) {
       setIsClickPasswordButton(true);
       setTimeout(() => {
         window.scrollTo({ top: 1555, behavior: "smooth" });
