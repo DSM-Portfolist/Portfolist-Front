@@ -14,7 +14,7 @@ import { center } from "../../../util/css/mypage/mypage/style";
 const ProfileHeader = (props: any) => {
   const { isMypage } = props;
   const baseProfileImage =
-    "https://yt3.ggpht.com/ytc/AKedOLSYskiGDIyLCoFETAvHx4tHvHzlBKkpj3pJ36lpwQ=s900-c-k-c0x00ffffff-no-rj";
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYsp-8Rs9T1z7ob8zAKVb5TXQpGNUmVh08kw&usqp=CAU";
 
   return (
     <header css={profileHeader}>
