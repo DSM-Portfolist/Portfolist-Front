@@ -17,10 +17,11 @@ import { portfolioArr } from "../../../lib/export/data";
 const portfolioItemImage =
   "https://media.vlpt.us/images/devfolio/post/dd4607f8-b6b3-4647-ba53-90d2d45f7d19/velog-thumbnail.png";
 const baseProfileImage =
-  "https://yt3.ggpht.com/ytc/AKedOLSYskiGDIyLCoFETAvHx4tHvHzlBKkpj3pJ36lpwQ=s900-c-k-c0x00ffffff-no-rj";
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYsp-8Rs9T1z7ob8zAKVb5TXQpGNUmVh08kw&usqp=CAU";
 
 const PortfolioList = (props: portfoliolistProps) => {
   const { isClickMyPortfolio, isClickMyTouching } = props;
+  
   //date문자열 짤라서 가공하는 함수
   function dateSplit(string: string): string {
     let dateArray = string.split("-");
