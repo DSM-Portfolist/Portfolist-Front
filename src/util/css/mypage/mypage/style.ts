@@ -1,9 +1,12 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
+interface NavWrapperProps {
+  isClickMyPortfolio: boolean;
+  isClickMyTouching: boolean;
+}
+
 export const baseBackground = css`
-  height: 200vh;
-  overflow-x: hidden;
   align-items: center;
 `;
 
@@ -27,11 +30,6 @@ export const sectionTitleWrapper = css`
   width: 100%;
   height: 150px;
 `;
-
-interface NavWrapperProps {
-  isClickMyPortfolio: boolean;
-  isClickMyTouching: boolean;
-}
 
 export const NavWrapper = styled.div<NavWrapperProps>`
   height: 50px;
