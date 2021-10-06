@@ -6,13 +6,15 @@ const SecessionModify = () => {
   const [isClickSecessionButton, setIsClickSecessionButton] =
     useState<boolean>(false);
   const toggleButton = () => {
-    isClickSecessionButton
-      ? setIsClickSecessionButton(false)
-      : setIsClickSecessionButton(true);
+    if (isClickSecessionButton) {
+      setIsClickSecessionButton(false);
+    } else {
+      setIsClickSecessionButton(true);
+    }
   };
   return (
     <>
-      <div css={[ContentItem]}>
+      <div css={[ContentItem]} style={{ marginBottom: "100px" }}>
         <h1>portfolist 탈퇴</h1>
         <span onClick={toggleButton}>탈퇴</span>
         <p>
