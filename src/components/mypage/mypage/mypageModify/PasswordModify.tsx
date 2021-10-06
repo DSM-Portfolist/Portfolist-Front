@@ -1,14 +1,29 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
-import { ContentItem } from "../../../../util/css/mypage/mypage/mypageModify/style";
+import React, { useEffect, useState } from "react";
+import {
+  ContentItem,
+  ChangePasswordWrraper,
+} from "../../../../util/css/mypage/mypage/mypageModify/style";
 
 const PasswordModify = () => {
+  const [isClickPasswordButton, setIsClickPasswordButton] =
+    useState<boolean>(false);
+  const toggleButton = () => {
+    isClickPasswordButton
+      ? setIsClickPasswordButton(false)
+      : setIsClickPasswordButton(true);
+  };
   return (
-    <div css={[ContentItem]}>
-      <h1>비밀번호 변경</h1>
-      <span>변경</span>
-      <p>새로운 비밀번호로 변경 할 수 있습니다.</p>
-    </div>
+    <>
+      <div css={[ContentItem]}>
+        <h1>비밀번호 변경</h1>
+        <span onClick={toggleButton}>변경</span>
+        <p>새로운 비밀번호로 변경 할 수 있습니다.</p>
+      </div>
+      <ChangePasswordWrraper
+        isClickPasswordButton={isClickPasswordButton}
+      ></ChangePasswordWrraper>
+    </>
   );
 };
 
