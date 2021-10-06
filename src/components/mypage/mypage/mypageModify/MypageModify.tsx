@@ -11,6 +11,7 @@ import {
 } from "../../../../util/css/mypage/mypage/style";
 import ImageUploadWrapper from "./ImageUploadWrapper";
 import MyInfoModify from "./MyInfoModify";
+import MypageModifyMainContent from "./MypageModifyMainContent";
 
 const MypageModify = () => {
   return (
@@ -21,6 +22,7 @@ const MypageModify = () => {
           <ImageUploadWrapper />
           <MyInfoModify />
         </MyProfileWrapper>
+        <MypageModifyMainContent />
       </MainSection>
     </div>
   );
