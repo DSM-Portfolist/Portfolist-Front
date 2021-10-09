@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
+import { transform } from "typescript";
+import { Magnifier } from "../../../util/assets";
 import { headerLineColor, mainColor } from "../../../util/css/color/color";
-import { NotificationProp } from "../../../util/interface/main/mainType";
+import {
+  MagnifierProp,
+  NotificationProp,
+} from "../../../util/interface/main/mainType";
 
 export const HeaderWrapper = styled.section`
   width: 100%;
@@ -9,20 +14,35 @@ export const HeaderWrapper = styled.section`
 `;
 
 export const Container = styled.div`
-  margin: 0 200px;
-  width: 80%;
+  background-color: white;
+  margin: 0 auto;
+  padding: 0 3%;
+  width: 94%;
   height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 5;
+
+  .logo {
+    display: flex;
+    width: 26%;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      color: black;
+    }
+  }
 
   ul {
     display: flex;
     align-items: center;
 
     .list-item {
-      margin: 0 100px;
+      margin: 0 40px;
     }
 
     a,
@@ -34,14 +54,18 @@ export const Container = styled.div`
       text-decoration: none;
       color: black;
 
-      span {
-        font-family: "Prociono", serif;
+      .magnifier-img {
+        margin-top: 5px;
         cursor: pointer;
       }
 
-      .profile-img {
-        width: 40px;
-        border-radius: 50px;
+      img {
+        width: 25px;
+      }
+
+      span {
+        font-family: "Prociono", serif;
+        cursor: pointer;
       }
     }
   }
@@ -49,6 +73,21 @@ export const Container = styled.div`
 
 export const NotiWrapper = styled.li`
   position: relative;
+
+  .noti-img {
+    width: 25px;
+    margin-top: 4px;
+    height: 25px;
+    cursor: pointer;
+  }
+
+  .profile-img {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    border-radius: 50px;
+    cursor: pointer;
+  }
 `;
 
 export const Notification = styled.div`
@@ -100,4 +139,38 @@ export const MoreItem = styled.ul`
   overflow: hidden;
   cursor: auto;
   z-index: 1;
+`;
+
+export const MagnifierWrapper = styled.div`
+  width: 100%;
+  height: 80px;
+  background-color: ${mainColor};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: ${({ magnifier }: MagnifierProp) =>
+    magnifier ? `translateY()` : `translateY(-80px)`};
+  position: absolute;
+  transition: transform ease 0.4s;
+  z-index: 2;
+`;
+
+export const Input = styled.div`
+  width: 50%;
+  height: 50px;
+  background-color: white;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  input {
+    width: 80%;
+    font-size: 16px;
+  }
+
+  img {
+    width: 25px;
+    cursor: pointer;
+  }
 `;

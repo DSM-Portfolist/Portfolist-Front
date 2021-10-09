@@ -19,14 +19,23 @@ code {
 /* font-family: 'Noto Serif KR', serif; */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap");
 
+@font-face {
+  font-family: "NanumSquare";
+  src: url("./util/assets/font/NanumSquare_acB.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   font-family: "Noto Sans KR", sans-serif;
+  /* font-family: "NanumSquare"; */
   margin: 0;
   padding: 0;
   outline: none;
   border: none;
   list-style: none;
   cursor: auto;
+  text-decoration: none;
 }
 
 .border-bottom {
@@ -36,6 +45,6 @@ code {
 
 .container {
   margin: 0 auto;
-  width: 1400px;
+  width: 73%;
   background-color: #f3f3f38f;
 }

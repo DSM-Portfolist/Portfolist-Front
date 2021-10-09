@@ -1,5 +1,5 @@
 export interface PortListType {
-  list?: PortListType;
+  id: number;
   url: string;
   field: [];
   title: string;
