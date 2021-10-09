@@ -18,6 +18,7 @@ const Search = () => {
   useEffect(() => {
     if (useField.length >= 6) {
       ToastError("필터는 최대 5개까지 가능합니다.");
+
     }
   }, [useField]);
 
