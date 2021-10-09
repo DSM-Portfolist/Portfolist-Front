@@ -9,17 +9,8 @@ const MainList = () => {
       <S.MainListWrapper className="container">
         <Search />
         <S.ListWrapper>
-          {list.map((list: any, index) => (
-            <ListItem
-              key={index}
-              user={list.user}
-              url={list.url}
-              field={list.field}
-              title={list.title}
-              introduce={list.introduce}
-              touching={list.touching}
-              touched={list.touched}
-            />
+          {list.map((list: any, index: number) => (
+            <ListItem key={index} list={list} />
           ))}
         </S.ListWrapper>
       </S.MainListWrapper>
