@@ -173,6 +173,7 @@ export const ChangePasswordItem = styled.div`
   display: flex;
   margin-top: 30px;
   align-items: center;
+  position: relative;
   & h1 {
     font-family: "Noto Sans KR";
     font-style: normal;
@@ -196,8 +197,11 @@ export const ChangePasswordItem = styled.div`
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
+    padding-right: 50px;
   }
   & img {
     cursor: pointer;
+    position: absolute;
+    right: 91px;
   }
 `;
