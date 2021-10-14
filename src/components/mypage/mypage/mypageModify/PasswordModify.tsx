@@ -1,17 +1,28 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
+import { ToastSuccess } from "../../../../hook/toastHook";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   ContentItem,
+  ButtonWrapper,
   ChangePasswordWrraper,
-  ChangePasswordItem,
 } from "../../../../util/css/mypage/mypage/mypageModify/style";
-import { OpenEye, CloseEye } from "../../../../util/assets";
-import Test from "./PasswordChangeBox";
-import { PasswordTitle, PasswordType } from "../../../../util/interface/MyPage/infoChangeType";
+import PasswordChangeBox from "./PasswordChangeBox";
+import {
+  PasswordTitle,
+  PasswordType,
+  PasswordData,
+} from "../../../../util/interface/MyPage/infoChangeType";
 
 const PasswordModify = () => {
   const [isClickPasswordButton, setIsClickPasswordButton] =
     useState<boolean>(false);
+  const [passwordData, setPasswordData] = useState<PasswordData[]>([
+    { password: "" },
+    { password: "" },
+    { password: "" },
+  ]);
   const [passwordType, setPasswordType] = useState<PasswordType[]>([
     {
       id: 1,
@@ -29,6 +40,15 @@ const PasswordModify = () => {
       visible: false,
     },
   ]);
+
+  useEffect(() => {
+    console.log(passwordData);
+  }, [passwordData]);
+
+  const submitHanddleEvent = (e: any) => {
+    e.preventDefault();
+    ToastSuccess("완료 버튼 전송");
+  };
 
   const openButton = () => {
     //비밀번호 모달창 여는 버튼
@@ -50,10 +70,21 @@ const PasswordModify = () => {
     }
   };
 
-  const handlePasswordType = (id: any) => {
+  const handleOnChangeEvent = (e: any, id: number) => {
+    const { value } = e.target;
+    let newArr = passwordData.map((item: any, index) => {
+      if (index + 1 === id) {
+        return { password: value };
+      }
+      return item;
+    });
+    setPasswordData(newArr);
+    console.log(id);
+  };
+
+  const handlePasswordType = (id: number) => {
     //매개변수에 id넣어주세요
     let i = 0;
-    //passwordType배열 안에있는 id와 매개변수 id와 비교 해서 i로 저장
     for (i = 0; i < 3; i++) {
       if (passwordType[i].id === id) {
         break;
@@ -74,60 +105,32 @@ const PasswordModify = () => {
 
   return (
     <>
+      <ToastContainer />
       <div css={[ContentItem]}>
         <h1>비밀번호 변경</h1>
         <span onClick={openButton}>변경</span>
         <p>새로운 비밀번호로 변경 할 수 있습니다.</p>
       </div>
-      <ChangePasswordWrraper isClickPasswordButton={isClickPasswordButton}>
+      <ChangePasswordWrraper
+        isClickPasswordButton={isClickPasswordButton}
+        onSubmit={submitHanddleEvent}
+      >
         {PasswordTitle.map((PasswordTitle, index) => (
-          <Test
+          <PasswordChangeBox
             title={PasswordTitle.title}
             passwordType={passwordType[index].type}
             visible={passwordType[index].visible}
             handlePasswordType={handlePasswordType}
+            handleOnChangeEvent={handleOnChangeEvent}
             value={index + 1}
           />
         ))}
-
-        {/* <ChangePasswordItem>
-          <h1>변경할 비밀번호</h1>
-          <input type={passwordType[0].type} />
-          <img
-            onClick={() => {
-              handlePasswordType(1);
-            }}
-            src={passwordType[0].visible ? OpenEye : CloseEye}
-            alt=""
-          />
-        </ChangePasswordItem>
-        <ChangePasswordItem>
-          <h1>변경할 비밀번호</h1>
-          <input type={passwordType[1].type} />
-          <img
-            onClick={() => {
-              handlePasswordType(2);
-            }}
-            src={passwordType[1].visible ? OpenEye : CloseEye}
-            alt=""
-          />
-        </ChangePasswordItem>
-        <ChangePasswordItem>
-          <h1>변경할 비밀번호 재입력</h1>
-          <input type={passwordType[2].type} />
-          <img
-            onClick={() => {
-              handlePasswordType(3);
-            }}
-            src={passwordType[2].visible ? OpenEye : CloseEye}
-            alt=""
-          />
-        </ChangePasswordItem> */}
-        <button
-          onClick={closeButton}
-          style={{ width: "100px", height: "200px" }}
-        ></button>
-        <button></button>
+        <ButtonWrapper>
+          <button type="button" onClick={closeButton}>
+            취소
+          </button>
+          <input type="submit" value="완료" />
+        </ButtonWrapper>
       </ChangePasswordWrraper>
     </>
   );
