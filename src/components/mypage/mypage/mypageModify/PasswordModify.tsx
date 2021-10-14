@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
-import { ToastSuccess } from "../../../../hook/toastHook";
+import { ToastSuccess, ToastError } from "../../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -42,7 +42,11 @@ const PasswordModify = () => {
   ]);
 
   useEffect(() => {
-    console.log(passwordData);
+    console.log(passwordData[1]);
+    console.log(passwordData[2]);
+    if (passwordData[1].password != passwordData[2].password) {
+      ToastError("재설정 하는 비밀번호가 다릅니다 "); //test 코드
+    }
   }, [passwordData]);
 
   const submitHanddleEvent = (e: any) => {
