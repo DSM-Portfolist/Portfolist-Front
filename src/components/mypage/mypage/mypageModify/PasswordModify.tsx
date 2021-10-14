@@ -45,7 +45,7 @@ const PasswordModify = () => {
     console.log(passwordData[1]);
     console.log(passwordData[2]);
     if (passwordData[1].password != passwordData[2].password) {
-      ToastError("재설정 하는 비밀번호가 다릅니다 "); //test 코드
+      /* ToastError("재설정 하는 비밀번호가 다릅니다 "); */ //test 코드
     }
   }, [passwordData]);
 
