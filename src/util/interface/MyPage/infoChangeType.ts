@@ -8,6 +8,10 @@ export interface PasswordType {
   visible: boolean;
 }
 
+export interface PasswordData {
+  password: string;
+}
+
 export const PasswordTitle: InfoChangeArray[] = [
   {
     title: "현재 비밀번호",
