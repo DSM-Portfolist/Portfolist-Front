@@ -10,7 +10,8 @@ import {
 export const HeaderWrapper = styled.section`
   width: 100%;
   height: 80px;
-  border-bottom: 3px solid ${headerLineColor};
+  //border-bottom: 3px solid ${headerLineColor};
+  box-shadow: 0 4px 4px #f3f0f0;
 `;
 
 export const Container = styled.div`
