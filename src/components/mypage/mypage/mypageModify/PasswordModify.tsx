@@ -6,11 +6,13 @@ import {
   ChangePasswordItem,
 } from "../../../../util/css/mypage/mypage/mypageModify/style";
 import { OpenEye, CloseEye } from "../../../../util/assets";
+import Test from "./PasswordChangeBox";
+import { PasswordTitle, PasswordType } from "../../../../util/interface/MyPage/infoChangeType";
 
 const PasswordModify = () => {
   const [isClickPasswordButton, setIsClickPasswordButton] =
     useState<boolean>(false);
-  const [passwordType, setPasswordType] = useState([
+  const [passwordType, setPasswordType] = useState<PasswordType[]>([
     {
       id: 1,
       type: "password",
@@ -28,19 +30,30 @@ const PasswordModify = () => {
     },
   ]);
 
-  const toggleButton = () => {
-    //비밀번호 모달창 토글 버튼
+  const openButton = () => {
+    //비밀번호 모달창 여는 버튼
     if (!isClickPasswordButton) {
       setIsClickPasswordButton(true);
       setTimeout(() => {
-        window.scrollTo({ top: 1555, behavior: "smooth" });
-      }, 500);
+        window.scrollTo({ top: 400, behavior: "smooth" });
+      }, 300);
+    }
+  };
+
+  const closeButton = () => {
+    //비밀번호 모달창 닫기 버튼
+    if (isClickPasswordButton) {
+      setIsClickPasswordButton(false);
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 300);
     }
   };
 
   const handlePasswordType = (id: any) => {
+    //매개변수에 id넣어주세요
     let i = 0;
-    //password 보이게 안보이게하는 함수
+    //passwordType배열 안에있는 id와 매개변수 id와 비교 해서 i로 저장
     for (i = 0; i < 3; i++) {
       if (passwordType[i].id === id) {
         break;
@@ -63,12 +76,22 @@ const PasswordModify = () => {
     <>
       <div css={[ContentItem]}>
         <h1>비밀번호 변경</h1>
-        <span onClick={toggleButton}>변경</span>
+        <span onClick={openButton}>변경</span>
         <p>새로운 비밀번호로 변경 할 수 있습니다.</p>
       </div>
       <ChangePasswordWrraper isClickPasswordButton={isClickPasswordButton}>
-        <ChangePasswordItem>
-          <h1>현재 비밀번호</h1>
+        {PasswordTitle.map((PasswordTitle, index) => (
+          <Test
+            title={PasswordTitle.title}
+            passwordType={passwordType[index].type}
+            visible={passwordType[index].visible}
+            handlePasswordType={handlePasswordType}
+            value={index + 1}
+          />
+        ))}
+
+        {/* <ChangePasswordItem>
+          <h1>변경할 비밀번호</h1>
           <input type={passwordType[0].type} />
           <img
             onClick={() => {
@@ -99,8 +122,12 @@ const PasswordModify = () => {
             src={passwordType[2].visible ? OpenEye : CloseEye}
             alt=""
           />
-        </ChangePasswordItem>
-        <ChangePasswordItem></ChangePasswordItem>
+        </ChangePasswordItem> */}
+        <button
+          onClick={closeButton}
+          style={{ width: "100px", height: "200px" }}
+        ></button>
+        <button></button>
       </ChangePasswordWrraper>
     </>
   );
