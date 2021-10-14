@@ -7,22 +7,19 @@ import {
 } from "../../../util/assets";
 import * as S from "./style";
 import { PortListType } from "../../../util/interface/main/portListType";
+import { Link } from "react-router-dom";
+
+interface Prop {
+  list: PortListType;
+}
 
 const Tag = ({ field }: any) => {
   return <S.Tag>{field}</S.Tag>;
 };
 
-const ListItem = ({
-  url,
-  field,
-  title,
-  user,
-  introduce,
-  touching,
-  touched,
-}: PortListType) => {
-  const [touchingBoolean, setTouchingBoolean] = useState<boolean>(touched);
-  const [count, setCount] = useState<number>(touching);
+const ListItem = ({ list }: Prop) => {
+  const [touchingBoolean, setTouchingBoolean] = useState<boolean>(list.touched);
+  const [count, setCount] = useState<number>(list.touching);
 
   function CountChangeHandler(count: number) {
     touchingBoolean ? setCount(count - 1) : setCount(count + 1);
@@ -44,7 +41,7 @@ const ListItem = ({
       <S.Content touchingBoolean={touchingBoolean}>
         <div className="tag-wrapper">
           <div className="tag">
-            {field.map((field, index) => (
+            {list.field.map((field, index) => (
               <Tag key={index} field={field} />
             ))}
           </div>
@@ -62,14 +59,19 @@ const ListItem = ({
           </div>
         </div>
         <div className="title">
-          <span>{title}</span>
-          <span>{TextSliceHandler(introduce, 32)}</span>
+          <Link
+            to={`/portfolio/${list.id}`}
+            title="포트폴리오 상세 페이지 이동합니다."
+          >
+            {list.title}
+          </Link>
+          <span>{TextSliceHandler(list.introduce, 32)}</span>
         </div>
         <div className="user-profile">
           <img src={Profile} alt="사용자의 프로필 사진" />
-          <span>
-            <strong>{user.name}</strong>님이 포트폴리오
-          </span>
+          <Link to={`/user-page`} title="유저 페이지 이동합니다.">
+            <strong>{list.user.name}</strong>님이 포트폴리오
+          </Link>
         </div>
       </S.Content>
     </S.ListItemWrapper>
