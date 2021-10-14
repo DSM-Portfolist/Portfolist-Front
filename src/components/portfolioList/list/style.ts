@@ -72,12 +72,13 @@ export const Content = styled.div`
 
       strong {
         cursor: pointer;
+        font-size: 15px;
       }
     }
 
     img {
       margin: 0 5px;
-      width: 22px;
+      width: 25px;
       height: 25px;
       border-radius: 50px;
       object-fit: cover;
