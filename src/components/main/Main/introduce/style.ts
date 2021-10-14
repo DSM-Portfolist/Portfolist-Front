@@ -56,8 +56,8 @@ export const IntroduceWrapper = styled.div`
     }
 
     :hover .content-icon {
-      transition: all 0.5s;
-      display: block;
+      transition: all 0.8s;
+      opacity: 1;
     }
   }
 `;
@@ -76,7 +76,7 @@ export const PortItem = styled.div`
   position: relative;
 
   img {
-    display: none;
+    opacity: 0;
     position: absolute;
     z-index: -1;
     top: 15px;
