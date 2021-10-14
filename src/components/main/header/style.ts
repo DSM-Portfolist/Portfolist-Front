@@ -10,15 +10,13 @@ import {
 export const HeaderWrapper = styled.section`
   width: 100%;
   height: 80px;
-  //border-bottom: 3px solid ${headerLineColor};
-  box-shadow: 0 4px 4px #f3f0f0;
 `;
 
 export const Container = styled.div`
   background-color: white;
-  margin: 0 auto;
-  padding: 0 3%;
-  width: 94%;
+  box-sizing: border-box;
+  padding: 0 13%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -44,6 +42,11 @@ export const Container = styled.div`
 
     .list-item {
       margin: 0 40px;
+
+      span {
+        font-size: 17px;
+        cursor: pointer;
+      }
     }
 
     a,
