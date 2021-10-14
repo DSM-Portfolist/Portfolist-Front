@@ -157,7 +157,7 @@ export const ContentItem = css`
   }
 `;
 
-export const ChangePasswordWrraper = styled.div<ChangeProps>`
+export const ChangePasswordWrraper = styled.form<ChangeProps>`
   width: 100%;
   height: ${(props) => (props.isClickPasswordButton ? "300px" : "0px")};
   display: flex;
@@ -166,6 +166,52 @@ export const ChangePasswordWrraper = styled.div<ChangeProps>`
   border-bottom: 2px solid #e7e7e7;
   transform: rotate(-0.08deg);
   transition: ${(props) => (props.isClickPasswordButton ? "0.5s" : "0.5s")};
+`;
+
+export const PasswordChangeWrapper = styled.div`
+  & span {
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #979797;
+    margin: 5px 0 0 230px;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 25px;
+  & > * {
+    cursor: pointer;
+  }
+  & button {
+    width: 70px;
+    height: 100%;
+    box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
+    background: #c5c5c5;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 23px;
+    color: #ffffff;
+    margin-right: 18px;
+  }
+  & input {
+    width: 70px;
+    height: 100%;
+    background: #ff7d64;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 23px;
+    color: #ffffff;
+  }
 `;
 
 export const ChangePasswordItem = styled.div`
