@@ -6,6 +6,7 @@ export const MainListWrapper = styled.section`
   background-color: white;
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 `;
 
 export const ListWrapper = styled.div`
@@ -19,8 +20,8 @@ export const ListWrapper = styled.div`
 
 export const ListItemWrapper = styled.div`
   border-radius: 3px;
-  margin: 25px;
-  width: 220px;
+  margin: 1.17rem;
+  width: 15rem;
   height: 390px;
   box-shadow: 0px 4px 4px rgba(214, 214, 214, 0.25);
   overflow: hidden;
