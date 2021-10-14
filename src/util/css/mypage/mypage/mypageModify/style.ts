@@ -165,7 +165,7 @@ export const ChangePasswordWrraper = styled.div<ChangeProps>`
   flex-direction: column;
   border-bottom: 2px solid #e7e7e7;
   transform: rotate(-0.08deg);
-  transition: 0.5s;
+  transition: ${(props) => (props.isClickPasswordButton ? "0.5s" : "0.5s")};
 `;
 
 export const ChangePasswordItem = styled.div`
