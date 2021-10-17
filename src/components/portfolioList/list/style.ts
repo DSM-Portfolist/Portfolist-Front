@@ -107,8 +107,8 @@ export const Content = styled.div`
 
       img {
         cursor: pointer;
-        width: 25px;
-        height: 30px;
+        width: 21px;
+        height: 22px;
         object-fit: cover;
       }
 
@@ -116,6 +116,7 @@ export const Content = styled.div`
         color: ${({ touchingBoolean }: TouchingProp) =>
           touchingBoolean ? `${mainColor}` : "#C5C5C5"};
         height: 22px;
+        font-size: 13px;
       }
     }
   }
@@ -125,7 +126,7 @@ export const Content = styled.div`
     flex-direction: column;
 
     a:nth-child(1) {
-      font-weight: 500;
+      font-weight: 700;
       font-size: 16px;
       color: black;
       cursor: pointer;
