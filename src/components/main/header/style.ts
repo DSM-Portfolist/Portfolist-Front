@@ -32,7 +32,9 @@ export const Container = styled.div`
     justify-content: space-between;
 
     a {
-      color: black;
+      color: #5a5a5a;
+      font-weight: 700;
+      font-size: 17px;
     }
   }
 
