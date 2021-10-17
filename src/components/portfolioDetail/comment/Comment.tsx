@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import CommentItem from "./CommentItem";
 import * as S from "./style";
-import { comment } from "../dummy.json";
-import { CommentType } from "../../../util/interface/main/commentType";
+import { comments } from "../dummy.json";
+import { CommentType } from "../../../util/interface/portfolio/commentType";
 import { ToastSuccess } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Comment = () => {
   const [commentContent, setCommentContent] = useState<string>("");
-  const [commentList, setCommentList] = useState<CommentType[]>(comment);
+  const [commentList, setCommentList] = useState<CommentType[]>(comments);
 
   // 댓글 작성
   function CommentAdd(commentContent: any, e: any) {
