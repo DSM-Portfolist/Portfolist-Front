@@ -26,12 +26,12 @@ export interface MoreInfoType {
 }
 
 export interface ContainerListType {
+  map?: any;
   container_title: string;
   container: ContainerType[];
 }
 
 export interface ContainerType {
-  map: any;
   box_img: string[];
   box_list: BoxListType[];
 }
