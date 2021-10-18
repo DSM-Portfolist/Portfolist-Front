@@ -10,6 +10,10 @@ import {
 export const HeaderWrapper = styled.section`
   width: 100%;
   height: 80px;
+  position: fixed;
+  background-color: white;
+  z-index: 6;
+  top: 0;
 `;
 
 export const Container = styled.div`
@@ -173,6 +177,11 @@ export const Input = styled.div`
   input {
     width: 80%;
     font-size: 16px;
+    transform: skew(-0.1deg);
+
+    ::placeholder {
+      transform: skew(-0.1deg);
+    }
   }
 
   img {
