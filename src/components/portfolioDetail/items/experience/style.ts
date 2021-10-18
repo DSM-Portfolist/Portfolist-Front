@@ -15,28 +15,43 @@ export const ContainerBox = styled.div`
   border: 1px solid #eaeaea;
   box-sizing: border-box;
   width: 100%;
-
   padding: 30px;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
 
-export const ContentWraper = styled.div`
-  padding-left: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  font-family: "Noto Sans KR";
-  
-  .sub-title {
-    margin-bottom: 10px;
-    font-size: 20px;
-    font-weight: 600;
+  .image-box {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      margin-bottom: 20px;
+    }
   }
 
-  .sub-content {
-    font-size: 17px;
+  .content-box {
+    width: 80%;
+    padding-left: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    font-family: "Noto Sans KR";
+
+    .content-box-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 30px;
+
+      .sub-title {
+        margin-bottom: 10px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .sub-content {
+        font-size: 17px;
+      }
+    }
   }
 `;
