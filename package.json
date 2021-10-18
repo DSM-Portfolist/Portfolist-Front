@@ -48,9 +48,8 @@
     ]
   },
   "devDependencies": {
-    
     "@types/react-router-dom": "^5.1.8",
     "@types/styled-components": "^5.1.12",
-    "react-query": "^3.21.0"
+    "react-query": "^3.27.0"
   }
 }
