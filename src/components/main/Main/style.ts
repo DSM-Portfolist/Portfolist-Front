@@ -10,6 +10,7 @@ export const BannerWrapper = styled.div`
   width: 300vw;
   display: flex;
   flex-direction: row;
+  margin-top: 80px;
 
   img {
     width: 100vw;
@@ -48,7 +49,7 @@ export const BannerContent = styled.div`
     margin-top: 20px;
     font-size: 60px;
     color: white;
-    
+
     span {
       font-family: "Prociono", serif;
       font-weight: 400;

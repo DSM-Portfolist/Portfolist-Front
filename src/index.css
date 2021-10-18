@@ -11,6 +11,9 @@ p,
 a,
 li,
 span,
+strong,
+button,
+::placeholder,
 h1,
 h2,
 h3,
@@ -34,14 +37,47 @@ code {
 
 @font-face {
   font-family: "NanumSquare";
-  src: url("./util/assets/font/NanumSquare_acB.ttf") format("opentype");
+  font-weight: 700;
+  src: url("./util/assets/font/NanumSquare_acB.ttf");
+}
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 800;
+  src: url("./util/assets/font/NanumSquare_acEB.ttf");
+}
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 400;
+  src: url("./util/assets/font/NanumSquare_acL.ttf");
+}
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 500;
+  src: url("./util/assets/font/NanumSquare_acR.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquare";
+  src: url("./util/assets/font/NanumSquareB.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 900;
+  src: url("./util/assets/font/NanumSquareEB.ttf");
+}
+@font-face {
+  font-family: "NanumSquare";
+  font-weight: 300;
+  src: url("./util/assets/font/NanumSquareL.ttf");
+}
+@font-face {
+  font-family: "NanumSquare";
   font-weight: normal;
-  font-style: normal;
+  src: url("./util/assets/font/NanumSquareR.ttf");
 }
 
 * {
-  /* font-family: "Noto Sans KR", sans-serif; */
-  /* font-family: "gmarket"; */
   font-family: "NanumSquare";
   margin: 0;
   padding: 0;

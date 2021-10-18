@@ -124,6 +124,13 @@ export const SearchInput = styled.div`
   input {
     margin-left: 6px;
     width: 70%;
+    font-size: 16px;
+    transform: skew(-0.1deg);
+
+    ::placeholder {
+      font-size: 16px;
+      transform: skew(-0.1deg);
+    }
   }
 
   img {

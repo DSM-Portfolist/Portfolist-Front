@@ -6,7 +6,7 @@ export const MainListWrapper = styled.section`
   background-color: white;
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 80px;
 `;
 
 export const ListWrapper = styled.div`
