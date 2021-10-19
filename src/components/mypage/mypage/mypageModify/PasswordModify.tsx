@@ -71,6 +71,13 @@ const PasswordModify = () => {
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }, 300);
+      let newArr = passwordData.map((item: any, index) => {
+        if (true) {
+          return { password: "" };
+        }
+        return item;
+      });
+      setPasswordData(newArr);
     }
   };
 
@@ -127,6 +134,7 @@ const PasswordModify = () => {
             handlePasswordType={handlePasswordType}
             handleOnChangeEvent={handleOnChangeEvent}
             value={index + 1}
+            passwordData={passwordData[index].password}
           />
         ))}
         <ButtonWrapper>
