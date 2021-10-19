@@ -61,6 +61,8 @@ export const profileBottom = css`
   & a {
     width: 120px;
     height: 30px;
+    position: absolute;
+    right: 0;
   }
   & button {
     width: 120px;
@@ -69,8 +71,6 @@ export const profileBottom = css`
     border-radius: 4px;
     box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
     color: white;
-    position: absolute;
-    right: 0;
     cursor: pointer;
     font-family: Noto Sans KR;
     font-style: normal;
