@@ -1,30 +1,31 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../../..";
 import {
   MainSection,
   MyProfileWrapper,
+  MypageModifyContainer,
 } from "../../../../util/css/mypage/mypage/mypageModify/style";
-import {
-  baseBackground,
-  column,
-} from "../../../../util/css/mypage/mypage/style";
 import ImageUploadWrapper from "./ImageUploadWrapper";
 import MyInfoModify from "./MyInfoModify";
 import MypageModifyMainContent from "./MypageModifyMainContent";
+import SecessionModal from "./SecessionModal";
 
 const MypageModify = () => {
+  const [modal, setModal] = useState<boolean>(false);
+
   return (
-    <div css={[baseBackground, column]}>
-      <Header></Header>
+    <MypageModifyContainer modal={modal}>
+      <SecessionModal modal={modal} setModal={setModal} />
+      <Header />
       <MainSection>
         <MyProfileWrapper>
           <ImageUploadWrapper />
           <MyInfoModify />
         </MyProfileWrapper>
-        <MypageModifyMainContent />
+        <MypageModifyMainContent setModal={setModal} modal={modal} />
       </MainSection>
-    </div>
+    </MypageModifyContainer>
   );
 };
 
