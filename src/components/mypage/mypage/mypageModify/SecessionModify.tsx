@@ -2,14 +2,17 @@
 import React, { useState } from "react";
 import { ContentItem } from "../../../../util/css/mypage/mypage/mypageModify/style";
 
-const SecessionModify = () => {
-  const [isClickSecessionButton, setIsClickSecessionButton] =
-    useState<boolean>(false);
+interface Props {
+  setModal: any;
+  modal: boolean;
+}
+
+const SecessionModify = ({ setModal, modal }: Props) => {
   const toggleButton = () => {
-    if (isClickSecessionButton) {
-      setIsClickSecessionButton(false);
+    if (modal) {
+      setModal(false);
     } else {
-      setIsClickSecessionButton(true);
+      setModal(true);
     }
   };
   return (
