@@ -1,13 +1,18 @@
-import React from "react";
 import { MainContentWrapper } from "../../../../util/css/mypage/mypage/mypageModify/style";
 import PasswordModify from "./PasswordModify";
 import SecessionModify from "./SecessionModify";
 
-const MypageModifyMainContent = () => {
+interface Props {
+  setModal: any;
+  modal: boolean;
+}
+
+const MypageModifyMainContent = (props: Props) => {
+  const { setModal, modal } = props;
   return (
     <MainContentWrapper>
       <PasswordModify />
-      <SecessionModify />
+      <SecessionModify setModal={setModal} modal={modal} />
     </MainContentWrapper>
   );
 };
