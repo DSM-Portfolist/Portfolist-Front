@@ -1,2 +1,1 @@
-export const MAINURL =
-  "http://ec2-3-37-14-42.ap-northeast-2.compute.amazonaws.com";
+export const MAINURL = process.env.REACT_APP_API_URL;
