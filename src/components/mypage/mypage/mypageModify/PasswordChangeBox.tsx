@@ -10,30 +10,41 @@ interface Props {
   passwordType: any;
   visible: any;
   value: number;
+  passwordData: any;
   handleOnChangeEvent: (e: any, value: number) => void;
   handlePasswordType: (value: number) => void;
 }
 
 const PasswordChangeBox = (props: Props) => {
+  const {
+    title,
+    passwordType,
+    visible,
+    value,
+    passwordData,
+    handleOnChangeEvent,
+    handlePasswordType,
+  } = props;
   return (
     <PasswordChangeWrapper>
       <ChangePasswordItem>
-        <h1>{props.title}</h1>
+        <h1>{title}</h1>
         <input
-          type={props.passwordType}
+          type={passwordType}
           onChange={(e) => {
-            props.handleOnChangeEvent(e, props.value);
+            handleOnChangeEvent(e, value);
           }}
+          value={passwordData}
         />
         <img
           onClick={() => {
-            props.handlePasswordType(props.value);
+            handlePasswordType(value);
           }}
-          src={props.visible ? OpenEye : CloseEye}
+          src={visible ? OpenEye : CloseEye}
           alt=""
         />
       </ChangePasswordItem>
-      {props.value == 2 ? <span>비밀번호는 4글자 이상 입력해주세요.</span> : ""}
+      {value == 2 ? <span>비밀번호는 4글자 이상 입력해주세요.</span> : ""}
     </PasswordChangeWrapper>
   );
 };
