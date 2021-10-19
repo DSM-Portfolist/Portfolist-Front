@@ -49,12 +49,14 @@ export const ProfileImageWrapper = styled.div`
     cursor: pointer;
     background: #ff7d64;
     border-radius: 4px;
-    box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
     font-family: "Noto Sans KR";
     font-style: 500;
     font-size: 18px;
     line-height: 26px;
     color: #ffffff;
+  }
+  & label:hover {
+    box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
   }
   & div {
     font-family: "Noto Sans KR";
@@ -62,7 +64,6 @@ export const ProfileImageWrapper = styled.div`
     font-weight: 500;
     font-size: 18px;
     line-height: 26px;
-    box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,6 +74,9 @@ export const ProfileImageWrapper = styled.div`
     cursor: pointer;
     width: 100%;
     height: 38px;
+  }
+  & div:hover {
+    box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
   }
 `;
 
