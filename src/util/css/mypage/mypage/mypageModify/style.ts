@@ -4,6 +4,18 @@ import { css } from "@emotion/react";
 interface ChangeProps {
   isClickPasswordButton: boolean;
 }
+interface modalProps {
+  modal: boolean;
+}
+interface Props {
+  modal: boolean;
+}
+
+export const MypageModifyContainer = styled.div<modalProps>`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
 
 export const MainSection = styled.section`
   width: 760px;
@@ -198,7 +210,6 @@ export const ButtonWrapper = styled.div`
     border-radius: 5px;
     font-weight: 500;
     font-size: 16px;
-    line-height: 23px;
     color: #ffffff;
     margin-right: 18px;
   }
@@ -209,7 +220,6 @@ export const ButtonWrapper = styled.div`
     border-radius: 5px;
     font-weight: 500;
     font-size: 16px;
-    line-height: 23px;
     color: #ffffff;
   }
 `;
@@ -249,5 +259,106 @@ export const ChangePasswordItem = styled.div`
     cursor: pointer;
     position: absolute;
     right: 91px;
+  }
+`;
+
+export const ModalWrapper = styled.section<Props>`
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.37);
+  position: fixed;
+  z-index: 10;
+  display: ${({ modal }) => (modal ? "flex" : "none")};
+`;
+
+export const ModalBox = styled.div`
+  width: 400px;
+  height: 300px;
+  background: #ffffff;
+  box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto auto auto auto;
+  & h1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 29px;
+    color: rgba(0, 0, 0);
+    margin: 30px 0 7px 40px;
+  }
+  & p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.45);
+    margin-left: 40px;
+  }
+  & p:nth-child(3) {
+    margin-bottom: 30px;
+  }
+  .passwordInputWrapper {
+    display: flex;
+    width: 100%;
+    height: 35px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 65px;
+    input {
+      width: 234px;
+      height: 35px;
+      background: #ffffff;
+      border: 1px solid #d5d5d5;
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+    span {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 23px;
+      color: #000000;
+      margin-right: 23px;
+    }
+  }
+`;
+
+export const ModalButtonWrapper = styled.div`
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  & > * {
+    cursor: pointer;
+  }
+  & button {
+    width: 70px;
+    height: 100%;
+    box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
+    background: #c5c5c5;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 23px;
+    color: #ffffff;
+    margin-right: 18px;
+  }
+  & input {
+    width: 70px;
+    height: 100%;
+    background: #ff7d64;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 23px;
+    color: #ffffff;
   }
 `;
