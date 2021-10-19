@@ -113,12 +113,14 @@ export const FieldWrapper = styled.div`
   width: 100%;
   margin-top: 23px;
   & span {
-    font-family: "Noto Sans KR";
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
     line-height: 23px;
     color: #000000;
+  }
+  & span:first-child {
+    font-weight: bold;
   }
   & span:nth-child(n + 2) {
     margin-left: 5px;
