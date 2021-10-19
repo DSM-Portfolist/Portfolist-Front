@@ -1,15 +1,10 @@
-/** @jsxImportSource @emotion/react */
-
-import {
-  progressBar,
-  progressWrapper,
-} from "../../../../util/css/signin/ProgressBar";
+import * as S from "./style";
 
 const ProgressBar = () => {
   return (
-    <div css={[progressWrapper]}>
-      <div css={[progressBar]}></div>
-    </div>
+    <S.ProgressWrapper>
+      <S.ProgressBar></S.ProgressBar>
+    </S.ProgressWrapper>
   );
 };
 
