@@ -25,7 +25,7 @@ export const BannerContent = styled.div`
   flex-direction: column;
   width: 100vw;
   top: 240px;
-  left: 200px;
+  left: 250px;
 
   .top-content {
     display: flex;
