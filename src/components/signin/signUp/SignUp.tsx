@@ -6,16 +6,24 @@ import { SignUpType } from "../../../util/interface/Sign/loginType";
 import FirstProgress from "./process/FirstProgress";
 
 const SignUp = () => {
+  const [fieldList, setFieldList] = useState([]);
   const [inputs, setInputs] = useState<SignUpType>({
     name: "",
     email: "",
     password: "",
-    field: [],
+    field: fieldList,
   });
+
+  console.log(inputs);
 
   return (
     <section css={[baseBackground, center]}>
-      <FirstProgress inputs={inputs} setInputs={setInputs} />
+      <FirstProgress
+        setFieldList={setFieldList}
+        fieldList={fieldList}
+        inputs={inputs}
+        setInputs={setInputs}
+      />
     </section>
   );
 };
