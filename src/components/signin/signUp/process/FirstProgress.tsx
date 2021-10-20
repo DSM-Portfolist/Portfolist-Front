@@ -1,9 +1,9 @@
-/** @jsxImportSource @emotion/react */
-
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { useMutation } from "react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastError } from "../../../../hook/toastHook";
+import { MAINURL } from "../../../../util/api";
 import { CloseEye, Logo, OpenEye, Warning } from "../../../../util/assets";
 import { mainColor } from "../../../../util/css/color/color";
 import { SignUpType } from "../../../../util/interface/Sign/loginType";
@@ -14,37 +14,42 @@ import * as S from "./style";
 interface Props {
   setInputs: any;
   inputs: SignUpType;
+  setFieldList: any;
+  fieldList: any;
 }
 
-const FirstProgress = ({ setInputs, inputs }: Props) => {
+const FirstProgress = ({
+  setInputs,
+  inputs,
+  fieldList,
+  setFieldList,
+}: Props) => {
   const [btnColor, setBtnColor] = useState<boolean>(false);
   const [nextLevel, setNextLevel] = useState<boolean>(false);
   const [inputType, setInputType] = useState<boolean>(false);
   const [inputTypeReturn, setInputTypeReturn] = useState<boolean>(false);
   let error = false;
 
-  const { name, email, password, field } = inputs;
+  const mutation = useMutation((inputs) =>
+    axios.post(`${MAINURL}/join`, inputs).then((res) => console.log(res))
+  );
+
+  const { name, email, password } = inputs;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    console.log(value);
-
     setInputs({
       ...inputs,
       [name]: value,
+      field: fieldList,
     });
   };
 
-  const handleSubmit = (inputs: SignUpType) => {
-    console.log(inputs);
+  const handleSubmit = (data: any, e: any) => {
+    e.preventDefault();
 
-    /*     setInputs({
-      name: "",
-      email: "",
-      password: "",
-      field: "",
-    }); */
+    mutation.mutate(data);
   };
 
   useEffect(() => {
@@ -148,17 +153,43 @@ const FirstProgress = ({ setInputs, inputs }: Props) => {
               </S.InputItemWrap>
             </S.InputItem>
           </S.InputWrapper>
-          <SecProgress />
+          <SecProgress
+            onChange={onChange}
+            setFieldList={setFieldList}
+            fieldList={fieldList}
+          />
         </S.SignSlider>
-        <S.NextButton
-          btnColor={btnColor}
-          onClick={() => {
-            setNextLevel(btnColor);
-            handleSubmit(inputs);
-          }}
-        >
-          다음
-        </S.NextButton>
+        {nextLevel ? (
+          <div className="button-wrapper">
+            <S.PreButton
+              btnColor={btnColor}
+              onClick={() => {
+                setNextLevel(false);
+              }}
+            >
+              이전
+            </S.PreButton>
+            <S.PreButton
+              btnColor={btnColor}
+              onClick={(e) => {
+                handleSubmit(inputs, e);
+              }}
+            >
+              회원가입
+            </S.PreButton>
+          </div>
+        ) : (
+          <>
+            <S.NextButton
+              btnColor={btnColor}
+              onClick={() => {
+                setNextLevel(btnColor);
+              }}
+            >
+              다음
+            </S.NextButton>
+          </>
+        )}
       </S.SignForm>
     </>
   );
