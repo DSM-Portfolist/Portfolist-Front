@@ -9,3 +9,8 @@ export interface SignUpType {
   password: string;
   field: number[];
 }
+
+export interface FieldType {
+  id: number;
+  content: string;
+}
