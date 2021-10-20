@@ -31,10 +31,11 @@ export const MyProfileWrapper = styled.div`
 export const ProfileImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
   width: 185px;
-  padding-right: 22px;
+  padding-right: 38px;
   border-right: solid #e7e7e7 2px;
   & img {
     margin-top: 12px;
@@ -81,7 +82,7 @@ export const ProfileImageWrapper = styled.div`
 `;
 
 export const MainWrapper = styled.div`
-  width: 100%;
+  width: 67%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -110,6 +111,61 @@ export const MainWrapper = styled.div`
     height: 30px;
     position: absolute;
     right: 0;
+  }
+`;
+
+export const ModifyDetailContainer = styled.form`
+  width: 67%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 34px;
+  p {
+    margin-top: 17px;
+    color: #979797;
+    font-style: normal;
+    font-weight: normal;
+  }
+`;
+
+export const FieldSelecteWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  span > b {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    color: #000000;
+    margin-right: 20px;
+  }
+`;
+
+export const InputWrapper = styled.div`
+  input[type="text"] {
+    height: 48px;
+    width: 500px;
+    border: 1px solid #d4d4d4;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding-left: 11px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 29px;
+    &::placeholder {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 20px;
+      color: #949494;
+    }
+  }
+  input[type="text"]:nth-of-type(2) {
+    margin-top: 22px;
+    font-size: 18px;
+    margin-bottom: 27px;
+    &::placeholder {
+      font-size: 18px;
+    }
   }
 `;
 
