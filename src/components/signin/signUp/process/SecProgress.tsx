@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { NoSelectedArrow } from "../../../../util/assets";
 import CategoryItem from "../category/CategoryItem";
 import * as S from "./style";
 
-const SecProgress = () => {
+interface Props {
+  setFieldList: any;
+  fieldList: any;
+  onChange: any;
+}
+
+const SecProgress: FC<Props> = (props) => {
   const [btnColor, setBtnColor] = useState<boolean>(false);
-  const [text, setText] = useState<string>("자신의 전공 분야를 선택해주세요");
+  const [field, setField] = useState<string>("자신의 전공 분야를 선택해주세요");
+
   const [arrowSelect, setArrowSelect] = useState<boolean>(false);
+
   return (
     <>
       <S.SignBox btnColor={btnColor}>
@@ -15,7 +23,7 @@ const SecProgress = () => {
           <span>분야</span>
           <div className="categoy_wrap">
             <p onClick={() => setArrowSelect(!arrowSelect)}>
-              {text}
+              {field}
               <S.ArrowImg
                 src={NoSelectedArrow}
                 alt="화살표 상태"
@@ -26,7 +34,13 @@ const SecProgress = () => {
                 }
               />
             </p>
-            <CategoryItem arrowSelect={arrowSelect} setText={setText} />
+            <CategoryItem
+              arrowSelect={arrowSelect}
+              setField={setField}
+              setFieldList={props.setFieldList}
+              fieldList={props.fieldList}
+              onChange={props.onChange}
+            />
           </div>
         </S.FieldSelectWrap>
       </S.SignBox>

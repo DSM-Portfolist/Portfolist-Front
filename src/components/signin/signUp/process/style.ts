@@ -24,7 +24,7 @@ export const SignSlider = styled.div<Props>`
   transition: transform 1s ease-in 0s;
 `;
 
-export const SignForm = styled.div`
+export const SignForm = styled.form`
   width: 500px;
   height: 600px;
   display: flex;
@@ -34,6 +34,12 @@ export const SignForm = styled.div`
   .logo {
     width: 130px;
     margin: 0 auto;
+  }
+
+  .button-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
   }
 `;
 export const FieldSelectWrap = styled.div`
@@ -56,6 +62,8 @@ export const FieldSelectWrap = styled.div`
       border-bottom: 2px solid ${mainColor};
       padding-bottom: 2px;
       width: 100%;
+      display: flex;
+      justify-content: space-between;
     }
   }
 `;
@@ -171,7 +179,7 @@ export const InputItemWrap = styled.div`
   }
 
   & p {
-    font-size: 14px;
+    font-size: 12px;
     color: #939393;
   }
 
@@ -181,4 +189,9 @@ export const InputItemWrap = styled.div`
     right: 0;
     bottom: 35px;
   }
+`;
+
+export const PreButton = styled(NextButton)`
+  width: 40%;
+  background-color: #dadada;
 `;
