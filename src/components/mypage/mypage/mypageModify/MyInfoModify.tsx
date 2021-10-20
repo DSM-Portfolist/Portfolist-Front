@@ -4,6 +4,7 @@ import {
   FieldWrapper,
 } from "../../../../util/css/mypage/mypage/mypageModify/style";
 import { ModifyPensil } from "../../../../util/assets/index";
+import MyInfoModifyDetail from "./MyInfoModifyDetail";
 
 const MyInfoModify = () => {
   const [isModify, setIsModify] = useState<boolean>(false);
@@ -19,10 +20,16 @@ const MyInfoModify = () => {
             </span>
             <span>프론트엔드</span>
           </FieldWrapper>
-          <img src={ModifyPensil} alt="수정이미지" />
+          <img
+            src={ModifyPensil}
+            onClick={() => {
+              setIsModify(true);
+            }}
+            alt="수정이미지"
+          />
         </MainWrapper>
       ) : (
-        ""
+        <MyInfoModifyDetail />
       )}
     </>
   );
