@@ -25,7 +25,7 @@ export const SignSlider = styled.div<Props>`
 `;
 
 export const SignForm = styled.form`
-  width: 500px;
+  width: 580px;
   height: 600px;
   display: flex;
   flex-direction: column;
@@ -56,7 +56,7 @@ export const FieldSelectWrap = styled.div`
 `;
 
 export const SignBox = styled.div`
-  width: 42%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,7 +111,7 @@ export const ProgressBar = styled.div`
 `;
 
 export const InputWrapper = styled.div`
-  width: 42%;
+  width: 40%;
   display: flex;
   flex-direction: column;
 
@@ -137,6 +137,19 @@ export const InputItem = styled.div`
 
   & span {
     margin-right: 35px;
+  }
+
+  .email-button {
+    position: absolute;
+    right: 588px;
+    top: 96px;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    background: #dadada;
+    box-shadow: 0px 2px 6px rgb(119 119 119 / 25%);
+    border-radius: 5px;
+    transition: all 0.5s;
   }
 `;
 
