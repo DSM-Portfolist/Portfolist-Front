@@ -1,5 +1,4 @@
 import React from "react";
-import { ToastSuccess } from "../../../../hook/toastHook";
 import { CloseIcon } from "../../../../util/assets";
 import { FieldType } from "../../../../util/interface/Sign/loginType";
 import * as S from "./style";
@@ -8,9 +7,10 @@ interface Props {
   field: string;
   setFieldList?: any;
   fieldList?: [];
+  fieldItem: FieldType[];
 }
 
-const FieldItemBox = ({ field, setFieldList, fieldList }: Props) => {
+const FieldItemBox = ({ field, setFieldList, fieldList, fieldItem }: Props) => {
   function UseFieldDelete(txt: string) {
     setFieldList(
       fieldList?.filter((field: FieldType) => field.content !== txt)
@@ -27,7 +27,6 @@ const FieldItemBox = ({ field, setFieldList, fieldList }: Props) => {
           alt="닫기 아이콘"
           onClick={() => {
             UseFieldDelete(field);
-            ToastSuccess(`${field}분야의 필터가 취소되었어요!`);
           }}
         />
       </S.FieldItemWrapper>
