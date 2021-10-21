@@ -26,7 +26,6 @@ const FieldItem = ({ field, setUseField, useField }: Props) => {
           alt="닫기 아이콘"
           onClick={() => {
             UseFieldDelete(field);
-            ToastSuccess(`${field}분야의 필터가 취소되었어요!`);
           }}
         />
       </S.FieldItemWrapper>
