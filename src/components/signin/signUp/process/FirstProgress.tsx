@@ -34,7 +34,7 @@ const FirstProgress = ({
     axios.post(`${MAINURL}/join`, inputs).then((res) => console.log(res))
   );
 
-  const { name, email, password } = inputs;
+  const { name, email, password, field } = inputs;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -155,6 +155,7 @@ const FirstProgress = ({
           </S.InputWrapper>
           <SecProgress
             onChange={onChange}
+            field={field}
             setFieldList={setFieldList}
             fieldList={fieldList}
           />

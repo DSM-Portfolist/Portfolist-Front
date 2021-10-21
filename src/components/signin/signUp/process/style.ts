@@ -47,24 +47,11 @@ export const FieldSelectWrap = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 0 auto;
+  margin: 40px auto;
 
   span {
     color: ${loginTextColor};
     font-size: 18px;
-  }
-
-  .categoy_wrap {
-    margin-left: 5%;
-    width: 60%;
-
-    p {
-      border-bottom: 2px solid ${mainColor};
-      padding-bottom: 2px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-    }
   }
 `;
 
@@ -194,4 +181,65 @@ export const InputItemWrap = styled.div`
 export const PreButton = styled(NextButton)`
   width: 40%;
   background-color: #dadada;
+`;
+
+export const CategoryItemWrap = styled.select`
+  width: 72%;
+  margin-left: 50px;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  background: #ffffff;
+  border-bottom: 2px solid ${mainColor};
+  box-sizing: border-box;
+  transition: all 0.5s;
+  font-size: 16px;
+  text-align: center;
+
+  option {
+    height: fit-content;
+    font-size: 16px;
+    border: 1px solid #eaeaea;
+    text-align: center;
+    padding: 3px;
+    cursor: pointer;
+    box-shadow: 0px 2px 3px rgba(163, 163, 163, 0.25);
+
+    :hover {
+      background: ${mainColor};
+    }
+  }
+`;
+
+export const FieldListWrapper = styled.div`
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+
+export const FieldItemWrapper = styled.div`
+  margin: 0 10px;
+  width: fit-content;
+  background: #ff7659;
+  border-radius: 20px;
+  padding: 8px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    font-size: 15px;
+    color: white;
+  }
+
+  img {
+    margin: 0 0 0 10px;
+    cursor: pointer;
+  }
 `;
