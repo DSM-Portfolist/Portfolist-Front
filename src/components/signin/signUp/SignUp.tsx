@@ -14,8 +14,6 @@ const SignUp = () => {
     field: fieldList,
   });
 
-  console.log(inputs);
-
   return (
     <section css={[baseBackground, center]}>
       <FirstProgress
