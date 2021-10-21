@@ -16,8 +16,9 @@ interface Props {
 
 const SecProgress: FC<Props> = (props) => {
   const [btnColor, setBtnColor] = useState<boolean>(false);
+
   // field 리스트 불러오기
-  const { data } = useQuery("field", () => axios(`${MAINURL}/field`));
+  const { data } = useQuery("field", async () => axios(`${MAINURL}/field`));
   const fieldItem = data?.data;
 
   // 필드 추가하기 최대 3개
@@ -33,8 +34,8 @@ const SecProgress: FC<Props> = (props) => {
   }
 
   useEffect(() => {
-    fieldItem.length >= 1 ? setBtnColor(true) : setBtnColor(false);
-  }, [fieldItem.length]);
+    fieldItem?.length >= 1 ? setBtnColor(true) : setBtnColor(false);
+  }, [fieldItem?.length]);
 
   return (
     <>
@@ -52,8 +53,8 @@ const SecProgress: FC<Props> = (props) => {
             <option disabled selected>
               없음
             </option>
-            {fieldItem?.map((field: FieldType) => (
-              <option key={field.id} value={field.content}>
+            {fieldItem?.map((field: FieldType, index: number) => (
+              <option key={index} value={field.id}>
                 {field.content}
               </option>
             ))}
@@ -64,6 +65,7 @@ const SecProgress: FC<Props> = (props) => {
           {props.fieldList?.map((field: FieldType, index: number) => (
             <FieldItemBox
               key={index}
+              fieldItem={fieldItem}
               setFieldList={props.setFieldList}
               fieldList={props.fieldList}
               field={field.content}
