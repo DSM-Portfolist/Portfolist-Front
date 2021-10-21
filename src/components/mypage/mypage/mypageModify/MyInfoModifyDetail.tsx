@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import * as S from "../../../../util/css/mypage/mypage/mypageModify/style";
 import { ToastContainer } from "react-toastify";
 import { ToastError } from "../../../../hook/toastHook";
+import axios from "axios";
+import { useQuery } from "react-query";
+import { MAINURL } from "../../../../util/api";
+import { FieldType } from "../../../../util/interface/Sign/loginType";
+import FieldItemBox from "./FieldItemBox";
 
 const MyInfoModifyDetail = () => {
   const [selectArr, setSelectArr] = useState<any>([]);
@@ -12,13 +17,16 @@ const MyInfoModifyDetail = () => {
     //분야 배열에 추가 중복 허용 x
     const { value } = e.target;
     if (!selectArr.includes(value)) {
-      if (selectArr.length >= 6) {
-        ToastError("분야는 최대 5개까지 가능합니다");
+      if (selectArr.length >= 4) {
+        ToastError("분야는 최대 3개까지 가능합니다");
       } else {
         setSelectArr(selectArr.concat([e.target.value]));
       }
     }
   };
+
+  const { data } = useQuery("field", () => axios(`${MAINURL}/field`));
+  const fieldItem = data?.data;
 
   return (
     <S.ModifyDetailContainer>
@@ -35,11 +43,13 @@ const MyInfoModifyDetail = () => {
           <option selected disabled hidden>
             분야를 선택하세요
           </option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
+          {fieldItem?.map((field: FieldType, index: number) => (
+            <option key={index} value={field.id}>
+              {field.content}
+            </option>
+          ))}
         </select>
+        <FieldItemBox />
       </S.FieldSelecteWrapper>
       <p>분야는 최대 3개까지 선택할 수 있습니다. </p>
       <button type="button" value="취소" />
