@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import arrowImg from "../../../../assets/icon/selectedArrow.svg";
+import { mainColor } from "../../../color/color";
 
 interface ChangeProps {
   isClickPasswordButton: boolean;
@@ -81,6 +83,26 @@ export const ProfileImageWrapper = styled.div`
   }
 `;
 
+export const FieldItemContainer = styled.div`
+  margin: 0 10px;
+  width: fit-content;
+  background: #FF7659;
+  border-radius: 20px;
+  padding: 8px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  span {
+    font-size: 15px;
+    color: white;
+  }
+  img {
+    margin: 0 0 0 10px;
+    cursor: pointer;
+  }
+`;
+
 export const MainWrapper = styled.div`
   width: 67%;
   height: 100%;
@@ -128,15 +150,51 @@ export const ModifyDetailContainer = styled.form`
   }
 `;
 
+export const FieldItemWrapper = styled.div`
+  margin: 0 10px;
+  width: fit-content;
+  background: #FF7659;
+  border-radius: 20px;
+  padding: 8px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  span {
+    font-size: 15px;
+    color: white;
+  }
+  img {
+    margin: 0 0 0 10px;
+    cursor: pointer;
+  }
+`;
+
 export const FieldSelecteWrapper = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
   span > b {
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     color: #000000;
     margin-right: 20px;
+  }
+  select {
+    width: 150px;
+    height: 33px;
+    -webkit-appearance: none; /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
+    background: url(${arrowImg}) no-repeat 95% 50%; /* 화살표 모양의 이미지 */
+    border-bottom: 3px #ff7659 solid;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 23px;
+    color: #000000;
+    padding-left: 6px;
   }
 `;
 
