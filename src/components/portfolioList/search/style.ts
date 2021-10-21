@@ -58,6 +58,7 @@ export const FieldWrapper = styled.div`
 
 export const FieldItemWrapper = styled.div`
   margin: 0 10px;
+  width: fit-content;
   background: #ff7659;
   border-radius: 20px;
   padding: 8px 20px;

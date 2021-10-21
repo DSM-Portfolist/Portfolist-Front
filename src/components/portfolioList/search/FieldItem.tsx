@@ -7,13 +7,13 @@ import { ToastSuccess } from "../../../hook/toastHook";
 
 interface Props {
   field: string;
-  setUseField: any;
-  useField: [];
+  setUseField?: any;
+  useField?: [];
 }
 
 const FieldItem = ({ field, setUseField, useField }: Props) => {
   function UseFieldDelete(txt: string) {
-    setUseField(useField.filter((txt) => field !== txt));
+    setUseField(useField?.filter((txt) => field !== txt));
   }
 
   return (
