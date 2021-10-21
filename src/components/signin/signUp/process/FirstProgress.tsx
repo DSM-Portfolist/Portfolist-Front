@@ -30,11 +30,19 @@ const FirstProgress = ({
   const [inputTypeReturn, setInputTypeReturn] = useState<boolean>(false);
   let error = false;
 
-  const mutation = useMutation((inputs) =>
-    axios.post(`${MAINURL}/join`, inputs).then((res) => console.log(res))
+  const { name, email, password, field } = inputs;
+
+  // 이메일 인증 API
+  const emailAccess = useMutation((email) =>
+    axios.post(`${MAINURL}/email`, { email: email })
   );
 
-  const { name, email, password, field } = inputs;
+  const EmailAccessHandler = (email: any) => {
+    emailAccess.mutate(email);
+  };
+
+  // 회원가입 API
+  const signUp = useMutation((inputs) => axios.post(`${MAINURL}/join`, inputs));
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -49,7 +57,7 @@ const FirstProgress = ({
   const handleSubmit = (data: any, e: any) => {
     e.preventDefault();
 
-    mutation.mutate(data);
+    signUp.mutate(data);
   };
 
   useEffect(() => {
@@ -102,6 +110,18 @@ const FirstProgress = ({
                 />
                 <p>이메일 형식을 맞춰주세요.</p>
               </S.InputItemWrap>
+
+              <div
+                className="email-button"
+                onClick={() => EmailAccessHandler(email)}
+                style={
+                  inputs.email.length >= 4
+                    ? { backgroundColor: `${mainColor}` }
+                    : { backgroundColor: "" }
+                }
+              >
+                이메일 인증
+              </div>
             </S.InputItem>
             <S.InputItem>
               <span>비밀번호</span>
@@ -118,9 +138,9 @@ const FirstProgress = ({
                       : { borderBottom: "" }
                   }
                 />
-                <p>4글자 이상 입력해주세요.</p>
+                <p>4글자 이상 12글자 이하로 입력해주세요.</p>
                 <img
-                  src={inputType ? CloseEye : OpenEye}
+                  src={inputType ? OpenEye : CloseEye}
                   className="select-icon"
                   alt="비밀번호아이콘"
                   onClick={() => setInputType(!inputType)}
@@ -128,11 +148,13 @@ const FirstProgress = ({
                 {error ? (
                   <></>
                 ) : (
-                  <img
+                  <>
+                    {/* <img
                     className="select-icon"
                     src={Warning}
                     alt="비밀번호 경고 아이콘"
-                  />
+                  /> */}
+                  </>
                 )}
               </S.InputItemWrap>
             </S.InputItem>
@@ -143,9 +165,8 @@ const FirstProgress = ({
                   type={inputTypeReturn ? "password" : "text"}
                   placeholder="비밀번호를 다시입력해주세요"
                 />
-                <p>4글자 이상 입력해주세요.</p>
                 <img
-                  src={inputTypeReturn ? CloseEye : OpenEye}
+                  src={inputTypeReturn ? OpenEye : CloseEye}
                   className="select-icon"
                   alt="비밀번호아이콘"
                   onClick={() => setInputTypeReturn(!inputTypeReturn)}
