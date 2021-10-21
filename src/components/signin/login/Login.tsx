@@ -1,10 +1,13 @@
 /** @jsxImportSource @emotion/react */
 
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { useMutation } from "react-query";
 import { Link, useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../hook/toastHook";
+import { MAINURL } from "../../../util/api";
 import { Github, Logo } from "../../../util/assets";
 import { mainColor } from "../../../util/css/color/color";
 import * as S from "./style";
@@ -27,6 +30,10 @@ const Login = () => {
 
   const { email, password } = loginInput;
 
+  const loginNormal = useMutation("post", () =>
+    axios.post(`${MAINURL}/login/normal`, { email: email })
+  );
+
   useEffect(() => {
     email.length >= 4 ? setEmailBor(true) : setEmailBor(false);
     password.length >= 4 ? setPasswordBor(true) : setPasswordBor(false);
@@ -42,28 +49,32 @@ const Login = () => {
     });
   };
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: any, data: any) => {
     e.preventDefault();
 
-    if (email && password) {
+    loginNormal.mutate(data);
+    console.log(loginNormal.status);
+
+    loginNormal.status === "error"
+      ? ToastError("이메일 혹은 비밀번호가 틀렸습니다.")
+      : loginNormal.status === "idle"
+      ? ToastError("이메일 혹은 비밀번호가 틀렸습니다.")
+      : ToastSuccess("로그인이 되었습니다.");
+
+    /* if (email && password) {
       ToastSuccess("로그인에 성공하셨습니다.");
       setTimeout(() => {
         history.push("/");
       }, 1500);
     } else {
       ToastError("정보를 다시 입력해주세요");
-    }
-
-    setLoginInput({
-      email: "",
-      password: "",
-    });
+    } */
   };
 
   return (
     <S.BackWrapper>
       <ToastContainer />
-      <S.Content onSubmit={(e) => onSubmit(e)}>
+      <S.Content onSubmit={(e) => onSubmit(e, loginNormal)}>
         <Link to="/">
           <img src={Logo} alt="Portfolist 로고" />
         </Link>
