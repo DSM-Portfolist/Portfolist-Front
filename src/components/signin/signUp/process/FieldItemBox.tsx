@@ -15,7 +15,6 @@ const FieldItemBox = ({ field, setFieldList, fieldList, fieldItem }: Props) => {
     setFieldList(
       fieldList?.filter((field: FieldType) => field.content !== txt)
     );
-    console.log(fieldList);
   }
 
   return (

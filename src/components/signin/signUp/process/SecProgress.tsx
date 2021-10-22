@@ -16,21 +16,21 @@ interface Props {
 
 const SecProgress: FC<Props> = (props) => {
   const [btnColor, setBtnColor] = useState<boolean>(false);
+  const [testList, setTestList] = useState<any>([]);
 
   // field 리스트 불러오기
-  const { data } = useQuery("field", async () => axios(`${MAINURL}/field`));
+  const { data } = useQuery("field", () => axios(`${MAINURL}/field`));
   const fieldItem = data?.data;
 
   // 필드 추가하기 최대 3개
-  function FieldAdd(content: string) {
+  function FieldAdd(content: string, testList: any) {
     const test = fieldItem.filter(
       (test: FieldType) => test.content === content
     );
     const fieldId = test.map((test: FieldType) => test.id);
 
-    props.setFieldList(
-      props.fieldList.concat({ id: fieldId[0], content: content })
-    );
+    props.setFieldList(props.fieldList.concat(fieldId[0]));
+    setTestList(testList.concat(content));
   }
 
   useEffect(() => {
@@ -47,14 +47,14 @@ const SecProgress: FC<Props> = (props) => {
             name="field"
             onChange={(e) => {
               props.onChange(e);
-              FieldAdd(e.target.value);
+              FieldAdd(e.target.value, testList);
             }}
           >
             <option disabled selected>
               없음
             </option>
             {fieldItem?.map((field: FieldType, index: number) => (
-              <option key={index} value={field.id}>
+              <option key={index} value={field.content}>
                 {field.content}
               </option>
             ))}
@@ -62,13 +62,13 @@ const SecProgress: FC<Props> = (props) => {
         </S.FieldSelectWrap>
         {/* 선택한 카테고리  */}
         <S.FieldListWrapper>
-          {props.fieldList?.map((field: FieldType, index: number) => (
+          {testList?.map((field: string, index: number) => (
             <FieldItemBox
               key={index}
               fieldItem={fieldItem}
               setFieldList={props.setFieldList}
               fieldList={props.fieldList}
-              field={field.content}
+              field={field}
             />
           ))}
         </S.FieldListWrapper>
