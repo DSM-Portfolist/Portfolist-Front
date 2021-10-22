@@ -44,7 +44,7 @@ const PasswordChangeBox = (props: Props) => {
           alt=""
         />
       </ChangePasswordItem>
-      {value == 2 ? <span>비밀번호는 4글자 이상 입력해주세요.</span> : ""}
+      {value === 2 ? <span>비밀번호는 4글자 이상 입력해주세요.</span> : ""}
     </PasswordChangeWrapper>
   );
 };
