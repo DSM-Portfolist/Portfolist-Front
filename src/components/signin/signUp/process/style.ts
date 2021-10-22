@@ -3,8 +3,8 @@ import { loginTextColor, mainColor } from "../../../../util/css/color/color";
 import { buttonType } from "../../../../util/interface/Sign/buttonType";
 
 interface Props {
-  btnColor: boolean;
-  nextLevel: boolean;
+  btnColor?: boolean;
+  nextLevel?: boolean;
 }
 
 export const Wrapper = styled.div`
@@ -104,10 +104,11 @@ export const ProgressWrapper = styled.div`
   background: #f0f0f0;
 `;
 
-export const ProgressBar = styled.div`
-  width: 133px;
+export const ProgressBar = styled.div<Props>`
+  width: ${({ nextLevel }) => (nextLevel ? "100%" : "50%")};
   height: 5px;
   background: #ff7659;
+  transition: 0.6s ease-in 0s;
 `;
 
 export const InputWrapper = styled.div`
@@ -236,7 +237,7 @@ export const FieldListWrapper = styled.div`
 `;
 
 export const FieldItemWrapper = styled.div`
-  margin: 0 10px;
+  margin: 10px;
   width: fit-content;
   background: #ff7659;
   border-radius: 20px;

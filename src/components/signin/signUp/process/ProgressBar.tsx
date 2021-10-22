@@ -1,9 +1,13 @@
 import * as S from "./style";
 
-const ProgressBar = () => {
+interface Props {
+  nextLevel: boolean;
+}
+
+const ProgressBar = ({ nextLevel }: Props) => {
   return (
     <S.ProgressWrapper>
-      <S.ProgressBar></S.ProgressBar>
+      <S.ProgressBar nextLevel={nextLevel}></S.ProgressBar>
     </S.ProgressWrapper>
   );
 };
