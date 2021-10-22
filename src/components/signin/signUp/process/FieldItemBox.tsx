@@ -1,20 +1,17 @@
 import React from "react";
 import { CloseIcon } from "../../../../util/assets";
-import { FieldType } from "../../../../util/interface/Sign/loginType";
 import * as S from "./style";
 
 interface Props {
   field: string;
-  setFieldList?: any;
-  fieldList?: [];
-  fieldItem: FieldType[];
+  setTextList?: any;
+  textList?: [];
 }
 
-const FieldItemBox = ({ field, setFieldList, fieldList, fieldItem }: Props) => {
+const FieldItemBox = ({ field, setTextList, textList }: Props) => {
   function UseFieldDelete(txt: string) {
-    setFieldList(
-      fieldList?.filter((field: FieldType) => field.content !== txt)
-    );
+    console.log(textList);
+    setTextList(textList?.filter((field: string) => field !== txt));
   }
 
   return (

@@ -24,9 +24,11 @@ const SecProgress = (props: Props) => {
 
   // 필드 추가하기 최대 3개
   function FieldAdd(content: string, textList: any) {
+    // api 와 같은건 ,item
     const item = fieldItem.filter(
       (item: FieldType) => item.content === content
     );
+    // 
     const fieldId = item.map((item: FieldType) => item.id);
 
     props.setFieldList(props.fieldList.concat(fieldId[0]));
