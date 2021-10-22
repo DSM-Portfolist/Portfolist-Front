@@ -7,8 +7,7 @@ import { MAINURL } from "../../../../util/api";
 import { CloseEye, Logo, OpenEye, Warning } from "../../../../util/assets";
 import { mainColor } from "../../../../util/css/color/color";
 import { SignUpType } from "../../../../util/interface/Sign/loginType";
-import ProgressBar from "./ProgressBar";
-import SecProgress from "./SecProgress";
+import { SecProgress, ProgressBar } from "../../../index";
 import * as S from "./style";
 
 interface Props {
@@ -73,7 +72,7 @@ const FirstProgress = ({
       <ToastContainer />
       <S.SignForm>
         <img src={Logo} className="logo" alt="Portfolist 로고" />
-        <ProgressBar />
+        <ProgressBar nextLevel={nextLevel} />
         <S.SignSlider btnColor={btnColor} nextLevel={nextLevel}>
           <S.InputWrapper>
             <S.InputItem>
@@ -127,7 +126,7 @@ const FirstProgress = ({
               <span>비밀번호</span>
               <S.InputItemWrap>
                 <input
-                  type={inputType ? "password" : "text"}
+                  type={inputType ? "text" : "password"}
                   name="password"
                   value={password}
                   onChange={(e) => onChange(e)}
@@ -162,7 +161,7 @@ const FirstProgress = ({
               <span>비밀번호 확인</span>
               <S.InputItemWrap>
                 <input
-                  type={inputTypeReturn ? "password" : "text"}
+                  type={inputType ? "text" : "password"}
                   placeholder="비밀번호를 다시입력해주세요"
                 />
                 <img
