@@ -18,6 +18,7 @@ interface LoginType {
 }
 
 const Login = () => {
+  const history = useHistory();
   const [buttonColor, setButtonColor] = useState<boolean>(false);
   const [emailBor, setEmailBor] = useState<boolean>(false);
   const [passwordBor, setPasswordBor] = useState<boolean>(false);
@@ -26,19 +27,14 @@ const Login = () => {
     password: "",
   });
 
-  const history = useHistory();
-
   const { email, password } = loginInput;
 
-  const loginNormal = useMutation("post", () =>
-    axios.post(`${MAINURL}/login/normal`, { email: email })
+  const loginNormal = useMutation("login", () =>
+    axios.post(`${MAINURL}/login/normal`, loginInput).then((res) => {
+      localStorage.setItem("access_token_portfolist", res.data.access_token);
+      localStorage.setItem("refresh_token_portfolist", res.data.refresh_token);
+    })
   );
-
-  useEffect(() => {
-    email.length >= 4 ? setEmailBor(true) : setEmailBor(false);
-    password.length >= 4 ? setPasswordBor(true) : setPasswordBor(false);
-    email && password ? setButtonColor(true) : setButtonColor(false);
-  }, [email, password]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -53,28 +49,25 @@ const Login = () => {
     e.preventDefault();
 
     loginNormal.mutate(data);
-    console.log(loginNormal.status);
 
-    loginNormal.status === "error"
-      ? ToastError("이메일 혹은 비밀번호가 틀렸습니다.")
-      : loginNormal.status === "idle"
-      ? ToastError("이메일 혹은 비밀번호가 틀렸습니다.")
-      : ToastSuccess("로그인이 되었습니다.");
-
-    /* if (email && password) {
+    if (loginNormal.isSuccess) {
       ToastSuccess("로그인에 성공하셨습니다.");
-      setTimeout(() => {
-        history.push("/");
-      }, 1500);
+      history.push("/");
     } else {
       ToastError("정보를 다시 입력해주세요");
-    } */
+    }
   };
+
+  useEffect(() => {
+    email.length >= 4 ? setEmailBor(true) : setEmailBor(false);
+    password.length >= 4 ? setPasswordBor(true) : setPasswordBor(false);
+    email && password ? setButtonColor(true) : setButtonColor(false);
+  }, [email, password]);
 
   return (
     <S.BackWrapper>
       <ToastContainer />
-      <S.Content onSubmit={(e) => onSubmit(e, loginNormal)}>
+      <S.Content onSubmit={(e) => onSubmit(e, loginInput)}>
         <Link to="/">
           <img src={Logo} alt="Portfolist 로고" />
         </Link>
