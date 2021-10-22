@@ -88,13 +88,13 @@ export const FieldItemContainer = styled.div`
   width: fit-content;
   background: #FF7659;
   border-radius: 20px;
-  padding: 8px 20px;
+  padding: 8px 11px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   span {
-    font-size: 15px;
+    font-size: 14px;
     color: white;
   }
   img {
