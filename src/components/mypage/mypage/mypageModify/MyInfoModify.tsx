@@ -29,7 +29,7 @@ const MyInfoModify = () => {
           />
         </MainWrapper>
       ) : (
-        <MyInfoModifyDetail />
+        <MyInfoModifyDetail setIsModify={setIsModify} />
       )}
     </>
   );
