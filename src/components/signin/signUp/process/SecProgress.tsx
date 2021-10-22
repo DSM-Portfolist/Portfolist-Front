@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import "react-toastify/dist/ReactToastify.css";
 import { MAINURL } from "../../../../util/api";
@@ -14,23 +14,23 @@ interface Props {
   field: any;
 }
 
-const SecProgress: FC<Props> = (props) => {
+const SecProgress = (props: Props) => {
   const [btnColor, setBtnColor] = useState<boolean>(false);
-  const [testList, setTestList] = useState<any>([]);
+  const [textList, setTextList] = useState<any>([]);
 
   // field 리스트 불러오기
   const { data } = useQuery("field", () => axios(`${MAINURL}/field`));
   const fieldItem = data?.data;
 
   // 필드 추가하기 최대 3개
-  function FieldAdd(content: string, testList: any) {
-    const test = fieldItem.filter(
-      (test: FieldType) => test.content === content
+  function FieldAdd(content: string, textList: any) {
+    const item = fieldItem.filter(
+      (item: FieldType) => item.content === content
     );
-    const fieldId = test.map((test: FieldType) => test.id);
+    const fieldId = item.map((item: FieldType) => item.id);
 
     props.setFieldList(props.fieldList.concat(fieldId[0]));
-    setTestList(testList.concat(content));
+    setTextList(textList.concat(content));
   }
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const SecProgress: FC<Props> = (props) => {
             name="field"
             onChange={(e) => {
               props.onChange(e);
-              FieldAdd(e.target.value, testList);
+              FieldAdd(e.target.value, textList);
             }}
           >
             <option disabled selected>
@@ -62,12 +62,11 @@ const SecProgress: FC<Props> = (props) => {
         </S.FieldSelectWrap>
         {/* 선택한 카테고리  */}
         <S.FieldListWrapper>
-          {testList?.map((field: string, index: number) => (
+          {textList?.map((field: string, index: number) => (
             <FieldItemBox
               key={index}
-              fieldItem={fieldItem}
-              setFieldList={props.setFieldList}
-              fieldList={props.fieldList}
+              setTextList={setTextList}
+              textList={textList}
               field={field}
             />
           ))}
