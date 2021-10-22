@@ -32,7 +32,7 @@ export const ContainerBox = styled.div`
 
   .content-box {
     width: 80%;
-    padding-left: 20px;
+    padding-left: 40px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -50,7 +50,8 @@ export const ContainerBox = styled.div`
       }
 
       .sub-content {
-        font-size: 17px;
+        font-size: 18px;
+        font-weight: 500;
       }
     }
   }
