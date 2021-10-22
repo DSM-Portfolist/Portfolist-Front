@@ -9,18 +9,18 @@ import { FieldType } from "../../../../util/interface/Sign/loginType";
 import FieldItemBox from "./FieldItemBox";
 
 const MyInfoModifyDetail = () => {
-  const [selectArr, setSelectArr] = useState<any>([]);
-
-  console.log(selectArr);
+  const [selectIdArr, setSelectIdArr] = useState<any>([]);
+  const [selectNameArr, setSelectNameArr] = useState<any>([]);
 
   const handleSelect = (e: any) => {
     //분야 배열에 추가 중복 허용 x
     const { value } = e.target;
-    if (!selectArr.includes(value)) {
-      if (selectArr.length >= 4) {
+    if (!selectIdArr.includes(value)) {
+      if (selectIdArr.length > 2) {
         ToastError("분야는 최대 3개까지 가능합니다");
       } else {
-        setSelectArr(selectArr.concat([e.target.value]));
+        setSelectIdArr(selectIdArr.concat([value]));
+        setSelectNameArr(selectNameArr.concat([e.target[value].text]));
       }
     }
   };
@@ -49,7 +49,18 @@ const MyInfoModifyDetail = () => {
             </option>
           ))}
         </select>
-        <FieldItemBox />
+        {selectNameArr.map((field: string, index: number) => {
+          return (
+            <FieldItemBox
+              selectNameArr={selectNameArr}
+              setSelectIdArr={setSelectIdArr}
+              setSelectNameArr={setSelectNameArr}
+              selectIdArr={selectIdArr}
+              fieldItem={fieldItem}
+              field={field}
+            />
+          );
+        })}
       </S.FieldSelecteWrapper>
       <p>분야는 최대 3개까지 선택할 수 있습니다. </p>
       <button type="button" value="취소" />
