@@ -86,9 +86,9 @@ export const ProfileImageWrapper = styled.div`
 export const FieldItemContainer = styled.div`
   margin: 0 10px;
   width: fit-content;
-  background: #FF7659;
+  background: #ff7659;
   border-radius: 20px;
-  padding: 8px 11px;
+  padding: 8px 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -150,10 +150,42 @@ export const ModifyDetailContainer = styled.form`
   }
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 57px;
+  * {
+    cursor: pointer;
+  }
+  button[type="button"] {
+    width: 70px;
+    height: 30px;
+    background: #c5c5c5;
+    border-radius: 5px;
+    color: #fff;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+  }
+  input[type="submit"] {
+    width: 100px;
+    height: 30px;
+    background: #ff7d64;
+    border-radius: 5px;
+    color: #fff;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 23px;
+    color: #ffffff;
+    margin-left: 20px;
+  }
+`;
+
 export const FieldItemWrapper = styled.div`
   margin: 0 10px;
   width: fit-content;
-  background: #FF7659;
+  background: #ff7659;
   border-radius: 20px;
   padding: 8px 20px;
   display: flex;
@@ -195,6 +227,10 @@ export const FieldSelecteWrapper = styled.div`
     line-height: 23px;
     color: #000000;
     padding-left: 6px;
+    cursor: pointer;
+  }
+  option {
+    cursor: pointer;
   }
 `;
 
