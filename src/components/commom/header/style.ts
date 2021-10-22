@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
-import { transform } from "typescript";
-import { Magnifier } from "../../../util/assets";
-import { headerLineColor, mainColor } from "../../../util/css/color/color";
+import { mainColor } from "../../../util/css/color/color";
 import {
   MagnifierProp,
   NotificationProp,
