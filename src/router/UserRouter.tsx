@@ -5,7 +5,6 @@ import {
   Main,
   PortfolioDatail,
   PortfolioList,
-  SecProgress,
   SignUp,
 } from "../components";
 
