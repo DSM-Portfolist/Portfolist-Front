@@ -5,7 +5,6 @@ import {
   center,
   NavWrapper,
   column,
-  row,
 } from "../../../util/css/mypage/mypage/style";
 import {
   myPageSection,
