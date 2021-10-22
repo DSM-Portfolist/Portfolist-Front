@@ -43,7 +43,7 @@ const PasswordModify = () => {
 
   useEffect(() => {
     console.log(passwordData);
-    if (passwordData[1].password != passwordData[2].password) {
+    if (passwordData[1].password !== passwordData[2].password) {
       /* ToastError("재설정 하는 비밀번호가 다릅니다 "); */
       //test 코드
     }
@@ -68,9 +68,6 @@ const PasswordModify = () => {
     //비밀번호 모달창 닫기 버튼
     if (isClickPasswordButton) {
       setIsClickPasswordButton(false);
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 300);
       let newArr = passwordData.map((item: any, index) => {
         if (true) {
           return { password: "" };
