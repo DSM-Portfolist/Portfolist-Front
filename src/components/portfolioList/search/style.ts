@@ -58,6 +58,7 @@ export const FieldWrapper = styled.div`
 
 export const FieldItemWrapper = styled.div`
   margin: 0 10px;
+  width: fit-content;
   background: #ff7659;
   border-radius: 20px;
   padding: 8px 20px;
@@ -124,6 +125,13 @@ export const SearchInput = styled.div`
   input {
     margin-left: 6px;
     width: 70%;
+    font-size: 16px;
+    transform: skew(-0.1deg);
+
+    ::placeholder {
+      font-size: 16px;
+      transform: skew(-0.1deg);
+    }
   }
 
   img {

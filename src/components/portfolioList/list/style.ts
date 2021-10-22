@@ -6,6 +6,7 @@ export const MainListWrapper = styled.section`
   background-color: white;
   display: flex;
   flex-direction: column;
+  margin-top: 80px;
 `;
 
 export const ListWrapper = styled.div`
@@ -19,8 +20,8 @@ export const ListWrapper = styled.div`
 
 export const ListItemWrapper = styled.div`
   border-radius: 3px;
-  margin: 25px;
-  width: 220px;
+  margin: 1.17rem;
+  width: 15rem;
   height: 390px;
   box-shadow: 0px 4px 4px rgba(214, 214, 214, 0.25);
   overflow: hidden;
@@ -71,12 +72,13 @@ export const Content = styled.div`
 
       strong {
         cursor: pointer;
+        font-size: 15px;
       }
     }
 
     img {
       margin: 0 5px;
-      width: 22px;
+      width: 25px;
       height: 25px;
       border-radius: 50px;
       object-fit: cover;
@@ -105,8 +107,8 @@ export const Content = styled.div`
 
       img {
         cursor: pointer;
-        width: 25px;
-        height: 30px;
+        width: 21px;
+        height: 22px;
         object-fit: cover;
       }
 
@@ -114,6 +116,7 @@ export const Content = styled.div`
         color: ${({ touchingBoolean }: TouchingProp) =>
           touchingBoolean ? `${mainColor}` : "#C5C5C5"};
         height: 22px;
+        font-size: 13px;
       }
     }
   }
@@ -123,7 +126,7 @@ export const Content = styled.div`
     flex-direction: column;
 
     a:nth-child(1) {
-      font-weight: 500;
+      font-weight: 700;
       font-size: 16px;
       color: black;
       cursor: pointer;

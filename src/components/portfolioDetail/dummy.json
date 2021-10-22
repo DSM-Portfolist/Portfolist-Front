@@ -2,15 +2,15 @@
   "user": {
     "user_id": 1,
     "name": "강은빈",
-    "profile": "djfdjkshflahd.com"
+    "profile_img": "djfdjkshflahd.com"
   },
   "create_date": "2342342",
   "touched": true,
-  "touching": 30,
+  "total_touching": 30,
   "icon": "swimming",
   "title": "강은빈",
   "introduce": "금처럼 빛나게 될 강은빈입니다",
-  "field": [1, 2],
+  "field": ["SERVER", "WEB"],
   "more_info": [
     {
       "key": "전화번호",
@@ -19,42 +19,50 @@
     {
       "key": "이메일",
       "value": "swimmingplayer@gmail.com"
-    },
-    {
-      "key": "전화번호",
-      "value": "112"
-    },
-    {
-      "key": "이메일",
-      "value": "swimmingplayer@gmail.com"
     }
   ],
-  "experience": [
+  "container_list": [
     {
-      "exp_image": "kejsjljdlsjlfjl;kej",
-      "content": [
+      "container_title": "containertitle",
+      "container": [
         {
-          "exp_title": "2021 지방기능경기대회 웹디자인 및 개발 은메달",
-          "exp_content": "웹디자인 및 개발 부분에서 은메달을 따게 되었습니다"
-        },
-        {
-          "exp_title": "배운 점과 느낀 점",
-          "exp_content": "몰라요"
+          "box_img": ["kejsjljdlsjlfjl;kej"],
+          "box_list": [
+            {
+              "box_title": "🥈 2021 지방기능경기대회 웹디자인 및 개발 은메달 ",
+              "box_content": "웹디자인 및 개발 부분에서 은메달을 따게 되었습니다"
+            },
+            {
+              "box_title": "배운 점과 느낀 점",
+              "box_content": "몰라요"
+            }
+          ]
         }
       ]
-    }
-  ],
-  "project": [
+    },
     {
-      "pj_image": "kejsjljdlsjlfjl;kej",
-      "content": [
+      "container_title": "대마고에서의 프로젝트",
+      "container": [
         {
-          "pj_title": "2021 지방기능경기대회 웹디자인 및 개발 은메달",
-          "pj_content": "웹디자인 및 개발 부분에서 은메달을 따게 되었습니다"
-        },
-        {
-          "pj_title": "배운 점과 느낀 점",
-          "pj_content": "몰라요"
+          "box_img": ["kejsjljdlsjlfjl;kej", "dbox_img.jpg"],
+          "box_list": [
+            {
+              "box_title": "🥈 Portfolist",
+              "box_content": "개발 기간 : 21.08 ~ 21.11 (3개월)"
+            },
+            {
+              "box_title": "🇰🇷 프로젝트 소개",
+              "box_content": "포트폴리오를 공유합니다. 포트폴리오를 공유합니다. 포트폴리오를 공유합니다. 포트폴리오를 공유합니다. 포트폴리오를 공유합니다. 포트폴리오를 공유합니다.포트폴리오를 공유합니다.포트폴리오를 공유합니다. 포트폴리오를 공유합니다.포트폴리오를 공유합니다. 포트폴리오를 공유합니다. 포트폴리오를 공유합니다. 포트폴리오를 공유합니다.포트폴리오를 공유합니다. 포트폴리오를 공유합니다. "
+            },
+            {
+              "box_title": "⏰ 서버의 요청을 아름답게 바꾸기",
+              "box_content": "서버의 API 요청을 할 때, 어떤 방식을 코드를 작성해야 깔끔하게 짤 수 있을지 고민을 많이 했습니다. 처음에는 axios 를 사용하여 모듈화를 만들어 사용했는데 이는 별로 좋지 않은 사용법이라고 느껴졌습니다. 고민 끝에 SWR를 알게 되었고, 이를 사용하여 서버 요청을 받으며 기존의 문제점인 모듈화의 문제점을 해결했습니다."
+            },
+            {
+              "box_title": "⚒ 성장 경험",
+              "box_content": "실 사용자가 있는 서비스를 만들때의 가장 중요한 것은 책임감이라는 것을 느끼게 되었습니다. 그 책임감에 따라 코드를 더욱 안정성있게 만들어야된다는 것을 배우게 되었습니다. 또한 유저의 피드백을 받아 서비스에 반영하는 경험을 할 수 있었습니다. "
+            }
+          ]
         }
       ]
     }
@@ -62,110 +70,39 @@
   "certificate": ["정보처리기능사", "리눅스마스터"],
   "link": "sadfhwekjhkshdfkhalskf",
   "file": "dsjkhfkjwehklhksdhklas",
-  "comment": [
+  "comments": [
     {
       "user": {
-        "c_user_id": 1,
-        "c_name": "강은빈",
-        "c_profile": "djfdjkshflahd.com"
+        "user_id": 1,
+        "name": "강은빈",
+        "profile_img": "djfdjkshflahd.com"
       },
-
+      "is_mine": true,
       "comment_id": 1,
       "comment_content": "에라이",
       "c_date": "2021-09-26",
-      "is_mine": true,
       "re_comment": [
         {
           "user": {
-            "rc_user_id": 1,
-            "rc_name": "강은빈",
-            "rc_profile": "djfdjkshflahd.com"
+            "user_id": 1,
+            "name": "강은빈",
+            "profile_img": "djfdjkshflahd.com"
           },
+          "is_mine": false,
           "re_comment_id": 1,
           "re_comment_content": "에라이",
-          "rc_date": "2021-09-26",
-          "is_mine": false
+          "rc_date": "2021-09-26"
         },
         {
           "user": {
-            "rc_user_id": 1,
-            "rc_name": "강은빈",
-            "rc_profile": "djfdjkshflahd.com"
+            "user_id": 1,
+            "name": "강은빈",
+            "profile_img": "djfdjkshflahd.com"
           },
+          "is_mine": true,
           "re_comment_id": 2,
           "re_comment_content": "춥다",
-          "rc_date": "2021-09-26",
-          "is_mine": false
-        }
-      ]
-    },
-    {
-      "user": {
-        "c_user_id": 1,
-        "c_name": "강은빈",
-        "c_profile": "djfdjkshflahd.com"
-      },
-      "comment_id": 2,
-      "comment_content": "에라이",
-      "c_date": "2021-09-26",
-      "is_mine": false,
-      "re_comment": [
-        {
-          "user": {
-            "rc_user_id": 1,
-            "rc_name": "강은빈",
-            "rc_profile": "djfdjkshflahd.com"
-          },
-          "re_comment_id": 1,
-          "re_comment_content": "에라이",
-          "rc_date": "2021-09-26",
-          "is_mine": false
-        },
-        {
-          "user": {
-            "rc_user_id": 1,
-            "rc_name": "강은빈",
-            "rc_profile": "djfdjkshflahd.com"
-          },
-          "re_comment_id": 2,
-          "re_comment_content": "춥다",
-          "rc_date": "2021-09-26",
-          "is_mine": false
-        }
-      ]
-    },
-    {
-      "user": {
-        "c_user_id": 2,
-        "c_name": "강은빈",
-        "c_profile": "djfdjkshflahd.com"
-      },
-      "comment_id": 3,
-      "comment_content": "에라이",
-      "c_date": "2021-09-26",
-      "is_mine": false,
-      "re_comment": [
-        {
-          "user": {
-            "rc_user_id": 1,
-            "rc_name": "강은빈",
-            "rc_profile": "djfdjkshflahd.com"
-          },
-          "re_comment_id": 1,
-          "re_comment_content": "에라이",
-          "rc_date": "2021-09-26",
-          "is_mine": false
-        },
-        {
-          "user": {
-            "rc_user_id": 1,
-            "rc_name": "강은빈",
-            "rc_profile": "djfdjkshflahd.com"
-          },
-          "re_comment_id": 2,
-          "re_comment_content": "춥다",
-          "rc_date": "2021-09-26",
-          "is_mine": false
+          "rc_date": "2021-09-26"
         }
       ]
     }

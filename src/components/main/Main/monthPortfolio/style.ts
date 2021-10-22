@@ -6,6 +6,15 @@ export const MonthWrapper = styled.div`
   margin: 90px auto;
   display: flex;
   flex-direction: row;
+  position: relative;
+
+  .crwon-icon {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: -66px;
+    left: 89px;
+  }
 
   .img-wrapper {
     width: 250px;
@@ -37,6 +46,7 @@ export const Content = styled.div`
     font-weight: 300;
     font-size: 18px;
     line-height: 26px;
+    color: #4e4e4e;
   }
   .user-introduce {
     margin: 40px 0;
@@ -52,6 +62,7 @@ export const Content = styled.div`
 
   h2 {
     font-weight: 400;
-    font-size: 24px;
+    font-size: 27px;
+    padding-bottom: 10px;
   }
 `;

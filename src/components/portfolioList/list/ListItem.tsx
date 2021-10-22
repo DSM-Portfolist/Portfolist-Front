@@ -6,7 +6,7 @@ import {
   Touching,
 } from "../../../util/assets";
 import * as S from "./style";
-import { PortListType } from "../../../util/interface/main/portListType";
+import { PortListType } from "../../../util/interface/portfolio/portListType";
 import { Link } from "react-router-dom";
 
 interface Prop {
@@ -66,6 +66,7 @@ const ListItem = ({ list }: Prop) => {
             {list.title}
           </Link>
           <span>{TextSliceHandler(list.introduce, 32)}</span>
+          <span>댓글 8</span>
         </div>
         <div className="user-profile">
           <img src={Profile} alt="사용자의 프로필 사진" />

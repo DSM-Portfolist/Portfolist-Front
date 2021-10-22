@@ -85,13 +85,13 @@ const Header = () => {
             ;
           </>
         )}
+        <S.MagnifierWrapper magnifier={magnifier}>
+          <S.Input>
+            <input type="text" placeholder="검색어를 입력해주세요" />
+            <img src={Magnifier} alt="검색 아이콘" />
+          </S.Input>
+        </S.MagnifierWrapper>
       </S.HeaderWrapper>
-      <S.MagnifierWrapper magnifier={magnifier}>
-        <S.Input>
-          <input type="text" placeholder="검색어를 입력해주세요" />
-          <img src={Magnifier} alt="검색 아이콘" />
-        </S.Input>
-      </S.MagnifierWrapper>
     </>
   );
 };
