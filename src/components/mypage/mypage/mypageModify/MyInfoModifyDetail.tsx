@@ -8,7 +8,12 @@ import { MAINURL } from "../../../../util/api";
 import { FieldType } from "../../../../util/interface/Sign/loginType";
 import FieldItemBox from "./FieldItemBox";
 
-const MyInfoModifyDetail = () => {
+interface Props {
+  setIsModify: any;
+}
+
+const MyInfoModifyDetail = (props: Props) => {
+  const { setIsModify } = props;
   const [selectIdArr, setSelectIdArr] = useState<any>([]);
   const [selectNameArr, setSelectNameArr] = useState<any>([]);
 
@@ -28,8 +33,12 @@ const MyInfoModifyDetail = () => {
   const { data } = useQuery("field", () => axios(`${MAINURL}/field`));
   const fieldItem = data?.data;
 
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
-    <S.ModifyDetailContainer>
+    <S.ModifyDetailContainer onSubmit={onSubmitHandler}>
       <ToastContainer />
       <S.InputWrapper>
         <input type="text" placeholder="사용하실 닉네임을 입력하세요" />
@@ -49,7 +58,7 @@ const MyInfoModifyDetail = () => {
             </option>
           ))}
         </select>
-        {selectNameArr.map((field: string, index: number) => {
+        {selectNameArr.map((field: string) => {
           return (
             <FieldItemBox
               selectNameArr={selectNameArr}
@@ -63,8 +72,17 @@ const MyInfoModifyDetail = () => {
         })}
       </S.FieldSelecteWrapper>
       <p>분야는 최대 3개까지 선택할 수 있습니다. </p>
-      <button type="button" value="취소" />
-      <input type="submit" value="완료" />
+      <S.ButtonContainer>
+        <button
+          type="button"
+          onClick={() => {
+            setIsModify(false);
+          }}
+        >
+          취소
+        </button>
+        <input type="submit" value="수정 완료" />
+      </S.ButtonContainer>
     </S.ModifyDetailContainer>
   );
 };
