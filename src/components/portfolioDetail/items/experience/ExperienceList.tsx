@@ -1,11 +1,11 @@
 import React from "react";
+import * as S from "./style";
 import { TestImg } from "../../../../util/assets";
 import {
   BoxListType,
   ContainerListType,
   ContainerType,
 } from "../../../../util/interface/portfolio/portfolioDetailType";
-import * as S from "./style";
 import { container_list } from "../../dummy.json";
 
 const ExperienceList = () => {

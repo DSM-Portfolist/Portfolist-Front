@@ -87,6 +87,12 @@ code {
   text-decoration: none;
 }
 
+select, option {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 .border-bottom {
   width: 100%;
   border-bottom: 1px solid #f0f0f0;

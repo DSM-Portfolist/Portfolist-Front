@@ -12,7 +12,6 @@ import * as S from "./style";
 const Search = () => {
   const [text, setText] = useState<string>("원하는 분야를 선택해주세요.");
   const [arrowSelect, setArrowSelect] = useState<boolean>(false);
-  const [bottomLine, setBottomList] = useState<boolean>(false);
   const [useField, setUseField] = useState<any>([]);
 
   useEffect(() => {
