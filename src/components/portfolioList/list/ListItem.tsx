@@ -19,7 +19,7 @@ const Tag = ({ field }: any) => {
 
 const ListItem = ({ list }: Prop) => {
   const [touchingBoolean, setTouchingBoolean] = useState<boolean>(list.touched);
-  const [count, setCount] = useState<number>(list.touching);
+  const [count, setCount] = useState<number>(list.total_touching);
 
   function CountChangeHandler(count: number) {
     touchingBoolean ? setCount(count - 1) : setCount(count + 1);
@@ -55,7 +55,7 @@ const ListItem = ({ list }: Prop) => {
                 CountChangeHandler(count);
               }}
             />
-            <span>{count === 0 ? "" : count}</span>
+            <span>{count === 0 ? "0" : count}</span>
           </div>
         </div>
         <div className="title">
@@ -66,12 +66,17 @@ const ListItem = ({ list }: Prop) => {
             {list.title}
           </Link>
           <span>{TextSliceHandler(list.introduce, 32)}</span>
-          <span>댓글 8</span>
+          <span>댓글 {list.total_comment}</span>
         </div>
         <div className="user-profile">
-          <img src={Profile} alt="사용자의 프로필 사진" />
+          <img
+            src={
+              list.profile_img === null ? `${Profile}` : `${list.profile_img}`
+            }
+            alt="사용자의 프로필 사진"
+          />
           <Link to={`/user-page`} title="유저 페이지 이동합니다.">
-            <strong>{list.user.name}</strong>님이 포트폴리오
+            <strong>{list.name}</strong>님이 포트폴리오
           </Link>
         </div>
       </S.Content>
