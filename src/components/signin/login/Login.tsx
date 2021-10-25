@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useMutation } from "react-query";
+import { useMutation, UseMutationResult } from "react-query";
 import { Link, useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,7 +18,9 @@ interface LoginType {
 }
 
 const Login = () => {
+  const JWT_EXPIRY_TIME = 10000;
   const history = useHistory();
+
   const [buttonColor, setButtonColor] = useState<boolean>(false);
   const [emailBor, setEmailBor] = useState<boolean>(false);
   const [passwordBor, setPasswordBor] = useState<boolean>(false);
@@ -26,6 +28,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const refresh_token = localStorage.getItem("refresh_token_portfolist");
 
   const { email, password } = loginInput;
 
@@ -35,6 +39,16 @@ const Login = () => {
       localStorage.setItem("refresh_token_portfolist", res.data.refresh_token);
     })
   );
+
+  const onClientRefresh = useMutation("refresh", () =>
+    axios.post("/refresh", refresh_token).then((res) => console.log(res))
+  );
+
+  useEffect(() => {
+    setTimeout(() => {
+      onClientRefresh.mutate();
+    }, JWT_EXPIRY_TIME - 1000);
+  }, []);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
