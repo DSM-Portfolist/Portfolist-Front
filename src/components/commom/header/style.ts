@@ -29,7 +29,6 @@ export const Container = styled.div`
 
   .logo {
     display: flex;
-    width: 26%;
     align-items: center;
     justify-content: space-between;
 
@@ -37,6 +36,7 @@ export const Container = styled.div`
       color: #5a5a5a;
       font-weight: 700;
       font-size: 17px;
+      margin-right: 27px;
     }
   }
 
