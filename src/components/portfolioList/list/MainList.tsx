@@ -12,7 +12,6 @@ interface Props {
 }
 
 const MainList = ({ searchValue, setSearchValue }: Props) => {
-  
   const { isLoading, data } = useQuery("get-list", () =>
     axios(`${MAINURL}/portfolio/list?page=1&size=5&field=WEB`, {
       headers: {
