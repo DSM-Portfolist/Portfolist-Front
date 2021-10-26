@@ -1,24 +1,21 @@
 import React from "react";
-import { CloseIcon } from "../../../util/assets";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { CloseIcon } from "../../../../util/assets";
 import * as S from "./style";
-import { ToastSuccess } from "../../../hook/toastHook";
 
 interface Props {
   field: string;
-  setUseField?: any;
-  useField?: [];
+  setTextList?: any;
+  textList?: [];
 }
 
-const FieldItem = ({ field, setUseField, useField }: Props) => {
+const FieldItemBox = ({ field, setTextList, textList }: Props) => {
   function UseFieldDelete(txt: string) {
-    setUseField(useField?.filter((txt) => field !== txt));
+    console.log(textList);
+    setTextList(textList?.filter((field: string) => field !== txt));
   }
 
   return (
     <>
-      <ToastContainer />
       <S.FieldItemWrapper>
         <span>{field}</span>
         <img
@@ -33,4 +30,4 @@ const FieldItem = ({ field, setUseField, useField }: Props) => {
   );
 };
 
-export default FieldItem;
+export default FieldItemBox;

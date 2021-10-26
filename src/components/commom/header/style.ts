@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
-import { transform } from "typescript";
-import { Magnifier } from "../../../util/assets";
-import { headerLineColor, mainColor } from "../../../util/css/color/color";
+import { mainColor } from "../../../util/css/color/color";
 import {
   MagnifierProp,
   NotificationProp,
@@ -10,14 +8,17 @@ import {
 export const HeaderWrapper = styled.section`
   width: 100%;
   height: 80px;
-  border-bottom: 3px solid ${headerLineColor};
+  position: fixed;
+  background-color: white;
+  z-index: 6;
+  top: 0;
 `;
 
 export const Container = styled.div`
   background-color: white;
-  margin: 0 auto;
-  padding: 0 3%;
-  width: 94%;
+  box-sizing: border-box;
+  padding: 0 13%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -28,12 +29,14 @@ export const Container = styled.div`
 
   .logo {
     display: flex;
-    width: 26%;
     align-items: center;
     justify-content: space-between;
 
     a {
-      color: black;
+      color: #5a5a5a;
+      font-weight: 700;
+      font-size: 17px;
+      margin-right: 27px;
     }
   }
 
@@ -43,6 +46,11 @@ export const Container = styled.div`
 
     .list-item {
       margin: 0 40px;
+
+      span {
+        font-size: 17px;
+        cursor: pointer;
+      }
     }
 
     a,
@@ -167,6 +175,11 @@ export const Input = styled.div`
   input {
     width: 80%;
     font-size: 16px;
+    transform: skew(-0.1deg);
+
+    ::placeholder {
+      transform: skew(-0.1deg);
+    }
   }
 
   img {

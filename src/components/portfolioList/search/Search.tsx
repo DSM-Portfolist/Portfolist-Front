@@ -9,15 +9,19 @@ import FieldSelectItem from "./FieldSelectItem";
 import SearchInput from "./SearchInput";
 import * as S from "./style";
 
-const Search = () => {
+interface Props {
+  setSearchValue: any;
+}
+
+const Search = ({ setSearchValue }: Props) => {
   const [text, setText] = useState<string>("원하는 분야를 선택해주세요.");
   const [arrowSelect, setArrowSelect] = useState<boolean>(false);
-  const [bottomLine, setBottomList] = useState<boolean>(false);
   const [useField, setUseField] = useState<any>([]);
 
   useEffect(() => {
     if (useField.length >= 6) {
       ToastError("필터는 최대 5개까지 가능합니다.");
+
     }
   }, [useField]);
 
@@ -67,7 +71,7 @@ const Search = () => {
           ))}
         </S.FieldWrapper>
       </S.FieldSelectWrapper>
-      <SearchInput />
+      <SearchInput setSearchValue={setSearchValue} />
     </S.SearchWrapper>
   );
 };

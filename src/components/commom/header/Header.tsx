@@ -65,7 +65,7 @@ const Header = () => {
                   <S.MoreItem
                     style={moreItem ? { height: 120 } : { height: 0 }}
                   >
-                    <Link to="/my-page">마이페이지</Link>
+                    <Link to="/my-page">내 프로필</Link>
                     <li onClick={() => ToastSuccess("로그아웃 되었습니다.")}>
                       로그아웃
                     </li>
@@ -85,13 +85,13 @@ const Header = () => {
             ;
           </>
         )}
+        <S.MagnifierWrapper magnifier={magnifier}>
+          <S.Input>
+            <input type="text" placeholder="검색어를 입력해주세요" />
+            <img src={Magnifier} alt="검색 아이콘" />
+          </S.Input>
+        </S.MagnifierWrapper>
       </S.HeaderWrapper>
-      <S.MagnifierWrapper magnifier={magnifier}>
-        <S.Input>
-          <input type="text" placeholder="검색어를 입력해주세요" />
-          <img src={Magnifier} alt="검색 아이콘" />
-        </S.Input>
-      </S.MagnifierWrapper>
     </>
   );
 };
