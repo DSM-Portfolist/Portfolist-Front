@@ -67,7 +67,7 @@ const Login = () => {
     if (loginNormal.isSuccess) {
       ToastSuccess("로그인에 성공하셨습니다.");
       history.push("/");
-    } else {
+    } else if (loginNormal.isError) {
       ToastError("정보를 다시 입력해주세요");
     }
   };
