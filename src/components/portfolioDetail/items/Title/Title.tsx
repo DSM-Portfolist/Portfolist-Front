@@ -1,6 +1,6 @@
 import React from "react";
 import { Flower } from "../../../../util/assets";
-import { PortfolioType } from "../../../../util/interface/main/portfolioType";
+import { PortfolioType } from "../../../../util/interface/portfolio/portfolioDetailType";
 import * as S from "./style";
 
 interface Props {
@@ -26,7 +26,7 @@ const Title = ({ portfolio }: Props) => {
         <S.DateWrapper>
           <span>게시일 2020년 8월 9일</span>
           <div className="user-profile">
-            <span>{list.user.name}</span>
+            <span>금은동빈빈빈빈빈빈빈</span>
             <img src={Flower} alt="유저 프로필 이미지" />
           </div>
         </S.DateWrapper>

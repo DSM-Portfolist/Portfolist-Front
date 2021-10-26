@@ -1,7 +1,7 @@
 import React from "react";
 import { Profile } from "../../../util/assets";
 import * as S from "./style";
-import { CommentType } from "../../../util/interface/main/commentType";
+import { CommentType } from "../../../util/interface/portfolio/commentType";
 
 interface Prop {
   comment: CommentType;
@@ -42,7 +42,7 @@ const CommentItem = ({ comment, CommentDelete, ReCommentDelete }: Prop) => {
             <img src={Profile} alt="프로필 사진" />
             <div className="content">
               <div className="user-name">
-                <strong>{re_comment.user.rc_name}</strong>
+                <strong>{re_comment.user.name}</strong>
                 <div className="comment-date">
                   <span>{re_comment.rc_date}</span>
                 </div>

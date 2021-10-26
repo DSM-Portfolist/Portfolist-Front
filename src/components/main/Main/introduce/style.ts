@@ -36,6 +36,10 @@ export const IntroduceWrapper = styled.div`
     font-size: 45px;
     font-weight: 300;
 
+    span {
+      font-family: "Noto Sans KR", sans-serif;
+    }
+
     :hover {
       color: black;
     }
@@ -56,8 +60,8 @@ export const IntroduceWrapper = styled.div`
     }
 
     :hover .content-icon {
-      transition: all 0.5s;
-      display: block;
+      transition: opacity 0.8s ease-in-out 0s;
+      opacity: 1;
     }
   }
 `;
@@ -76,7 +80,7 @@ export const PortItem = styled.div`
   position: relative;
 
   img {
-    display: none;
+    opacity: 0;
     position: absolute;
     z-index: -1;
     top: 15px;

@@ -1,11 +1,16 @@
 import React from "react";
-import { Flower } from "../../../../util/assets";
+import { Crwon, Flower } from "../../../../util/assets";
 import * as S from "./style";
 
 const MonthPortfolio = () => {
   return (
     <div className="border-bottom">
       <S.MonthWrapper>
+        <img
+          className="crwon-icon"
+          src={Crwon}
+          alt="이달의 포트폴리오 강조 아이콘"
+        />
         <div className="img-wrapper">
           <img src={Flower} alt="이달의 포트폴리오 이미지" />
         </div>

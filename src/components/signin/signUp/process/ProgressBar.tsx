@@ -1,15 +1,14 @@
-/** @jsxImportSource @emotion/react */
+import * as S from "./style";
 
-import {
-  progressBar,
-  progressWrapper,
-} from "../../../../util/css/signin/ProgressBar";
+interface Props {
+  nextLevel: boolean;
+}
 
-const ProgressBar = () => {
+const ProgressBar = ({ nextLevel }: Props) => {
   return (
-    <div css={[progressWrapper]}>
-      <div css={[progressBar]}></div>
-    </div>
+    <S.ProgressWrapper>
+      <S.ProgressBar nextLevel={nextLevel}></S.ProgressBar>
+    </S.ProgressWrapper>
   );
 };
 

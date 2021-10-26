@@ -2,7 +2,7 @@ import React from "react";
 import {
   MoreInfoType,
   PortfolioType,
-} from "../../../../util/interface/main/portfolioType";
+} from "../../../../util/interface/portfolio/portfolioDetailType";
 import MoreInfoItem from "./MoreInfoItem";
 import * as S from "./style";
 
