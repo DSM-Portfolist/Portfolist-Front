@@ -8,6 +8,9 @@ import {
 import * as S from "./style";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
 import { Link } from "react-router-dom";
+import { useMutation } from "react-query";
+import axios from "axios";
+import { MAINURL } from "../../../util/api";
 
 interface Prop {
   list: PortListType;
@@ -33,6 +36,30 @@ const ListItem = ({ list }: Prop) => {
     return txt;
   }
 
+  const touching = useMutation("touching", () =>
+    axios.post(
+      `${MAINURL}/touching/${list.id}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(
+            "access_token_portfolist"
+          )}`,
+        },
+      }
+    )
+  );
+
+  const unTouching = useMutation("touching", () =>
+    axios.delete(`${MAINURL}/touching/${list.id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem(
+          "access_token_portfolist"
+        )}`,
+      },
+    })
+  );
+
   return (
     <S.ListItemWrapper>
       <div className="portfoilo-img">
@@ -50,9 +77,9 @@ const ListItem = ({ list }: Prop) => {
               src={touchingBoolean ? Touching : BeforeTouching}
               alt="터칭 아이콘"
               onClick={() => {
-                console.log(touchingBoolean);
                 setTouchingBoolean(!touchingBoolean);
                 CountChangeHandler(count);
+                touchingBoolean ? unTouching.mutate() : touching.mutate();
               }}
             />
             <span>{count === 0 ? "0" : count}</span>
