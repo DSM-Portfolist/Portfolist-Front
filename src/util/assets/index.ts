@@ -20,5 +20,6 @@ export { default as Touching } from "./icon/touching.svg";
 export { default as BeforeTouching } from "./icon/beforeTouching.svg";
 export { default as CloseIcon } from "./icon/closeIcon.svg";
 export { default as Magnifier } from "./icon/magnifier.svg";
+export { default as ModifyPensil } from "./icon/modifyPensil.svg";
 export { default as Crwon } from "./icon/crwon.png";
 export { default as TestImg } from "./img/testImg.svg";
