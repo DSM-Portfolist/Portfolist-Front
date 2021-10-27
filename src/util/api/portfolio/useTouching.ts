@@ -1,10 +1,8 @@
 import axios from "axios";
-import { useMutation, useQuery } from "react-query";
-import { Mutation } from "react-query/types/core/mutation";
 import { MAINURL, token } from "..";
 
-const postTouching = async (id: number) => {
-  const { data } = await axios.post(
+export const postTouching = async (id: number) => {
+  return await axios.post(
     `${MAINURL}/touching/${id}`,
     {},
     {
@@ -13,10 +11,12 @@ const postTouching = async (id: number) => {
       },
     }
   );
-
-  return data;
 };
 
-export const useTouching = (id: number) => {
-  return useMutation("touching", postTouching);
+export const deleteTouching = async (id: number) => {
+  return await axios.delete(`${MAINURL}/touching/${id}`, {
+    headers: {
+      Authorization: token,
+    },
+  });
 };
