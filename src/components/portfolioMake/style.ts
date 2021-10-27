@@ -1,9 +1,15 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
-const MainContainer = styled.div`
+export const MainContainer = styled.div`
   width: 63%;
   min-width: 760px;
-  border-left: 2px solid #f0f0f0;
-  border-right: 2px solid #f0f0f0;
-  margin: 0 auto;
+  margin: 150px auto 0;
+  display: flex;
+  flex-direction: column;
+  .caution {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    color: #848484;
+  }
 `;
