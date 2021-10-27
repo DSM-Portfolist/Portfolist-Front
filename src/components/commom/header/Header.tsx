@@ -1,19 +1,14 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ToastSuccess } from "../../../hook/toastHook";
-import {
-  Logo,
-  Magnifier,
-  NoNotification,
-  Notification,
-  Profile,
-} from "../../../util/assets";
+import { Logo, Magnifier } from "../../../util/assets";
 import * as S from "./style";
+import SubMenu from "./SubMenu";
+import Notiication from "./Notiication";
+import { useRecoilState } from "recoil";
+import { searchBar } from "../../../modules/atom/header";
 
 const Header = () => {
-  const [notification, setNotification] = useState<boolean>(false);
-  const [moreItem, setMoreItem] = useState<boolean>(false);
-  const [isFocusing, setIsFocusing] = useState<boolean>(false);
+  const [isFocusing, setIsFocusing] = useRecoilState(searchBar);
   const searchInputRef = useRef<any>(null);
   const test = true;
 
@@ -57,35 +52,8 @@ const Header = () => {
                     onClick={focusOn}
                   />
                 </li>
-                <S.NotiWrapper>
-                  <img
-                    className="noti-img"
-                    src={test ? `${NoNotification}` : `${Notification}`}
-                    alt="알림아이콘"
-                    onClick={() => setNotification(!notification)}
-                  />
-                  <S.Notification
-                    notification={notification}
-                    style={notification ? { height: 200 } : { height: 0 }}
-                  ></S.Notification>
-                </S.NotiWrapper>
-                <li>반갑습니다. 강은빈님!</li>
-                <S.NotiWrapper>
-                  <img
-                    className="profile-img"
-                    src={Profile}
-                    alt="프로필 사진"
-                    onMouseUp={() => setMoreItem(!moreItem)}
-                  />
-                  <S.MoreItem
-                    style={moreItem ? { height: 120 } : { height: 0 }}
-                  >
-                    <Link to="/my-page">내 프로필</Link>
-                    <li onClick={() => ToastSuccess("로그아웃 되었습니다.")}>
-                      로그아웃
-                    </li>
-                  </S.MoreItem>
-                </S.NotiWrapper>
+                <Notiication />
+                <SubMenu />
               </ul>
             </S.Container>
           </>
@@ -97,7 +65,6 @@ const Header = () => {
                 <button>시작하기</button>
               </Link>
             </S.BeforeLoginHeader>
-            ;
           </>
         )}
         <S.MagnifierWrapper isFocusing={isFocusing}>

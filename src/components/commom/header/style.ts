@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../../../util/css/color/color";
-import { NotificationProp } from "../../../util/interface/main/mainType";
 
 interface Props {
-  isFocusing: boolean;
+  isFocusing?: boolean;
+  noti?: boolean;
 }
 
 export const HeaderWrapper = styled.section`
@@ -99,13 +99,12 @@ export const NotiWrapper = styled.li`
   }
 `;
 
-export const Notification = styled.div`
+export const Notification = styled.div<Props>`
   width: 350px;
   background: #ffffff;
-  border: ${({ notification }: NotificationProp) =>
-    notification ? "1px solid #eaeaea" : "none"};
+  border: ${({ noti }) => (noti ? "1px solid #eaeaea" : "none")};
   position: absolute;
-  top: 62px;
+  top: 40px;
   right: -30px;
   transition: all 0.5s;
   z-index: 1;
