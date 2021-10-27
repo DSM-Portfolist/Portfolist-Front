@@ -3,6 +3,9 @@ import styled from "@emotion/styled";
 export const MainContainer = styled.section`
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
+  padding-bottom: 20px;
+  border-bottom: #e9e9e9 solid 1px;
 `;
 
 export const InputWrapper = styled.div`
@@ -20,6 +23,7 @@ export const InputWrapper = styled.div`
     font-weight: 500;
     font-size: 20px;
     color: #000000;
+    margin-top: 30px;
   }
   input::placeholder {
     color: #8b8b8b;
@@ -38,6 +42,6 @@ export const InputWrapper = styled.div`
   }
   .introduce-span {
     left: 236px;
-    top: -9px;
+    top: 20px;
   }
 `;
