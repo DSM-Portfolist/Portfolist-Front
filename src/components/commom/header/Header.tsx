@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastSuccess } from "../../../hook/toastHook";
 import {
@@ -12,9 +12,24 @@ import * as S from "./style";
 
 const Header = () => {
   const [notification, setNotification] = useState<boolean>(false);
-  const [magnifier, setMagnifier] = useState<boolean>(false);
   const [moreItem, setMoreItem] = useState<boolean>(false);
+  const [isFocusing, setIsFocusing] = useState<boolean>(false);
+  const searchInputRef = useRef<any>(null);
   const test = true;
+
+  const focusOn = useCallback(() => {
+    setIsFocusing(true);
+  }, []);
+
+  const focusOff = useCallback(() => {
+    setIsFocusing(false);
+  }, []);
+
+  useEffect(() => {
+    if (isFocusing) {
+      searchInputRef.current.focus();
+    }
+  }, [isFocusing]);
 
   return (
     <>
@@ -39,7 +54,7 @@ const Header = () => {
                     className="magnifier-img"
                     src={Magnifier}
                     alt="검색 아이콘"
-                    onClick={() => setMagnifier(!magnifier)}
+                    onClick={focusOn}
                   />
                 </li>
                 <S.NotiWrapper>
@@ -85,10 +100,16 @@ const Header = () => {
             ;
           </>
         )}
-        <S.MagnifierWrapper magnifier={magnifier}>
+        <S.MagnifierWrapper isFocusing={isFocusing}>
           <S.Input>
-            <input type="text" placeholder="검색어를 입력해주세요" />
-            <img src={Magnifier} alt="검색 아이콘" />
+            <input
+              type="text"
+              placeholder="검색어를 입력해주세요"
+              onBlur={focusOff}
+              onFocus={focusOn}
+              ref={searchInputRef}
+            />
+            <img src={Magnifier} alt="검색아이콘" />
           </S.Input>
         </S.MagnifierWrapper>
       </S.HeaderWrapper>

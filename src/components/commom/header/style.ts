@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../../../util/css/color/color";
-import {
-  MagnifierProp,
-  NotificationProp,
-} from "../../../util/interface/main/mainType";
+import { NotificationProp } from "../../../util/interface/main/mainType";
+
+interface Props {
+  isFocusing: boolean;
+}
 
 export const HeaderWrapper = styled.section`
   width: 100%;
@@ -149,15 +150,15 @@ export const MoreItem = styled.ul`
   z-index: 1;
 `;
 
-export const MagnifierWrapper = styled.div`
+export const MagnifierWrapper = styled.div<Props>`
   width: 100%;
   height: 80px;
   background-color: ${mainColor};
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: ${({ magnifier }: MagnifierProp) =>
-    magnifier ? `translateY()` : `translateY(-80px)`};
+  transform: ${({ isFocusing }) =>
+    isFocusing ? `translateY()` : `translateY(-80px)`};
   position: absolute;
   transition: transform ease 0.4s;
   z-index: 2;
