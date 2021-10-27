@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+import { useMutation } from "react-query";
+import { Link } from "react-router-dom";
+import * as S from "./style";
+import { PortListType } from "../../../util/interface/portfolio/portListType";
 import {
   BeforeTouching,
   Flower,
   Profile,
   Touching,
 } from "../../../util/assets";
-import * as S from "./style";
-import { PortListType } from "../../../util/interface/portfolio/portListType";
-import { Link } from "react-router-dom";
-import { useMutation } from "react-query";
-import axios from "axios";
-import { MAINURL } from "../../../util/api";
+import {
+  deleteTouching,
+  postTouching,
+} from "../../../util/api/portfolio/useTouching";
 
 interface Prop {
   list: PortListType;
@@ -23,6 +25,8 @@ const Tag = ({ field }: any) => {
 const ListItem = ({ list }: Prop) => {
   const [touchingBoolean, setTouchingBoolean] = useState<boolean>(list.touched);
   const [count, setCount] = useState<number>(list.total_touching);
+  const touching = useMutation("touching", postTouching);
+  const untouching = useMutation("untouching", deleteTouching);
 
   function CountChangeHandler(count: number) {
     touchingBoolean ? setCount(count - 1) : setCount(count + 1);
@@ -35,30 +39,6 @@ const ListItem = ({ list }: Prop) => {
 
     return txt;
   }
-
-  const touching = useMutation("touching", () =>
-    axios.post(
-      `${MAINURL}/touching/${list.id}`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem(
-            "access_token_portfolist"
-          )}`,
-        },
-      }
-    )
-  );
-
-  const unTouching = useMutation("touching", () =>
-    axios.delete(`${MAINURL}/touching/${list.id}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem(
-          "access_token_portfolist"
-        )}`,
-      },
-    })
-  );
 
   return (
     <S.ListItemWrapper>
@@ -79,7 +59,9 @@ const ListItem = ({ list }: Prop) => {
               onClick={() => {
                 setTouchingBoolean(!touchingBoolean);
                 CountChangeHandler(count);
-                touchingBoolean ? unTouching.mutate() : touching.mutate();
+                touchingBoolean
+                  ? untouching.mutate(list.id)
+                  : touching.mutate(list.id);
               }}
             />
             <span>{count === 0 ? "0" : count}</span>
