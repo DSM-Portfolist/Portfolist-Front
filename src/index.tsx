@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import { RecoilRoot } from "recoil";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import "./index.css";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <RecoilRoot>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </RecoilRoot>,
   document.getElementById("root")
 );
-
-reportWebVitals();
