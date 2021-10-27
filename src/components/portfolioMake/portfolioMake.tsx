@@ -1,10 +1,12 @@
-import React from 'react';
+import React from "react";
+import { Header } from "..";
+import * as S from "./style";
 
 const portfolioMake = () => {
   return (
-    <div>
-      <h1>테스트</h1>
-    </div>
+    <>
+      <Header />
+    </>
   );
 };
 
