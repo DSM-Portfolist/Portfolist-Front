@@ -49,7 +49,7 @@ const ListItem = ({ list }: Prop) => {
       <S.Content touchingBoolean={touchingBoolean}>
         <div className="tag-wrapper">
           <div className="tag">
-            {list.field.map((field, index) => (
+            {list.field.map((field: string, index: number) => (
               <Tag key={index} field={field} />
             ))}
           </div>
