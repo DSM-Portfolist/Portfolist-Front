@@ -12,10 +12,6 @@ interface Props {
 const CommentItem = ({ comment }: Props) => {
   const commentDelete = useMutation((id: number) => deleteComment(id));
 
-  const CommentDelete = (id: number) => {
-    commentDelete.mutate(id);
-  };
-
   return (
     <S.CommentItemWrapper>
       <div className="comment">
@@ -32,7 +28,9 @@ const CommentItem = ({ comment }: Props) => {
           </div>
         </S.Content>
         <S.Util>
-          <span onClick={() => CommentDelete(comment.comment_id)}>삭제</span>
+          <span onClick={() => commentDelete.mutate(comment.comment_id)}>
+            삭제
+          </span>
           <span>신고</span>
         </S.Util>
       </div>
