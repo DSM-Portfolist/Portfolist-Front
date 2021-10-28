@@ -11,7 +11,6 @@ import * as S from "./style";
 const PortfolioDetail = () => {
   const { data, isLoading, error } = useQuery("getPortfolio", getPortfolist);
   const setPortfolioValue = useSetRecoilState<PortfolioType>(portfoilo);
-  
 
   useEffect(() => {
     setPortfolioValue(data?.data);
@@ -24,13 +23,11 @@ const PortfolioDetail = () => {
     <>
       <Header />
       <S.DetailWrappper>
-        <div className="portfolio-container">
-          <Title />
-          <MoreInfo />
-          <ExperienceList />
-        </div>
+        <Title />
+        <MoreInfo />
+        <ExperienceList />
+        <Comment />
       </S.DetailWrappper>
-      <Comment />
     </>
   );
 };
