@@ -25,6 +25,7 @@ const Tag = ({ field }: any) => {
 const ListItem = ({ list }: Prop) => {
   const [touchingBoolean, setTouchingBoolean] = useState<boolean>(list.touched);
   const [count, setCount] = useState<number>(list.total_touching);
+
   const touching = useMutation("touching", postTouching);
   const untouching = useMutation("untouching", deleteTouching);
 
