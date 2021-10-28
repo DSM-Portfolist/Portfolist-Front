@@ -4,12 +4,14 @@ import { useSetRecoilState } from "recoil";
 import { Header, Comment, Title, ExperienceList } from "..";
 import { portfoilo } from "../../modules/atom/portfolio";
 import { getPortfolist } from "../../util/api/portfolio/getList";
+import { PortfolioType } from "../../util/interface/portfolio/portfolioDetailType";
 import MoreInfo from "./items/moreInfo/MoreInfo";
 import * as S from "./style";
 
 const PortfolioDetail = () => {
   const { data, isLoading, error } = useQuery("getPortfolio", getPortfolist);
-  const setPortfolioValue = useSetRecoilState(portfoilo);
+  const setPortfolioValue = useSetRecoilState<PortfolioType>(portfoilo);
+  
 
   useEffect(() => {
     setPortfolioValue(data?.data);
