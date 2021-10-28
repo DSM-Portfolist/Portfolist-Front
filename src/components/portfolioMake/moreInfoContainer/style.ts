@@ -55,6 +55,6 @@ export const InputBox = styled.div`
   }
   img {
     margin-left: 10px;
-    cursor: pointer;  
+    cursor: pointer;
   }
 `;
