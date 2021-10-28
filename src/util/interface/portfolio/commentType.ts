@@ -4,6 +4,7 @@ export interface CommentType {
   comment_content: string;
   comment_id: number;
   is_mine: boolean;
+  name: string;
   profile_img: string | null;
   re_comment_list: ReCommentType[];
 }
