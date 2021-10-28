@@ -41,13 +41,11 @@ const MoreInfoContainer = () => {
 
   const DeleteData = (id: any) => {
     //특정 input 삭제
-    if (dataArr.length > 1) {
-      setDataArr(
-        dataArr?.filter((arrItem: any) => {
-          return arrItem.id !== id.id;
-        })
-      );
-    }
+    setDataArr(
+      dataArr?.filter((arrItem: any) => {
+        return arrItem.id !== id.id;
+      })
+    );
   };
 
   return (
