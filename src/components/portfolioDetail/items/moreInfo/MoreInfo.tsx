@@ -1,4 +1,6 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { portfoilo } from "../../../../modules/atom/portfolio";
 import {
   MoreInfoType,
   PortfolioType,
@@ -6,15 +8,13 @@ import {
 import MoreInfoItem from "./MoreInfoItem";
 import * as S from "./style";
 
-interface Props {
-  portfolio: PortfolioType;
-}
+const MoreInfo = () => {
+  const portfolioValue = useRecoilValue<PortfolioType | undefined>(portfoilo);
 
-const MoreInfo = ({ portfolio }: Props) => {
   return (
     <S.MoreInfoWrapper>
       <div className="more-wrapper">
-        {portfolio.default.more_info.map(
+        {portfolioValue?.more_info_list.map(
           (info: MoreInfoType, index: number) => (
             <MoreInfoItem key={index} info={info} />
           )
