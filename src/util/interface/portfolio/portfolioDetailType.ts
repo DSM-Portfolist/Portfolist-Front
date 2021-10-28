@@ -1,34 +1,36 @@
 import { CommentType } from "./commentType";
-import { UserType } from "../main/userType";
 
 export interface PortfolioType {
   default?: any;
-  user: UserType;
-  create_date: string;
-  touched: boolean;
-  total_touching: number;
-  icon: string;
-  title: string;
-  introduce: string;
-  field: string[];
-  more_info: MoreInfoType[];
-  container_list: ContainerListType[];
   certificate: string[];
-  link: string;
+  comment_list: CommentType[];
+  container_list: ContainerListType[];
+  create_date: string;
+  field: string[];
   file: string;
-  comments: CommentType[];
+  icon: string;
+  introduce: string;
+  link: string;
+  more_info_list: MoreInfoType[];
+  name: string;
+  profile_img: string | null;
+  title: string;
+  total_touching: number;
+  touched: boolean;
+  user_id: number;
 }
 
 //추가 정보 타입
 export interface MoreInfoType {
-  key: string;
-  value: string;
+  name: string;
+  content: string;
 }
 
 export interface ContainerListType {
   map?: any;
   container_title: string;
-  container: ContainerType[];
+  box_img: string[];
+  box_list: BoxListType[];
 }
 
 export interface ContainerType {
