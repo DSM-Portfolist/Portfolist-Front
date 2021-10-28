@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./style";
-import { field } from "./dummy.json";
+import { useQuery } from "react-query";
+import { getField } from "../../../util/api/portfolio/getList";
+import { FieldType } from "../../../util/interface/common";
 
 interface Props {
   setText: any;
@@ -17,7 +19,9 @@ const FieldSelectItem = ({
   useField,
   setArrowSelect,
 }: Props) => {
-  
+  const { data } = useQuery("field", getField);
+  const [isFocusing, setIsFocusing] = useState<boolean>(false);
+
   function UseFieldAdd(field: any) {
     setUseField(useField.concat(field));
   }
@@ -27,16 +31,16 @@ const FieldSelectItem = ({
       arrowSelect={arrowSelect}
       style={arrowSelect ? { height: 200 } : { height: 0 }}
     >
-      {field.map((field) => (
+      {data?.data.map((field: FieldType) => (
         <li
           key={field.id}
           onClick={() => {
-            setText(field.field);
-            UseFieldAdd(field.field);
+            setText(field.content);
+            UseFieldAdd(field.content);
             setArrowSelect(false);
           }}
         >
-          {field.field}
+          {field.content}
         </li>
       ))}
     </S.FieldSelectItemWrapper>
