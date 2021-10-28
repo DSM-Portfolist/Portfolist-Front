@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import "react-toastify/dist/ReactToastify.css";
-import { MAINURL } from "../../../../util/api";
+import { getField } from "../../../../util/api/portfolio/getList";
 import { FieldType } from "../../../../util/interface/Sign/loginType";
 import FieldItemBox from "./FieldItemBox";
 import * as S from "./style";
@@ -19,7 +18,7 @@ const SecProgress = (props: Props) => {
   const [textList, setTextList] = useState<any>([]);
 
   // field 리스트 불러오기
-  const { data } = useQuery("field", () => axios(`${MAINURL}/field`));
+  const { data } = useQuery("field", getField);
   const fieldItem = data?.data;
 
   // 필드 추가하기 최대 3개
