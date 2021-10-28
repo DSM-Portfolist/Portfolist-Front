@@ -17,21 +17,29 @@ const MainList = ({ searchValue, setSearchValue }: Props) => {
     <S.MainListWrapper className="container">
       <Search setSearchValue={setSearchValue} />
       <S.ListWrapper>
-        {isLoading ? (
-          <div>잠시만 기다려주세요</div>
+        {data?.portfolio_list.length === 0 ? (
+          <div>작성된 포트폴리오가 없습니다</div>
         ) : (
           <>
-            {searchValue.length === 0 ? (
-              ""
+            {isLoading ? (
+              <div>잠시만 기다려주세요</div>
             ) : (
-              <S.SearchContent>{searchValue}의 검색결과...</S.SearchContent>
-            )}
+              <>
+                {searchValue.length === 0 ? (
+                  ""
+                ) : (
+                  <S.SearchContent>{searchValue}의 검색결과...</S.SearchContent>
+                )}
 
-            <S.ListContent>
-              {data?.portfolio_list.map((list: PortListType, index: number) => (
-                <ListItem key={index} list={list} />
-              ))}
-            </S.ListContent>
+                <S.ListContent>
+                  {data?.portfolio_list.map(
+                    (list: PortListType, index: number) => (
+                      <ListItem key={index} list={list} />
+                    )
+                  )}
+                </S.ListContent>
+              </>
+            )}
           </>
         )}
       </S.ListWrapper>
