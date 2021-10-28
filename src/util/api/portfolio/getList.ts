@@ -11,3 +11,13 @@ export const getList = async () => {
 
   return data;
 };
+
+export const getField = async () => {
+  return await axios.get(`${MAINURL}/field`);
+};
+
+export const getPortfolist = async () => {
+  return await axios.get(`${MAINURL}/portfolio/11`, {
+    headers: { Authorization: token },
+  });
+};
