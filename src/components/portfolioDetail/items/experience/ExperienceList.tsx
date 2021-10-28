@@ -11,8 +11,6 @@ import { portfoilo } from "../../../../modules/atom/portfolio";
 const ExperienceList = () => {
   const portfolioValue = useRecoilValue(portfoilo);
 
-  console.log(portfolioValue?.container_list);
-
   return (
     <>
       {portfolioValue?.container_list.map(
