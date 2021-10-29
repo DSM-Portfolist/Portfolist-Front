@@ -16,18 +16,18 @@ const ExperienceList = () => {
       {portfolioValue?.container_list.map(
         (item: ContainerListType, index: number) => (
           <S.ExperienceWrapper key={index}>
-            <S.MainTitle>{item.container_title}</S.MainTitle>
+            <S.MainTitle>{item?.container_title}</S.MainTitle>
             <S.ContainerBox key={index}>
               <div className="image-box">
-                {item.box_img.map((img: string, index: number) => (
+                {item?.container_img.map((img: string, index: number) => (
                   <img key={index} src={TestImg} alt="경험 이미지" />
                 ))}
               </div>
               <div className="content-box">
-                {item.box_list.map((box: BoxListType, index: number) => (
+                {item?.box_list.map((box: BoxListType, index: number) => (
                   <div key={index} className="content-box-item">
-                    <span className="sub-title">{box.box_title}</span>
-                    <span className="sub-content">{box.box_content}</span>
+                    <span className="sub-title">{box?.box_title}</span>
+                    <span className="sub-content">{box?.box_content}</span>
                   </div>
                 ))}
               </div>
