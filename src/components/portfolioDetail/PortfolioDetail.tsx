@@ -7,6 +7,8 @@ import { getPortfolist } from "../../util/api/portfolio/getList";
 import { PortfolioType } from "../../util/interface/portfolio/portfolioDetailType";
 import MoreInfo from "./items/moreInfo/MoreInfo";
 import * as S from "./style";
+import ClipLoader from "react-spinners/ClipLoader";
+import { mainColor } from "../../util/css/color/color";
 
 const PortfolioDetail = () => {
   const { data, isLoading, error } = useQuery("getPortfolio", getPortfolist);
@@ -16,7 +18,8 @@ const PortfolioDetail = () => {
     setPortfolioValue(data?.data);
   }, [data?.data, setPortfolioValue]);
 
-  if (isLoading) return <>잠시만 기다려주세요</>;
+  if (isLoading)
+    return <ClipLoader color={mainColor} loading={isLoading} size={30} />;
   if (error) return <>404 서버 오류입니다. </>;
 
   return (
