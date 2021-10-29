@@ -4,6 +4,8 @@ import { Search, ListItem } from "../..";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
 import { getList } from "../../../util/api/portfolio/getList";
 import { useQuery } from "react-query";
+import { ClipLoader } from "react-spinners";
+import { mainColor } from "../../../util/css/color/color";
 
 interface Props {
   searchValue: string;
@@ -22,7 +24,7 @@ const MainList = ({ searchValue, setSearchValue }: Props) => {
         ) : (
           <>
             {isLoading ? (
-              <div>잠시만 기다려주세요</div>
+              <ClipLoader color={mainColor} loading={isLoading} size={30} />
             ) : (
               <>
                 {searchValue.length === 0 ? (
