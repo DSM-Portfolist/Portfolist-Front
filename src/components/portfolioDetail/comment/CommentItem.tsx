@@ -24,13 +24,22 @@ const CommentItem = ({ comment }: Props) => {
                 <span>{comment.cdate}</span>
               </div>
             </div>
-            <p>{comment.comment_content}</p>
+            {comment.comment_content === null ? (
+              <p>삭제된 댓글 입니다.</p>
+            ) : (
+              <p>{comment.comment_content}</p>
+            )}
           </div>
         </S.Content>
         <S.Util>
-          <span onClick={() => commentDelete.mutate(comment.comment_id)}>
-            삭제
-          </span>
+          {comment.is_mine ? (
+            <span onClick={() => commentDelete.mutate(comment.comment_id)}>
+              삭제
+            </span>
+          ) : (
+            ""
+          )}
+
           <span>신고</span>
         </S.Util>
       </div>
