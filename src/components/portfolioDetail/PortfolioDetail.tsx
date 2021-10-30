@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
+import ClipLoader from "react-spinners/ClipLoader";
 import { Header, Comment, Title, ExperienceList } from "..";
-import { portfoilo } from "../../modules/atom/portfolio";
-import { getPortfolist } from "../../util/api/portfolio/getList";
+import { portfoilo } from "../../modules/atom/portfolio/portfolioDetail";
 import { PortfolioType } from "../../util/interface/portfolio/portfolioDetailType";
+import { getPortfolist } from "../../util/api/portfolio/portfolio";
+import { mainColor } from "../../util/css/color/color";
 import MoreInfo from "./items/moreInfo/MoreInfo";
 import * as S from "./style";
-import ClipLoader from "react-spinners/ClipLoader";
-import { mainColor } from "../../util/css/color/color";
 
 const PortfolioDetail = () => {
   const { data, isLoading, error } = useQuery("getPortfolio", getPortfolist);
-  const setPortfolioValue = useSetRecoilState<PortfolioType>(portfoilo);
+  const [portfoilioValue, setPortfolioValue] =
+    useRecoilState<PortfolioType>(portfoilo);
 
   useEffect(() => {
     setPortfolioValue(data?.data);
@@ -29,7 +30,7 @@ const PortfolioDetail = () => {
         <Title />
         <MoreInfo />
         <ExperienceList />
-        <Comment />
+        <Comment id={portfoilioValue?.id} />
       </S.DetailWrappper>
     </>
   );
