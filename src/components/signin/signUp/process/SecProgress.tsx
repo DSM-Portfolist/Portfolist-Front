@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import "react-toastify/dist/ReactToastify.css";
-import { getField } from "../../../../util/api/portfolio/getList";
+import { getField } from "../../../../util/api/portfolio/portfolio";
 import { FieldType } from "../../../../util/interface/Sign/loginType";
 import FieldItemBox from "./FieldItemBox";
 import * as S from "./style";

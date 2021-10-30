@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as S from "./style";
 import { useQuery } from "react-query";
-import { getField } from "../../../util/api/portfolio/getList";
+import { getField } from "../../../util/api/portfolio/portfolio";
 import { FieldType } from "../../../util/interface/common";
 
 interface Props {
