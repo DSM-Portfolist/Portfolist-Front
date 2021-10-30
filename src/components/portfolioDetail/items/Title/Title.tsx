@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useRecoilValue } from "recoil";
 import { portfoilo } from "../../../../modules/atom/portfolio/portfolioDetail";
 import { Flower } from "../../../../util/assets";
@@ -10,10 +10,6 @@ const FieldItem = (field: any) => {
 
 const Title = () => {
   const portfolioValue = useRecoilValue(portfoilo);
-
-  useEffect(() => {
-    console.log(portfolioValue);
-  }, [portfolioValue]);
 
   return (
     <S.TitleWrapper>
