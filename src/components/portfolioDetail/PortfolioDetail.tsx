@@ -4,7 +4,6 @@ import { useRecoilState } from "recoil";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Header, Comment, Title, ExperienceList } from "..";
 import { portfoilo } from "../../modules/atom/portfolio/portfolioDetail";
-import { PortfolioType } from "../../util/interface/portfolio/portfolioDetailType";
 import { getPortfolist } from "../../util/api/portfolio/portfolio";
 import { mainColor } from "../../util/css/color/color";
 import MoreInfo from "./items/moreInfo/MoreInfo";
@@ -12,8 +11,7 @@ import * as S from "./style";
 
 const PortfolioDetail = () => {
   const { data, isLoading, error } = useQuery("getPortfolio", getPortfolist);
-  const [portfoilioValue, setPortfolioValue] =
-    useRecoilState<PortfolioType>(portfoilo);
+  const [portfoilioValue, setPortfolioValue] = useRecoilState(portfoilo);
 
   useEffect(() => {
     setPortfolioValue(data?.data);
@@ -30,7 +28,7 @@ const PortfolioDetail = () => {
         <Title />
         <MoreInfo />
         <ExperienceList />
-        <Comment id={portfoilioValue?.id} />
+        <Comment id={portfoilioValue?.portfolio_id} />
       </S.DetailWrappper>
     </>
   );
