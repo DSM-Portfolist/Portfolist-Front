@@ -8,18 +8,18 @@ import { ToastSuccess } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getComment, postComment } from "../../../util/api/portfolio/comment";
-import { comment_List } from "../../../modules/atom/portfolio/comment";
+import { commentList } from "../../../modules/atom/portfolio/comment";
 
 interface Props {
   id: number;
 }
 
 const Comment = ({ id }: Props) => {
-  const [commentList, setCommentList] = useRecoilState(comment_List);
+  const [comments, setComments] = useRecoilState(commentList);
   const [commentContent, setCommentContent] = useState<string>("");
 
-  const commentAdd = useMutation((content: string) => postComment(id, content));
-  const { data } = useQuery("com", () => getComment(id));
+  const commentAdd = useMutation((content: string) => postComment(2, content));
+  const { data } = useQuery("comment", () => getComment(2));
 
   // 댓글 작성
   function CommentAdd(content: any) {
@@ -28,9 +28,9 @@ const Comment = ({ id }: Props) => {
   }
 
   useEffect(() => {
-    setCommentList(data?.data);
-    console.log(commentList);
-  }, [data?.data, setCommentList, commentList]);
+    setComments(data?.data.comments);
+    console.log(data?.data.comments);
+  }, [data?.data, setComments, comments]);
 
   return (
     <>
@@ -45,14 +45,14 @@ const Comment = ({ id }: Props) => {
         </S.InputWrapper>
         <S.CommentList>
           <div className="comment-info">
-            <span>댓글 {commentList?.length}개</span>
+            <span>댓글 {comments?.length}개</span>
           </div>
         </S.CommentList>
-        {commentList?.map((comment: CommentType) => (
+        {comments?.map((comment: CommentType) => (
           <CommentItem key={comment.comment_id} comment={comment} />
         ))}
-        {commentList?.length === 0 ? <>작성된 댓글이 없습니다.</> : ""}
-        {commentList?.length >= 5 ? <S.MoreButton>더보기</S.MoreButton> : ""}
+        {comments?.length === 0 ? <>작성된 댓글이 없습니다.</> : ""}
+        {comments?.length >= 5 ? <S.MoreButton>더보기</S.MoreButton> : ""}
       </S.CommentWrapper>
     </>
   );
