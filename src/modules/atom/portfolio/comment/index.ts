@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 import { CommentType } from "../../../../util/interface/portfolio/commentType";
 
-export const comment_List = atom<CommentType[]>({
+export const commentList = atom<CommentType[]>({
   key: "commentList",
   default: [],
 });
