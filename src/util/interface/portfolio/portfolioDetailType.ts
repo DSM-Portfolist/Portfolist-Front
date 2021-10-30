@@ -1,15 +1,14 @@
-import { CommentType } from "./commentType";
-
 export interface PortfolioType {
   default?: any;
-  certificate: string[];
-  comment_list: CommentType[];
+  portfolio_id: number;
+  certificate_container_list: CertificateContainerList[];
   container_list: ContainerListType[];
   create_date: string;
   field: string[];
   file: string;
   icon: string;
   introduce: string;
+  is_mine: boolean;
   link: string;
   more_info_list: MoreInfoType[];
   name: string;
@@ -20,25 +19,26 @@ export interface PortfolioType {
   user_id: number;
 }
 
+export interface CertificateContainerList {
+  title: string;
+  certificate_list: string[];
+}
+
 //추가 정보 타입
 export interface MoreInfoType {
   name: string;
   content: string;
 }
 
+//컨테이너 리스트
 export interface ContainerListType {
   map?: any;
   container_title: string;
-  box_img: string[];
-  box_list: BoxListType[];
+  container_img: string[];
+  container_text_list: ContainerTextType[];
 }
 
-export interface ContainerType {
-  box_img: string[];
-  box_list: BoxListType[];
-}
-
-export interface BoxListType {
+export interface ContainerTextType {
   box_title: string;
   box_content: string;
 }
