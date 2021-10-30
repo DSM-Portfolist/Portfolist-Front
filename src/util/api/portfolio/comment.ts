@@ -1,18 +1,23 @@
 import axios from "axios";
-import { header, MAINURL } from "..";
+import { MAINURL, token } from "..";
 
-export const getComment = async (id: number) => {
-  return await axios(`${MAINURL}/comment/${id}`, { headers: header });
-};
+export async function getComment(id: number) {
+  console.log(id);
+  return await axios(`${MAINURL}/comment/${id}`, {
+    headers: { Authorization: token },
+  });
+}
 
 export const postComment = async (id: number, content: string) => {
   return await axios.post(
     `${MAINURL}/comment/${id}`,
     { content: content },
-    { headers: header }
+    { headers: { Authorization: token } }
   );
 };
 
 export const deleteComment = async (id: number) => {
-  return await axios.delete(`${MAINURL}/comment/${id}`, { headers: header });
+  return await axios.delete(`${MAINURL}/comment/${id}`, {
+    headers: { Authorization: token },
+  });
 };
