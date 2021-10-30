@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { useMutation } from "react-query";
-import CommentItem from "./CommentItem";
+import { useRecoilState } from "recoil";
 import * as S from "./style";
+import { useMutation, useQuery } from "react-query";
+import CommentItem from "./CommentItem";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
-import { PortfolioType } from "../../../util/interface/portfolio/portfolioDetailType";
 import { ToastSuccess } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { comment_List, portfoilo } from "../../../modules/atom/portfolio";
-import { postComment } from "../../../util/api/portfolio/comment";
+import { getComment, postComment } from "../../../util/api/portfolio/comment";
+import { comment_List } from "../../../modules/atom/portfolio/comment";
 
-const Comment = () => {
-  const portfolioValue = useRecoilValue<PortfolioType>(portfoilo);
+interface Props {
+  id: number;
+}
+
+const Comment = ({ id }: Props) => {
   const [commentList, setCommentList] = useRecoilState(comment_List);
   const [commentContent, setCommentContent] = useState<string>("");
 
-  const commentAdd = useMutation((content: string) => postComment(content));
+  const commentAdd = useMutation((content: string) => postComment(id, content));
+  const { data } = useQuery("com", () => getComment(id));
 
   // 댓글 작성
   function CommentAdd(content: any) {
@@ -25,8 +28,9 @@ const Comment = () => {
   }
 
   useEffect(() => {
-    setCommentList(portfolioValue?.comment_list);
-  }, [portfolioValue?.comment_list, setCommentList]);
+    setCommentList(data?.data);
+    console.log(commentList);
+  }, [data?.data, setCommentList, commentList]);
 
   return (
     <>
