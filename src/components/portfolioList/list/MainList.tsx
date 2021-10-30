@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./style";
 import { Search, ListItem } from "../..";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
-import { getList } from "../../../util/api/portfolio/getList";
+import { getList } from "../../../util/api/portfolio/portfolio";
 import { useQuery } from "react-query";
 import { ClipLoader } from "react-spinners";
 import { mainColor } from "../../../util/css/color/color";
