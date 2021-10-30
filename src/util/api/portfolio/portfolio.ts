@@ -1,11 +1,11 @@
 import axios from "axios";
-import { MAINURL, token } from "..";
+import { MAINURL, header } from "..";
 
 export const getList = async () => {
   const { data } = await axios.get(
     `${MAINURL}/portfolio/list?page=1&size=5&field=`,
     {
-      headers: { Authorization: token },
+      headers: { header },
     }
   );
 
@@ -17,7 +17,7 @@ export const getField = async () => {
 };
 
 export const getPortfolist = async () => {
-  return await axios.get(`${MAINURL}/portfolio/11`, {
-    headers: { Authorization: token },
+  return await axios.get(`${MAINURL}/portfolio/2`, {
+    headers: { header },
   });
 };
