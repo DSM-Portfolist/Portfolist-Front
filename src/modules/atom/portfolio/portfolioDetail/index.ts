@@ -4,7 +4,7 @@ import { PortfolioType } from "../../../../util/interface/portfolio/portfolioDet
 export const portfoilo = atom<PortfolioType>({
   key: "portfolioValue",
   default: {
-    id: 0,
+    portfolio_id: 0,
     certificate_container_list: [
       {
         title: "",
