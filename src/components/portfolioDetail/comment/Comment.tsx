@@ -27,10 +27,10 @@ const Comment = ({ id }: Props) => {
     ToastSuccess("댓글이 작성되었습니다.");
   }
 
-  useEffect(() => {
+  /* useEffect(() => {
     setComments(data?.data.comments);
     console.log(data?.data.comments);
-  }, [data?.data, setComments, comments]);
+  }, [data?.data, setComments, comments]); */
 
   return (
     <>

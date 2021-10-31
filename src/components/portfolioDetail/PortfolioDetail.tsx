@@ -8,10 +8,18 @@ import { getPortfolist } from "../../util/api/portfolio/portfolio";
 import { mainColor } from "../../util/css/color/color";
 import MoreInfo from "./items/moreInfo/MoreInfo";
 import * as S from "./style";
+import { getComment } from "../../util/api/portfolio/comment";
+import { commentList } from "../../modules/atom/portfolio/comment";
 
 const PortfolioDetail = () => {
-  const { data, isLoading, error } = useQuery("getPortfolio", getPortfolist);
   const [portfoilioValue, setPortfolioValue] = useRecoilState(portfoilo);
+  const [comments, setComments] = useRecoilState(commentList);
+  const { data, isLoading, error } = useQuery("getPortfolio", getPortfolist);
+  useQuery("comment", () =>
+    getComment(2).then((res) => {
+      setComments(res);
+    })
+  );
 
   useEffect(() => {
     setPortfolioValue(data?.data);
