@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import * as S from "./style";
-import { useMutation, useQuery } from "react-query";
 import CommentItem from "./CommentItem";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
 import { ToastSuccess } from "../../../hook/toastHook";
@@ -11,37 +10,34 @@ import { getComment, postComment } from "../../../util/api/portfolio/comment";
 import { commentList } from "../../../modules/atom/portfolio/comment";
 
 interface Props {
-  id: number;
+  id?: number;
 }
 
 const Comment = ({ id }: Props) => {
   const [comments, setComments] = useRecoilState(commentList);
   const [commentContent, setCommentContent] = useState<string>("");
 
-  const commentAdd = useMutation((content: string) => postComment(2, content));
-  const { data } = useQuery("comment", () => getComment(2));
-
   // 댓글 작성
-  function CommentAdd(content: any) {
-    commentAdd.mutate(content);
+  function CommentAdd(content: any, id: number) {
+    postComment(id, content);
+    getComment(id).then((res) => setComments(res?.data.comments));
     ToastSuccess("댓글이 작성되었습니다.");
   }
 
-  /* useEffect(() => {
-    setComments(data?.data.comments);
-    console.log(data?.data.comments);
-  }, [data?.data, setComments, comments]); */
+  /*   useEffect(() => {
+    getComment(id).then((res) => setComments(res?.data.comments));
+  }, [id, setComments]); */
 
   return (
     <>
       <ToastContainer />
-      <S.CommentWrapper>
+      {/*   <S.CommentWrapper>
         <S.InputWrapper>
           <textarea
             placeholder="댓글을 입력해주세요"
             onChange={(e) => setCommentContent(e.target.value)}
           />
-          <button onClick={() => CommentAdd(commentContent)}>등록</button>
+          <button onClick={() => CommentAdd(commentContent, id)}>등록</button>
         </S.InputWrapper>
         <S.CommentList>
           <div className="comment-info">
@@ -53,7 +49,7 @@ const Comment = ({ id }: Props) => {
         ))}
         {comments?.length === 0 ? <>작성된 댓글이 없습니다.</> : ""}
         {comments?.length >= 5 ? <S.MoreButton>더보기</S.MoreButton> : ""}
-      </S.CommentWrapper>
+      </S.CommentWrapper> */}
     </>
   );
 };
