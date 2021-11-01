@@ -6,7 +6,7 @@ import { CommentType } from "../../../util/interface/portfolio/commentType";
 import { ToastSuccess } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getComment, postComment } from "../../../util/api/portfolio/comment";
+import { postComment } from "../../../util/api/portfolio/comment";
 import { getCommentList } from "../../../modules/atom/portfolio/comment";
 import { portfolioId } from "../../../modules/atom/portfolio";
 
@@ -15,13 +15,10 @@ const Comment = () => {
   const comments = useRecoilValue(getCommentList);
   const [commentContent, setCommentContent] = useState<string>("");
 
-  // 댓글 작성
   function CommentAdd(content: any, id: number) {
     postComment(id, content);
     ToastSuccess("댓글이 작성되었습니다.");
   }
-
-  console.log(comments);
 
   return (
     <>
