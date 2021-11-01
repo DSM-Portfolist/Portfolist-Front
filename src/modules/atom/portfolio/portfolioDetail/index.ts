@@ -1,4 +1,6 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
+import { portfolioId } from "..";
+import { getPortfolio } from "../../../../util/api/portfolio/portfolio";
 import { PortfolioType } from "../../../../util/interface/portfolio/portfolioDetailType";
 
 export const portfoilo = atom<PortfolioType>({
@@ -39,3 +41,21 @@ export const portField = atom<string[]>({
   key: "portField",
   default: [],
 });
+
+export const getPortfolioSelecor = selector<PortfolioType>({
+  key: "portfolio/get",
+  get: async ({ get }) => {
+    const id = await get(portfolioId);
+    const res = await getPortfolio(id);
+    return res.data;
+  },
+});
+
+/* export const getPortfolioSelecor = selectorFamily<PortfolioType, number>({
+  key: "portfolio/get",
+  get: (id: number) => async () => {
+    const posts = await getPortfolio(id);
+    return posts;
+  },
+});
+ */

@@ -1,9 +1,5 @@
 import { atom, selector } from "recoil";
-import {
-  getPortfolio,
-  getPortfolioList,
-} from "../../../util/api/portfolio/portfolio";
-import { PortfolioType } from "../../../util/interface/portfolio/portfolioDetailType";
+import { getPortfolioList } from "../../../util/api/portfolio/portfolio";
 
 export const portfolioId = atom<number>({
   key: "portfolioId",
@@ -29,20 +25,3 @@ export const getPortListSelector = selector({
   },
 });
 
-export const getPortfolioSelecor = selector<PortfolioType>({
-  key: "portfolio/get",
-  get: async ({ get }) => {
-    const id = await get(portfolioId);
-    const res = await getPortfolio(id);
-    return res.data;
-  },
-});
-
-/* export const getPortfolioSelecor = selectorFamily<PortfolioType, number>({
-  key: "portfolio/get",
-  get: (id: number) => async () => {
-    const posts = await getPortfolio(id);
-    return posts;
-  },
-});
- */
