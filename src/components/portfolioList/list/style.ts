@@ -13,9 +13,22 @@ export const ListWrapper = styled.div`
   min-height: 1000px;
   background-color: white;
   display: flex;
+  flex-direction: column;
+`;
+
+export const ListContent = styled.div`
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+`;
+
+export const SearchContent = styled.span`
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
+  font-weight: 700;
 `;
 
 export const ListItemWrapper = styled.div`
