@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { getPortfolioSelecor } from "../../../../modules/atom/portfolio";
+import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail/index";
 import { Flower } from "../../../../util/assets";
 import * as S from "./style";
 

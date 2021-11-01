@@ -6,7 +6,7 @@ import {
   ContainerListType,
   ContainerTextType,
 } from "../../../../util/interface/portfolio/portfolioDetailType";
-import { getPortfolioSelecor } from "../../../../modules/atom/portfolio";
+import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail/index";
 
 const ExperienceList = () => {
   const portfolioValue = useRecoilValue(getPortfolioSelecor);
