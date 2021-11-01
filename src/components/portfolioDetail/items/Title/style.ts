@@ -1,16 +1,17 @@
 import styled from "@emotion/styled";
 
 export const FieldItemWrapper = styled.div`
-  margin: 0 10px;
+  margin: 0 10px 0 0;
   background: #ff7659;
   border-radius: 20px;
-  padding: 5px 20px;
+  padding: 0px 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   color: white;
   font-size: 15px;
+  transform: skew(-0.1deg);
 `;
 
 export const TitleWrapper = styled.div`
@@ -37,12 +38,13 @@ export const DateWrapper = styled.div`
   width: 40%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 
   .user-profile {
     display: flex;
     align-items: center;
+    margin-left: 30px;
 
     span {
       font-weight: 500;
@@ -64,7 +66,7 @@ export const HeadTitle = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #E9E9E9;
+  border-bottom: 1px solid #e9e9e9;
 
   span:nth-child(1) {
     font-size: 60px;
@@ -73,7 +75,7 @@ export const HeadTitle = styled.div`
 
   .title {
     font-size: 35px;
-    font-weight: 400;
+    font-weight: 600;
     margin-bottom: 25px;
   }
 

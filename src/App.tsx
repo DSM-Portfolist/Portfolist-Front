@@ -1,10 +1,15 @@
 import React from "react";
 import UserRouter from "./router/UserRouter";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
     <>
-      <UserRouter />
+      <QueryClientProvider client={queryClient}>
+        <UserRouter />
+      </QueryClientProvider>
     </>
   );
 }

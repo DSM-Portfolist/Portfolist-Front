@@ -1,21 +1,23 @@
 import React from "react";
-import { Header, Comment, Title } from "..";
-import * as portfolio from "./dummy.json";
+import { useSetRecoilState } from "recoil";
+import { Header, Comment, Title, ExperienceList } from "..";
+import { portfolioId } from "../../modules/atom/portfolio";
 import MoreInfo from "./items/moreInfo/MoreInfo";
-
 import * as S from "./style";
 
-const PortfolioDetail = () => {
+const PortfolioDetail = ({ match }: any) => {
+  const setPortfolioId = useSetRecoilState(portfolioId);
+  setPortfolioId(match.params.id);
+
   return (
     <>
       <Header />
       <S.DetailWrappper>
-        <div className="portfolio-container">
-          <Title portfolio={portfolio} />
-          <MoreInfo portfolio={portfolio} />
-        </div>
+        <Title />
+        <MoreInfo />
+        <ExperienceList />
+        <Comment />
       </S.DetailWrappper>
-      <Comment />
     </>
   );
 };

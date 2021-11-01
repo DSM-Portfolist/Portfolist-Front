@@ -36,6 +36,7 @@ export const FieldSelectWrapper = styled.div`
     justify-content: space-between;
 
     p {
+      cursor: pointer;
       padding-bottom: 2px;
       width: 100%;
       transition: all 0.3s;
@@ -58,6 +59,7 @@ export const FieldWrapper = styled.div`
 
 export const FieldItemWrapper = styled.div`
   margin: 0 10px;
+  width: fit-content;
   background: #ff7659;
   border-radius: 20px;
   padding: 8px 20px;
@@ -79,7 +81,8 @@ export const FieldItemWrapper = styled.div`
 
 // 필드 선택 아이템 스타일
 export const FieldSelectItemWrapper = styled.ul`
-  width: 230px;
+  z-index: 2;
+  width: fit-content;
   overflow: auto;
   background: #ffffff;
   box-sizing: border-box;
@@ -93,7 +96,7 @@ export const FieldSelectItemWrapper = styled.ul`
 
   li {
     text-align: center;
-    padding: 3px;
+    padding: 15px 30px;
     cursor: pointer;
   }
 `;
@@ -124,6 +127,13 @@ export const SearchInput = styled.div`
   input {
     margin-left: 6px;
     width: 70%;
+    font-size: 16px;
+    transform: skew(-0.1deg);
+
+    ::placeholder {
+      font-size: 16px;
+      transform: skew(-0.1deg);
+    }
   }
 
   img {

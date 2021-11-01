@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header, MainList } from "..";
 
 const PortfolioList = () => {
+  const [searchValue, setSearchValue] = useState<string>("");
+
   return (
     <>
       <Header />
-      <MainList />
+      <MainList setSearchValue={setSearchValue} searchValue={searchValue} />
     </>
   );
 };

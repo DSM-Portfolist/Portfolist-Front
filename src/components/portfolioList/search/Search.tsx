@@ -9,10 +9,13 @@ import FieldSelectItem from "./FieldSelectItem";
 import SearchInput from "./SearchInput";
 import * as S from "./style";
 
-const Search = () => {
+interface Props {
+  setSearchValue: any;
+}
+
+const Search = ({ setSearchValue }: Props) => {
   const [text, setText] = useState<string>("원하는 분야를 선택해주세요.");
   const [arrowSelect, setArrowSelect] = useState<boolean>(false);
-  const [bottomLine, setBottomList] = useState<boolean>(false);
   const [useField, setUseField] = useState<any>([]);
 
   useEffect(() => {
@@ -68,7 +71,7 @@ const Search = () => {
           ))}
         </S.FieldWrapper>
       </S.FieldSelectWrapper>
-      <SearchInput />
+      <SearchInput setSearchValue={setSearchValue} />
     </S.SearchWrapper>
   );
 };
