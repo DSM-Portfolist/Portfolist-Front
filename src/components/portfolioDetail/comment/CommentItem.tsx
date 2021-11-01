@@ -24,15 +24,15 @@ const CommentItem = ({ comment }: Props) => {
                 <span>{comment.cdate}</span>
               </div>
             </div>
-            {comment.comment_content === null ? (
+            {comment?.comment_content === null ? (
               <p>삭제된 댓글 입니다.</p>
             ) : (
-              <p>{comment.comment_content}</p>
+              <p>{comment?.comment_content}</p>
             )}
           </div>
         </S.Content>
         <S.Util>
-          {comment.is_mine ? (
+          {comment?.is_mine ? (
             <span onClick={() => commentDelete.mutate(comment.comment_id)}>
               삭제
             </span>
@@ -43,7 +43,7 @@ const CommentItem = ({ comment }: Props) => {
           <span>신고</span>
         </S.Util>
       </div>
-      {comment.re_comment_list.map((re_comment) => (
+      {comment?.re_comment_list?.map((re_comment) => (
         <S.ReComment key={re_comment.re_comment_id}>
           <S.Content>
             <img src={Profile} alt="프로필 사진" />
