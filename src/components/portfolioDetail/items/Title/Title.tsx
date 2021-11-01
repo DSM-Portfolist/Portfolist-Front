@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { portfoilo } from "../../../../modules/atom/portfolio/portfolioDetail";
+import { getPortfolioSelecor } from "../../../../modules/atom/portfolio";
 import { Flower } from "../../../../util/assets";
 import * as S from "./style";
 
@@ -9,13 +9,13 @@ const FieldItem = (field: any) => {
 };
 
 const Title = () => {
-  const portfolioValue = useRecoilValue(portfoilo);
+  const portfolioValue = useRecoilValue(getPortfolioSelecor);
 
   return (
     <S.TitleWrapper>
       <S.TitleInfo>
         <S.FieldWrapper>
-          {portfolioValue?.field.map((field: string, index: number) => {
+          {portfolioValue?.field?.map((field: string, index: number) => {
             return <FieldItem key={index} field={field} />;
           })}
         </S.FieldWrapper>

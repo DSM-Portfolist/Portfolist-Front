@@ -1,23 +1,25 @@
-import axios from "axios";
-import { MAINURL, token } from "..";
+import request from "../index";
+import { token } from "..";
 
-export const getList = async () => {
-  const { data } = await axios.get(
-    `${MAINURL}/portfolio/list?page=1&size=5&field=`,
-    {
-      headers: { Authorization: token },
-    }
-  );
-
-  return data;
-};
-
-export const getField = async () => {
-  return await axios.get(`${MAINURL}/field`);
-};
-
-export const getPortfolist = async () => {
-  return await axios.get(`${MAINURL}/portfolio/2`, {
+export function getPortfolioList() {
+  return request({
+    url: "/portfolio/list?page=1&size=5&field=",
+    method: "get",
     headers: { Authorization: token },
   });
-};
+}
+
+export function getField() {
+  return request({
+    url: "/field",
+    method: "get",
+  });
+}
+
+export function getPortfolio(id: number) {
+  return request({
+    url: `/portfolio/${id}`,
+    method: "get",
+    headers: { Authorization: token },
+  });
+}
