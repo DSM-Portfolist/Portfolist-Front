@@ -6,14 +6,14 @@ import {
   ContainerListType,
   ContainerTextType,
 } from "../../../../util/interface/portfolio/portfolioDetailType";
-import { portfoilo } from "../../../../modules/atom/portfolio/portfolioDetail";
+import { getPortfolioSelecor } from "../../../../modules/atom/portfolio";
 
 const ExperienceList = () => {
-  const portfolioValue = useRecoilValue(portfoilo);
+  const portfolioValue = useRecoilValue(getPortfolioSelecor);
 
   return (
     <>
-      {portfolioValue?.container_list.map(
+      {portfolioValue?.container_list?.map(
         (item: ContainerListType, index: number) => (
           <S.ExperienceWrapper key={index}>
             <S.MainTitle>{item?.container_title}</S.MainTitle>
@@ -24,7 +24,7 @@ const ExperienceList = () => {
                 ))}
               </div>
               <div className="content-box">
-                {item?.container_text_list.map(
+                {item?.container_text_list?.map(
                   (box: ContainerTextType, index: number) => (
                     <div key={index} className="content-box-item">
                       <span className="sub-title">{box?.box_title}</span>
