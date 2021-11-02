@@ -4,21 +4,30 @@ import { PlusButton, MinusButton } from "../../../util/assets";
 
 const MoreInfoContainer = () => {
   const [dataArr, setDataArr] = useState<any>([
-    { id: 1, name: "", content: "" },
+    { id: "10", name: "", content: "" },
   ]);
 
-  /* useEffect(() => { 데이터 console.log
+  useEffect(() => {
     console.log(dataArr);
-  }, [dataArr]); */
+  }, [dataArr]);
+
+  let lastId = 0;
+
+  const newId = (prefix: number, num: number) => {
+    if (num === 1) {
+      lastId++;
+    }
+    return `${prefix}${lastId}`;
+  };
 
   const handlerOnChange = (event: any) => {
     //input value 넣을 배열 찾아서 넣기
-    let parentClassNameId = event.target.parentElement.className[0];
+    let parentClassNameId = event.target.parentElement.className.split(" ");
     let eventNodeId = event.target.id;
     let eventTargetValue = event.target.value;
     setDataArr(
       dataArr.map((dataArr: any) => {
-        if (String(dataArr.id) === parentClassNameId) {
+        if (String(dataArr.id) === String(parentClassNameId[0])) {
           if (eventNodeId === "inputName") {
             return { ...dataArr, name: eventTargetValue };
           } else {
@@ -35,7 +44,7 @@ const MoreInfoContainer = () => {
     //빈 input 추가 하는 함수
     setDataArr((dataArr: any) => [
       ...dataArr,
-      { id: dataArr.length + 1, name: "", content: "" },
+      { id: newId(dataArr.length + 1, 0), name: "", content: "" },
     ]);
   };
 
@@ -57,19 +66,21 @@ const MoreInfoContainer = () => {
       <div className="infoContainer">
         {dataArr.map((dataArr: any, index: number) => {
           return (
-            <S.InputBox onChange={handlerOnChange} className={`${index + 1}`}>
+            <S.InputBox
+              key={index}
+              onChange={handlerOnChange}
+              className={newId(index + 1, 0)}
+            >
               <input
                 type="text"
                 id="inputName"
                 placeholder="ex)email"
-                value={dataArr.name}
               />
               <div></div>
               <input
                 type="text"
                 id="inputContent"
                 placeholder="ex)kub0803@gmail.com"
-                value={dataArr.content}
               />
               <img
                 src={MinusButton}
