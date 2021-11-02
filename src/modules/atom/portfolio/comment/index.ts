@@ -2,6 +2,7 @@ import { atom, selector } from "recoil";
 import { portfolioId } from "..";
 import { getComment } from "../../../../util/api/portfolio/comment";
 import { CommentType } from "../../../../util/interface/portfolio/commentType";
+import { portfoilo } from "../portfolioDetail";
 
 export const commentList = atom<CommentType[]>({
   key: "commentList",
@@ -13,11 +14,14 @@ export const commentContent = atom<string>({
   default: "",
 });
 
-export const getCommentList = selector({
+export const getCommentList = selector<CommentType[]>({
   key: "comments/get",
   get: async ({ get }) => {
     const id = await get(portfolioId);
     const res = await getComment(id);
     return res.data.comments;
+  },
+  set: ({ set }, newValue: any) => {
+    set(commentList, newValue);
   },
 });
