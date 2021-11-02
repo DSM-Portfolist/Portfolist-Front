@@ -24,4 +24,3 @@ export const getPortListSelector = selector({
     return res.data;
   },
 });
-
