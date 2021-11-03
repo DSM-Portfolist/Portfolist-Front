@@ -1,8 +1,14 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { monthPortfolioSelector } from "../../../../modules/atom/main";
 import { Crwon, Flower } from "../../../../util/assets";
 import * as S from "./style";
 
 const MonthPortfolio = () => {
+  const monthPortfolio = useRecoilValue(monthPortfolioSelector);
+
+  console.log(monthPortfolio);
+
   return (
     <div className="border-bottom">
       <S.MonthWrapper>
