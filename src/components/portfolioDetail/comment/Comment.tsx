@@ -1,24 +1,40 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import * as S from "./style";
 import CommentItem from "./CommentItem";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
-import { ToastSuccess } from "../../../hook/toastHook";
+import { ToastError, ToastSuccess } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { postComment } from "../../../util/api/portfolio/comment";
+import { getComment, postComment } from "../../../util/api/portfolio/comment";
 import { getCommentList } from "../../../modules/atom/portfolio/comment";
 import { portfolioId } from "../../../modules/atom/portfolio";
 
 const Comment = () => {
   const id = useRecoilValue(portfolioId);
-  const comments = useRecoilValue(getCommentList);
+  //const comments = useRecoilValue(getCommentList);
   const [commentContent, setCommentContent] = useState<string>("");
+  // const [comments, setComments] = useState<CommentType[]>([]);
+  //const commentRef = useRef(null);
+  const [comments, setComments] = useState<CommentType[]>([]);
 
-  function CommentAdd(content: any, id: number) {
-    postComment(id, content);
-    ToastSuccess("댓글이 작성되었습니다.");
+  function CommentAdd(content: string, id: number) {
+    postComment(id, content)
+      .then(() => {
+        getTest();
+        ToastSuccess("댓글이 작성되었습니다.");
+      })
+      .catch((e) => {});
   }
+
+  const getTest = useCallback(() => {
+    getComment(id).then((res) => setComments(res.data));
+  }, []);
+
+  useEffect(() => {
+    getTest();
+    console.log(comments);
+  }, []);
 
   return (
     <>
