@@ -1,10 +1,13 @@
 /** @jsxImportSource @emotion/react */
 
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { useMutation, UseMutationResult } from "react-query";
 import { Link, useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../hook/toastHook";
+import { MAINURL } from "../../../util/api";
 import { Github, Logo } from "../../../util/assets";
 import { mainColor } from "../../../util/css/color/color";
 import * as S from "./style";
@@ -15,6 +18,9 @@ interface LoginType {
 }
 
 const Login = () => {
+  const JWT_EXPIRY_TIME = 10000;
+  const history = useHistory();
+
   const [buttonColor, setButtonColor] = useState<boolean>(false);
   const [emailBor, setEmailBor] = useState<boolean>(false);
   const [passwordBor, setPasswordBor] = useState<boolean>(false);
@@ -23,15 +29,26 @@ const Login = () => {
     password: "",
   });
 
-  const history = useHistory();
+  const refresh_token = localStorage.getItem("refresh_token_portfolist");
 
   const { email, password } = loginInput;
 
+  const loginNormal = useMutation("login", () =>
+    axios.post(`${MAINURL}/login/normal`, loginInput).then((res) => {
+      localStorage.setItem("access_token_portfolist", res.data.access_token);
+      localStorage.setItem("refresh_token_portfolist", res.data.refresh_token);
+    })
+  );
+
+  const onClientRefresh = useMutation("refresh", () =>
+    axios.post("/refresh", refresh_token).then((res) => console.log(res))
+  );
+
   useEffect(() => {
-    email.length >= 4 ? setEmailBor(true) : setEmailBor(false);
-    password.length >= 4 ? setPasswordBor(true) : setPasswordBor(false);
-    email && password ? setButtonColor(true) : setButtonColor(false);
-  }, [email, password]);
+    setTimeout(() => {
+      onClientRefresh.mutate();
+    }, JWT_EXPIRY_TIME - 1000);
+  }, []);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -42,28 +59,29 @@ const Login = () => {
     });
   };
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: any, data: any) => {
     e.preventDefault();
 
-    if (email && password) {
+    loginNormal.mutate(data);
+
+    if (loginNormal.isSuccess) {
       ToastSuccess("로그인에 성공하셨습니다.");
-      setTimeout(() => {
-        history.push("/");
-      }, 1500);
-    } else {
+      history.push("/");
+    } else if (loginNormal.isError) {
       ToastError("정보를 다시 입력해주세요");
     }
-
-    setLoginInput({
-      email: "",
-      password: "",
-    });
   };
+
+  useEffect(() => {
+    email.length >= 4 ? setEmailBor(true) : setEmailBor(false);
+    password.length >= 4 ? setPasswordBor(true) : setPasswordBor(false);
+    email && password ? setButtonColor(true) : setButtonColor(false);
+  }, [email, password]);
 
   return (
     <S.BackWrapper>
       <ToastContainer />
-      <S.Content onSubmit={(e) => onSubmit(e)}>
+      <S.Content onSubmit={(e) => onSubmit(e, loginInput)}>
         <Link to="/">
           <img src={Logo} alt="Portfolist 로고" />
         </Link>

@@ -22,6 +22,8 @@ export const Title = styled.div`
   font-size: 20px;
   font-weight: 500;
   border-bottom: 3px solid ${mainColor};
+  padding-bottom: 5px;
+  width: fit-content;
 `;
 
 export const ContentBox = styled.div`
