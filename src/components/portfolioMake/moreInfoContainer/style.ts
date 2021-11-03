@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 
 export const MainWrapper = styled.section`
-  /*   margin-top: 25px;
-  border-bottom: 1px solid #e9e9e9; */
   .titleWrapper {
     display: flex;
     align-items: center;
