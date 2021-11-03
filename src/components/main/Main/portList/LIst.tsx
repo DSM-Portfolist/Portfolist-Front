@@ -2,9 +2,13 @@ import React from "react";
 import { Arrow } from "../../../../util/assets";
 import ListItem from "./ListItem";
 import * as S from "./style";
-import { list } from "./dummy.json";
+import { useRecoilValue } from "recoil";
+import { recentPortfolioSelector } from "../../../../modules/atom/main";
+import { recentPortfolioType } from "../../../../util/interface/main/portfolio";
 
 const List = () => {
+  const recentPorfolio = useRecoilValue(recentPortfolioSelector);
+
   return (
     <div className="border-bottom">
       <S.ListWrapper>
@@ -16,12 +20,12 @@ const List = () => {
           </button>
         </S.GoWrapper>
         <S.ListItemWrapper>
-          {list.map((list, index) => (
+          {recentPorfolio.map((list: recentPortfolioType, index: number) => (
             <ListItem
               key={index}
               title={list.title}
-              content={list.content}
-              id={list.id}
+              content={list.introduce}
+              id={list.portfolio_id}
             />
           ))}
         </S.ListItemWrapper>
