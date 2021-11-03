@@ -6,6 +6,10 @@ const Searchbar = () => {
   const [isFocusing, setIsFocusing] = useState<boolean>(false);
   const searchInputRef = useRef<any>(null);
 
+  const focusOn = useCallback(() => {
+    setIsFocusing(true);
+  }, []);
+
   const focusOff = useCallback(() => {
     setIsFocusing(false);
   }, []);
@@ -22,7 +26,7 @@ const Searchbar = () => {
           type="text"
           placeholder="검색어를 입력해주세요"
           onBlur={focusOff}
-          //onFocus={focusOn}
+          onFocus={focusOn}
           ref={searchInputRef}
         />
         <img src={Magnifier} alt="검색아이콘" />
