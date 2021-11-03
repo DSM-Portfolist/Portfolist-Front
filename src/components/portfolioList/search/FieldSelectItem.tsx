@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import * as S from "./style";
-import { useQuery } from "react-query";
-import { getField } from "../../../util/api/portfolio/portfolio";
 import { FieldType } from "../../../util/interface/common";
+import { getFieldSelector } from "../../../modules/atom/portfolio";
+import { useRecoilValue } from "recoil";
 
 interface Props {
   setText: any;
@@ -19,19 +19,37 @@ const FieldSelectItem = ({
   useField,
   setArrowSelect,
 }: Props) => {
-  const { data } = useQuery("field", getField);
+  const field = useRecoilValue(getFieldSelector);
   const [isFocusing, setIsFocusing] = useState<boolean>(false);
+  const fieldRef = useRef<any>(null);
 
   function UseFieldAdd(field: any) {
     setUseField(useField.concat(field));
   }
 
+  const focusOn = useCallback(() => {
+    setIsFocusing(true);
+  }, []);
+
+  const focusOff = useCallback(() => {
+    setIsFocusing(false);
+  }, []);
+
+  useEffect(() => {
+    if (isFocusing) {
+      fieldRef.current.focus();
+    }
+  }, [isFocusing]);
+
   return (
     <S.FieldSelectItemWrapper
       arrowSelect={arrowSelect}
       style={arrowSelect ? { height: 200 } : { height: 0 }}
+      ref={fieldRef}
+      onBlur={focusOff}
+      onFocus={focusOn}
     >
-      {data?.data.map((field: FieldType) => (
+      {field.map((field: FieldType) => (
         <li
           key={field.id}
           onClick={() => {
