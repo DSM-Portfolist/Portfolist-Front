@@ -7,10 +7,6 @@ const MoreInfoContainer = () => {
     { id: "10", name: "", content: "" },
   ]);
 
-  useEffect(() => {
-    console.log(dataArr);
-  }, [dataArr]);
-
   let lastId = 0;
 
   const newId = (prefix: number, num: number) => {
@@ -71,11 +67,7 @@ const MoreInfoContainer = () => {
               onChange={handlerOnChange}
               className={newId(index + 1, 0)}
             >
-              <input
-                type="text"
-                id="inputName"
-                placeholder="ex)email"
-              />
+              <input type="text" id="inputName" placeholder="ex)email" />
               <div></div>
               <input
                 type="text"
