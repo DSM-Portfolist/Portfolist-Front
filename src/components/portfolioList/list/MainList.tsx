@@ -4,27 +4,26 @@ import { Search, ListItem } from "../..";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
 import { useRecoilValue } from "recoil";
 import { getPortListSelector } from "../../../modules/atom/portfolio";
+import { searchValue } from "../../../modules/atom/portfolio/search/index";
 
-interface Props {
-  searchValue: string;
-  setSearchValue: any;
-}
-
-const MainList = ({ searchValue, setSearchValue }: Props) => {
+const MainList = () => {
   const portfolioList = useRecoilValue(getPortListSelector);
+  const searchContent = useRecoilValue(searchValue);
+
+  console.log(searchContent.length);
 
   return (
     <S.MainListWrapper className="container">
-      <Search setSearchValue={setSearchValue} />
+      <Search />
       <S.ListWrapper>
         {portfolioList?.portfolio_list.length === 0 ? (
-          <div>작성된 포트폴리오가 없습니다</div>
+          <p className="list-not-comment">작성된 포트폴리오가 없습니다</p>
         ) : (
           <>
-            {searchValue.length === 0 ? (
+            {searchContent.length === 0 ? (
               ""
             ) : (
-              <S.SearchContent>{searchValue}의 검색결과...</S.SearchContent>
+              <S.SearchContent>{searchContent}의 검색결과...</S.SearchContent>
             )}
 
             <S.ListContent>
