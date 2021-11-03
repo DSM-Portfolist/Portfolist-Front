@@ -1,8 +1,17 @@
-import request from "../index";
+import request, { token } from "../index";
 
 export const getMonthPortfolio = () => {
   return request({
-    url: "/porfolio/month",
+    url: "/portfolio/month",
     method: "get",
+    headers: { Authorization: token },
+  });
+};
+
+export const getRecentPortfolio = () => {
+  return request({
+    url: "/portfolio/recent",
+    method: "get",
+    headers: { Authorization: token },
   });
 };
