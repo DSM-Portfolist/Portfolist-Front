@@ -8,7 +8,7 @@ const SearchInput = () => {
   const [selectText, setSelectText] = useState<boolean>(true);
   const setSearchContent = useSetRecoilState(searchValue);
 
-  const searchHandler = (e: any) => {
+  const searchHandler = (e: React.KeyboardEvent<HTMLInputElement> | any) => {
     if (e.key === "Enter") {
       setSearchContent(e.target.value);
     }
