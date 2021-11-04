@@ -52,6 +52,9 @@ export const Content = styled.div`
     margin: 40px 0;
     font-weight: 300;
     font-size: 20px;
+    p {
+      padding-top: 10px;
+    }
   }
 
   .user-content {
