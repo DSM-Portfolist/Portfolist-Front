@@ -3,8 +3,12 @@ import {
   getMonthPortfolio,
   getRecentPortfolio,
 } from "../../../util/api/mainpage";
+import {
+  monthPortfolioType,
+  recentPortfolioType,
+} from "../../../util/interface/main/portfolio";
 
-export const monthPortfolioSelector = selector({
+export const monthPortfolioSelector = selector<monthPortfolioType>({
   key: "monthPortfolio/get",
   get: async () => {
     const res = await getMonthPortfolio();
@@ -12,7 +16,7 @@ export const monthPortfolioSelector = selector({
   },
 });
 
-export const recentPortfolioSelector = selector({
+export const recentPortfolioSelector = selector<recentPortfolioType[]>({
   key: "recentPortfolio/get",
   get: async () => {
     const res = await getRecentPortfolio();
