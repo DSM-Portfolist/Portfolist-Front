@@ -10,7 +10,7 @@ interface ListProps {
 
 const ListItem = ({ title, content }: ListProps) => {
   function TestSlice(txt: string) {
-    let len = 13;
+    let len = 12;
     if (txt.length > len) {
       txt = txt.substr(0, len) + " ...";
     }

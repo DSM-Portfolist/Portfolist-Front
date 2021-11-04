@@ -5,14 +5,16 @@ import * as S from "./style";
 import { useRecoilValue } from "recoil";
 import { recentPortfolioSelector } from "../../../../modules/atom/main";
 import { recentPortfolioType } from "../../../../util/interface/main/portfolio";
+import { useHistory } from "react-router";
 
 const List = () => {
   const recentPorfolio = useRecoilValue(recentPortfolioSelector);
+  const history = useHistory();
 
   return (
     <div className="border-bottom">
       <S.ListWrapper>
-        <S.GoWrapper>
+        <S.GoWrapper onClick={() => history.push("/portfolio-list")}>
           <p>portfolio</p>
           <button>
             <span>Go</span>
