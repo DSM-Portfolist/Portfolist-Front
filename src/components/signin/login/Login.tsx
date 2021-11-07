@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useMutation, UseMutationResult } from "react-query";
 import { Link, useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -28,6 +28,14 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const onClick = useCallback(() => {
+    const CLIENT_ID: string = "df2c3f65d173046f7090";
+    const REDIRECT_URL = "http://localhost:3000/login";
+    const url: string = `https://github.com/login/oauth/authorize?scope=repo:status read:repo_hook user:email&client_id=${CLIENT_ID}`;
+
+    window.open(url);
+  }, []);
 
   const refresh_token = localStorage.getItem("refresh_token_portfolist");
 
@@ -114,7 +122,7 @@ const Login = () => {
         </S.InputWrapper>
         <S.ButtonWrapper btnColor={buttonColor}>
           <button className="login-button">login</button>
-          <S.GitBtn>
+          <S.GitBtn onClick={onClick}>
             <img src={Github} alt="깃허브 로고"></img>
             <span>Github 로그인</span>
           </S.GitBtn>
