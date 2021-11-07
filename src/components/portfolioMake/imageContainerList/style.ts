@@ -19,6 +19,7 @@ export const MainWrapper = styled.section`
 `;
 
 export const ImageWrapeerList = styled.div`
+  margin-top: 15px;
   .Title {
     width: 100%;
     font-style: normal;
@@ -31,17 +32,31 @@ export const ImageWrapeerList = styled.div`
 `;
 
 export const ImageListSection = styled.section`
-  padding: 30px 0%;
+  padding: 30px 30px;
   background: #ffffff;
   border: 1px solid #eaeaea;
   box-sizing: border-box;
-  margin-top: 30px;
+  margin-top: 15px;
   display: flex;
 `;
 
 export const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 42%;
+  label {
+    width: 280px;
+    height: 190px;
+    background-color: #f2f2f2;
+    border: dotted #979797 1px;
+    text-align: center;
+    margin: auto 0;
+    line-height: 190px;
+    color: #989898;
+  }
 `;
 
 export const ContentWrapper = styled.div`
-
+  width: 58%;
+  height: 100%;
 `;
