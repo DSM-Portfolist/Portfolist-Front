@@ -9,7 +9,6 @@ const Banner = () => {
 
   useEffect(() => {
     sliderRef.current.style.transition = "all 1.5s ease-in-out";
-    sliderRef.current.style.transform = `translateX(-${currentSlider}00%)`;
 
     let i = 0;
 
