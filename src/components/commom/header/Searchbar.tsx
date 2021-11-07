@@ -3,16 +3,18 @@ import { useSetRecoilState } from "recoil";
 import { Magnifier } from "../../../util/assets";
 import { searchValue } from "../../../modules/atom/portfolio/search/index";
 import * as S from "./style";
+import { useHistory } from "react-router";
 
 const Searchbar = () => {
   const [isFocusing, setIsFocusing] = useState<boolean>(false);
   const setSearchContent = useSetRecoilState(searchValue);
   const searchInputRef = useRef<any>(null);
+  const history = useHistory();
 
-  const searchHandler = (e: React.KeyboardEvent<HTMLInputElement> | any) => {
+  const searchHandler = (e: any) => {
     if (e.key === "Enter") {
       setSearchContent(e.target.value);
-      console.log(e.target.value);
+      history.push("/portfolio-list");
     }
   };
 
@@ -36,9 +38,8 @@ const Searchbar = () => {
           type="text"
           placeholder="검색어를 입력해주세요"
           onBlur={focusOff}
-          onFocus={focusOn}
           ref={searchInputRef}
-          onKeyUp={(e) => searchHandler(e)}
+          onChange={(e) => searchHandler(e)}
         />
         <img src={Magnifier} alt="검색아이콘" />
       </S.Input>
