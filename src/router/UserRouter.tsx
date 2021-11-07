@@ -6,6 +6,7 @@ import {
   PortfolioDatail,
   PortfolioList,
   SignUp,
+  Token,
 } from "../components";
 
 const UserRouter = () => {
@@ -16,6 +17,7 @@ const UserRouter = () => {
       <Route path="/sign-up" component={SignUp} exact />
       <Route path="/portfolio-list" component={PortfolioList} exact />
       <Route path="/portfolio/:id" component={PortfolioDatail} exact />
+      <Route path="/login-github" component={Token} exact />
     </BrowserRouter>
   );
 };
