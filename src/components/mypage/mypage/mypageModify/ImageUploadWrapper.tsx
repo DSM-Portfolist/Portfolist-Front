@@ -10,7 +10,7 @@ const ImageUploadWrapper = () => {
 
   let formData = new FormData();
 
-  function testAsd() {
+  function checkFormData() {
     //FormData 값 확인하기
     for (let key of formData.keys()) {
       console.log(key);
@@ -31,7 +31,7 @@ const ImageUploadWrapper = () => {
       setPreviewURL(reader.result);
       formData.append("file", file);
       setIsCustomImage(true);
-      testAsd();
+      checkFormData();
     };
     reader.readAsDataURL(file);
   };
