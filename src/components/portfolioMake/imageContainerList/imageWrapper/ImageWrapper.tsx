@@ -48,6 +48,7 @@ const ImageWrapper = (props: Props) => {
       { isInFile: false, index: imageList.length },
     ]);
   };
+
   return (
     <S.ImageWrapper>
       {imageList.map((v: any, index: number) => {
@@ -64,15 +65,15 @@ const ImageWrapper = (props: Props) => {
                     handleFileOnChange(e, v.index);
                   }}
                 />
-                <label htmlFor="input-file">image{v.index}</label>
+                <label htmlFor="input-file">image</label>
               </>
             ) : (
-              <S.ImageItem>
+              <S.ImageItem key={index}>
                 <img src={previewURL[index]} className="PreviewURL" alt="" />
                 {v.index + 1 < imageList.length ? (
                   ""
                 ) : (
-                  <span onClick={addImageList}>이미지 추가{v.index}</span>
+                  <span onClick={addImageList}>이미지 추가</span>
                 )}
               </S.ImageItem>
             )}
