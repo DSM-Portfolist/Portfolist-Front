@@ -22,3 +22,5 @@ export { default as CloseIcon } from "./icon/closeIcon.svg";
 export { default as Magnifier } from "./icon/magnifier.svg";
 export { default as Crwon } from "./icon/crwon.png";
 export { default as TestImg } from "./img/testImg.svg";
+export { default as FooterLogo } from "./icon/FooterLogo.png";
+export { default as FooterGithub } from "./icon/FooterGithub.png";
