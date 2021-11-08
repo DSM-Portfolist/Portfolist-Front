@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { monthPortfolioSelector } from "../../../../modules/atom/main";
+import { monthPortfolioSelector } from "../../../../modules/selector/mainpage";
 import { Crwon, Flower } from "../../../../util/assets";
 import * as S from "./style";
 
