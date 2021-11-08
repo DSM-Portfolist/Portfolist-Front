@@ -65,7 +65,7 @@ const ImageWrapper = (props: Props) => {
                     handleFileOnChange(e, v.index);
                   }}
                 />
-                <label htmlFor="input-file">image</label>
+                <label htmlFor="input-file">이미지 넣기</label>
               </>
             ) : (
               <S.ImageItem key={index}>
