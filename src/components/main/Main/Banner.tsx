@@ -3,7 +3,6 @@ import { MainImg1, MainImg2, MainImg3 } from "../../../util/assets";
 import * as S from "./style";
 
 const Banner = () => {
-  const [currentSlider, setCurrentSlider] = useState<number>(0);
   const sliderRef = useRef<any>();
   const [val, setVal] = useState<number>(0);
 
@@ -18,7 +17,7 @@ const Banner = () => {
 
       if (i === 2) i = -1;
     }, 10000);
-  }, [currentSlider]);
+  }, []);
 
   return (
     <>
