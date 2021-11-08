@@ -15,6 +15,7 @@ export const ImageWrapper = styled.div`
     margin: auto 0;
     line-height: 190px;
     color: #989898;
+    margin-top: 13px;
   }
 `;
 
@@ -27,6 +28,7 @@ export const ImageItem = styled.div`
     height: 190px;
     object-fit: cover;
     border: dotted #979797 1px;
+    margin-top: 13px;
   }
   span {
     font-style: normal;
