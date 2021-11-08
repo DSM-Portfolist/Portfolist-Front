@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { useMutation, UseMutationResult } from "react-query";
+import { useMutation } from "react-query";
 import { Link, useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -30,12 +30,8 @@ const Login = () => {
   });
 
   const onClick = useCallback(() => {
-    const id = "df2c3f65d173046f7090";
-    //const REDIRECT_URL = "http://localhost:3000/login";
-    //  const url: string = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`;
-
     window.open(
-      "https://github.com/login/oauth/authorize?client_id=df2c3f65d173046f7090&scope=repo:status%20read:repo_hook%20user:email"
+      `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=repo:status%20read:repo_hook%20user:email`
     );
   }, []);
 
@@ -58,7 +54,7 @@ const Login = () => {
     setTimeout(() => {
       onClientRefresh.mutate();
     }, JWT_EXPIRY_TIME - 1000);
-  }, []);
+  }, [onClientRefresh]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
