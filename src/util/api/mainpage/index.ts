@@ -15,3 +15,11 @@ export const getRecentPortfolio = () => {
     headers: { Authorization: token },
   });
 };
+
+export const getNotification = () => {
+  return request({
+    url: "/user/notification",
+    method: "get",
+    headers: { Authorization: token },
+  });
+};
