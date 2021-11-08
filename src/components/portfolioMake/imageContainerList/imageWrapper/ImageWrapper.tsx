@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as S from "./style";
+import { imageListType } from "../../../../util/interface/portfolio/portfolioMakeType";
 
 interface Props {
   checkFormData: () => void;
@@ -9,20 +10,18 @@ const ImageWrapper = (props: Props) => {
   const { checkFormData } = props;
 
   let formData = new FormData();
-  const [imageFile, setImageFile] = useState<any>([]);
-  const [previewURL, setPreviewURL] = useState<any>([]);
-  const [imageList, setImageList] = useState<any>([
+  const [imageFile, setImageFile] = useState<any[]>([]);
+  const [previewURL, setPreviewURL] = useState<string[]>([]);
+  const [imageList, setImageList] = useState<imageListType[]>([
     { isInFile: false, index: 0 },
   ]);
 
   const updateFieldChanged = (item: boolean, index: number) => {
-    let newArr = imageList.map((v: any, i: number) => {
+    let newArr = imageList.map((value: any, i: number) => {
       if (index === i) {
-        console.log(`${index} : 들어옴`);
-        return { ...v, isInFile: item };
+        return { ...value, isInFile: item };
       } else {
-        console.log(`${index} : else문 들어옴`);
-        return v;
+        return value;
       }
     });
     setImageList(newArr);
@@ -52,7 +51,6 @@ const ImageWrapper = (props: Props) => {
   return (
     <S.ImageWrapper>
       {imageList.map((v: any, index: number) => {
-        console.log("v value", v);
         return (
           <>
             {!v.isInFile ? (
