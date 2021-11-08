@@ -1,17 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { ToastSuccess } from "../../../hook/toastHook";
 import { subMenu } from "../../../modules/atom/header";
+import { userInfoSelector } from "../../../modules/selector/user";
 import { Profile } from "../../../util/assets";
 import * as S from "./style";
 
 const SubMenu = () => {
+  const userInfo = useRecoilValue(userInfoSelector);
   const [moreItem, setMoreItem] = useRecoilState(subMenu);
 
   return (
     <>
-      <li>반갑습니다. 강은빈님!</li>
+      <li>반갑습니다. {userInfo.name}님!</li>
       <S.NotiWrapper>
         <img
           className="profile-img"
