@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import { PlusButton, MinusButton } from "../../../util/assets";
+import { ToastSuccess, ToastError } from "../../../hook/toastHook";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { inputDataArrType } from "../../../util/interface/portfolio/portfolioMakeType";
 
 const MoreInfoContainer = () => {
-  const [dataArr, setDataArr] = useState<any>([]);
+  const [dataArr, setDataArr] = useState<inputDataArrType[]>([
+    { id: "11", name: "", content: "" },
+  ]);
 
-  const [DatalastId, setDatalastId] = useState<number>(0);
+  const [DatalastId, setDatalastId] = useState<number>(1);
 
   useEffect(() => {
     console.log(dataArr);
@@ -29,7 +35,7 @@ const MoreInfoContainer = () => {
     setDataArr(
       dataArr.map((dataArr: any, index: number) => {
         console.log(`dataArrid: ${dataArr.id} parent: ${parentClassNameId[0]}`);
-        if (dataArr.id === parentClassNameId[0] ) {
+        if (dataArr.id === parentClassNameId[0]) {
           if (eventNodeId === "inputName") {
             return { ...dataArr, name: eventTargetValue };
           } else {
@@ -52,15 +58,20 @@ const MoreInfoContainer = () => {
 
   const DeleteData = (id: any) => {
     //특정 input 삭제
-    setDataArr(
-      dataArr?.filter((arrItem: any) => {
-        return arrItem.id !== id.id;
-      })
-    );
+    if (dataArr.length === 1) {
+      ToastError("삭제할 수 없습니다");
+    } else {
+      setDataArr(
+        dataArr?.filter((arrItem: any) => {
+          return arrItem.id !== id.id;
+        })
+      );
+    }
   };
 
   return (
     <S.MainWrapper className="make-container">
+      <ToastContainer />
       <div className="titleWrapper">
         <h1>본인의 추가 정보를 입력해 주세요. ex) 학력 / 연락처 / 이메일</h1>
         <img src={PlusButton} alt="" onClick={AddData} />
