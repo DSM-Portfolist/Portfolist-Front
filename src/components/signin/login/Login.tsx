@@ -30,11 +30,13 @@ const Login = () => {
   });
 
   const onClick = useCallback(() => {
-    const CLIENT_ID: string = "df2c3f65d173046f7090";
-    const REDIRECT_URL = "http://localhost:3000/login";
-    const url: string = `https://github.com/login/oauth/authorize?scope=repo:status read:repo_hook user:email&client_id=${CLIENT_ID}`;
+    const id = "df2c3f65d173046f7090";
+    //const REDIRECT_URL = "http://localhost:3000/login";
+    //  const url: string = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`;
 
-    window.open(url);
+    window.open(
+      "https://github.com/login/oauth/authorize?client_id=df2c3f65d173046f7090&scope=repo:status%20read:repo_hook%20user:email"
+    );
   }, []);
 
   const refresh_token = localStorage.getItem("refresh_token_portfolist");
