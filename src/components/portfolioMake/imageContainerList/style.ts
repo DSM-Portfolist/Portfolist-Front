@@ -24,7 +24,7 @@ export const ImageWrapeerList = styled.div`
     width: 100%;
     font-style: normal;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 22px;
     &::placeholder {
       color: #8b8b8b;
     }
