@@ -1,17 +1,19 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { Flower } from "../../../../util/assets";
 import * as S from "./style";
 
 interface ListProps {
-  key?: number;
   title: string;
   content: string;
   id?: number;
 }
 
-const ListItem = ({ key, title, content }: ListProps) => {
+const ListItem = ({ title, content, id }: ListProps) => {
+  const history = useHistory();
+
   function TestSlice(txt: string) {
-    let len = 13;
+    let len = 12;
     if (txt.length > len) {
       txt = txt.substr(0, len) + " ...";
     }
@@ -19,7 +21,7 @@ const ListItem = ({ key, title, content }: ListProps) => {
   }
 
   return (
-    <S.ItemWrapper key={key}>
+    <S.ItemWrapper onClick={() => history.push(`/portfolio/${id}`)}>
       <div className="folio-img">
         <img src={Flower} alt="포트폴리오 이미지 " />
       </div>

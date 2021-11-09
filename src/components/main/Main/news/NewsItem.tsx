@@ -1,4 +1,6 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { notificationSelector } from "../../../../modules/selector/mainpage";
 import NoticeItem from "./notice/NoticeItem";
 import * as S from "./style";
 
@@ -7,11 +9,15 @@ interface NewsItemProps {
 }
 
 const NewsItem = ({ title }: NewsItemProps) => {
+  const notification = useRecoilValue(notificationSelector);
+
   return (
     <S.NewsItemWrapper>
       <S.Title>{title}</S.Title>
       <S.ContentBox>
-        <NoticeItem />
+        {notification.map((item) => (
+          <NoticeItem name={item.name} type={item.type} />
+        ))}
       </S.ContentBox>
     </S.NewsItemWrapper>
   );

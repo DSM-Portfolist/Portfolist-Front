@@ -14,11 +14,11 @@ const Header = () => {
 
   const focusOn = useCallback(() => {
     setIsFocusing(true);
-  }, []);
+  }, [setIsFocusing]);
 
   const focusOff = useCallback(() => {
     setIsFocusing(false);
-  }, []);
+  }, [setIsFocusing]);
 
   useEffect(() => {
     if (isFocusing) {

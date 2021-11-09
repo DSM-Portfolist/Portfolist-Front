@@ -3,7 +3,7 @@ import { token } from "..";
 
 export function getPortfolioList() {
   return request({
-    url: "/portfolio/list?page=1&size=5&field=",
+    url: "/portfolio/list?page=0&size=5&field=",
     method: "get",
     headers: { Authorization: token },
   });

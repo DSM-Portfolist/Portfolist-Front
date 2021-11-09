@@ -46,6 +46,7 @@ export const FieldSelectWrapper = styled.div`
 
 export const ArrowImg = styled.img`
   width: 15px;
+
   margin-left: 8px;
   cursor: pointer;
   transition: all 0.5s;
@@ -102,7 +103,7 @@ export const FieldSelectItemWrapper = styled.ul`
 `;
 
 export const SearchInput = styled.div`
-  width: 30%;
+  width: 36%;
   height: 35px;
   border: 2px solid ${mainColor};
   border-radius: 5px;
@@ -111,6 +112,7 @@ export const SearchInput = styled.div`
   justify-content: space-between;
 
   .select-box {
+    width: 50px;
     padding: 8px;
     background-color: ${mainColor};
     cursor: pointer;
