@@ -1,12 +1,8 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
-import { monthPortfolioSelector } from "../../../../modules/selector/mainpage";
 import { Crwon, Flower } from "../../../../util/assets";
 import * as S from "./style";
 
 const MonthPortfolio = () => {
-  const monthPortfolio = useRecoilValue(monthPortfolioSelector);
-
   return (
     <div className="border-bottom">
       <S.MonthWrapper>
@@ -23,12 +19,10 @@ const MonthPortfolio = () => {
           <p className="introduce">
             여러분들이 선택한 touching 중 이달의 포트폴리오입니다.
           </p>
-          <p className="user-introduce">
-            {monthPortfolio.name}님의 포트폴리오 입니다.
-          </p>
+          <p className="user-introduce">강은빈님의 포트폴리오 입니다.</p>
           <div className="user-content">
-            <p>{monthPortfolio.title}</p>
-            <p>{monthPortfolio.introduce}</p>
+            <p>title 입니다.</p>
+            <p>배달의 민족에서 3년차 개발을 하고 있는 xxx입니다.</p>
           </div>
         </S.Content>
       </S.MonthWrapper>

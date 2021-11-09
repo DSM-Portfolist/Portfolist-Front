@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const FieldItemWrapper = styled.div`
-  margin: 0 10px 0 0;
+  margin: 0 10px;
   background: #ff7659;
   border-radius: 20px;
   padding: 0px 20px;

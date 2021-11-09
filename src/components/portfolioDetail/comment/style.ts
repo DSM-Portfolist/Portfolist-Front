@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { mainColor } from "../../../util/css/color/color";
 
 export const CommentWrapper = styled.div`
-  width: 100%;
+  width: 63%;
   min-width: 760px;
   height: 850px;
   margin: 50px auto;

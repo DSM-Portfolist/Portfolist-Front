@@ -9,8 +9,8 @@ interface Props {
 const MoreInfoItem = ({ info }: Props) => {
   return (
     <S.InfoItem>
-      <span>{info.name}</span>
-      <span>{info.content}</span>
+      <span>{info.key}</span>
+      <span>{info.value}</span>
     </S.InfoItem>
   );
 };

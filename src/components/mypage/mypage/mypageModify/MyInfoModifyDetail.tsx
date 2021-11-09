@@ -61,9 +61,9 @@ const MyInfoModifyDetail = (props: Props) => {
         {selectNameArr.map((field: string) => {
           return (
             <FieldItemBox
+              selectNameArr={selectNameArr}
               setSelectIdArr={setSelectIdArr}
               setSelectNameArr={setSelectNameArr}
-              selectNameArr={selectNameArr}
               selectIdArr={selectIdArr}
               fieldItem={fieldItem}
               field={field}

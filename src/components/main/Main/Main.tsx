@@ -1,11 +1,4 @@
-import {
-  Header,
-  Banner,
-  List,
-  MonthPortfolio,
-  News,
-  Footer,
-} from "../../index";
+import { Header, Banner, List, MonthPortfolio, News } from "../../index";
 import FilterBar from "./filterBar/FilterBar";
 import Introduce from "./introduce/Introduce";
 import * as S from "./style";
@@ -20,7 +13,6 @@ const Main = () => {
       <MonthPortfolio />
       <Introduce />
       <News />
-      <Footer />
     </S.MainWrapper>
   );
 };
