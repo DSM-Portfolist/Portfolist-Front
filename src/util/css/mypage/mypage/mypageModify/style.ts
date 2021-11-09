@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import arrowImg from "../../../../assets/icon/selectedArrow.svg";
-import { mainColor } from "../../../color/color";
 
 interface ChangeProps {
   isClickPasswordButton: boolean;
@@ -111,7 +110,6 @@ export const MainWrapper = styled.div`
   padding-left: 34px;
   position: relative;
   & h1 {
-    font-family: Noto Sans KR;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
@@ -119,9 +117,6 @@ export const MainWrapper = styled.div`
     color: #000000;
   }
   & p {
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: normal;
     font-size: 28px;
     line-height: 41px;
     color: #000000;
@@ -145,8 +140,6 @@ export const ModifyDetailContainer = styled.form`
   p {
     margin-top: 17px;
     color: #979797;
-    font-style: normal;
-    font-weight: normal;
   }
 `;
 
@@ -221,8 +214,6 @@ export const FieldSelecteWrapper = styled.div`
     appearance: none;
     background: url(${arrowImg}) no-repeat 95% 50%; /* 화살표 모양의 이미지 */
     border-bottom: 3px #ff7659 solid;
-    font-style: normal;
-    font-weight: normal;
     font-size: 17px;
     line-height: 23px;
     color: #000000;
@@ -267,16 +258,14 @@ export const FieldWrapper = styled.div`
   width: 100%;
   margin-top: 23px;
   & span {
-    font-style: normal;
-    font-weight: normal;
     font-size: 20px;
     line-height: 23px;
     color: #000000;
   }
-  & span:first-child {
+  & span:nth-of-type(1) {
     font-weight: bold;
   }
-  & span:nth-child(n + 2) {
+  & span:nth-of-type(n + 2) {
     margin-left: 5px;
   }
 `;
@@ -455,7 +444,7 @@ export const ModalBox = styled.div`
     color: rgba(0, 0, 0, 0.45);
     margin-left: 40px;
   }
-  & p:nth-child(3) {
+  & p:nth-of-type(3) {
     margin-bottom: 30px;
   }
   .passwordInputWrapper {

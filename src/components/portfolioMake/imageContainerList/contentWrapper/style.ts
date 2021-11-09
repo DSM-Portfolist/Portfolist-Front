@@ -43,8 +43,6 @@ export const ContentContainer = styled.div`
     }
   }
   .addContent {
-    font-style: normal;
-    font-weight: normal;
     font-size: 12px;
     color: #bbbbbb;
     cursor: pointer;

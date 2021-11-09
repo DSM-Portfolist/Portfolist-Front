@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { mainColor } from "../../color/color";
 
 export const initA = css`
   text-decoration: none;
@@ -28,11 +29,11 @@ export const column = css`
 
 export const myPageSection = css`
   width: 750px;
-  margin-top: 90px;
+  margin-top: 130px;
 `;
 
 export const portfolioList = css`
-  & > a:nth-child(n + 2) > div {
+  & > a:nth-of-type(n + 2) > div {
     margin-top: 70px;
   }
 `;
@@ -41,15 +42,14 @@ export const sectionTitleWrapper = css`
   width: 100%;
   height: 150px;
   & span {
-    font-family: "Noto Sans KR";
     font-style: normal;
     font-size: 24px;
     line-height: 35px;
   }
-  & span:first-child {
+  & span:first-of-type {
     font-weight: bold;
   }
-  & span:nth-child(2) {
+  & span:nth-of-type(2) {
     font-weight: 500;
   }
 `;
@@ -65,7 +65,6 @@ export const portfolioItem = css`
     object-fit: cover;
   }
   h1 {
-    font-family: Noto Sans KR;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -73,10 +72,8 @@ export const portfolioItem = css`
     margin-top: 28px;
     color: #000000;
   }
+
   #content {
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: normal;
     font-size: 18px;
     line-height: 26px;
     color: #666666;
@@ -86,21 +83,17 @@ export const portfolioItem = css`
 
 export const FieldWrapper = css`
   margin-top: 12px;
+
   & div {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
     height: 30px;
-    border: 1px solid #ff7659;
+    border: 1px solid ${mainColor};
     border-radius: 20px;
     padding: 0 20px 0 20px;
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 29px;
-    color: #ff7659;
-  }
-  & div:nth-child(n + 2) {
-    margin-left: 10px;
+    font-size: 16px;
+    color: ${mainColor};
   }
 `;
 
@@ -118,28 +111,23 @@ export const portfolioItemUnderBar = css`
     object-fit: cover;
     margin-right: 5px;
   }
-  p:nth-child(2) {
+  p:nth-of-type(2) {
     display: inline;
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: normal;
     font-size: 18px;
     line-height: 26px;
     color: #000000;
   }
   div span {
     justify-self: flex-end;
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: normal;
+
     font-size: 18px;
     line-height: 26px;
     color: #666666;
   }
-  div span:nth-child(2) {
+  div span:nth-of-type(2) {
     margin-left: 10px;
   }
-  div span:nth-child(3) {
+  div span:nth-of-type(3) {
     margin-left: 20px;
   }
 `;

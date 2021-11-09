@@ -12,8 +12,6 @@ export const InputWrapper = styled.div`
   position: relative;
   .Title {
     width: 100%;
-    font-style: normal;
-    font-weight: normal;
     font-size: 35px;
     color: #000000;
   }
@@ -30,9 +28,6 @@ export const InputWrapper = styled.div`
   }
   span {
     position: absolute;
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: normal;
     font-size: 20px;
     color: #ff7878;
   }

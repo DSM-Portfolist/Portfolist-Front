@@ -22,16 +22,12 @@ export const profileWrapper = css`
   width: 100%;
   margin: 0 0 10px 50px;
   & h1 {
-    font-family: "Noto Sans KR";
     font-style: normal;
     font-weight: bold;
     font-size: 44px;
     line-height: 70px;
   }
   & #introduce {
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: normal;
     font-size: 24px;
     line-height: 41px;
   }
@@ -43,7 +39,6 @@ export const profileBottom = css`
   position: relative;
   align-items: center;
   & h3 {
-    font-family: "Noto Sans KR";
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -51,9 +46,6 @@ export const profileBottom = css`
     margin-right: 5px;
   }
   & p {
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: normal;
     font-size: 18px;
     line-height: 23px;
     margin-right: 15px;
@@ -72,7 +64,6 @@ export const profileBottom = css`
     box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
     color: white;
     cursor: pointer;
-    font-family: Noto Sans KR;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;

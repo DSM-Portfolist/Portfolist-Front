@@ -13,11 +13,16 @@ import {
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import PortfolioList from "../PortfolioList/PortfolioList";
 import { Header } from "../..";
+import { useRecoilValue } from "recoil";
+import { myPortfolioListSelector } from "../../../modules/atom/userpage/mypage";
+import { MyPortfolioType } from "../../../util/interface/MyPage/myPortfolioType";
 
 const MyPage = () => {
   const [isClickMyPortfolio, setIsClickMyPortfolio] = useState<boolean>(true);
   const [isClickMyTouching, setIsClickMyTouching] = useState<boolean>(false);
-  console.log(isClickMyPortfolio, isClickMyTouching);
+  const myPorfolioList = useRecoilValue(myPortfolioListSelector);
+
+  console.log(myPorfolioList);
 
   const onClickEvent = (e: any) => {
     const { innerHTML } = e.target;
@@ -46,10 +51,14 @@ const MyPage = () => {
               <h1 onClick={onClickEvent}>나의 터칭</h1>
             </NavWrapper>
           </div>
-          <PortfolioList
-            isClickMyPortfolio={isClickMyPortfolio}
-            isClickMyTouching={isClickMyTouching}
-          />
+          {myPorfolioList.map((portfolio: MyPortfolioType, index) => (
+            <PortfolioList
+              key={index}
+              portfolio={portfolio}
+              isClickMyPortfolio={isClickMyPortfolio}
+              isClickMyTouching={isClickMyTouching}
+            />
+          ))}
         </article>
       </section>
     </div>
