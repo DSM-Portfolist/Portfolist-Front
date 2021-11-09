@@ -1,7 +1,16 @@
 import styled from "@emotion/styled";
 
 export const NoticeItem = styled.div`
-  padding: 10px;
+  padding: 9px;
+  position: relative;
+  margin: 10px;
+
+  img {
+    position: absolute;
+    z-index: 3;
+    top: -5px;
+    left: 1px;
+  }
 `;
 
 export const Content = styled.span`

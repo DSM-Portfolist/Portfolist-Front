@@ -1,4 +1,4 @@
-import { atom, selector, selectorFamily } from "recoil";
+import { atom, selector } from "recoil";
 import { portfolioId } from "..";
 import { getPortfolio } from "../../../../util/api/portfolio/portfolio";
 import { PortfolioType } from "../../../../util/interface/portfolio/portfolioDetailType";
