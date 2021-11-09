@@ -4,7 +4,7 @@ export const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 42%;
+  width: 300px;
   label {
     cursor: pointer;
     width: 300px;
