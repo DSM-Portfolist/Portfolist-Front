@@ -1,15 +1,18 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
 import { NoticeMent } from "../../../../../hook/noticeMentHook";
-import { notificationSelector } from "../../../../../modules/selector/mainpage";
 import { NewIcon } from "../../../../../util/assets";
 import * as S from "./style";
 
-const NoticeItem = () => {
+interface Props {
+  name: string;
+  type: string;
+}
+
+const NoticeItem = ({ name, type }: Props) => {
   return (
     <S.NoticeItem>
       <img src={NewIcon} alt="new 아이콘" />
-      <S.Content>{NoticeMent("TOUCHING", "곽도현")}</S.Content>
+      <S.Content>{NoticeMent(type, name)}</S.Content>
     </S.NoticeItem>
   );
 };
