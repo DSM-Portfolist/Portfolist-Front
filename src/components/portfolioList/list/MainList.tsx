@@ -1,56 +1,42 @@
 import React from "react";
 import * as S from "./style";
 import { Search, ListItem } from "../..";
-import { useMutation, useQuery } from "react-query";
-import axios from "axios";
-import { MAINURL } from "../../../util/api/index";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
+import { useRecoilValue } from "recoil";
+import { getPortListSelector } from "../../../modules/atom/portfolio";
+import { searchValue } from "../../../modules/atom/portfolio/search/index";
 
-interface Props {
-  searchValue: string;
-  setSearchValue: any;
-}
+const MainList = () => {
+  const portfolioList = useRecoilValue(getPortListSelector);
+  const searchContent = useRecoilValue(searchValue);
 
-const MainList = ({ searchValue, setSearchValue }: Props) => {
-  const { isLoading, data } = useQuery("get-list", () =>
-    axios(`${MAINURL}/portfolio/list?page=1&size=5&field=WEB`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem(
-          "access_token_portfolist"
-        )}`,
-      },
-    })
-  );
+  console.log(searchContent.length);
 
   return (
-    <>
-      <S.MainListWrapper className="container">
-        <Search setSearchValue={setSearchValue} />
+    <S.MainListWrapper className="container">
+      <Search />
+      <S.ListWrapper>
+        {portfolioList?.portfolio_list.length === 0 ? (
+          <p className="list-not-comment">작성된 포트폴리오가 없습니다</p>
+        ) : (
+          <>
+            {searchContent.length === 0 ? (
+              ""
+            ) : (
+              <S.SearchContent>{searchContent}의 검색결과...</S.SearchContent>
+            )}
 
-        <S.ListWrapper>
-          {isLoading ? (
-            <div>잠시만 기다려주세요</div>
-          ) : (
-            <>
-              {/*  검색결과가 없으면 */}
-              {searchValue.length === 0 ? (
-                ""
-              ) : (
-                <S.SearchContent>{searchValue}의 검색결과...</S.SearchContent>
+            <S.ListContent>
+              {portfolioList?.portfolio_list.map(
+                (list: PortListType, index: number) => (
+                  <ListItem key={index} list={list} />
+                )
               )}
-              {/* 리스트 띄우기 */}
-              <S.ListContent>
-                {data?.data.portfolio_list.map(
-                  (list: PortListType, index: number) => (
-                    <ListItem key={index} list={list} />
-                  )
-                )}
-              </S.ListContent>
-            </>
-          )}
-        </S.ListWrapper>
-      </S.MainListWrapper>
-    </>
+            </S.ListContent>
+          </>
+        )}
+      </S.ListWrapper>
+    </S.MainListWrapper>
   );
 };
 
