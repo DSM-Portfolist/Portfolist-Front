@@ -1,53 +1,30 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import * as S from "./style";
 import { FieldType } from "../../../util/interface/common";
 import { getFieldSelector } from "../../../modules/atom/portfolio";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { useFieldValue } from "../../../modules/atom/portfolio/search";
 
 interface Props {
   setText: any;
   setArrowSelect: any;
-  setUseField: any;
   arrowSelect: boolean;
-  useField: [];
 }
 
-const FieldSelectItem = ({
-  setText,
-  arrowSelect,
-  setUseField,
-  useField,
-  setArrowSelect,
-}: Props) => {
+const FieldSelectItem = ({ setText, arrowSelect, setArrowSelect }: Props) => {
   const field = useRecoilValue(getFieldSelector);
-  const [isFocusing, setIsFocusing] = useState<boolean>(false);
+  const [useField, setUseField] = useRecoilState(useFieldValue);
   const fieldRef = useRef<any>(null);
 
   function UseFieldAdd(field: any) {
     setUseField(useField.concat(field));
   }
 
-  const focusOn = useCallback(() => {
-    setIsFocusing(true);
-  }, []);
-
-  const focusOff = useCallback(() => {
-    setIsFocusing(false);
-  }, []);
-
-  useEffect(() => {
-    if (isFocusing) {
-      fieldRef.current.focus();
-    }
-  }, [isFocusing]);
-
   return (
     <S.FieldSelectItemWrapper
       arrowSelect={arrowSelect}
       style={arrowSelect ? { height: 200 } : { height: 0 }}
       ref={fieldRef}
-      onBlur={focusOff}
-      onFocus={focusOn}
     >
       {field.map((field: FieldType) => (
         <li
