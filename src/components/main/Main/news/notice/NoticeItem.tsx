@@ -1,5 +1,7 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
 import { NoticeMent } from "../../../../../hook/noticeMentHook";
+import { notificationSelector } from "../../../../../modules/selector/mainpage";
 import { NewIcon } from "../../../../../util/assets";
 import * as S from "./style";
 

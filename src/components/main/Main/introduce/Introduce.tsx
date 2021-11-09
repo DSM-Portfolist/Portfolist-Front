@@ -1,7 +1,10 @@
+import { useHistory } from "react-router";
 import { MainContentItem } from "../../../../util/assets";
 import * as S from "./style";
 
 const Introduce = () => {
+  const history = useHistory();
+
   return (
     <div className="border-bottom">
       <S.IntroduceWrapper>
@@ -46,7 +49,7 @@ const Introduce = () => {
           </div>
         </div>
 
-        <button>시작하기</button>
+        <button onClick={() => history.push("/login")}>시작하기</button>
       </S.IntroduceWrapper>
     </div>
   );

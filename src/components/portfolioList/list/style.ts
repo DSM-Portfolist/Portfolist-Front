@@ -14,6 +14,12 @@ export const ListWrapper = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
+
+  .list-not-comment {
+    color: gray;
+    margin: 30px 0;
+    font-size: 18px;
+  }
 `;
 
 export const ListContent = styled.div`
