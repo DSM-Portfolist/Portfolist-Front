@@ -8,7 +8,7 @@ import { inputDataArrType } from "../../../util/interface/portfolio/portfolioMak
 
 const MoreInfoContainer = () => {
   const [dataArr, setDataArr] = useState<inputDataArrType[]>([
-    { id: "11", name: "", content: "" },
+    { id: "11", key: "", value: "" },
   ]);
 
   const [DatalastId, setDatalastId] = useState<number>(1);
@@ -37,9 +37,9 @@ const MoreInfoContainer = () => {
         console.log(`dataArrid: ${dataArr.id} parent: ${parentClassNameId[0]}`);
         if (dataArr.id === parentClassNameId[0]) {
           if (eventNodeId === "inputName") {
-            return { ...dataArr, name: eventTargetValue };
+            return { ...dataArr, key: eventTargetValue };
           } else {
-            return { ...dataArr, content: eventTargetValue };
+            return { ...dataArr, value: eventTargetValue };
           }
         } else {
           return dataArr;
@@ -52,7 +52,7 @@ const MoreInfoContainer = () => {
     //빈 input 추가 하는 함수
     setDataArr((dataArr: any) => [
       ...dataArr,
-      { id: newId(dataArr.length + 1, 1), name: "", content: "" },
+      { id: newId(dataArr.length + 1, 1), key: "", value: "" },
     ]);
   };
 
@@ -78,24 +78,25 @@ const MoreInfoContainer = () => {
       </div>
       <div className="infoContainer">
         {dataArr.map((dataArr: any, index: number) => {
+          console.log(dataArr.id);
           return (
             <S.InputBox
               key={index}
               onChange={handlerOnChange}
-              className={newId(index + 1, 0)}
+              className={dataArr.id}
             >
               <input
                 type="text"
                 id="inputName"
                 placeholder="ex)email"
-                value={dataArr.name}
+                value={dataArr.key}
               />
               <div></div>
               <input
                 type="text"
                 id="inputContent"
                 placeholder="ex)kub0803@gmail.com"
-                value={dataArr.content}
+                value={dataArr.value}
               />
               <img
                 src={MinusButton}
