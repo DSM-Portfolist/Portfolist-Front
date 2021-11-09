@@ -1,7 +1,9 @@
 import React from "react";
 import { Header, MainList } from "..";
 
-const PortfolioList = () => {
+const PortfolioList = ({ match }: any) => {
+  console.dir(match);
+
   return (
     <>
       <Header />
