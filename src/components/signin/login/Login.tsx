@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useMutation, UseMutationResult } from "react-query";
+import { useCallback, useEffect, useState } from "react";
+import { useMutation } from "react-query";
 import { Link, useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -29,6 +29,12 @@ const Login = () => {
     password: "",
   });
 
+  const onClick = useCallback(() => {
+    window.open(
+      `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=repo:status%20read:repo_hook%20user:email`
+    );
+  }, []);
+
   const refresh_token = localStorage.getItem("refresh_token_portfolist");
 
   const { email, password } = loginInput;
@@ -48,7 +54,7 @@ const Login = () => {
     setTimeout(() => {
       onClientRefresh.mutate();
     }, JWT_EXPIRY_TIME - 1000);
-  }, []);
+  }, [onClientRefresh]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -67,7 +73,7 @@ const Login = () => {
     if (loginNormal.isSuccess) {
       ToastSuccess("로그인에 성공하셨습니다.");
       history.push("/");
-    } else {
+    } else if (loginNormal.isError) {
       ToastError("정보를 다시 입력해주세요");
     }
   };
@@ -114,7 +120,7 @@ const Login = () => {
         </S.InputWrapper>
         <S.ButtonWrapper btnColor={buttonColor}>
           <button className="login-button">login</button>
-          <S.GitBtn>
+          <S.GitBtn onClick={onClick}>
             <img src={Github} alt="깃허브 로고"></img>
             <span>Github 로그인</span>
           </S.GitBtn>

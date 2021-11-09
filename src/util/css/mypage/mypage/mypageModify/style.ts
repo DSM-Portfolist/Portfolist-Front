@@ -21,7 +21,7 @@ export const MypageModifyContainer = styled.div<modalProps>`
 
 export const MainSection = styled.section`
   width: 760px;
-  margin-top: 90px;
+  margin-top: 150px;
 `;
 
 export const MyProfileWrapper = styled.div`

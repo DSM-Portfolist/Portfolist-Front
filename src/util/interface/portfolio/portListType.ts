@@ -1,3 +1,5 @@
+export interface PortListWrapType {}
+
 export interface PortListType {
   date: string;
   field: [];
