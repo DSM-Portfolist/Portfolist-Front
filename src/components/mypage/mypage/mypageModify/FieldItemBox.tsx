@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as S from "../../../../util/css/mypage/mypage/mypageModify/style";
 import { CloseIcon } from "../../../../util/assets";
 
