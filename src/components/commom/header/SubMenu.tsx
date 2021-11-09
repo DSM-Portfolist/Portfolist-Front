@@ -8,12 +8,12 @@ import { Profile } from "../../../util/assets";
 import * as S from "./style";
 
 const SubMenu = () => {
-  const userInfo = useRecoilValue(userInfoSelector);
+  // const userInfo = useRecoilValue(userInfoSelector);
   const [moreItem, setMoreItem] = useRecoilState(subMenu);
 
   return (
     <>
-      <li>반갑습니다. {userInfo.name}님!</li>
+      {/*  <li>반갑습니다. {userInfo.name}님!</li> */}
       <S.NotiWrapper>
         <img
           className="profile-img"
