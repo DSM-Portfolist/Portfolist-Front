@@ -1,39 +1,40 @@
-import React, { useState } from "react";
-import CommentItem from "./CommentItem";
+import React, { useCallback, useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import * as S from "./style";
-import { comments } from "../dummy.json";
+import CommentItem from "./CommentItem";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
-import { ToastSuccess } from "../../../hook/toastHook";
+import { ToastError, ToastSuccess } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getComment, postComment } from "../../../util/api/portfolio/comment";
+import { getCommentList } from "../../../modules/atom/portfolio/comment";
+import { portfolioId } from "../../../modules/atom/portfolio";
 
 const Comment = () => {
+  const id = useRecoilValue(portfolioId);
+  //const comments = useRecoilValue(getCommentList);
   const [commentContent, setCommentContent] = useState<string>("");
-  const [commentList, setCommentList] = useState<CommentType[]>(comments);
+  // const [comments, setComments] = useState<CommentType[]>([]);
+  //const commentRef = useRef(null);
+  const [comments, setComments] = useState<CommentType[]>([]);
 
-  // 댓글 작성
-  function CommentAdd(commentContent: any, e: any) {
-    e.preventDefault();
-    setCommentList(commentList.concat(commentContent));
-    console.log(commentList);
+  function CommentAdd(content: string, id: number) {
+    postComment(id, content)
+      .then(() => {
+        getTest();
+        ToastSuccess("댓글이 작성되었습니다.");
+      })
+      .catch((e) => {});
   }
 
-  // 댓글 삭제
-  function CommentDelete(id: number) {
-    setCommentList(commentList.filter((c_id: any) => c_id.comment_id !== id));
-    ToastSuccess("댓글이 삭제 되었습니다.");
-  }
+  const getTest = useCallback(() => {
+    getComment(id).then((res) => setComments(res.data));
+  }, []);
 
-  // 대댓글 삭제
-  function ReCommentDelete(c_id: number, re_id: number) {
-    console.log(re_id);
-    /* setCommentList(
-      commentList.filter(
-        (r_id: any) =>
-          c_id.comment_id === re_id && r_id.re_comment.re_comment_id !== re_id
-      )
-    ); */
-  }
+  useEffect(() => {
+    getTest();
+    console.log(comments);
+  }, []);
 
   return (
     <>
@@ -44,24 +45,23 @@ const Comment = () => {
             placeholder="댓글을 입력해주세요"
             onChange={(e) => setCommentContent(e.target.value)}
           />
-          <button onClick={(e) => CommentAdd(commentContent, e)}>등록</button>
+          <button onClick={() => CommentAdd(commentContent, id)}>등록</button>
         </S.InputWrapper>
         <S.CommentList>
           <div className="comment-info">
-            <span>댓글 {commentList.length}개</span>
+            <span>댓글 {comments?.length}개</span>
           </div>
         </S.CommentList>
-        {commentList.map((comment: CommentType) => (
-          <CommentItem
-            key={comment.comment_id}
-            comment={comment}
-            setCommentList={setCommentList}
-            CommentDelete={CommentDelete}
-            ReCommentDelete={ReCommentDelete}
-          />
-        ))}
-        {commentList.length === 0 ? <>작성된 댓글이 없습니다.</> : ""}
-        {commentList.length >= 5 ? <S.MoreButton>더보기</S.MoreButton> : ""}
+        {comments?.length === 0 ? (
+          <>작성된 댓글이 없습니다.</>
+        ) : (
+          <>
+            {comments?.map((comment: CommentType) => (
+              <CommentItem key={comment.comment_id} comment={comment} />
+            ))}
+            {comments?.length >= 5 ? <S.MoreButton>더보기</S.MoreButton> : ""}
+          </>
+        )}
       </S.CommentWrapper>
     </>
   );

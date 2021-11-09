@@ -1,17 +1,16 @@
 import React, { useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { searchValue } from "../../../modules/atom/portfolio/search";
 import { Magnifier } from "../../../util/assets";
 import * as S from "./style";
 
-interface Props {
-  setSearchValue: any;
-}
-
-const SearchInput = ({ setSearchValue }: Props) => {
+const SearchInput = () => {
   const [selectText, setSelectText] = useState<boolean>(true);
+  const setSearchContent = useSetRecoilState(searchValue);
 
-  const searchHandler = (e: any) => {
+  const searchHandler = (e: React.KeyboardEvent<HTMLInputElement> | any) => {
     if (e.key === "Enter") {
-      setSearchValue(e.target.value);
+      setSearchContent(e.target.value);
     }
   };
 
