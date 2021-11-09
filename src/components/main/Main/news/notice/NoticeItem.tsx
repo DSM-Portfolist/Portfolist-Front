@@ -12,7 +12,10 @@ const NoticeItem = ({ name, type }: Props) => {
   return (
     <S.NoticeItem>
       <img src={NewIcon} alt="new 아이콘" />
-      <S.Content>{NoticeMent(type, name)}</S.Content>
+      <S.Content>
+        <span>{name}</span>
+        <span>{NoticeMent(type)}</span>
+      </S.Content>
     </S.NoticeItem>
   );
 };

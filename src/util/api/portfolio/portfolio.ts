@@ -1,9 +1,11 @@
 import request from "../index";
 import { token } from "..";
 
-export function getPortfolioList() {
+export function getPortfolioList(field: string[]) {
   return request({
-    url: "/portfolio/list?page=0&size=5&field=",
+    url: `/portfolio/list?page=0&size=5&field=${
+      field === undefined ? "" : field
+    }`,
     method: "get",
     headers: { Authorization: token },
   });
