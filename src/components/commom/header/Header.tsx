@@ -1,20 +1,30 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ToastSuccess } from "../../../hook/toastHook";
-import {
-  Logo,
-  Magnifier,
-  NoNotification,
-  Notification,
-  Profile,
-} from "../../../util/assets";
+import { Logo, Magnifier } from "../../../util/assets";
 import * as S from "./style";
+import SubMenu from "./SubMenu";
+import Notiication from "./Notiication";
+import { useRecoilState } from "recoil";
+import { searchBar } from "../../../modules/atom/header";
 
 const Header = () => {
-  const [notification, setNotification] = useState<boolean>(false);
-  const [magnifier, setMagnifier] = useState<boolean>(false);
-  const [moreItem, setMoreItem] = useState<boolean>(false);
+  const [isFocusing, setIsFocusing] = useRecoilState(searchBar);
+  const searchInputRef = useRef<any>(null);
   const test = true;
+
+  const focusOn = useCallback(() => {
+    setIsFocusing(true);
+  }, [setIsFocusing]);
+
+  const focusOff = useCallback(() => {
+    setIsFocusing(false);
+  }, [setIsFocusing]);
+
+  useEffect(() => {
+    if (isFocusing) {
+      searchInputRef.current.focus();
+    }
+  }, [isFocusing]);
 
   return (
     <>
@@ -39,38 +49,11 @@ const Header = () => {
                     className="magnifier-img"
                     src={Magnifier}
                     alt="검색 아이콘"
-                    onClick={() => setMagnifier(!magnifier)}
+                    onClick={focusOn}
                   />
                 </li>
-                <S.NotiWrapper>
-                  <img
-                    className="noti-img"
-                    src={test ? `${NoNotification}` : `${Notification}`}
-                    alt="알림아이콘"
-                    onClick={() => setNotification(!notification)}
-                  />
-                  <S.Notification
-                    notification={notification}
-                    style={notification ? { height: 200 } : { height: 0 }}
-                  ></S.Notification>
-                </S.NotiWrapper>
-                <li>반갑습니다. 강은빈님!</li>
-                <S.NotiWrapper>
-                  <img
-                    className="profile-img"
-                    src={Profile}
-                    alt="프로필 사진"
-                    onMouseUp={() => setMoreItem(!moreItem)}
-                  />
-                  <S.MoreItem
-                    style={moreItem ? { height: 120 } : { height: 0 }}
-                  >
-                    <Link to="/my-page">내 프로필</Link>
-                    <li onClick={() => ToastSuccess("로그아웃 되었습니다.")}>
-                      로그아웃
-                    </li>
-                  </S.MoreItem>
-                </S.NotiWrapper>
+                <Notiication />
+                <SubMenu />
               </ul>
             </S.Container>
           </>
@@ -82,13 +65,18 @@ const Header = () => {
                 <button>시작하기</button>
               </Link>
             </S.BeforeLoginHeader>
-            ;
           </>
         )}
-        <S.MagnifierWrapper magnifier={magnifier}>
+        <S.MagnifierWrapper isFocusing={isFocusing}>
           <S.Input>
-            <input type="text" placeholder="검색어를 입력해주세요" />
-            <img src={Magnifier} alt="검색 아이콘" />
+            <input
+              type="text"
+              placeholder="검색어를 입력해주세요"
+              onBlur={focusOff}
+              onFocus={focusOn}
+              ref={searchInputRef}
+            />
+            <img src={Magnifier} alt="검색아이콘" />
           </S.Input>
         </S.MagnifierWrapper>
       </S.HeaderWrapper>

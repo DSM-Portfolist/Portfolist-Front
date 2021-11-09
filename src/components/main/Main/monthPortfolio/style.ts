@@ -43,26 +43,26 @@ export const Content = styled.div`
   justify-content: space-between;
 
   .introduce {
-    font-weight: 300;
     font-size: 18px;
     line-height: 26px;
     color: #4e4e4e;
   }
   .user-introduce {
     margin: 40px 0;
-    font-weight: 300;
     font-size: 20px;
+    p {
+      padding-top: 10px;
+    }
   }
 
   .user-content {
     margin: 140px 0;
     font-size: 20px;
-    font-weight: 300;
   }
 
   h2 {
-    font-weight: 400;
-    font-size: 27px;
+    font-weight: 600;
+    font-size: 28px;
     padding-bottom: 10px;
   }
 `;

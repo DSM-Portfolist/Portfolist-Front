@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../../../util/css/color/color";
-import {
-  MagnifierProp,
-  NotificationProp,
-} from "../../../util/interface/main/mainType";
+
+interface Props {
+  isFocusing?: boolean;
+  noti?: boolean;
+}
 
 export const HeaderWrapper = styled.section`
   width: 100%;
@@ -70,11 +71,6 @@ export const Container = styled.div`
       img {
         width: 25px;
       }
-
-      span {
-        font-family: "Prociono", serif;
-        cursor: pointer;
-      }
     }
   }
 `;
@@ -98,18 +94,31 @@ export const NotiWrapper = styled.li`
   }
 `;
 
-export const Notification = styled.div`
+export const Notification = styled.div<Props>`
   width: 350px;
   background: #ffffff;
-  border: ${({ notification }: NotificationProp) =>
-    notification ? "1px solid #eaeaea" : "none"};
+  border: ${({ noti }) => (noti ? "1px solid #eaeaea" : "none")};
   position: absolute;
-  top: 62px;
+  top: 40px;
   right: -30px;
   transition: all 0.5s;
   z-index: 1;
-  overflow: hidden;
+  overflow: auto;
   box-shadow: 0px 7px 6px rgba(164, 164, 164, 0.25);
+  display: flex;
+  flex-direction: column;
+`;
+
+export const NotiMent = styled.div`
+  margin: 7px 10px 0 10px;
+  font-size: 16px;
+  font-family: "NanumSquare";
+  display: flex;
+  flex-direction: row;
+
+  span:nth-child(1) {
+    color: ${mainColor};
+  }
 `;
 
 export const BeforeLoginHeader = styled(Container)`
@@ -149,15 +158,15 @@ export const MoreItem = styled.ul`
   z-index: 1;
 `;
 
-export const MagnifierWrapper = styled.div`
+export const MagnifierWrapper = styled.div<Props>`
   width: 100%;
   height: 80px;
   background-color: ${mainColor};
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: ${({ magnifier }: MagnifierProp) =>
-    magnifier ? `translateY()` : `translateY(-80px)`};
+  transform: ${({ isFocusing }) =>
+    isFocusing ? `translateY()` : `translateY(-80px)`};
   position: absolute;
   transition: transform ease 0.4s;
   z-index: 2;

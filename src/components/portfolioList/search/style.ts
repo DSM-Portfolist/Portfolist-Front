@@ -36,6 +36,7 @@ export const FieldSelectWrapper = styled.div`
     justify-content: space-between;
 
     p {
+      cursor: pointer;
       padding-bottom: 2px;
       width: 100%;
       transition: all 0.3s;
@@ -45,6 +46,7 @@ export const FieldSelectWrapper = styled.div`
 
 export const ArrowImg = styled.img`
   width: 15px;
+
   margin-left: 8px;
   cursor: pointer;
   transition: all 0.5s;
@@ -80,7 +82,8 @@ export const FieldItemWrapper = styled.div`
 
 // 필드 선택 아이템 스타일
 export const FieldSelectItemWrapper = styled.ul`
-  width: 230px;
+  z-index: 2;
+  width: fit-content;
   overflow: auto;
   background: #ffffff;
   box-sizing: border-box;
@@ -94,13 +97,13 @@ export const FieldSelectItemWrapper = styled.ul`
 
   li {
     text-align: center;
-    padding: 3px;
+    padding: 15px 30px;
     cursor: pointer;
   }
 `;
 
 export const SearchInput = styled.div`
-  width: 30%;
+  width: 36%;
   height: 35px;
   border: 2px solid ${mainColor};
   border-radius: 5px;
@@ -109,6 +112,7 @@ export const SearchInput = styled.div`
   justify-content: space-between;
 
   .select-box {
+    width: 50px;
     padding: 8px;
     background-color: ${mainColor};
     cursor: pointer;

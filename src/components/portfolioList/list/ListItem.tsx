@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+import { useMutation } from "react-query";
+import { Link } from "react-router-dom";
+import * as S from "./style";
+import { PortListType } from "../../../util/interface/portfolio/portListType";
 import {
   BeforeTouching,
   Flower,
   Profile,
   Touching,
 } from "../../../util/assets";
-import * as S from "./style";
-import { PortListType } from "../../../util/interface/portfolio/portListType";
-import { Link } from "react-router-dom";
+import {
+  deleteTouching,
+  postTouching,
+} from "../../../util/api/portfolio/useTouching";
 
 interface Prop {
   list: PortListType;
@@ -20,6 +25,9 @@ const Tag = ({ field }: any) => {
 const ListItem = ({ list }: Prop) => {
   const [touchingBoolean, setTouchingBoolean] = useState<boolean>(list.touched);
   const [count, setCount] = useState<number>(list.total_touching);
+
+  const touching = useMutation("touching", postTouching);
+  const untouching = useMutation("untouching", deleteTouching);
 
   function CountChangeHandler(count: number) {
     touchingBoolean ? setCount(count - 1) : setCount(count + 1);
@@ -41,7 +49,7 @@ const ListItem = ({ list }: Prop) => {
       <S.Content touchingBoolean={touchingBoolean}>
         <div className="tag-wrapper">
           <div className="tag">
-            {list.field.map((field, index) => (
+            {list.field.map((field: string, index: number) => (
               <Tag key={index} field={field} />
             ))}
           </div>
@@ -50,9 +58,11 @@ const ListItem = ({ list }: Prop) => {
               src={touchingBoolean ? Touching : BeforeTouching}
               alt="터칭 아이콘"
               onClick={() => {
-                console.log(touchingBoolean);
                 setTouchingBoolean(!touchingBoolean);
                 CountChangeHandler(count);
+                touchingBoolean
+                  ? untouching.mutate(list.id)
+                  : touching.mutate(list.id);
               }}
             />
             <span>{count === 0 ? "0" : count}</span>
