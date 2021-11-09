@@ -19,4 +19,5 @@ export { default as PortfolioDatail } from "./portfolioDetail/PortfolioDetail";
 export { default as Comment } from "./portfolioDetail/comment/Comment";
 export { default as Title } from "./portfolioDetail/items/title/Title";
 export { default as ExperienceList } from "./portfolioDetail/items/experience/ExperienceList";
-export { default as PortfolioMake } from "./portfolioMake/portfolioMake";
+export { default as Footer } from "./commom/footer/Footer";
+export { default as Token } from "./signin/login/Token";
