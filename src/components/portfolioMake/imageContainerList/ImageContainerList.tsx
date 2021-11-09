@@ -1,21 +1,9 @@
 import React, { useState } from "react";
 import * as S from "./style";
 import ImageWrapper from "./imageWrapper/ImageWrapper";
+import ContentWrapper from "./contentWrapper/ContentWrapper";
 
 const ImageContainerList = () => {
-  let formData = new FormData();
-
-  function checkFormData() {
-    //FormData 값 확인하기
-    for (let key of formData.keys()) {
-      console.log(key);
-    }
-    // FormData의 value 확인
-    for (let value of formData.values()) {
-      console.log(value);
-    }
-  }
-
   return (
     <S.MainWrapper className="make-container">
       <header>
@@ -28,8 +16,8 @@ const ImageContainerList = () => {
           placeholder="자신만의 특별한 경험(경력, 인턴, 교육 등)이 있다면 입력해주세요."
         />
         <S.ImageListSection>
-          <ImageWrapper checkFormData={checkFormData} />
-          <S.ContentWrapper></S.ContentWrapper>
+          <ImageWrapper />
+          <ContentWrapper></ContentWrapper>
         </S.ImageListSection>
       </S.ImageWrapeerList>
     </S.MainWrapper>
