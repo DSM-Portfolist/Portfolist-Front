@@ -4,6 +4,7 @@ import {
   getPortfolioList,
 } from "../../../util/api/portfolio/portfolio";
 import { FieldType } from "../../../util/interface/Sign/loginType";
+import { useFieldValue } from "./search";
 
 export const portfolioId = atom<number>({
   key: "portfolioId",
@@ -23,9 +24,9 @@ export const isError = atom<boolean>({
 // 포트폴리오 리스트 가져오기
 export const getPortListSelector = selector({
   key: "portfolioList/get",
-  get: async () => {
-    const res = await getPortfolioList();
-    console.log(res);
+  get: async ({ get }) => {
+    const field = await get(useFieldValue);
+    const res = await getPortfolioList(field);
     return res.data;
   },
 });
