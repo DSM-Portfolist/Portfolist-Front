@@ -1,36 +1,42 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
-import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail/index";
 import { Flower } from "../../../../util/assets";
+import { PortfolioType } from "../../../../util/interface/portfolio/portfolioDetailType";
 import * as S from "./style";
 
+interface Props {
+  portfolio: PortfolioType;
+}
+
 const FieldItem = (field: any) => {
+  console.log(field.field);
   return <S.FieldItemWrapper>{field.field}</S.FieldItemWrapper>;
 };
 
-const Title = () => {
-  const portfolioValue = useRecoilValue(getPortfolioSelecor);
+const Title = ({ portfolio }: Props) => {
+  const list: PortfolioType = portfolio.default;
 
   return (
     <S.TitleWrapper>
       <S.TitleInfo>
         <S.FieldWrapper>
-          {portfolioValue?.field?.map((field: string, index: number) => {
+          {list.field.map((field, index) => {
             return <FieldItem key={index} field={field} />;
           })}
         </S.FieldWrapper>
         <S.DateWrapper>
-          <span>{portfolioValue?.create_date}</span>
+          <span>게시일 2020년 8월 9일</span>
           <div className="user-profile">
-            <span>{portfolioValue?.name}</span>
+            <span>금은동빈빈빈빈빈빈빈</span>
             <img src={Flower} alt="유저 프로필 이미지" />
           </div>
         </S.DateWrapper>
       </S.TitleInfo>
       <S.HeadTitle>
         <span role="img">&#127802;</span>
-        <span className="title">{portfolioValue?.title}</span>
-        <span className="sub-title">{portfolioValue?.introduce}</span>
+        <span className="title">강은빈 (Kang Eun Bin)</span>
+        <span className="sub-title">
+          금처럼 반짝반짝 빛나게 될 강은빈입니다.
+        </span>
       </S.HeadTitle>
     </S.TitleWrapper>
   );

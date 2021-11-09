@@ -1,19 +1,19 @@
+import { UserType } from "../main/userType";
+
 export interface CommentType {
   filter?: any;
-  cdate: string;
-  comment_content: string;
-  comment_id: number;
+  user: UserType;
   is_mine: boolean;
-  name: string;
-  profile_img: string | null;
-  re_comment_list: ReCommentType[];
+  comment_id: number;
+  comment_content: string;
+  c_date: string;
+  re_comment: ReCommentType[];
 }
 
 export interface ReCommentType {
+  user: UserType;
   is_mine: boolean;
-  name: string;
-  profile_img: string | null;
-  rc_date: string;
   re_comment_id: number;
   re_comment_content: string;
+  rc_date: string;
 }
