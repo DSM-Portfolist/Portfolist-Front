@@ -17,7 +17,7 @@ const FieldSelectItem = ({ setText, arrowSelect, setArrowSelect }: Props) => {
   const fieldRef = useRef<any>(null);
 
   function UseFieldAdd(field: any) {
-    setUseField(useField.concat(field));
+    setUseField(useField?.concat(field));
   }
 
   return (

@@ -2,7 +2,6 @@ import request from "../index";
 import { token } from "..";
 
 export function getPortfolioList(field: string[]) {
-  console.log(field);
   return request({
     url: `/portfolio/list?page=0&size=5&field=${
       field === undefined ? "" : field
