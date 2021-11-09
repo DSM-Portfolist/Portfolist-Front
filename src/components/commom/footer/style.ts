@@ -26,21 +26,43 @@ export const FooterWrap = styled.section`
   .developer-container {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: flex-end;
 
-    .icon img {
-      width: 30px;
+    font-weight: 600;
+    margin-top: 5px;
+
+    .developer-info-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      & a img {
+        width: 30px;
+      }
+
+      & ul {
+        margin: 0 0 0 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & a {
+          margin-top: 10px;
+          color: white;
+        }
+      }
     }
 
-    & ul {
-      margin: 0 0 0 50px;
+    .developer-info {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-direction: row;
+      height: fit-content;
 
       & li {
-        font-weight: 600;
-        margin-top: 5px;
+        margin: 0 20px 0 0;
+        height: fit-content;
       }
     }
   }
