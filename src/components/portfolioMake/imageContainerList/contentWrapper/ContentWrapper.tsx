@@ -6,28 +6,33 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ContentWrapper = () => {
-  const [boxData, setBoxData] = useState<any[]>([
+  const [container_text_list, setcontainer_text_list] = useState<any[]>([
     { id: 0, box_title: "", box_content: "" },
   ]);
 
   /* useEffect(() => {
-    console.log(boxData);
-  }, [boxData]);
+    console.log(container_text_list);
+  }, [container_text_list]);
  */
-  const AddBoxData = () => {
+
+  const addContainerText = () => {
     var jbRandom = Math.random();
-    setBoxData([
-      ...boxData,
-      { id: boxData.length + jbRandom, box_title: "", box_content: "" },
+    setcontainer_text_list([
+      ...container_text_list,
+      {
+        id: container_text_list.length + jbRandom,
+        box_title: "",
+        box_content: "",
+      },
     ]);
   };
 
-  const DeleteBoxData = (i: number) => {
-    if (boxData.length === 1) {
+  const DeleteContainerText = (i: number) => {
+    if (container_text_list.length === 1) {
       ToastError("삭제할 수 없습니다");
     } else {
-      setBoxData(
-        boxData?.filter((arrItem: any) => {
+      setcontainer_text_list(
+        container_text_list?.filter((arrItem: any) => {
           console.log(arrItem.id, i);
           return arrItem.id !== i;
         })
@@ -36,8 +41,8 @@ const ContentWrapper = () => {
   };
 
   const handdleOnchange = (e: any, id: number) => {
-    setBoxData(
-      boxData.map((value: any) => {
+    setcontainer_text_list(
+      container_text_list.map((value: any) => {
         if (value.id === id) {
           return { ...value, [e.target.name]: e.target.value };
         } else {
@@ -50,7 +55,7 @@ const ContentWrapper = () => {
   return (
     <S.ContentContainer>
       <ToastContainer />
-      {boxData.map((value: any, index: number) => {
+      {container_text_list.map((value: any, index: number) => {
         return (
           <S.BoxItem>
             <div className="Title">
@@ -66,7 +71,7 @@ const ContentWrapper = () => {
                 src={MinusButton}
                 alt="MinusButton"
                 onClick={() => {
-                  DeleteBoxData(value.id);
+                  DeleteContainerText(value.id);
                 }}
               />
             </div>
@@ -79,10 +84,10 @@ const ContentWrapper = () => {
               }}
               value={value.box_content}
             ></textarea>
-            {index + 1 < boxData.length ? (
+            {index + 1 < container_text_list.length ? (
               ""
             ) : (
-              <span className="addContent" onClick={AddBoxData}>
+              <span className="addContent" onClick={addContainerText}>
                 내용 추가
               </span>
             )}
