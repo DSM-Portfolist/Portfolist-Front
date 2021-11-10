@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
 export const profileHeader = css`
+  padding-bottom: 30px;
   width: 100%;
   height: 177px;
   border-bottom: 2px solid #e7e7e7;

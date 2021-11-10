@@ -1,15 +1,6 @@
 import { css } from "@emotion/react";
 import { mainColor } from "../../color/color";
 
-export const initA = css`
-  text-decoration: none;
-  outline: none;
-  &:hover,
-  a:active {
-    text-decoration: none;
-  }
-`;
-
 export const baseBackground = css`
   height: 200vh;
   overflow-x: hidden;
@@ -20,6 +11,13 @@ export const center = css`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  a {
+    font-weight: 700;
+    font-size: 17px;
+    color: black;
+    margin-left: 10px;
+  }
 `;
 
 export const column = css`
@@ -57,16 +55,17 @@ export const sectionTitleWrapper = css`
 export const portfolioItem = css`
   width: 100%;
   height: 630px;
-  border-bottom: 2px solid #e7e7e7;
+  margin-bottom: 50px;
+  border-bottom: 1px solid #e7e7e7;
+
   img {
     width: 100%;
-    height: 404px;
+    height: 400px;
     background-size: cover;
     object-fit: cover;
   }
+
   h1 {
-    font-style: normal;
-    font-weight: bold;
     font-size: 24px;
     line-height: 35px;
     margin-top: 28px;
@@ -84,15 +83,14 @@ export const portfolioItem = css`
 export const FieldWrapper = css`
   margin-top: 12px;
 
-  & div {
-    display: flex;
-    align-items: center;
+  & span {
     margin-right: 10px;
     height: 30px;
     border: 1px solid ${mainColor};
     border-radius: 20px;
-    padding: 0 20px 0 20px;
+    padding: 10px 20px;
     font-size: 16px;
+    font-weight: 700;
     color: ${mainColor};
   }
 `;
@@ -120,8 +118,7 @@ export const portfolioItemUnderBar = css`
   div span {
     justify-self: flex-end;
 
-    font-size: 18px;
-    line-height: 26px;
+    font-size: 16px;
     color: #666666;
   }
   div span:nth-of-type(2) {
