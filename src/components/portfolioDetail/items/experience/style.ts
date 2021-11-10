@@ -36,7 +36,6 @@ export const ContainerBox = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    font-family: "Noto Sans KR";
 
     .content-box-item {
       display: flex;

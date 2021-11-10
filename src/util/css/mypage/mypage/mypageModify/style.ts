@@ -51,7 +51,7 @@ export const ProfileImageWrapper = styled.div`
     cursor: pointer;
     background: #ff7d64;
     border-radius: 4px;
-    font-family: "Noto Sans KR";
+
     font-style: 500;
     font-size: 18px;
     line-height: 26px;
@@ -61,8 +61,6 @@ export const ProfileImageWrapper = styled.div`
     box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
   }
   & div {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 26px;
@@ -110,7 +108,6 @@ export const MainWrapper = styled.div`
   padding-left: 34px;
   position: relative;
   & h1 {
-    font-style: normal;
     font-weight: bold;
     font-size: 48px;
     line-height: 70px;
@@ -156,7 +153,6 @@ export const ButtonContainer = styled.div`
     background: #c5c5c5;
     border-radius: 5px;
     color: #fff;
-    font-style: normal;
     font-weight: bold;
     font-size: 17px;
   }
@@ -166,7 +162,6 @@ export const ButtonContainer = styled.div`
     background: #ff7d64;
     border-radius: 5px;
     color: #fff;
-    font-style: normal;
     font-weight: bold;
     font-size: 17px;
     line-height: 23px;
@@ -200,7 +195,6 @@ export const FieldSelecteWrapper = styled.div`
   display: flex;
   align-items: center;
   span > b {
-    font-style: normal;
     font-weight: 500;
     font-size: 20px;
     color: #000000;
@@ -233,12 +227,10 @@ export const InputWrapper = styled.div`
     box-sizing: border-box;
     border-radius: 5px;
     padding-left: 11px;
-    font-style: normal;
     font-weight: bold;
     font-size: 22px;
     line-height: 29px;
     &::placeholder {
-      font-style: normal;
       font-weight: bold;
       font-size: 20px;
       color: #949494;
@@ -285,15 +277,12 @@ export const ContentItem = css`
   position: relative;
   & h1 {
     margin-top: 15px;
-    font-family: "Noto Sans KR";
-    font-style: normal;
+
     font-weight: bold;
     font-size: 27px;
     line-height: 35px;
   }
   & p {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 26px;
@@ -302,8 +291,7 @@ export const ContentItem = css`
   }
   & span {
     position: absolute;
-    font-family: "Noto Sans KR";
-    font-style: normal;
+
     font-weight: bold;
     font-size: 20px;
     line-height: 26px;
@@ -327,8 +315,6 @@ export const ChangePasswordWrraper = styled.form<ChangeProps>`
 
 export const PasswordChangeWrapper = styled.div`
   & span {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
@@ -376,8 +362,6 @@ export const ChangePasswordItem = styled.div`
   align-items: center;
   position: relative;
   & h1 {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
     font-size: 21px;
     line-height: 26px;
@@ -393,8 +377,7 @@ export const ChangePasswordItem = styled.div`
     border-radius: 5px;
     text-decoration: none;
     padding-left: 12px;
-    font-family: "Noto Sans KR";
-    font-style: normal;
+
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
@@ -429,7 +412,6 @@ export const ModalBox = styled.div`
   bottom: 0;
   margin: auto auto auto auto;
   & h1 {
-    font-style: normal;
     font-weight: bold;
     font-size: 20px;
     line-height: 29px;
@@ -437,7 +419,6 @@ export const ModalBox = styled.div`
     margin: 30px 0 7px 40px;
   }
   & p {
-    font-style: normal;
     font-weight: 500;
     font-size: 15px;
     line-height: 22px;
@@ -464,7 +445,6 @@ export const ModalBox = styled.div`
       border-radius: 5px;
     }
     span {
-      font-style: normal;
       font-weight: 500;
       font-size: 16px;
       line-height: 23px;

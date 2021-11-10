@@ -12,7 +12,6 @@ export const ContentContainer = styled.div`
     input {
       width: 100%;
       height: 30px;
-      font-style: normal;
       font-weight: 500;
       font-size: 20px;
       color: #000000;

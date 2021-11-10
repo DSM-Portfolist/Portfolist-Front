@@ -40,7 +40,6 @@ export const sectionTitleWrapper = css`
   width: 100%;
   height: 150px;
   & span {
-    font-style: normal;
     font-size: 24px;
     line-height: 35px;
   }
@@ -84,11 +83,10 @@ export const FieldWrapper = css`
   margin-top: 12px;
 
   & span {
+    padding: 7px 20px;
     margin-right: 10px;
-    height: 30px;
     border: 1px solid ${mainColor};
     border-radius: 20px;
-    padding: 10px 20px;
     font-size: 16px;
     font-weight: 700;
     color: ${mainColor};

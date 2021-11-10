@@ -23,7 +23,6 @@ export const profileWrapper = css`
   width: 100%;
   margin: 0 0 10px 50px;
   & h1 {
-    font-style: normal;
     font-weight: bold;
     font-size: 44px;
     line-height: 70px;
@@ -40,7 +39,6 @@ export const profileBottom = css`
   position: relative;
   align-items: center;
   & h3 {
-    font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 23px;
@@ -65,7 +63,7 @@ export const profileBottom = css`
     box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
     color: white;
     cursor: pointer;
-    font-style: normal;
+
     font-weight: 500;
     font-size: 16px;
     line-height: 23px;
