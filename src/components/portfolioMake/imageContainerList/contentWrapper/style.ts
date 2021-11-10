@@ -5,6 +5,12 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   margin: 13px 0 0 40px;
   width: 720px;
+`;
+
+export const BoxItem = styled.div`
+  &:nth-child(n + 2) {
+    margin-top: 10px;
+  }
   .Title {
     display: flex;
     align-items: center;
@@ -19,6 +25,9 @@ export const ContentContainer = styled.div`
     }
     input::placeholder {
       color: #bbbbbb;
+    }
+    img{
+      cursor: pointer;
     }
   }
   .Content {
