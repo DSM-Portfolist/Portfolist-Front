@@ -7,10 +7,12 @@ import {
   portfolioItem,
   FieldWrapper,
   portfolioItemUnderBar,
-  initA,
 } from "../../../util/css/mypage/UserPage/style";
 import { row } from "../../../util/css/signin/style";
-import { MyPortfolioType } from "../../../util/interface/MyPage/myPortfolioType";
+import {
+  MyPortfolioType,
+  MyTouchingPortfolioType,
+} from "../../../util/interface/MyPage/myPortfolioType";
 
 const portfolioItemImage =
   "https://media.vlpt.us/images/devfolio/post/dd4607f8-b6b3-4647-ba53-90d2d45f7d19/velog-thumbnail.png";
@@ -20,16 +22,10 @@ const baseProfileImage =
 interface Props {
   isClickMyPortfolio?: boolean;
   isClickMyTouching?: boolean;
-  portfolio?: MyPortfolioType;
+  portfolio?: MyPortfolioType | MyTouchingPortfolioType;
 }
 
-const PortfolioList = ({
-  isClickMyPortfolio,
-  isClickMyTouching,
-  portfolio,
-}: Props) => {
-  console.log(portfolio);
-
+const PortfolioList = ({ isClickMyPortfolio, portfolio }: Props) => {
   //date문자열 짤라서 가공하는 함수
   function dateSplit(string: string) {
     let dateArray = string.split("-");
@@ -38,29 +34,29 @@ const PortfolioList = ({
   }
 
   return (
-    <Link to="#" css={[initA]}>
-      <div css={[portfolioItem, column]}>
-        <img src={portfolioItemImage} alt="이미지" />
-        <div css={[FieldWrapper, row]}>
-          {portfolio?.field.map((field, index) => (
-            <div key={index}>{field}</div>
-          ))}
+    <div css={[portfolioItem, column]}>
+      <img src={portfolio?.url} alt="이미지" />
+      <div css={[FieldWrapper, row]}>
+        {portfolio?.field.map((field, index) => (
+          <span key={index}>{field}</span>
+        ))}
+      </div>
+      <h1>{portfolio?.title}</h1>
+      <p id="content">{portfolio?.introduce}</p>
+      <div css={[portfolioItemUnderBar, row]}>
+        <div css={[center]}>
+          <img src={portfolio?.user?.profile_img} alt=""></img>
+          <Link to="/user-profile">
+            {isClickMyPortfolio ? "나의 프로필" : `${portfolio?.user?.name}님 `}
+          </Link>
         </div>
-        <h1>{portfolio?.title}</h1>
-        <p id="content">{portfolio?.introduce}</p>
-        <div css={[portfolioItemUnderBar, row]}>
-          <div css={[center]}>
-            <img src={baseProfileImage} alt=""></img>
-            <p>{isClickMyPortfolio ? "나의 프로필" : `님 `}</p>
-          </div>
-          <div>
-            <span>댓글 {portfolio?.comment}</span>
-            <span>터칭 {portfolio?.touching}</span>
-            <span>{dateSplit("2021-10-11")}</span>
-          </div>
+        <div>
+          <span>댓글 {portfolio?.comment}</span>
+          <span>터칭 {portfolio?.touching}</span>
+          <span>{dateSplit("2021-10-11")}</span>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

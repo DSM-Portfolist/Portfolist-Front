@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   baseBackground,
   center,
@@ -13,16 +13,26 @@ import {
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import PortfolioList from "../PortfolioList/PortfolioList";
 import { Header } from "../..";
-import { useRecoilValue } from "recoil";
-import { myPortfolioListSelector } from "../../../modules/atom/userpage/mypage";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  myPortfolioList,
+  myPortfolioListSelector,
+  myTouchingPortfolioSelector,
+} from "../../../modules/atom/userpage/mypage";
 import { MyPortfolioType } from "../../../util/interface/MyPage/myPortfolioType";
 
 const MyPage = () => {
   const [isClickMyPortfolio, setIsClickMyPortfolio] = useState<boolean>(true);
   const [isClickMyTouching, setIsClickMyTouching] = useState<boolean>(false);
-  const myPorfolioList = useRecoilValue(myPortfolioListSelector);
+  const [portfolioList, setPortoflioList] = useRecoilState(myPortfolioList);
+  const myPortfolio = useRecoilValue(myPortfolioListSelector);
+  const touchPorfolio = useRecoilValue(myTouchingPortfolioSelector);
 
-  console.log(myPorfolioList);
+  useEffect(() => {
+    isClickMyPortfolio
+      ? setPortoflioList(myPortfolio)
+      : setPortoflioList(touchPorfolio);
+  }, [isClickMyPortfolio, myPortfolio, setPortoflioList, touchPorfolio]);
 
   const onClickEvent = (e: any) => {
     const { innerHTML } = e.target;
@@ -51,7 +61,7 @@ const MyPage = () => {
               <h1 onClick={onClickEvent}>나의 터칭</h1>
             </NavWrapper>
           </div>
-          {myPorfolioList.map((portfolio: MyPortfolioType, index) => (
+          {portfolioList?.map((portfolio: MyPortfolioType, index) => (
             <PortfolioList
               key={index}
               portfolio={portfolio}
