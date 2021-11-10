@@ -15,3 +15,11 @@ export const getMyTouchingPortfolioList = () => {
     headers: { Authorization: token },
   });
 };
+
+export const getUserPortfolioList = (userId: number) => {
+  return request({
+    url: `/user/porfolio/${userId}`,
+    method: "get",
+    headers: { Authorization: token },
+  });
+};
