@@ -10,8 +10,6 @@ const ImageWrapper = () => {
     { isInFile: false, index: 0 },
   ]);
 
-  console.log(imageList);
-
   function checkFormData() {
     //FormData 값 확인하기
     for (let key of formData.keys()) {
