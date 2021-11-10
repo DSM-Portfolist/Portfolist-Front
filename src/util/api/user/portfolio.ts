@@ -7,3 +7,11 @@ export const getMyPortfolioList = () => {
     headers: { Authorization: token },
   });
 };
+
+export const getMyTouchingPortfolioList = () => {
+  return request({
+    url: "/user/touching?page=0&size=5",
+    method: "get",
+    headers: { Authorization: token },
+  });
+};
