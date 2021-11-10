@@ -50,12 +50,12 @@ const Login = () => {
     axios.post("/refresh", refresh_token).then((res) => console.log(res))
   );
 
-  useEffect(() => {
+  /*   useEffect(() => {
     setTimeout(() => {
       onClientRefresh.mutate();
     }, JWT_EXPIRY_TIME - 1000);
   }, [onClientRefresh]);
-
+ */
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
