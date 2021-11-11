@@ -10,8 +10,6 @@ import { searchBar } from "../../../modules/atom/header";
 const Header = () => {
   const [isFocusing, setIsFocusing] = useRecoilState(searchBar);
   const searchInputRef = useRef<any>(null);
-  const test = true;
-
   const focusOn = useCallback(() => {
     setIsFocusing(true);
   }, [setIsFocusing]);
@@ -29,7 +27,7 @@ const Header = () => {
   return (
     <>
       <S.HeaderWrapper>
-        {test ? (
+        {localStorage.getItem("access_token_portfolist") ? (
           <>
             <S.Container>
               <div className="logo">
