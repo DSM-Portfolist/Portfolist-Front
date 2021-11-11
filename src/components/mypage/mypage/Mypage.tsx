@@ -20,6 +20,7 @@ import {
   myTouchingPortfolioSelector,
 } from "../../../modules/atom/userpage/mypage";
 import { MyPortfolioType } from "../../../util/interface/MyPage/myPortfolioType";
+import { myInfoSelector } from "../../../modules/selector/user";
 
 const MyPage = () => {
   const [isClickMyPortfolio, setIsClickMyPortfolio] = useState<boolean>(true);
@@ -27,6 +28,7 @@ const MyPage = () => {
   const [portfolioList, setPortoflioList] = useRecoilState(myPortfolioList);
   const myPortfolio = useRecoilValue(myPortfolioListSelector);
   const touchPorfolio = useRecoilValue(myTouchingPortfolioSelector);
+  const userInfo = useRecoilValue(myInfoSelector);
 
   useEffect(() => {
     isClickMyPortfolio
@@ -50,7 +52,7 @@ const MyPage = () => {
     <div css={[baseBackground, column]}>
       <Header></Header>
       <section css={[myPageSection]}>
-        <ProfileHeader isMypage={true} />
+        <ProfileHeader userInfo={userInfo} />
         <article>
           <div css={[center, sectionTitleWrapper]}>
             <NavWrapper
@@ -61,14 +63,20 @@ const MyPage = () => {
               <h1 onClick={onClickEvent}>나의 터칭</h1>
             </NavWrapper>
           </div>
-          {portfolioList?.map((portfolio: MyPortfolioType, index) => (
-            <PortfolioList
-              key={index}
-              portfolio={portfolio}
-              isClickMyPortfolio={isClickMyPortfolio}
-              isClickMyTouching={isClickMyTouching}
-            />
-          ))}
+          {portfolioList === [] ? (
+            <span>작성된 포트폴리오가 없습니다.</span>
+          ) : (
+            <>
+              {portfolioList?.map((portfolio: MyPortfolioType, index) => (
+                <PortfolioList
+                  key={index}
+                  portfolio={portfolio}
+                  isClickMyPortfolio={isClickMyPortfolio}
+                  isClickMyTouching={isClickMyTouching}
+                />
+              ))}
+            </>
+          )}
         </article>
       </section>
     </div>
