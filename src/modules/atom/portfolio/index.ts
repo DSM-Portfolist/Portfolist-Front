@@ -21,26 +21,34 @@ export const isError = atom<boolean>({
   default: false,
 });
 
+export const fieldItem = atom<FieldType[]>({
+  key: "field",
+  default: [],
+});
+
 // 포트폴리오 리스트 가져오기
 export const getPortListSelector = selector({
   key: "portfolioList/get",
   get: async ({ get }) => {
-    const field = await get(useFieldValue);
-    const res = await getPortfolioList(field);
-    return res.data;
+    try {
+      const field = await get(useFieldValue);
+      const res = await getPortfolioList(field);
+      return res.data;
+    } catch (e) {
+      throw e;
+    }
   },
-});
-
-export const fieldItem = atom<FieldType[]>({
-  key: "field",
-  default: [],
 });
 
 // 필드 가져오기
 export const getFieldSelector = selector({
   key: "field/get",
   get: async () => {
-    const res = await getField();
-    return res.data;
+    try {
+      const res = await getField();
+      return res.data;
+    } catch (e) {
+      throw e;
+    }
   },
 });
