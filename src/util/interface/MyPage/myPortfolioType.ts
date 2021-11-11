@@ -3,12 +3,12 @@ import { UserType } from "../user";
 export interface MyPortfolioType {
   id: number;
   title: string;
-  comment: number;
+  total_comment: number;
+  total_touching: number;
   date: string | undefined;
   field: string[];
   icon: string;
   introduce: string;
-  touching: number;
   url: string;
   user?: UserType;
 }
@@ -16,12 +16,12 @@ export interface MyPortfolioType {
 export interface MyTouchingPortfolioType {
   id: number;
   title: string;
-  comment: number;
+  total_comment: number;
+  total_touching: number;
   date: string | undefined;
   field: string[];
   icon: string;
   introduce: string;
-  touching: number;
   url: string;
-  user: UserType;
+  user?: UserType;
 }
