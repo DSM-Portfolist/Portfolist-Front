@@ -18,7 +18,7 @@ import {
   myPortfolioList,
   myPortfolioListSelector,
   myTouchingPortfolioSelector,
-} from "../../../modules/atom/userpage/mypage";
+} from "../../../modules/atom/mypage/mypage";
 import { MyPortfolioType } from "../../../util/interface/MyPage/myPortfolioType";
 import { myInfoSelector } from "../../../modules/selector/user";
 
@@ -45,7 +45,6 @@ const MyPage = () => {
       !isClickMyTouching && setIsClickMyTouching(true);
       setIsClickMyPortfolio(false);
     }
-    console.log(e);
   };
 
   return (
