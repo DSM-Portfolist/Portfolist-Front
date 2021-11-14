@@ -9,16 +9,8 @@ const Token = ({ location }: any) => {
   console.dir(code.code);
 
   useEffect(() => {
-    github(code.code)
-      .then((res) => {
-        localStorage.setItem("access_token_portfolist", res.data.access_token);
-        localStorage.setItem(
-          "refresh_token_portfolist",
-          res.data.refresh_token
-        );
-        history.push("/");
-      })
-      .catch((e) => console.log(e));
+    github(code.code);
+    history.push("/");
   }, [code.code, history]);
 
   return <div>hello</div>;
