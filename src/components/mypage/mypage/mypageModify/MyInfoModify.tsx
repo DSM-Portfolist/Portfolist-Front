@@ -1,24 +1,30 @@
-import React, { useState } from "react";
 import {
   MainWrapper,
   FieldWrapper,
 } from "../../../../util/css/mypage/mypage/mypageModify/style";
 import { ModifyPensil } from "../../../../util/assets/index";
 import MyInfoModifyDetail from "./MyInfoModifyDetail";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { myInfoSelector } from "../../../../modules/selector/user";
+import { isModifyModal } from "../../../../modules/atom/mypage";
 
 const MyInfoModify = () => {
-  const [isModify, setIsModify] = useState<boolean>(false);
+  const [isModify, setIsModify] = useRecoilState(isModifyModal);
+  const userInfo = useRecoilValue(myInfoSelector);
+
   return (
     <>
       {!isModify ? (
         <MainWrapper>
-          <h1>침착맨</h1>
-          <p>안녕하세요 저는 침착맨 입니다</p>
+          <h1>{userInfo.name}</h1>
+          <p>{userInfo.introduce}</p>
           <FieldWrapper>
             <span>
               <b>분야</b>
             </span>
-            <span>프론트엔드</span>
+            {userInfo?.field?.map((field, index) => (
+              <span key={index}>{field}</span>
+            ))}
           </FieldWrapper>
           <img
             src={ModifyPensil}
@@ -29,7 +35,7 @@ const MyInfoModify = () => {
           />
         </MainWrapper>
       ) : (
-        <MyInfoModifyDetail setIsModify={setIsModify} />
+        <MyInfoModifyDetail />
       )}
     </>
   );
