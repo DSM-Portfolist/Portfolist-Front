@@ -19,10 +19,7 @@ const UserPage = ({ match }: any) => {
   const userPortfolio = useRecoilValue(
     userPortfolioListSelector(match.params.userId)
   );
-
   const userInfo = useRecoilValue(userInfoSelector(match.params.userId));
-
-  //console.log(userPortfolio);
 
   return (
     <div css={[baseBackground, column]}>
