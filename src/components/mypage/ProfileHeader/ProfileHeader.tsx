@@ -11,6 +11,7 @@ import {
 } from "../../../util/css/mypage/ProfileHeader/style";
 import { center } from "../../../util/css/mypage/mypage/style";
 import { UserInfoType } from "../../../util/interface/user";
+import { token } from "../../../util/api";
 
 interface Props {
   userInfo?: UserInfoType;
@@ -18,7 +19,7 @@ interface Props {
 
 const ProfileHeader = ({ userInfo }: Props) => {
   const baseProfileImage =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYsp-8Rs9T1z7ob8zAKVb5TXQpGNUmVh08kw&usqp=CAU";
+    "https://www.ibossedu.co.kr/template/DESIGN_shared/program/theme/01/THUMBNAIL_60_60_icon_rep_box.gif";
 
   return (
     <header css={profileHeader}>
@@ -52,13 +53,11 @@ const ProfileHeader = ({ userInfo }: Props) => {
             </>
           )}
 
-          {/* {isMypage ? (
+          {token && (
             <Link to="/my-page-modify">
               <button css={[center]}>프로필 수정</button>
             </Link>
-          ) : (
-            ""
-          )} */}
+          )}
         </div>
       </div>
     </header>
