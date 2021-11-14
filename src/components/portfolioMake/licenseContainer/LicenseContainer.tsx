@@ -1,11 +1,8 @@
-import React from 'react';
+import React from "react";
+import * as S from "./style";
 
 const LicenseContainer = () => {
-  return (
-    <div>
-      
-    </div>
-  );
+  return <S.LicenseWrapper className="make-container"></S.LicenseWrapper>;
 };
 
 export default LicenseContainer;
