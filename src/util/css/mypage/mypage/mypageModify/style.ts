@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import arrowImg from "../../../../assets/icon/selectedArrow.svg";
+import { grayColor } from "../../../color/color";
 
 interface ChangeProps {
   isClickPasswordButton: boolean;
@@ -136,7 +137,7 @@ export const ModifyDetailContainer = styled.form`
   padding-left: 34px;
   p {
     margin-top: 17px;
-    color: #979797;
+    color: ${grayColor};
   }
 `;
 
@@ -286,7 +287,7 @@ export const ContentItem = css`
     font-weight: 500;
     font-size: 20px;
     line-height: 26px;
-    color: rgba(0, 0, 0, 0.45);
+    color: ${grayColor};
     margin-top: 25px;
   }
   & span {
@@ -318,7 +319,7 @@ export const PasswordChangeWrapper = styled.div`
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
-    color: #979797;
+    color: ${grayColor};
     margin: 5px 0 0 230px;
   }
 `;
@@ -422,7 +423,7 @@ export const ModalBox = styled.div`
     font-weight: 500;
     font-size: 15px;
     line-height: 22px;
-    color: rgba(0, 0, 0, 0.45);
+    color: ${grayColor};
     margin-left: 40px;
   }
   & p:nth-of-type(3) {
