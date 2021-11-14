@@ -8,6 +8,16 @@ import {
   MyTouchingPortfolioType,
 } from "../../../util/interface/MyPage/myPortfolioType";
 
+export const myName = atom<string>({
+  key: "myName",
+  default: "",
+});
+
+export const myIntroduce = atom<string>({
+  key: "myIntroduce",
+  default: "",
+});
+
 export const myPortfolioList = atom<
   MyPortfolioType[] | MyTouchingPortfolioType[]
 >({
