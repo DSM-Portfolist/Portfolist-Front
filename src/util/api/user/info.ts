@@ -16,11 +16,3 @@ export const getUserInfo = (userId: number) => {
     headers: { Authorization: token },
   });
 };
-
-export const getMyInfo = () => {
-  return request({
-    url: "/user/info",
-    method: "get",
-    headers: { Authorization: token },
-  });
-};
