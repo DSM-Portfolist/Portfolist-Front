@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
 import { grayColor } from "../../../../../util/css/color/color";
 
+interface Props {
+  isClick: boolean;
+}
+
 export const NotificationModuleContainer = styled.section`
   width: 100%;
   height: 120px;
@@ -27,11 +31,12 @@ export const NotificationModuleContainer = styled.section`
   }
 `;
 
-export const ToggleButton = styled.div`
+export const ToggleButton = styled.div<Props>`
   div:nth-child(1) {
     width: 70px;
     height: 35px;
-    background: #ff7d64;
+    background: ${({ isClick }) =>
+      isClick ? "#ff7d64" : "rgb(233, 236, 239)"}; //rgb(233, 236, 239) ff7d64
     border: 1px solid #d4d4d4;
     box-sizing: border-box;
     border-radius: 25.5px;
@@ -42,7 +47,8 @@ export const ToggleButton = styled.div`
     background: #ffffff;
     border-radius: 50px;
     top: 12px;
-    right: 5px; //오른쪽 5px 왼쪽 39px
+    right: ${({ isClick }) =>
+      isClick ? "5px" : "39px"}; //오른쪽 5px 왼쪽 39px
     transition: 0.5s;
   }
 `;
