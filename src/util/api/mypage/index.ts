@@ -46,3 +46,11 @@ export const deleteUser = () => {
     headers: { Authorization: token },
   });
 };
+
+export const getNotificationStatus = () => {
+  return request({
+    url: "/user/notification/status",
+    method: "get",
+    headers: { Authorization: token },
+  });
+};
