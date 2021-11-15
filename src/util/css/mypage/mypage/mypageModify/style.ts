@@ -278,7 +278,6 @@ export const ContentItem = css`
   position: relative;
   & h1 {
     margin-top: 15px;
-
     font-weight: bold;
     font-size: 27px;
     line-height: 35px;
@@ -292,7 +291,6 @@ export const ContentItem = css`
   }
   & span {
     position: absolute;
-
     font-weight: bold;
     font-size: 20px;
     line-height: 26px;
