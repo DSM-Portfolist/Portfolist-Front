@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
+import React from "react";
 import { ContentItem } from "../../../../util/css/mypage/mypage/mypageModify/style";
 
 interface Props {

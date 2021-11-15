@@ -1,4 +1,5 @@
 import { atom, selector } from "recoil";
+import { getNotificationStatus } from "../../../util/api/mypage";
 import {
   getMyPortfolioList,
   getMyTouchingPortfolioList,
@@ -37,5 +38,13 @@ export const myTouchingPortfolioSelector = selector({
   get: async () => {
     const res = await getMyTouchingPortfolioList();
     return res.data.content;
+  },
+});
+
+export const notificationStatus = selector({
+  key: "notificationStatus/get",
+  get: async () => {
+    const res = await getNotificationStatus();
+    return res.data;
   },
 });
