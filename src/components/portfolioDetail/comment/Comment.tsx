@@ -15,16 +15,17 @@ const Comment = ({ match }: any) => {
   const comments = useRecoilValue(commentListSelector(1));
   const [commentContent, setCommentContent] = useState<string>("");
   // const [comments, setComments] = useState<CommentType[]>([]);
-  //const commentRef = useRef(null);
-  //const [comments, setComments] = useState<CommentType[]>([]);
-  //console.dir(match);
+  const commentRef = useRef(null);
 
   function CommentAdd(content: string, id: number) {
-    postComment(id, content)
-      .then(() => {
-        ToastSuccess("댓글이 작성되었습니다.");
-      })
-      .catch((e) => {});
+    if (commentRef) {
+      postComment(id, content)
+        .then(() => {
+          getTest();
+          ToastSuccess("댓글이 작성되었습니다.");
+        })
+        .catch((e) => {});
+    }
   }
 
   /*  const getTest = useCallback(() => {

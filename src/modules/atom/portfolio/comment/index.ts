@@ -18,4 +18,7 @@ export const commentListSelector = selectorFamily<CommentType[], number>({
     const res = await getComment(id);
     return res.data.comments;
   },
+  set: ({ set }, newValue) => {
+    set(commentList, newValue);
+  },
 });
