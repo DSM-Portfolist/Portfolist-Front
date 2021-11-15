@@ -4,7 +4,7 @@ export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 13px 0 0 40px;
-  width: 720px;
+  width: 100%;
 `;
 
 export const BoxItem = styled.div`
@@ -26,7 +26,7 @@ export const BoxItem = styled.div`
     input::placeholder {
       color: #bbbbbb;
     }
-    img{
+    img {
       cursor: pointer;
     }
   }
