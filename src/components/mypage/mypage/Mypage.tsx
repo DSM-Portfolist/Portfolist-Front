@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
+import * as S from "./style";
 import {
   baseBackground,
   center,
@@ -62,8 +63,10 @@ const MyPage = () => {
               <h1 onClick={onClickEvent}>나의 터칭</h1>
             </NavWrapper>
           </div>
-          {portfolioList === [] ? (
-            <span>작성된 포트폴리오가 없습니다.</span>
+          {portfolioList?.length === 0 ? (
+            <S.NotText>
+              <span>작성된 포트폴리오가 없습니다.</span>
+            </S.NotText>
           ) : (
             <>
               {portfolioList?.map((portfolio: MyPortfolioType, index) => (
