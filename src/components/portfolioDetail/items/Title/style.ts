@@ -68,7 +68,7 @@ export const HeadTitle = styled.div`
   flex-direction: column;
   border-bottom: 1px solid #e9e9e9;
 
-  span:nth-child(1) {
+  span:nth-of-type(1) {
     font-size: 60px;
     margin-bottom: 15px;
   }

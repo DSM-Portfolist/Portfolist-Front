@@ -24,8 +24,8 @@ const UserRouter = () => {
         <Route path="/portfolio/:id" component={PortfolioDatail} exact />
         <Route path="/login-github" component={Token} exact />
         <Route path="/my-page" component={MyPage} exact />
-        <Route path="/user-page" component={UserPage} exact />
         <Route path="/my-page-modify" component={MypageModify} exact />
+        <Route path="/user-page/:userId" component={UserPage} exact />
         <Route path="/portfolio-make" component={PortfolioMake} exact />
       </Switch>
     </BrowserRouter>

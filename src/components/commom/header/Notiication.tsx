@@ -22,9 +22,15 @@ const Notiication = () => {
         noti={noti}
         style={noti ? { height: 200 } : { height: 0 }}
       >
-        {notification.map((item, index) => (
-          <NotiItem key={index} name={item.name} type={item.type} />
-        ))}
+        {notification.length === 0 ? (
+          <>알림이 없습니다.</>
+        ) : (
+          <>
+            {notification.map((item, index) => (
+              <NotiItem key={index} name={item.name} type={item.type} />
+            ))}
+          </>
+        )}
       </S.Notification>
     </S.NotiWrapper>
   );

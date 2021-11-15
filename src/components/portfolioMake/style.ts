@@ -7,8 +7,6 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   .caution {
-    font-style: normal;
-    font-weight: normal;
     font-size: 20px;
     color: #848484;
   }

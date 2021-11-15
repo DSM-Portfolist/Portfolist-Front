@@ -22,7 +22,7 @@ export const ImageWrapeerList = styled.div`
   margin-top: 15px;
   .Title {
     width: 100%;
-    font-style: normal;
+   
     font-weight: 500;
     font-size: 22px;
     &::placeholder {

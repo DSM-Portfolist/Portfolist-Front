@@ -31,8 +31,6 @@ export const ImageItem = styled.div`
     margin-top: 13px;
   }
   span {
-    font-style: normal;
-    font-weight: normal;
     font-size: 14px;
     color: #bbbbbb;
     margin-top: 11px;

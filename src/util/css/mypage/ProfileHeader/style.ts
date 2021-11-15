@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
 export const profileHeader = css`
+  padding-bottom: 30px;
   width: 100%;
   height: 177px;
   border-bottom: 2px solid #e7e7e7;
@@ -22,16 +23,11 @@ export const profileWrapper = css`
   width: 100%;
   margin: 0 0 10px 50px;
   & h1 {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: bold;
     font-size: 44px;
     line-height: 70px;
   }
   & #introduce {
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: normal;
     font-size: 24px;
     line-height: 41px;
   }
@@ -43,17 +39,12 @@ export const profileBottom = css`
   position: relative;
   align-items: center;
   & h3 {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 23px;
     margin-right: 5px;
   }
   & p {
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: normal;
     font-size: 18px;
     line-height: 23px;
     margin-right: 15px;
@@ -72,8 +63,7 @@ export const profileBottom = css`
     box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
     color: white;
     cursor: pointer;
-    font-family: Noto Sans KR;
-    font-style: normal;
+
     font-weight: 500;
     font-size: 16px;
     line-height: 23px;

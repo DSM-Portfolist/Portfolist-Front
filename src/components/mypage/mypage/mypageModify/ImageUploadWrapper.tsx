@@ -1,5 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
+import { deleteProfileImage } from "../../../../util/api/mainpage/image";
 import { ProfileImageWrapper } from "../../../../util/css/mypage/mypage/mypageModify/style";
 import { profileImage } from "../../../../util/css/mypage/ProfileHeader/style";
 
@@ -20,6 +22,18 @@ const ImageUploadWrapper = () => {
       console.log(value);
     }
   }
+
+  // 이미지 삭제
+  const deleteImageHandler = () => {
+    try {
+      deleteProfileImage();
+      setIsCustomImage(false);
+      ToastSuccess("프로필 이미지가 삭제되었습니다.");
+    } catch (e) {
+      ToastError("프로필 이미지 삭제를 실패했습니다.");
+      throw new Error("프로필 이미지 삭제를 실패했습니다.");
+    }
+  };
 
   const handleFileOnChange = (e: any) => {
     //이미지 파일 브리뷰
@@ -55,13 +69,7 @@ const ImageUploadWrapper = () => {
         id="input-file"
       />
       <label htmlFor="input-file">이미지 업로드</label>
-      <div
-        onClick={() => {
-          setIsCustomImage(false);
-        }}
-      >
-        기본 이미지 변경
-      </div>
+      <div onClick={deleteImageHandler}>기본 이미지 변경</div>
     </ProfileImageWrapper>
   );
 };
