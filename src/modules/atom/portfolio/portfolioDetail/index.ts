@@ -28,12 +28,14 @@ export const portfoilo = atom<PortfolioType>({
     is_mine: false,
     link: "",
     more_info_list: [{ name: "", content: "" }],
-    name: "",
-    profile_img: "",
+    user: {
+      name: "",
+      profile_img: "",
+      user_id: 0,
+    },
     title: "",
     total_touching: 0,
     touched: false,
-    user_id: 0,
   },
 });
 

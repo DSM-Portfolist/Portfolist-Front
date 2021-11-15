@@ -1,3 +1,5 @@
+import { UserType } from "../user/index";
+
 export interface PortfolioType {
   default?: any;
   portfolio_id: number;
@@ -11,12 +13,10 @@ export interface PortfolioType {
   is_mine: boolean;
   link: string;
   more_info_list: MoreInfoType[];
-  name: string;
-  profile_img: string | null;
   title: string;
   total_touching: number;
   touched: boolean;
-  user_id: number;
+  user: UserType;
 }
 
 export interface CertificateContainerList {
