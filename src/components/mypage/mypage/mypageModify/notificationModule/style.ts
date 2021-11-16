@@ -13,7 +13,7 @@ export const NotificationModuleContainer = styled.section`
   & h1 {
     margin-top: 15px;
     font-weight: bold;
-    font-size: 27px;
+    font-size: 24px;
     line-height: 35px;
   }
   & p {
@@ -32,23 +32,22 @@ export const NotificationModuleContainer = styled.section`
 `;
 
 export const ToggleButton = styled.div<Props>`
-  div:nth-child(1) {
+  div:nth-of-type(1) {
     width: 70px;
     height: 35px;
     background: ${({ isClick }) =>
-      isClick ? "#ff7d64" : "rgb(233, 236, 239)"}; //rgb(233, 236, 239) ff7d64
-    border: 1px solid #d4d4d4;
+      isClick ? "rgb(233, 236, 239)" : "#ff7d64"}; //rgb(233, 236, 239) ff7d64
     box-sizing: border-box;
     border-radius: 25.5px;
   }
-  div:nth-child(2) {
+  div:nth-of-type(2) {
     width: 30px;
     height: 29px;
     background: #ffffff;
     border-radius: 50px;
     top: 12px;
     right: ${({ isClick }) =>
-      isClick ? "5px" : "39px"}; //오른쪽 5px 왼쪽 39px
+      isClick ? "39px" : "5px"}; //오른쪽 5px 왼쪽 39px
     transition: 0.5s;
   }
 `;

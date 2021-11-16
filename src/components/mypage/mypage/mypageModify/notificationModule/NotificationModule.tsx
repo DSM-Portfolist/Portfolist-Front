@@ -1,15 +1,28 @@
 import React, { useState } from "react";
-import { ContentItem } from "../../../../../util/css/mypage/mypage/mypageModify/style";
+import { useRecoilValue } from "recoil";
+import { ToastError, ToastSuccess } from "../../../../../hook/toastHook";
+import { notificationStatus } from "../../../../../modules/atom/mypage/mypage";
+import { putNotification } from "../../../../../util/api/mypage";
 import * as S from "./style";
 
 const NotificationModule = () => {
-  const [isClick, setIsClick] = useState<boolean>(false);
+  const status = useRecoilValue(notificationStatus);
+  const [isClick, setIsClick] = useState<boolean>(status.notification);
 
   const toggleButton = () => {
-    if (isClick) {
-      setIsClick(false);
-    } else {
-      setIsClick(true);
+    try {
+      if (isClick) {
+        setIsClick(false);
+        putNotification(true);
+        ToastSuccess("포트폴리오 알림이 활성화되었습니다.");
+      } else {
+        setIsClick(true);
+        putNotification(false);
+        ToastSuccess("포트폴리오 알림이 비활성화되었습니다.");
+      }
+    } catch (e) {
+      ToastError("실패했습니다.");
+      throw e;
     }
   };
 
