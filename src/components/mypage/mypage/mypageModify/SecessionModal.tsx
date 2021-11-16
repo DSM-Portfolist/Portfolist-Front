@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
-import { deleteUser } from "../../../../util/api/mainpage";
+import { deleteUser } from "../../../../util/api/mypage";
 import * as S from "../../../../util/css/mypage/mypage/mypageModify/style";
 import { ModalButtonWrapper } from "../../../../util/css/mypage/mypage/mypageModify/style";
 

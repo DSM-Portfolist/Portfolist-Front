@@ -3,7 +3,7 @@ import {
   getMonthPortfolio,
   getNotification,
   getRecentPortfolio,
-} from "../../../util/api/mainpage";
+} from "../../../util/api/mypage";
 import {
   monthPortfolioType,
   notificationType,

@@ -5,13 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { FieldType } from "../../../../util/interface/Sign/loginType";
 import FieldItemBox from "./FieldItemBox";
-import { patchUserInfo } from "../../../../util/api/mainpage";
-import {
-  constSelector,
-  useRecoilState,
-  useRecoilValue,
-  useSetRecoilState,
-} from "recoil";
+import { patchUserInfo } from "../../../../util/api/mypage";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { getFieldSelector } from "../../../../modules/atom/portfolio";
 import { isModifyModal } from "../../../../modules/atom/mypage";
 import { myInfoSelector } from "../../../../modules/selector/user";

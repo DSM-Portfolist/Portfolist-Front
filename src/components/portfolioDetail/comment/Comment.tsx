@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import * as S from "./style";
 import CommentItem from "./CommentItem";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
-import { ToastError, ToastSuccess } from "../../../hook/toastHook";
+import { ToastSuccess } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getComment, postComment } from "../../../util/api/portfolio/comment";
@@ -15,16 +15,16 @@ const Comment = ({ match }: any) => {
   const comments = useRecoilValue(commentListSelector(1));
   const [commentContent, setCommentContent] = useState<string>("");
   // const [comments, setComments] = useState<CommentType[]>([]);
-  //const commentRef = useRef(null);
-  //const [comments, setComments] = useState<CommentType[]>([]);
-  //console.dir(match);
+  const commentRef = useRef(null);
 
   function CommentAdd(content: string, id: number) {
-    postComment(id, content)
-      .then(() => {
-        ToastSuccess("댓글이 작성되었습니다.");
-      })
-      .catch((e) => {});
+    if (commentRef) {
+      postComment(id, content)
+        .then(() => {
+          ToastSuccess("댓글이 작성되었습니다.");
+        })
+        .catch((e) => {});
+    }
   }
 
   /*  const getTest = useCallback(() => {

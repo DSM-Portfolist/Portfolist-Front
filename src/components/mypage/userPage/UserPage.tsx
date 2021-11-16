@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
+import * as S from "../mypage/style";
 import {
   myPageSection,
   column,
@@ -31,9 +32,17 @@ const UserPage = ({ match }: any) => {
             <span>{userInfo.name}</span>
             <span>님의 포트폴리오</span>
           </div>
-          {userPortfolio?.map((portfolio, index) => (
-            <PortfolioList key={index} portfolio={portfolio} />
-          ))}
+          {userPortfolio?.length === 0 ? (
+            <S.NotText>
+              <span>작성된 포트폴리오가 없습니다.</span>
+            </S.NotText>
+          ) : (
+            <>
+              {userPortfolio?.map((portfolio, index) => (
+                <PortfolioList key={index} portfolio={portfolio} />
+              ))}
+            </>
+          )}
         </article>
       </section>
     </div>
