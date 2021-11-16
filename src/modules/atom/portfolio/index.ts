@@ -3,6 +3,8 @@ import {
   getField,
   getPortfolioList,
 } from "../../../util/api/portfolio/portfolio";
+import { FieldType } from "../../../util/interface/Sign/loginType";
+import { useFieldValue } from "./search";
 
 export const portfolioId = atom<number>({
   key: "portfolioId",
@@ -48,13 +50,5 @@ export const getFieldSelector = selector({
     } catch (e) {
       throw e;
     }
-  },
-});
-
-export const getFieldSelector = selector({
-  key: "field/get",
-  get: async () => {
-    const res = await getField();
-    return res.data;
   },
 });

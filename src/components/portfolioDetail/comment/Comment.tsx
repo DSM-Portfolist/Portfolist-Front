@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import * as S from "./style";
 import CommentItem from "./CommentItem";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
-import { ToastError, ToastSuccess } from "../../../hook/toastHook";
+import { ToastSuccess } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getComment, postComment } from "../../../util/api/portfolio/comment";
@@ -21,7 +21,6 @@ const Comment = ({ match }: any) => {
     if (commentRef) {
       postComment(id, content)
         .then(() => {
-          getTest();
           ToastSuccess("댓글이 작성되었습니다.");
         })
         .catch((e) => {});
