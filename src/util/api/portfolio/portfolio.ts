@@ -25,3 +25,11 @@ export function getPortfolio(id: number) {
     headers: { Authorization: token },
   });
 }
+
+export function deletePortfolio(id: number) {
+  return request({
+    url: `/portfolio/id`,
+    method: "delete",
+    headers: { Authorization: token },
+  });
+}
