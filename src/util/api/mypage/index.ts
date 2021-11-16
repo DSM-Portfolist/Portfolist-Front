@@ -54,3 +54,33 @@ export const getNotificationStatus = () => {
     headers: { Authorization: token },
   });
 };
+
+export const putNotification = (data: boolean) => {
+  return request({
+    url: "/user/notification",
+    method: "put",
+    headers: { Authorization: token },
+    data: { notification: data },
+  });
+};
+
+export const postPasswordCheck = (password: string) => {
+  return request({
+    url: "/user/password",
+    method: "post",
+    headers: { Authorization: token },
+    data: { now_password: password },
+  });
+};
+
+export const patchPassword = (now_password: any, new_password: any) => {
+  return request({
+    url: "/user/password",
+    method: "patch",
+    headers: { Authorization: token },
+    data: {
+      now_password: now_password.password,
+      new_password: new_password.password,
+    },
+  });
+};
