@@ -279,7 +279,7 @@ export const ContentItem = css`
   & h1 {
     margin-top: 15px;
     font-weight: bold;
-    font-size: 27px;
+    font-size: 24px;
     line-height: 35px;
   }
   & p {
