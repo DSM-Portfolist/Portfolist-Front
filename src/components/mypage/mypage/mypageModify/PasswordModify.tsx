@@ -14,6 +14,7 @@ import {
   PasswordType,
   PasswordData,
 } from "../../../../util/interface/MyPage/infoChangeType";
+import { patchPassword } from "../../../../util/api/mypage";
 
 const PasswordModify = () => {
   const [isClickPasswordButton, setIsClickPasswordButton] =
@@ -42,7 +43,7 @@ const PasswordModify = () => {
   ]);
 
   useEffect(() => {
-    console.log(passwordData);
+    console.log(passwordData[0]);
     if (passwordData[1].password !== passwordData[2].password) {
       /* ToastError("재설정 하는 비밀번호가 다릅니다 "); */
       //test 코드
@@ -51,7 +52,15 @@ const PasswordModify = () => {
 
   const submitHanddleEvent = (e: any) => {
     e.preventDefault();
-    ToastSuccess("완료 버튼 전송");
+    try {
+      patchPassword(passwordData[0], passwordData[2]);
+      ToastSuccess("비밀번호가 수정되었습니다.");
+    } catch (err) {
+      if (e.status === 404) {
+        ToastError("깃허브로 가입된 계정은 비밀번호를 변경이 불가합니다.");
+      }
+      throw err;
+    }
   };
 
   const openButton = () => {
@@ -87,7 +96,6 @@ const PasswordModify = () => {
       return item;
     });
     setPasswordData(newArr);
-    console.log(id);
   };
 
   const handlePasswordType = (id: number) => {
@@ -125,6 +133,7 @@ const PasswordModify = () => {
       >
         {PasswordTitle.map((PasswordTitle, index) => (
           <PasswordChangeBox
+            key={index}
             title={PasswordTitle.title}
             passwordType={passwordType[index].type}
             visible={passwordType[index].visible}
