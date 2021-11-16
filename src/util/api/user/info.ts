@@ -8,3 +8,11 @@ export const getUser = () => {
     headers: { Authorization: token },
   });
 };
+
+export const getUserInfo = (userId: number) => {
+  return request({
+    url: `/info/user/${userId}`,
+    method: "get",
+    headers: { Authorization: token },
+  });
+};

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
-import { Link } from "react-router-dom";
+import * as S from "../mypage/style";
 import {
   myPageSection,
   column,
@@ -10,27 +10,43 @@ import {
 } from "../../../util/css/mypage/UserPage/style";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import PortfolioList from "../PortfolioList/PortfolioList";
+import { Header } from "../..";
+import { useRecoilValue } from "recoil";
+import {
+  userInfoSelector,
+  userPortfolioListSelector,
+} from "../../../modules/atom/userpage/userpage";
+const UserPage = ({ match }: any) => {
+  const userPortfolio = useRecoilValue(
+    userPortfolioListSelector(match.params.userId)
+  );
+  const userInfo = useRecoilValue(userInfoSelector(match.params.userId));
 
-const UserPage = () => {
   return (
     <div css={[baseBackground, column]}>
-      <header></header>
+      <Header></Header>
       <section css={[myPageSection]}>
-        <ProfileHeader isMypage={false} />
+        <ProfileHeader userInfo={userInfo} />
         <article>
           <div css={[center, sectionTitleWrapper]}>
-            <span>침착맨</span>
+            <span>{userInfo.name}</span>
             <span>님의 포트폴리오</span>
           </div>
-          <PortfolioList />
+          {userPortfolio?.length === 0 ? (
+            <S.NotText>
+              <span>작성된 포트폴리오가 없습니다.</span>
+            </S.NotText>
+          ) : (
+            <>
+              {userPortfolio?.map((portfolio, index) => (
+                <PortfolioList key={index} portfolio={portfolio} />
+              ))}
+            </>
+          )}
         </article>
       </section>
     </div>
   );
-};
-
-UserPage.defaultProps = {
-  portfolioArr: [],
 };
 
 export default UserPage;

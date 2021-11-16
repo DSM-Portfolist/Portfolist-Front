@@ -5,7 +5,6 @@ export const MainWrapper = styled.section`
     display: flex;
     align-items: center;
     h1 {
-      font-style: normal;
       font-weight: 500;
       font-size: 20px;
       color: #7c7c7c;
@@ -35,12 +34,11 @@ export const InputBox = styled.div`
   }
   input {
     &::placeholder {
-      font-style: normal;
       font-weight: 500;
       font-size: 18px;
       color: rgba(85, 85, 85, 0.4);
     }
-    font-style: normal;
+
     font-weight: 500;
     font-size: 18px;
     color: #000000;

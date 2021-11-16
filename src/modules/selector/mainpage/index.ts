@@ -3,7 +3,7 @@ import {
   getMonthPortfolio,
   getNotification,
   getRecentPortfolio,
-} from "../../../util/api/mainpage";
+} from "../../../util/api/mypage";
 import {
   monthPortfolioType,
   notificationType,
@@ -13,23 +13,35 @@ import {
 export const monthPortfolioSelector = selector<monthPortfolioType>({
   key: "monthPortfolio/get",
   get: async () => {
-    const res = await getMonthPortfolio();
-    return res.data;
+    try {
+      const res = await getMonthPortfolio();
+      return res.data;
+    } catch (e) {
+      throw e;
+    }
   },
 });
 
 export const recentPortfolioSelector = selector<recentPortfolioType[]>({
   key: "recentPortfolio/get",
   get: async () => {
-    const res = await getRecentPortfolio();
-    return res.data;
+    try {
+      const res = await getRecentPortfolio();
+      return res.data;
+    } catch (e) {
+      throw e;
+    }
   },
 });
 
 export const notificationSelector = selector<notificationType[]>({
   key: "notification/get",
   get: async () => {
-    const res = await getNotification();
-    return res.data;
+    try {
+      const res = await getNotification();
+      return res.data;
+    } catch (e) {
+      throw e;
+    }
   },
 });
