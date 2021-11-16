@@ -1,6 +1,7 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail/index";
+import { deletePortfolio } from "../../../../util/api/portfolio/portfolio";
 import { DefaultImage } from "../../../../util/assets";
 import * as S from "./style";
 
@@ -8,7 +9,7 @@ const FieldItem = (field: any) => {
   return <S.FieldItemWrapper>{field.field}</S.FieldItemWrapper>;
 };
 
-const Title = () => {
+const Title = ({ match }: any) => {
   const portfolioValue = useRecoilValue(getPortfolioSelecor);
 
   return (
@@ -34,6 +35,17 @@ const Title = () => {
           </div>
         </S.DateWrapper>
       </S.TitleInfo>
+      {portfolioValue?.is_mine ? (
+        <S.ModifyWrap>
+          <button onClick={() => deletePortfolio(match.id)}>
+            포트폴리오 수정
+          </button>
+          <button>포트폴리오 삭제</button>
+        </S.ModifyWrap>
+      ) : (
+        ""
+      )}
+
       <S.HeadTitle>
         <span role="img">&#127802;</span>
         <span className="title">{portfolioValue?.title}</span>
