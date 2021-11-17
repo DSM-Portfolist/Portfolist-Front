@@ -1,4 +1,6 @@
-import request, { token } from "../index";
+import request from "../index";
+
+const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 
 export const getMyPortfolioList = () => {
   return request({

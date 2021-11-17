@@ -17,7 +17,7 @@ export const monthPortfolioSelector = selector<monthPortfolioType>({
       const res = await getMonthPortfolio();
       return res.data;
     } catch (e) {
-      throw e;
+      console.log(e);
     }
   },
 });
@@ -29,7 +29,7 @@ export const recentPortfolioSelector = selector<recentPortfolioType[]>({
       const res = await getRecentPortfolio();
       return res.data;
     } catch (e) {
-      throw e;
+      console.log(e);
     }
   },
 });
@@ -41,7 +41,7 @@ export const notificationSelector = selector<notificationType[]>({
       const res = await getNotification();
       return res.data;
     } catch (e) {
-      throw e;
+      console.log(e);
     }
   },
 });

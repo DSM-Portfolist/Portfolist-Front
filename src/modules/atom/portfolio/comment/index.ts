@@ -15,7 +15,11 @@ export const commentContent = atom<string>({
 export const commentListSelector = selectorFamily<CommentType[], number>({
   key: "comments/get",
   get: (id) => async () => {
-    const res = await getComment(id);
-    return res.data.comments;
+    try {
+      const res = await getComment(id);
+      return res.data.comments;
+    } catch (e) {
+      console.log(e);
+    }
   },
 });

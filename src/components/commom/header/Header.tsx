@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Logo, Magnifier } from "../../../util/assets";
 import * as S from "./style";
 import SubMenu from "./SubMenu";
@@ -28,42 +28,38 @@ const Header = () => {
     <>
       <S.HeaderWrapper>
         {localStorage.getItem("access_token_portfolist") ? (
-          <>
-            <S.Container>
-              <div className="logo">
-                <Link to="/">
-                  <img src={Logo} alt="포트폴리스트 로고" />
-                </Link>
-                <Link to="/portfolio-list" className="list-item">
-                  <span>포트폴리오</span>
-                </Link>
-                <Link to="/portfolio-make" className="list-item">
-                  <span>포트폴리오 제작</span>
-                </Link>
-              </div>
-              <ul>
-                <li>
-                  <img
-                    className="magnifier-img"
-                    src={Magnifier}
-                    alt="검색 아이콘"
-                    onClick={focusOn}
-                  />
-                </li>
-                <Notiication />
-                <SubMenu />
-              </ul>
-            </S.Container>
-          </>
-        ) : (
-          <>
-            <S.BeforeLoginHeader>
-              <img src={Logo} alt="포트폴리스트 로고" />
-              <Link to="/login">
-                <button>시작하기</button>
+          <S.Container>
+            <div className="logo">
+              <Link to="/">
+                <img src={Logo} alt="포트폴리스트 로고" />
               </Link>
-            </S.BeforeLoginHeader>
-          </>
+              <Link to="/portfolio-list" className="list-item">
+                <span>포트폴리오</span>
+              </Link>
+              <Link to="/portfolio-make" className="list-item">
+                <span>포트폴리오 제작</span>
+              </Link>
+            </div>
+            <ul>
+              <li>
+                <img
+                  className="magnifier-img"
+                  src={Magnifier}
+                  alt="검색 아이콘"
+                  onClick={focusOn}
+                />
+              </li>
+              <Notiication />
+              <SubMenu />
+            </ul>
+          </S.Container>
+        ) : (
+          <S.BeforeLoginHeader>
+            <img src={Logo} alt="포트폴리스트 로고" />
+            <Link to="/login">
+              <button>시작하기</button>
+            </Link>
+          </S.BeforeLoginHeader>
         )}
         <S.MagnifierWrapper isFocusing={isFocusing}>
           <S.Input>

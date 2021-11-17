@@ -15,7 +15,7 @@ const NewsItem = ({ title }: NewsItemProps) => {
     <S.NewsItemWrapper>
       <S.Title>{title}</S.Title>
       <S.ContentBox>
-        {notification.map((item, index) => (
+        {notification?.map((item, index) => (
           <NoticeItem key={index} name={item.name} type={item.type} />
         ))}
       </S.ContentBox>

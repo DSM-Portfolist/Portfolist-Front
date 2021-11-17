@@ -1,5 +1,6 @@
 import request from "../index";
-import { token } from "..";
+
+const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 
 export function getPortfolioList(field: string[]) {
   return request({
