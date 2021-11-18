@@ -10,10 +10,9 @@ const ContentWrapper = () => {
     { id: 0, box_title: "", box_content: "" },
   ]);
 
-  /* useEffect(() => {
+  useEffect(() => {
     console.log(container_text_list);
   }, [container_text_list]);
- */
 
   const addContainerText = () => {
     var jbRandom = Math.random();
