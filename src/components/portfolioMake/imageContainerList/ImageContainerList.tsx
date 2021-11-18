@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as S from "./style";
 import ImageWrapper from "./imageWrapper/ImageWrapper";
 import ContentWrapper from "./contentWrapper/ContentWrapper";
+import { MinusButton } from "../../../util/assets";
 
 const ImageContainerList = () => {
   const [container_list, setContainerList] = useState<any[]>([
@@ -51,14 +52,17 @@ const ImageContainerList = () => {
         console.log(value);
         return (
           <S.ImageWrapeerList>
-            <input
-              type="text"
-              className="Title"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                onChangeTitle(e, value.id);
-              }}
-              placeholder="자신만의 특별한 경험(경력, 인턴, 교육 등)이 있다면 입력해주세요."
-            />
+            <header>  
+              <input
+                type="text"
+                className="Title"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  onChangeTitle(e, value.id);
+                }}
+                placeholder="자신만의 특별한 경험(경력, 인턴, 교육 등)이 있다면 입력해주세요."
+              />
+              <img src={MinusButton} className="MinusButton" onClick={() => { console.log(`remove Button click!!`)}} alt="" />
+            </header>
             <S.ImageListSection>
               <ImageWrapper />
               <ContentWrapper />
