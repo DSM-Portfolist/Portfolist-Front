@@ -21,11 +21,11 @@ export const InfoItem = styled.div`
     font-size: 16px;
   }
 
-  span:nth-child(1) {
+  span:nth-of-type(1) {
     padding-right: 10px;
   }
 
-  span:nth-child(2) {
+  span:nth-of-type(2) {
     padding-left: 10px;
     border-left: 1px solid #bbbbbb;
   }

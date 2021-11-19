@@ -109,10 +109,16 @@ export const Notification = styled.div<Props>`
   flex-direction: column;
 `;
 
-export const NotiMent = styled.p`
+export const NotiMent = styled.div`
   margin: 7px 10px 0 10px;
   font-size: 16px;
   font-family: "NanumSquare";
+  display: flex;
+  flex-direction: row;
+
+  span:nth-of-type(1) {
+    color: ${mainColor};
+  }
 `;
 
 export const BeforeLoginHeader = styled(Container)`

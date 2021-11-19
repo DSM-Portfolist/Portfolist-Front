@@ -28,12 +28,14 @@ export const portfoilo = atom<PortfolioType>({
     is_mine: false,
     link: "",
     more_info_list: [{ name: "", content: "" }],
-    name: "",
-    profile_img: "",
+    user: {
+      name: "",
+      profile_img: "",
+      user_id: 0,
+    },
     title: "",
     total_touching: 0,
     touched: false,
-    user_id: 0,
   },
 });
 
@@ -45,9 +47,13 @@ export const portField = atom<string[]>({
 export const getPortfolioSelecor = selector<PortfolioType>({
   key: "portfolio/get",
   get: async ({ get }) => {
-    const id = await get(portfolioId);
-    const res = await getPortfolio(id);
-    return res.data;
+    try {
+      const id = await get(portfolioId);
+      const res = await getPortfolio(id);
+      return res.data;
+    } catch (e) {
+      console.log();
+    }
   },
 });
 

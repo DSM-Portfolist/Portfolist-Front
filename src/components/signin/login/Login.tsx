@@ -40,22 +40,33 @@ const Login = () => {
   const { email, password } = loginInput;
 
   const loginNormal = useMutation("login", () =>
-    axios.post(`${MAINURL}/login/normal`, loginInput).then((res) => {
-      localStorage.setItem("access_token_portfolist", res.data.access_token);
-      localStorage.setItem("refresh_token_portfolist", res.data.refresh_token);
-    })
+    axios
+      .post(`${MAINURL}/login/normal`, loginInput)
+      .then((res) => {
+        localStorage.setItem("access_token_portfolist", res.data.access_token);
+        localStorage.setItem(
+          "refresh_token_portfolist",
+          res.data.refresh_token
+        );
+      })
+      .then(() => {
+        history.push("/");
+      })
+      .catch((e) => {
+        throw e;
+      })
   );
 
   const onClientRefresh = useMutation("refresh", () =>
     axios.post("/refresh", refresh_token).then((res) => console.log(res))
   );
 
-  useEffect(() => {
+  /*   useEffect(() => {
     setTimeout(() => {
       onClientRefresh.mutate();
     }, JWT_EXPIRY_TIME - 1000);
   }, [onClientRefresh]);
-
+ */
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 

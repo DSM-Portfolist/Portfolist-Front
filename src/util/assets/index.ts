@@ -23,5 +23,9 @@ export { default as Magnifier } from "./icon/magnifier.svg";
 export { default as ModifyPensil } from "./icon/modifyPensil.svg";
 export { default as Crwon } from "./icon/crwon.png";
 export { default as TestImg } from "./img/testImg.svg";
+export { default as PlusButton } from "./icon/plusButton.svg";
+export { default as MinusButton } from "./icon/minusButton.svg";
 export { default as FooterLogo } from "./icon/FooterLogo.png";
 export { default as FooterGithub } from "./icon/FooterGithub.png";
+export const DefaultImage =
+  "https://www.ibossedu.co.kr/template/DESIGN_shared/program/theme/01/THUMBNAIL_60_60_icon_rep_box.gif";

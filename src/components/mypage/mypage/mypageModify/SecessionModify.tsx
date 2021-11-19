@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
+import React from "react";
 import { ContentItem } from "../../../../util/css/mypage/mypage/mypageModify/style";
 
 interface Props {
@@ -17,7 +17,7 @@ const SecessionModify = ({ setModal, modal }: Props) => {
   };
   return (
     <>
-      <div css={[ContentItem]} style={{ marginBottom: "100px" }}>
+      <div css={[ContentItem]}>
         <h1>portfolist 탈퇴</h1>
         <span onClick={toggleButton}>탈퇴</span>
         <p>
