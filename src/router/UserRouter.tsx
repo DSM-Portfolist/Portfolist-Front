@@ -9,9 +9,6 @@ import {
   PortfolioMake,
   Token,
 } from "../components";
-import MyPage from "../components/mypage/mypage/Mypage";
-import UserPage from "../components/mypage/userPage/UserPage";
-import MypageModify from "../components/mypage/mypage/mypageModify/MypageModify";
 
 const UserRouter = () => {
   return (
