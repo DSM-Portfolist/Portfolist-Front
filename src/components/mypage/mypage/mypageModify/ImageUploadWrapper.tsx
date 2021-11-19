@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { deleteProfileImage } from "../../../../util/api/mainpage/image";
+import { postProfileImage } from "../../../../util/api/mypage/image";
 import { ProfileImageWrapper } from "../../../../util/css/mypage/mypage/mypageModify/style";
 import { profileImage } from "../../../../util/css/mypage/ProfileHeader/style";
 
@@ -23,6 +24,8 @@ const ImageUploadWrapper = () => {
     }
   }
 
+  console.log(imageFile);
+
   // 이미지 삭제
   const deleteImageHandler = () => {
     try {
@@ -31,7 +34,7 @@ const ImageUploadWrapper = () => {
       ToastSuccess("프로필 이미지가 삭제되었습니다.");
     } catch (e) {
       ToastError("프로필 이미지 삭제를 실패했습니다.");
-      throw new Error("프로필 이미지 삭제를 실패했습니다.");
+      console.log(e);
     }
   };
 
@@ -48,6 +51,8 @@ const ImageUploadWrapper = () => {
       checkFormData();
     };
     reader.readAsDataURL(file);
+
+    postProfileImage(file);
   };
 
   return (
