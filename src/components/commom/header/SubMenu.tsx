@@ -18,7 +18,7 @@ const SubMenu = () => {
     <>
       {token && (
         <>
-          <li>반갑습니다. {userInfo.name}님!</li>
+          <li>반갑습니다. {userInfo?.name}님!</li>
           <S.NotiWrapper>
             <img
               className="profile-img"
