@@ -8,6 +8,9 @@ import {
   SignUp,
   PortfolioMake,
   Token,
+  MyPage,
+  MypageModify,
+  UserPage,
 } from "../components";
 
 const UserRouter = () => {
