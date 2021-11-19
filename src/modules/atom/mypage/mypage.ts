@@ -28,23 +28,35 @@ export const myPortfolioList = atom<
 export const myPortfolioListSelector = selector<MyPortfolioType[]>({
   key: "myPortfolioList/get",
   get: async () => {
-    const res = await getMyPortfolioList();
-    return res.data;
+    try {
+      const res = await getMyPortfolioList();
+      return res.data;
+    } catch (e) {
+      console.log(e);
+    }
   },
 });
 
 export const myTouchingPortfolioSelector = selector({
   key: "myTouchingPortfolio/get",
   get: async () => {
-    const res = await getMyTouchingPortfolioList();
-    return res.data.content;
+    try {
+      const res = await getMyTouchingPortfolioList();
+      return res.data.content;
+    } catch (e) {
+      console.log(e);
+    }
   },
 });
 
 export const notificationStatus = selector({
   key: "notificationStatus/get",
   get: async () => {
-    const res = await getNotificationStatus();
-    return res.data;
+    try {
+      const res = await getNotificationStatus();
+      return res.data;
+    } catch (e) {
+      console.log(e);
+    }
   },
 });

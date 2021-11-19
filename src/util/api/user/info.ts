@@ -1,4 +1,6 @@
-import request, { token } from "../index";
+import request from "../index";
+
+const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 
 // 마이페이지 유저 정보
 export const getUser = () => {

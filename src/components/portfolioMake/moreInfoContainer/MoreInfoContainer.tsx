@@ -7,16 +7,16 @@ import "react-toastify/dist/ReactToastify.css";
 import { inputDataArrType } from "../../../util/interface/portfolio/portfolioMakeType";
 
 const MoreInfoContainer = () => {
-  const [dataArr, setDataArr] = useState<inputDataArrType[]>([
+  const [more_info, setMoreInfo] = useState<inputDataArrType[]>([
     { id: "11", key: "", value: "" },
   ]);
 
   const [DatalastId, setDatalastId] = useState<number>(1);
 
   useEffect(() => {
-    console.log(dataArr);
+    console.log(more_info);
     console.log(DatalastId);
-  }, [dataArr]);
+  }, [more_info]);
 
   const newId = (index: number, num: number) => {
     if (num === 1) {
@@ -32,17 +32,19 @@ const MoreInfoContainer = () => {
     let parentClassNameId = event.target.parentElement.className.split(" ");
     let eventNodeId = event.target.id;
     let eventTargetValue = event.target.value;
-    setDataArr(
-      dataArr.map((dataArr: any, index: number) => {
-        console.log(`dataArrid: ${dataArr.id} parent: ${parentClassNameId[0]}`);
-        if (dataArr.id === parentClassNameId[0]) {
+    setMoreInfo(
+      more_info.map((more_info: any, index: number) => {
+        console.log(
+          `dataArrid: ${more_info.id} parent: ${parentClassNameId[0]}`
+        );
+        if (more_info.id === parentClassNameId[0]) {
           if (eventNodeId === "inputName") {
-            return { ...dataArr, key: eventTargetValue };
+            return { ...more_info, key: eventTargetValue };
           } else {
-            return { ...dataArr, value: eventTargetValue };
+            return { ...more_info, value: eventTargetValue };
           }
         } else {
-          return dataArr;
+          return more_info;
         }
       })
     );
@@ -50,7 +52,7 @@ const MoreInfoContainer = () => {
 
   const AddData = () => {
     //빈 input 추가 하는 함수
-    setDataArr((dataArr: any) => [
+    setMoreInfo((dataArr: any) => [
       ...dataArr,
       { id: newId(dataArr.length + 1, 1), key: "", value: "" },
     ]);
@@ -58,11 +60,11 @@ const MoreInfoContainer = () => {
 
   const DeleteData = (id: any) => {
     //특정 input 삭제
-    if (dataArr.length === 1) {
+    if (more_info.length === 1) {
       ToastError("삭제할 수 없습니다");
     } else {
-      setDataArr(
-        dataArr?.filter((arrItem: any) => {
+      setMoreInfo(
+        more_info?.filter((arrItem: any) => {
           return arrItem.id !== id.id;
         })
       );
@@ -77,32 +79,32 @@ const MoreInfoContainer = () => {
         <img src={PlusButton} alt="" onClick={AddData} />
       </div>
       <div className="infoContainer">
-        {dataArr.map((dataArr: any, index: number) => {
-          console.log(dataArr.id);
+        {more_info.map((more_info: any, index: number) => {
+          console.log(more_info.id);
           return (
             <S.InputBox
               key={index}
               onChange={handlerOnChange}
-              className={dataArr.id}
+              className={more_info.id}
             >
               <input
                 type="text"
                 id="inputName"
                 placeholder="ex)email"
-                value={dataArr.key}
+                value={more_info.key}
               />
               <div></div>
               <input
                 type="text"
                 id="inputContent"
                 placeholder="ex)kub0803@gmail.com"
-                value={dataArr.value}
+                value={more_info.value}
               />
               <img
                 src={MinusButton}
                 alt=""
                 onClick={() => {
-                  DeleteData(dataArr);
+                  DeleteData(more_info);
                 }}
               />
             </S.InputBox>

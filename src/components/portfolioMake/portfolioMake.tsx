@@ -4,6 +4,7 @@ import * as S from "./style";
 import TitleContainer from "./titleContainer/TitleContainer";
 import MoreInfoContainer from "./moreInfoContainer/MoreInfoContainer";
 import ImageContainerList from "./imageContainerList/ImageContainerList";
+import LicenseContainer from "./licenseContainer/LicenseContainer";
 
 const portfolioMake = () => {
   return (
@@ -17,6 +18,7 @@ const portfolioMake = () => {
         <TitleContainer /> {/* 제목 컴포넌트 */}
         <MoreInfoContainer />{/*이메일이나 깃허브 넣는 컴포넌트*/}
         <ImageContainerList /> {/* 자신의 경험을 넣을 수 있는 이미지 리스트 */}
+        <LicenseContainer /> {/* 자격증을 넣을 수 있는 리스트 */} 
       </S.MainContainer>
     </>
   );

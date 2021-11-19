@@ -4,7 +4,13 @@ export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 13px 0 0 40px;
-  width: 720px;
+  width: 100%;
+`;
+
+export const BoxItem = styled.div`
+  &:nth-child(n + 2) {
+    margin-top: 10px;
+  }
   .Title {
     display: flex;
     align-items: center;
@@ -18,6 +24,9 @@ export const ContentContainer = styled.div`
     }
     input::placeholder {
       color: #bbbbbb;
+    }
+    img {
+      cursor: pointer;
     }
   }
   .Content {

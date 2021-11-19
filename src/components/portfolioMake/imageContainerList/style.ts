@@ -20,6 +20,9 @@ export const MainWrapper = styled.section`
 
 export const ImageWrapeerList = styled.div`
   margin-top: 15px;
+  &:nth-child(n + 2) {
+    margin-top: 30px;
+  }
   .Title {
     width: 100%;
    
