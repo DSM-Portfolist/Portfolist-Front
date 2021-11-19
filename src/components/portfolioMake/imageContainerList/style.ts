@@ -32,6 +32,10 @@ export const ImageWrapeerList = styled.div`
       color: #8b8b8b;
     }
   }
+  .MinusButton{
+    cursor: pointer;
+    margin-right: 25px;
+  }
 `;
 
 export const ImageListSection = styled.section`
