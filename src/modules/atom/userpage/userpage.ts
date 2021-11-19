@@ -14,7 +14,7 @@ export const userPortfolioListSelector = selectorFamily<
       const res = await getUserPortfolioList(userId);
       return res.data;
     } catch (e) {
-      throw e;
+      console.log(e);
     }
   },
 });
@@ -26,7 +26,7 @@ export const userInfoSelector = selectorFamily<UserInfoType, number>({
       const res = await getUserInfo(userId);
       return res.data;
     } catch (e) {
-      throw e;
+      console.log(e);
     }
   },
 });

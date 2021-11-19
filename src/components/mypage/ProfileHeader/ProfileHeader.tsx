@@ -11,13 +11,12 @@ import {
 } from "../../../util/css/mypage/ProfileHeader/style";
 import { center } from "../../../util/css/mypage/mypage/style";
 import { UserInfoType } from "../../../util/interface/user";
-import { token } from "../../../util/api";
-
 interface Props {
   userInfo?: UserInfoType;
 }
 
 const ProfileHeader = ({ userInfo }: Props) => {
+  const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
   const baseProfileImage =
     "https://www.ibossedu.co.kr/template/DESIGN_shared/program/theme/01/THUMBNAIL_60_60_icon_rep_box.gif";
 

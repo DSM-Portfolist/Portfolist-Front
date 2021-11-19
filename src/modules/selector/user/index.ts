@@ -17,8 +17,12 @@ export const userInfoValue = atom<UserInfoType>({
 export const myInfoSelector = selector<UserInfoType>({
   key: "getUser",
   get: async () => {
-    const res = await getUser();
-    return res.data;
+    try {
+      const res = await getUser();
+      return res.data;
+    } catch (e) {
+      console.log(e);
+    }
   },
   set: ({ set }, newValue) => {
     set(userInfoValue, newValue);

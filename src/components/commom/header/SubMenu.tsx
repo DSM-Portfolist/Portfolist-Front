@@ -4,7 +4,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { ToastSuccess } from "../../../hook/toastHook";
 import { subMenu } from "../../../modules/atom/header";
 import { myInfoSelector } from "../../../modules/selector/user";
-import { token } from "../../../util/api";
 import { Profile } from "../../../util/assets";
 import * as S from "./style";
 
@@ -13,12 +12,13 @@ const SubMenu = () => {
   const [moreItem, setMoreItem] = useRecoilState(subMenu);
 
   const history = useHistory();
+  const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 
   return (
     <>
       {token && (
         <>
-          <li>반갑습니다. {userInfo.name}님!</li>
+          <li>반갑습니다. {userInfo?.name}님!</li>
           <S.NotiWrapper>
             <img
               className="profile-img"

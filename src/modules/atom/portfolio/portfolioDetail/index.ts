@@ -47,9 +47,13 @@ export const portField = atom<string[]>({
 export const getPortfolioSelecor = selector<PortfolioType>({
   key: "portfolio/get",
   get: async ({ get }) => {
-    const id = await get(portfolioId);
-    const res = await getPortfolio(id);
-    return res.data;
+    try {
+      const id = await get(portfolioId);
+      const res = await getPortfolio(id);
+      return res.data;
+    } catch (e) {
+      console.log();
+    }
   },
 });
 
