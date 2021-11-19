@@ -24,11 +24,11 @@ const MonthPortfolio = () => {
             여러분들이 선택한 touching 중 이달의 포트폴리오입니다.
           </p>
           <p className="user-introduce">
-            {monthPortfolio.name}님의 포트폴리오 입니다.
+            {monthPortfolio?.name}님의 포트폴리오 입니다.
           </p>
           <div className="user-content">
-            <p>{monthPortfolio.title}</p>
-            <p>{monthPortfolio.introduce}</p>
+            <p>{monthPortfolio?.title}</p>
+            <p>{monthPortfolio?.introduce}</p>
           </div>
         </S.Content>
       </S.MonthWrapper>
