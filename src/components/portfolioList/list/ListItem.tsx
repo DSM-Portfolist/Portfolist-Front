@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import * as S from "./style";
@@ -13,6 +13,7 @@ import {
   deleteTouching,
   postTouching,
 } from "../../../util/api/portfolio/useTouching";
+import { CountChangeHook } from "../../../hook/countChangeHook";
 
 interface Prop {
   list: PortListType;
@@ -28,10 +29,6 @@ const ListItem = ({ list }: Prop) => {
 
   const touching = useMutation("touching", postTouching);
   const untouching = useMutation("untouching", deleteTouching);
-
-  function CountChangeHandler(count: number) {
-    touchingBoolean ? setCount(count - 1) : setCount(count + 1);
-  }
 
   function TextSliceHandler(txt: string, len: number) {
     if (txt.length > len) {
@@ -55,11 +52,11 @@ const ListItem = ({ list }: Prop) => {
           </div>
           <div className="touching">
             <img
-              src={touchingBoolean ? Touching : BeforeTouching}
+              src={touchingBoolean ? `${Touching}` : `${BeforeTouching}`}
               alt="터칭 아이콘"
               onClick={() => {
                 setTouchingBoolean(!touchingBoolean);
-                CountChangeHandler(count);
+                setCount(CountChangeHook(touchingBoolean, count));
                 touchingBoolean
                   ? untouching.mutate(list.id)
                   : touching.mutate(list.id);
