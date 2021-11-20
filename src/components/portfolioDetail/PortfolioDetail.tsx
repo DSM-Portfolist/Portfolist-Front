@@ -3,6 +3,7 @@ import { useSetRecoilState } from "recoil";
 import { Header, Comment, Title, ExperienceList } from "..";
 import { portfolioId } from "../../modules/atom/portfolio";
 import MoreInfo from "./items/moreInfo/MoreInfo";
+import TouchingItem from "./items/touching/TouchingItem";
 import * as S from "./style";
 
 const PortfolioDetail = ({ match }: any) => {
@@ -14,6 +15,7 @@ const PortfolioDetail = ({ match }: any) => {
       <Header />
       <S.DetailWrappper>
         <Title />
+        <TouchingItem />
         <MoreInfo />
         <ExperienceList />
         <Comment />
