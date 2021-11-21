@@ -6,6 +6,7 @@ import * as S from "./style";
 import { useHistory } from "react-router";
 
 const Searchbar = () => {
+  const [selectText, setSelectText] = useState<boolean>(true);
   const [isFocusing, setIsFocusing] = useState<boolean>(false);
   const setSearchContent = useSetRecoilState(searchValue);
   const searchInputRef = useRef<any>(null);
@@ -17,10 +18,6 @@ const Searchbar = () => {
       history.push("/portfolio-list");
     }
   };
-
-  const focusOn = useCallback(() => {
-    setIsFocusing(true);
-  }, []);
 
   const focusOff = useCallback(() => {
     setIsFocusing(false);
@@ -34,6 +31,11 @@ const Searchbar = () => {
   return (
     <S.MagnifierWrapper isFocusing={isFocusing}>
       <S.Input>
+        <div className="select-box">
+          <span onClick={() => setSelectText(!selectText)}>
+            {selectText ? "제목" : "사용자"}
+          </span>
+        </div>
         <input
           type="text"
           placeholder="검색어를 입력해주세요"
