@@ -28,8 +28,8 @@ const TouchingItem = () => {
             setTouchingBoolean(!touchingBoolean);
             setCount(CountChangeHook(touchingBoolean, count));
             touchingBoolean
-              ? touching.mutate(portfolioValue.portfolio_id)
-              : untouching.mutate(portfolioValue.portfolio_id);
+              ? untouching.mutate(portfolioValue.portfolio_id)
+              : touching.mutate(portfolioValue.portfolio_id);
           }}
         >
           <img
