@@ -18,10 +18,6 @@ const Searchbar = () => {
     }
   };
 
-  const focusOn = useCallback(() => {
-    setIsFocusing(true);
-  }, []);
-
   const focusOff = useCallback(() => {
     setIsFocusing(false);
   }, []);

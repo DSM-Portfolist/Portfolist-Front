@@ -2,6 +2,10 @@ import styled from "@emotion/styled";
 import { loginTextColor, mainColor } from "../../../util/css/color/color";
 import { SearchProp } from "../../../util/interface/main/mainType";
 
+interface Props {
+  isFocusing: boolean;
+}
+
 export const SearchWrapper = styled.div`
   width: 100%;
   height: 100px;
@@ -102,14 +106,16 @@ export const FieldSelectItemWrapper = styled.ul`
   }
 `;
 
-export const SearchInput = styled.div`
+export const SearchInput = styled.div<Props>`
   width: 36%;
   height: 35px;
-  border: 2px solid ${mainColor};
+  box-shadow: ${({ isFocusing }) =>
+    isFocusing ? "0 2px 13px #c7c7c7" : "none"};
   border-radius: 5px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  transition: all 0.5s;
 
   .select-box {
     width: 50px;
