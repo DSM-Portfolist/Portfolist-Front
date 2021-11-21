@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import * as S from "./style";
@@ -46,9 +46,15 @@ const ListItem = ({ list }: Prop) => {
       <S.Content touchingBoolean={touchingBoolean}>
         <div className="tag-wrapper">
           <div className="tag">
-            {list.field.map((field: string, index: number) => (
-              <Tag key={index} field={field} />
-            ))}
+            {list.field === null ? (
+              <></>
+            ) : (
+              <>
+                {list?.field.map((field: string, index: number) => (
+                  <Tag key={index} field={field} />
+                ))}
+              </>
+            )}
           </div>
           <div className="touching">
             <img
