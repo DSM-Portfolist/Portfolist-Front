@@ -51,7 +51,7 @@ export const NavWrapper = styled.div<NavWrapperProps>`
     border-bottom: ${(props) =>
       props.isClickMyPortfolio ? "solid 3px #ff7659" : "none"};
   }
-  h1:nth-child(2) {
+  h1:nth-of-type(2) {
     margin-left: 50px;
     color: ${(props) => (props.isClickMyTouching ? "#ff7659" : "#000000")};
     border-bottom: ${(props) =>

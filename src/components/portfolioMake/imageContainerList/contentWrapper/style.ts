@@ -8,7 +8,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const BoxItem = styled.div`
-  &:nth-child(n + 2) {
+  &:nth-of-type(n + 2) {
     margin-top: 10px;
   }
   .Title {

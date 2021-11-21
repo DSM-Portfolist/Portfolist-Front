@@ -20,7 +20,7 @@ export const MainWrapper = styled.section`
 
 export const ImageWrapeerList = styled.div`
   margin-top: 15px;
-  &:nth-child(n + 2) {
+  &:nth-of-type(n + 2) {
     margin-top: 30px;
   }
   .Title {
@@ -32,7 +32,7 @@ export const ImageWrapeerList = styled.div`
       color: #8b8b8b;
     }
   }
-  .MinusButton{
+  .MinusButton {
     cursor: pointer;
     margin-right: 25px;
   }

@@ -276,7 +276,7 @@ export const FieldWrapper = styled.div`
   & span:first-child {
     font-weight: bold;
   }
-  & span:nth-child(n + 2) {
+  & span:nth-of-type(n + 2) {
     margin-left: 5px;
   }
 `;
@@ -455,7 +455,7 @@ export const ModalBox = styled.div`
     color: rgba(0, 0, 0, 0.45);
     margin-left: 40px;
   }
-  & p:nth-child(3) {
+  & p:nth-of-type(3) {
     margin-bottom: 30px;
   }
   .passwordInputWrapper {

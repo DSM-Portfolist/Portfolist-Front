@@ -32,7 +32,7 @@ export const myPageSection = css`
 `;
 
 export const portfolioList = css`
-  & > a:nth-child(n + 2) > div {
+  & > a:nth-of-type(n + 2) > div {
     margin-top: 70px;
   }
 `;
@@ -49,7 +49,7 @@ export const sectionTitleWrapper = css`
   & span:first-child {
     font-weight: bold;
   }
-  & span:nth-child(2) {
+  & span:nth-of-type(2) {
     font-weight: 500;
   }
 `;
@@ -99,7 +99,7 @@ export const FieldWrapper = css`
     line-height: 29px;
     color: #ff7659;
   }
-  & div:nth-child(n + 2) {
+  & div:nth-of-type(n + 2) {
     margin-left: 10px;
   }
 `;
@@ -118,7 +118,7 @@ export const portfolioItemUnderBar = css`
     object-fit: cover;
     margin-right: 5px;
   }
-  p:nth-child(2) {
+  p:nth-of-type(2) {
     display: inline;
     font-family: "Noto Sans KR";
     font-style: normal;
@@ -136,10 +136,10 @@ export const portfolioItemUnderBar = css`
     line-height: 26px;
     color: #666666;
   }
-  div span:nth-child(2) {
+  div span:nth-of-type(2) {
     margin-left: 10px;
   }
-  div span:nth-child(3) {
+  div span:nth-of-type(3) {
     margin-left: 20px;
   }
 `;

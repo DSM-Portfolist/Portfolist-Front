@@ -6,6 +6,7 @@ export const ImageWrapper = styled.div`
   flex-wrap: wrap;
   width: 300px;
   label {
+    display: block;
     cursor: pointer;
     width: 300px;
     height: 190px;
@@ -40,3 +41,6 @@ export const ImageItem = styled.div`
     text-align: center;
   }
 `;
+
+export const ImageContainer = styled.div`
+`
