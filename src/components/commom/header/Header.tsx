@@ -33,7 +33,10 @@ const Header = () => {
               <Link to="/">
                 <img src={Logo} alt="포트폴리스트 로고" />
               </Link>
-              <Link to="/portfolio-list" className="list-item">
+              <Link
+                to="/portfolio-list?page=1&size=10&field=&sort=date,desc&query="
+                className="list-item"
+              >
                 <span>포트폴리오</span>
               </Link>
               <Link to="/portfolio-make" className="list-item">

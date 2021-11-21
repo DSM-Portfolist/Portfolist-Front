@@ -12,6 +12,14 @@ export function getPortfolioList(field: string[]) {
   });
 }
 
+export function getSearch(query: any, type: string) {
+  return request({
+    url: `/portfolio/search?query=${query}&searchType=${type}`,
+    method: "get",
+    headers: { Authorization: token },
+  });
+}
+
 export function getField() {
   return request({
     url: "/field",
