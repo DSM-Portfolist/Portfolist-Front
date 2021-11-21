@@ -41,7 +41,7 @@ export const getPortListSelector = selector<PortListType[]>({
       const res = await getPortfolioList(field);
       return res.data.portfolio_list;
     } catch (e) {
-      throw e;
+      console.log(e);
     }
   },
   set: ({ set }, newValue) => {
