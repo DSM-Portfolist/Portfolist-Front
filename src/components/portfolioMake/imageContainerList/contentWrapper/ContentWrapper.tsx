@@ -4,44 +4,48 @@ import * as S from "./style";
 import { ToastSuccess, ToastError } from "../../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRecoilValue } from "recoil";
+import {
+  box_data,
+  container_text,
+} from "../../../../modules/atom/portfolioPost";
+import { ContainerTextListType } from "../../../../util/interface/portfolioPost/postType";
 
-const ContentWrapper = () => {
-  const [container_text_list, setcontainer_text_list] = useState<any[]>([
-    { id: 0, box_title: "", box_content: "" },
-  ]);
+const ContentWrapper = (props: any) => {
+  const { setContainerList } = props;
+  const defaultBoxData = useRecoilValue(box_data);
+  const [boxData, setboxData] =
+    useState<ContainerTextListType[]>(defaultBoxData);
 
-  useEffect(() => {
-    console.log(container_text_list);
-  }, [container_text_list]);
+  console.log(boxData);
 
   const addContainerText = () => {
     var jbRandom = Math.random();
-    setcontainer_text_list([
-      ...container_text_list,
+    setboxData([
+      ...boxData,
       {
-        id: container_text_list.length + jbRandom,
+        id: boxData.length + jbRandom,
         box_title: "",
         box_content: "",
       },
     ]);
   };
 
-  const DeleteContainerText = (i: number) => {
-    if (container_text_list.length === 1) {
+  const DeleteContainerText = (id: number) => {
+    if (boxData.length === 1) {
       ToastError("삭제할 수 없습니다");
     } else {
-      setcontainer_text_list(
-        container_text_list?.filter((arrItem: any) => {
-          console.log(arrItem.id, i);
-          return arrItem.id !== i;
+      setboxData(
+        boxData?.filter((arrItem: any) => {
+          return arrItem.id !== id;
         })
       );
     }
   };
 
   const handdleOnchange = (e: any, id: number) => {
-    setcontainer_text_list(
-      container_text_list.map((value: any) => {
+    setboxData(
+      boxData.map((value: any, index: number) => {
         if (value.id === id) {
           return { ...value, [e.target.name]: e.target.value };
         } else {
@@ -54,23 +58,24 @@ const ContentWrapper = () => {
   return (
     <S.ContentContainer>
       <ToastContainer />
-      {container_text_list.map((value: any, index: number) => {
+      {boxData?.map((value: any, index: number) => {
+        const { box_title, id, box_content } = value;
         return (
-          <S.BoxItem>
+          <S.BoxItem key={index}>
             <div className="Title">
               <input
                 placeholder="제목을 입력해주세요."
                 name="box_title"
-                value={value.box_title}
+                value={box_title}
                 onChange={(e: any) => {
-                  handdleOnchange(e, value.id);
+                  handdleOnchange(e, id);
                 }}
               />
               <img
                 src={MinusButton}
                 alt="MinusButton"
                 onClick={() => {
-                  DeleteContainerText(value.id);
+                  DeleteContainerText(id);
                 }}
               />
             </div>
@@ -78,12 +83,12 @@ const ContentWrapper = () => {
               placeholder="내용을 입력해주세요."
               className="Content"
               name="box_content"
+              value={box_content}
               onChange={(e: any) => {
-                handdleOnchange(e, value.id);
+                handdleOnchange(e, id);
               }}
-              value={value.box_content}
             ></textarea>
-            {index + 1 < container_text_list.length ? (
+            {index + 1 < boxData.length ? (
               ""
             ) : (
               <span className="addContent" onClick={addContainerText}>
