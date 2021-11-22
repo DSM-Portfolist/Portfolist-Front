@@ -35,8 +35,10 @@ export const BoxItem = styled.div`
     margin-top: 10px;
     color: #000000;
     overflow-y: scroll;
+    overflow-x: hidden;
     width: 100%;
     height: 70px;
+    resize: none;
     &::placeholder {
       color: #bbbbbb;
     }
