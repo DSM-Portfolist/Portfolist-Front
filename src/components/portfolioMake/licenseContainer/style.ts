@@ -5,19 +5,44 @@ export const LicenseWrapper = styled.section`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 10px;
+    .addContent {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      color: #bbbbbb;
+      cursor: pointer;
+      margin-top: 30px;
+    }
   }
+  margin-bottom: 1000px;
+`;
+
+export const MapWrapper = styled.div`
+  &:nth-of-type(2) {
+    margin-top: 15px;
+  }
+  &:nth-of-type(n + 3) {
+    margin-top: 30px;
+  }
+  border: 1px solid #e9e9e9;
+  padding: 30px;
 `;
 
 export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
-  h1 {
+  input {
+    width: 100%;
+    height: 35px;
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
-    color: #7c7c7c;
-    margin-right: 15px;
+    font-size: 24px;
+    margin-right: 5px;
+    color: black;
+    &::placeholder {
+      color: #7c7c7c;
+    }
   }
   img {
     cursor: pointer;
@@ -38,23 +63,52 @@ export const HeaderButton = styled.header`
     font-size: 16px;
     cursor: pointer;
   }
+  .addContent {
+    font-size: 18px;
+    color: #ff7659;
+    cursor: pointer;
+    font-weight: 700;
+  }
 `;
 
 export const InputBox = styled.div`
   display: flex;
   align-items: center;
   padding: 5px 0;
-  input {
+  width: 100%;
+  height: 80px;
+  transition: 0.5s;
+  img {
+    display: none;
+  }
+  &:hover {
+    img {
+      display: flex;
+    }
+  }
+  textarea {
+    width: 95%;
+    font-weight: 500;
+    height: 70px;
+    font-size: 18px;
+    color: #000000;
+    resize: none;
     &::placeholder {
       font-style: normal;
       font-weight: 500;
       font-size: 18px;
       color: rgba(85, 85, 85, 0.4);
     }
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    color: #000000;
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+    &::-webkit-scrollbar-track {
+      display: none;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #ff7659;
+      border-radius: 5px;
+    }
   }
   div {
     width: 1px;

@@ -5,6 +5,7 @@ import { ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CertificateListType } from "../../../util/interface/portfolioPost/postType";
+import deleteButtonX from "../../../util/assets/icon/deleteButtonX.svg";
 
 const LicenseContainer = () => {
   const [certificateList, setCertificateList] = useState<CertificateListType[]>(
@@ -27,24 +28,42 @@ const LicenseContainer = () => {
     <S.LicenseWrapper className="make-container">
       <ToastContainer />
       <S.HeaderButton>
-        <button type="button" onClick={addList}>
-          리스트 추가하기
-        </button>
+        <span className="addContent" onClick={addList}>
+          + Add new list
+        </span>
       </S.HeaderButton>
-      <S.TitleWrapper>
-        <h1>자신이 보유하고 있는 자격증 또는 학력을 적어주세요.</h1>
-        <img src={PlusButton} alt="" />
-      </S.TitleWrapper>
-      <div className="infoContainer">
-        <S.InputBox>
-          <input
-            type="text"
-            id="inputContent"
-            placeholder="내용을 입력해주세요."
-          />
-          <img src={MinusButton} alt="" />
-        </S.InputBox>
-      </div>
+      {certificateList.map(
+        (certificateList: CertificateListType, index: number) => {
+          console.log(certificateList);
+          console.log(index);
+          return (
+            <S.MapWrapper>
+              <S.TitleWrapper>
+                <input type="text" placeholder="제목을 입력해 주세요." />
+                <img
+                  src={deleteButtonX}
+                  style={{ width: "27px", height: "27px", marginLeft: "5px" }}
+                  alt=""
+                />
+              </S.TitleWrapper>
+              <div className="infoContainer">
+                <S.InputBox>
+                  <textarea
+                    id="inputContent"
+                    placeholder="내용을 입력해주세요."
+                  ></textarea>
+                  <img src={MinusButton} alt="" />
+                </S.InputBox>
+                {index + 1 < certificateList.certificate_list.length ? (
+                  ""
+                ) : (
+                  <span className="addContent">내용 추가</span>
+                )}
+              </div>
+            </S.MapWrapper>
+          );
+        }
+      )}
     </S.LicenseWrapper>
   );
 };
