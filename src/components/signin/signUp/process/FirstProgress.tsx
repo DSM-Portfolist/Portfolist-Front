@@ -4,7 +4,7 @@ import { useMutation } from "react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MAINURL } from "../../../../util/api";
-import { CloseEye, Logo, OpenEye, Warning } from "../../../../util/assets";
+import { CloseEye, Logo, OpenEye } from "../../../../util/assets";
 import { mainColor } from "../../../../util/css/color/color";
 import { SignUpType } from "../../../../util/interface/Sign/loginType";
 import { SecProgress, ProgressBar } from "../../../index";

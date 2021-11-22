@@ -14,6 +14,12 @@ export const ListWrapper = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
+
+  .list-not-comment {
+    color: gray;
+    margin: 30px 0;
+    font-size: 18px;
+  }
 `;
 
 export const ListContent = styled.div`
@@ -138,7 +144,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
 
-    a:nth-child(1) {
+    a:nth-of-type(1) {
       font-weight: 700;
       font-size: 16px;
       color: black;

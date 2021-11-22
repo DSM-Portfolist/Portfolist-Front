@@ -71,11 +71,6 @@ export const Container = styled.div`
       img {
         width: 25px;
       }
-
-      span {
-        font-family: "Prociono", serif;
-        cursor: pointer;
-      }
     }
   }
 `;
@@ -108,8 +103,22 @@ export const Notification = styled.div<Props>`
   right: -30px;
   transition: all 0.5s;
   z-index: 1;
-  overflow: hidden;
+  overflow: auto;
   box-shadow: 0px 7px 6px rgba(164, 164, 164, 0.25);
+  display: flex;
+  flex-direction: column;
+`;
+
+export const NotiMent = styled.div`
+  margin: 7px 10px 0 10px;
+  font-size: 16px;
+  font-family: "NanumSquare";
+  display: flex;
+  flex-direction: row;
+
+  span:nth-of-type(1) {
+    color: ${mainColor};
+  }
 `;
 
 export const BeforeLoginHeader = styled(Container)`

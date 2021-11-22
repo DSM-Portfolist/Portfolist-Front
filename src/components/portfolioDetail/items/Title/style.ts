@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mainColor } from "../../../../util/css/color/color";
 
 export const FieldItemWrapper = styled.div`
   margin: 0 10px 0 0;
@@ -21,7 +22,7 @@ export const TitleWrapper = styled.div`
 
 export const TitleInfo = styled.div`
   padding-top: 40px;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -62,13 +63,37 @@ export const DateWrapper = styled.div`
   }
 `;
 
+export const ModifyWrap = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    margin-left: 20px;
+    font-size: 14px;
+    padding: 7px 10px;
+    border: 1px solid ${mainColor};
+    border-radius: 8px;
+    color: ${mainColor};
+    cursor: pointer;
+    background-color: white;
+    transition: all 0.3s;
+
+    :hover {
+      background-color: ${mainColor};
+      color: white;
+    }
+  }
+`;
+
 export const HeadTitle = styled.div`
+  margin: 40px 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #e9e9e9;
 
-  span:nth-child(1) {
+  span:nth-of-type(1) {
     font-size: 60px;
     margin-bottom: 15px;
   }

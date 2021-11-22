@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useMutation, UseMutationResult } from "react-query";
+import { useCallback, useEffect, useState } from "react";
+import { useMutation } from "react-query";
 import { Link, useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -29,27 +29,44 @@ const Login = () => {
     password: "",
   });
 
+  const onClick = useCallback(() => {
+    window.open(
+      `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=repo:status%20read:repo_hook%20user:email`
+    );
+  }, []);
+
   const refresh_token = localStorage.getItem("refresh_token_portfolist");
 
   const { email, password } = loginInput;
 
   const loginNormal = useMutation("login", () =>
-    axios.post(`${MAINURL}/login/normal`, loginInput).then((res) => {
-      localStorage.setItem("access_token_portfolist", res.data.access_token);
-      localStorage.setItem("refresh_token_portfolist", res.data.refresh_token);
-    })
+    axios
+      .post(`${MAINURL}/login/normal`, loginInput)
+      .then((res) => {
+        localStorage.setItem("access_token_portfolist", res.data.access_token);
+        localStorage.setItem(
+          "refresh_token_portfolist",
+          res.data.refresh_token
+        );
+      })
+      .then(() => {
+        history.push("/");
+      })
+      .catch((e) => {
+        throw e;
+      })
   );
 
   const onClientRefresh = useMutation("refresh", () =>
     axios.post("/refresh", refresh_token).then((res) => console.log(res))
   );
 
-  useEffect(() => {
+  /*   useEffect(() => {
     setTimeout(() => {
       onClientRefresh.mutate();
     }, JWT_EXPIRY_TIME - 1000);
-  }, []);
-
+  }, [onClientRefresh]);
+ */
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
@@ -114,7 +131,7 @@ const Login = () => {
         </S.InputWrapper>
         <S.ButtonWrapper btnColor={buttonColor}>
           <button className="login-button">login</button>
-          <S.GitBtn>
+          <S.GitBtn onClick={onClick}>
             <img src={Github} alt="깃허브 로고"></img>
             <span>Github 로그인</span>
           </S.GitBtn>

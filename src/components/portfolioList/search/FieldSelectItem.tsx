@@ -1,37 +1,32 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import * as S from "./style";
-import { useQuery } from "react-query";
-import { getField } from "../../../util/api/portfolio/portfolio";
 import { FieldType } from "../../../util/interface/common";
+import { getFieldSelector } from "../../../modules/atom/portfolio";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { useFieldValue } from "../../../modules/atom/portfolio/search";
 
 interface Props {
   setText: any;
   setArrowSelect: any;
-  setUseField: any;
   arrowSelect: boolean;
-  useField: [];
 }
 
-const FieldSelectItem = ({
-  setText,
-  arrowSelect,
-  setUseField,
-  useField,
-  setArrowSelect,
-}: Props) => {
-  const { data } = useQuery("field", getField);
-  const [isFocusing, setIsFocusing] = useState<boolean>(false);
+const FieldSelectItem = ({ setText, arrowSelect, setArrowSelect }: Props) => {
+  const field = useRecoilValue(getFieldSelector);
+  const [useField, setUseField] = useRecoilState(useFieldValue);
+  const fieldRef = useRef<any>(null);
 
   function UseFieldAdd(field: any) {
-    setUseField(useField.concat(field));
+    setUseField(useField?.concat(field));
   }
 
   return (
     <S.FieldSelectItemWrapper
       arrowSelect={arrowSelect}
       style={arrowSelect ? { height: 200 } : { height: 0 }}
+      ref={fieldRef}
     >
-      {data?.data.map((field: FieldType) => (
+      {field.map((field: FieldType) => (
         <li
           key={field.id}
           onClick={() => {
