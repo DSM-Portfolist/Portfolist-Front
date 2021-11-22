@@ -27,3 +27,4 @@ export { default as PlusButton } from "./icon/plusButton.svg";
 export { default as MinusButton } from "./icon/minusButton.svg";
 export { default as FooterLogo } from "./icon/FooterLogo.png";
 export { default as FooterGithub } from "./icon/FooterGithub.png";
+export { default as File } from "./icon/file.svg";
