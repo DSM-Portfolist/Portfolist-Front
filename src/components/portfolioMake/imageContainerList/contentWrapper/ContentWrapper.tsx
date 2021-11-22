@@ -11,11 +11,7 @@ import {
 } from "../../../../modules/atom/portfolioPost";
 import { ContainerTextListType } from "../../../../util/interface/portfolioPost/postType";
 
-interface Props {
-  setContainerList: () => void;
-}
-
-const ContentWrapper = (props: Props) => {
+const ContentWrapper = (props: any) => {
   const { setContainerList } = props;
   const defaultBoxData = useRecoilValue(box_data);
   const [boxData, setboxData] =
