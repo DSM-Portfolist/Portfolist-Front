@@ -19,7 +19,7 @@ export const container_text = atom<ContainerListType[]>({
       container_title: "",
       container_text_list: [
         {
-          id: RandomFunc(0),  
+          id: RandomFunc(0),
           box_title: "",
           box_content: "",
         },
