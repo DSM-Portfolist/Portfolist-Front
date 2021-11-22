@@ -18,7 +18,6 @@ export const BoxItem = styled.div`
     input {
       width: 100%;
       height: 30px;
-      font-style: normal;
       font-weight: 500;
       font-size: 20px;
       color: #000000;
@@ -54,8 +53,6 @@ export const BoxItem = styled.div`
     }
   }
   .addContent {
-    font-style: normal;
-    font-weight: normal;
     font-size: 12px;
     color: #bbbbbb;
     cursor: pointer;

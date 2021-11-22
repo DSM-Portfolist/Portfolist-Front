@@ -8,7 +8,12 @@ interface Props {
 }
 
 const NotiItem = ({ name, type }: Props) => {
-  return <S.NotiMent>{NoticeMent(type, name)}</S.NotiMent>;
+  return (
+    <S.NotiMent>
+      <span>{name}</span>
+      <span>{NoticeMent(type)}</span>
+    </S.NotiMent>
+  );
 };
 
 export default NotiItem;

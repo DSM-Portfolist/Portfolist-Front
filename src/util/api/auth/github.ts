@@ -1,11 +1,14 @@
 import axios from "axios";
 import request from "../index";
 
-export const github = async (data: string) => {
+export const github = async (data: any) => {
   return await request({
     url: "/login/github",
     method: "post",
-    data: { github_token: data },
+    data: { code: data },
+  }).then((res) => {
+    localStorage.setItem("access_token_portfolist", res.data.access_token);
+    localStorage.setItem("refresh_token_portfolist", res.data.refresh_token);
   });
 };
 

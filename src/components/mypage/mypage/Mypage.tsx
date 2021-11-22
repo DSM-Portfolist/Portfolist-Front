@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import * as S from "./style";
 import {
   baseBackground,
   center,
@@ -13,11 +14,28 @@ import {
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import PortfolioList from "../PortfolioList/PortfolioList";
 import { Header } from "../..";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  myPortfolioList,
+  myPortfolioListSelector,
+  myTouchingPortfolioSelector,
+} from "../../../modules/atom/mypage/mypage";
+import { MyPortfolioType } from "../../../util/interface/MyPage/myPortfolioType";
+import { myInfoSelector } from "../../../modules/selector/user";
 
 const MyPage = () => {
   const [isClickMyPortfolio, setIsClickMyPortfolio] = useState<boolean>(true);
   const [isClickMyTouching, setIsClickMyTouching] = useState<boolean>(false);
-  console.log(isClickMyPortfolio, isClickMyTouching);
+  const [portfolioList, setPortoflioList] = useRecoilState(myPortfolioList);
+  const myPortfolio = useRecoilValue(myPortfolioListSelector);
+  const touchPorfolio = useRecoilValue(myTouchingPortfolioSelector);
+  const userInfo = useRecoilValue(myInfoSelector);
+
+  useEffect(() => {
+    isClickMyPortfolio
+      ? setPortoflioList(myPortfolio)
+      : setPortoflioList(touchPorfolio);
+  }, [isClickMyPortfolio, myPortfolio, setPortoflioList, touchPorfolio]);
 
   const onClickEvent = (e: any) => {
     const { innerHTML } = e.target;
@@ -28,14 +46,13 @@ const MyPage = () => {
       !isClickMyTouching && setIsClickMyTouching(true);
       setIsClickMyPortfolio(false);
     }
-    console.log(e);
   };
 
   return (
     <div css={[baseBackground, column]}>
       <Header></Header>
       <section css={[myPageSection]}>
-        <ProfileHeader isMypage={true} />
+        <ProfileHeader userInfo={userInfo} />
         <article>
           <div css={[center, sectionTitleWrapper]}>
             <NavWrapper
@@ -46,10 +63,22 @@ const MyPage = () => {
               <h1 onClick={onClickEvent}>나의 터칭</h1>
             </NavWrapper>
           </div>
-          <PortfolioList
-            isClickMyPortfolio={isClickMyPortfolio}
-            isClickMyTouching={isClickMyTouching}
-          />
+          {portfolioList?.length === 0 ? (
+            <S.NotText>
+              <span>작성된 포트폴리오가 없습니다.</span>
+            </S.NotText>
+          ) : (
+            <>
+              {portfolioList?.map((portfolio: MyPortfolioType, index) => (
+                <PortfolioList
+                  key={index}
+                  portfolio={portfolio}
+                  isClickMyPortfolio={isClickMyPortfolio}
+                  isClickMyTouching={isClickMyTouching}
+                />
+              ))}
+            </>
+          )}
         </article>
       </section>
     </div>

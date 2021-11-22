@@ -1,5 +1,4 @@
-import { atom, selector } from "recoil";
-import { portfolioId } from "..";
+import { atom, selectorFamily } from "recoil";
 import { getComment } from "../../../../util/api/portfolio/comment";
 import { CommentType } from "../../../../util/interface/portfolio/commentType";
 
@@ -13,11 +12,14 @@ export const commentContent = atom<string>({
   default: "",
 });
 
-export const getCommentList = selector({
+export const commentListSelector = selectorFamily<CommentType[], number>({
   key: "comments/get",
-  get: async ({ get }) => {
-    const id = await get(portfolioId);
-    const res = await getComment(id);
-    return res.data.comments;
+  get: (id) => async () => {
+    try {
+      const res = await getComment(id);
+      return res.data.comments;
+    } catch (e) {
+      console.log(e);
+    }
   },
 });

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import arrowImg from "../../../../assets/icon/selectedArrow.svg";
-import { mainColor } from "../../../color/color";
+import { grayColor } from "../../../color/color";
 
 interface ChangeProps {
   isClickPasswordButton: boolean;
@@ -52,7 +52,7 @@ export const ProfileImageWrapper = styled.div`
     cursor: pointer;
     background: #ff7d64;
     border-radius: 4px;
-    font-family: "Noto Sans KR";
+
     font-style: 500;
     font-size: 18px;
     line-height: 26px;
@@ -62,8 +62,6 @@ export const ProfileImageWrapper = styled.div`
     box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
   }
   & div {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 26px;
@@ -111,17 +109,12 @@ export const MainWrapper = styled.div`
   padding-left: 34px;
   position: relative;
   & h1 {
-    font-family: Noto Sans KR;
-    font-style: normal;
     font-weight: bold;
     font-size: 48px;
     line-height: 70px;
     color: #000000;
   }
   & p {
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: normal;
     font-size: 28px;
     line-height: 41px;
     color: #000000;
@@ -144,9 +137,7 @@ export const ModifyDetailContainer = styled.form`
   padding-left: 34px;
   p {
     margin-top: 17px;
-    color: #979797;
-    font-style: normal;
-    font-weight: normal;
+    color: ${grayColor};
   }
 `;
 
@@ -163,7 +154,6 @@ export const ButtonContainer = styled.div`
     background: #c5c5c5;
     border-radius: 5px;
     color: #fff;
-    font-style: normal;
     font-weight: bold;
     font-size: 17px;
   }
@@ -173,7 +163,6 @@ export const ButtonContainer = styled.div`
     background: #ff7d64;
     border-radius: 5px;
     color: #fff;
-    font-style: normal;
     font-weight: bold;
     font-size: 17px;
     line-height: 23px;
@@ -207,7 +196,6 @@ export const FieldSelecteWrapper = styled.div`
   display: flex;
   align-items: center;
   span > b {
-    font-style: normal;
     font-weight: 500;
     font-size: 20px;
     color: #000000;
@@ -221,8 +209,6 @@ export const FieldSelecteWrapper = styled.div`
     appearance: none;
     background: url(${arrowImg}) no-repeat 95% 50%; /* 화살표 모양의 이미지 */
     border-bottom: 3px #ff7659 solid;
-    font-style: normal;
-    font-weight: normal;
     font-size: 17px;
     line-height: 23px;
     color: #000000;
@@ -242,12 +228,10 @@ export const InputWrapper = styled.div`
     box-sizing: border-box;
     border-radius: 5px;
     padding-left: 11px;
-    font-style: normal;
     font-weight: bold;
     font-size: 22px;
     line-height: 29px;
     &::placeholder {
-      font-style: normal;
       font-weight: bold;
       font-size: 20px;
       color: #949494;
@@ -267,13 +251,11 @@ export const FieldWrapper = styled.div`
   width: 100%;
   margin-top: 23px;
   & span {
-    font-style: normal;
-    font-weight: normal;
     font-size: 20px;
     line-height: 23px;
     color: #000000;
   }
-  & span:first-child {
+  & span:nth-of-type(1) {
     font-weight: bold;
   }
   & span:nth-of-type(n + 2) {
@@ -296,25 +278,19 @@ export const ContentItem = css`
   position: relative;
   & h1 {
     margin-top: 15px;
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: bold;
-    font-size: 27px;
+    font-size: 24px;
     line-height: 35px;
   }
   & p {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 26px;
-    color: rgba(0, 0, 0, 0.45);
+    color: ${grayColor};
     margin-top: 25px;
   }
   & span {
     position: absolute;
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: bold;
     font-size: 20px;
     line-height: 26px;
@@ -338,12 +314,10 @@ export const ChangePasswordWrraper = styled.form<ChangeProps>`
 
 export const PasswordChangeWrapper = styled.div`
   & span {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
-    color: #979797;
+    color: ${grayColor};
     margin: 5px 0 0 230px;
   }
 `;
@@ -387,8 +361,6 @@ export const ChangePasswordItem = styled.div`
   align-items: center;
   position: relative;
   & h1 {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-weight: 500;
     font-size: 21px;
     line-height: 26px;
@@ -404,8 +376,7 @@ export const ChangePasswordItem = styled.div`
     border-radius: 5px;
     text-decoration: none;
     padding-left: 12px;
-    font-family: "Noto Sans KR";
-    font-style: normal;
+
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
@@ -440,7 +411,6 @@ export const ModalBox = styled.div`
   bottom: 0;
   margin: auto auto auto auto;
   & h1 {
-    font-style: normal;
     font-weight: bold;
     font-size: 20px;
     line-height: 29px;
@@ -448,11 +418,10 @@ export const ModalBox = styled.div`
     margin: 30px 0 7px 40px;
   }
   & p {
-    font-style: normal;
     font-weight: 500;
     font-size: 15px;
     line-height: 22px;
-    color: rgba(0, 0, 0, 0.45);
+    color: ${grayColor};
     margin-left: 40px;
   }
   & p:nth-of-type(3) {
@@ -475,7 +444,6 @@ export const ModalBox = styled.div`
       border-radius: 5px;
     }
     span {
-      font-style: normal;
       font-weight: 500;
       font-size: 16px;
       line-height: 23px;

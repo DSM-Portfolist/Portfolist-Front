@@ -7,7 +7,7 @@ export { default as SelectedArrow } from "./icon/selectedArrow.svg";
 export { default as NoSelectedArrow } from "./icon/noSeletedArrow.svg";
 export { default as Profile } from "./icon/profile.svg";
 export { default as NoNotification } from "./icon/noNotification.svg";
-export { default as NotiIcon } from "./icon/notification.svg";
+export { default as Notification } from "./icon/notification.svg";
 export { default as Mascot } from "./icon/mascot.svg";
 export { default as MainImg1 } from "./img/mainImg1.svg";
 export { default as MainImg2 } from "./img/mainImg2.svg";
@@ -28,3 +28,6 @@ export { default as MinusButton } from "./icon/minusButton.svg";
 export { default as FooterLogo } from "./icon/FooterLogo.png";
 export { default as FooterGithub } from "./icon/FooterGithub.png";
 export { default as File } from "./icon/file.svg";
+export const DefaultImage =
+  "https://www.ibossedu.co.kr/template/DESIGN_shared/program/theme/01/THUMBNAIL_60_60_icon_rep_box.gif";
+

@@ -36,21 +36,22 @@ export const NavWrapper = styled.div<NavWrapperProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+
   & h1 {
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 24px;
     line-height: 35px;
     cursor: pointer;
     padding-bottom: 8px;
     transition: 0.3s;
   }
-  h1:first-child {
+
+  h1:first-of-type {
     color: ${(props) => (props.isClickMyPortfolio ? "#ff7659" : "#000000")};
     border-bottom: ${(props) =>
       props.isClickMyPortfolio ? "solid 3px #ff7659" : "none"};
   }
+
   h1:nth-of-type(2) {
     margin-left: 50px;
     color: ${(props) => (props.isClickMyTouching ? "#ff7659" : "#000000")};
@@ -61,5 +62,5 @@ export const NavWrapper = styled.div<NavWrapperProps>`
 
 export const myPageSection = css`
   width: 750px;
-  margin-top: 90px;
+  margin-top: 130px;
 `;

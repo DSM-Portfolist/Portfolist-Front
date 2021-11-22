@@ -1,13 +1,5 @@
 import { css } from "@emotion/react";
-
-export const initA = css`
-  text-decoration: none;
-  outline: none;
-  &:hover,
-  a:active {
-    text-decoration: none;
-  }
-`;
+import { mainColor } from "../../color/color";
 
 export const baseBackground = css`
   height: 200vh;
@@ -19,6 +11,13 @@ export const center = css`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  a {
+    font-weight: 700;
+    font-size: 17px;
+    color: black;
+    margin-left: 10px;
+  }
 `;
 
 export const column = css`
@@ -28,7 +27,7 @@ export const column = css`
 
 export const myPageSection = css`
   width: 750px;
-  margin-top: 90px;
+  margin-top: 130px;
 `;
 
 export const portfolioList = css`
@@ -41,12 +40,10 @@ export const sectionTitleWrapper = css`
   width: 100%;
   height: 150px;
   & span {
-    font-family: "Noto Sans KR";
-    font-style: normal;
     font-size: 24px;
     line-height: 35px;
   }
-  & span:first-child {
+  & span:first-of-type {
     font-weight: bold;
   }
   & span:nth-of-type(2) {
@@ -57,26 +54,24 @@ export const sectionTitleWrapper = css`
 export const portfolioItem = css`
   width: 100%;
   height: 630px;
-  border-bottom: 2px solid #e7e7e7;
+  margin-bottom: 50px;
+  border-bottom: 1px solid #e7e7e7;
+
   img {
     width: 100%;
-    height: 404px;
+    height: 400px;
     background-size: cover;
     object-fit: cover;
   }
+
   h1 {
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: bold;
     font-size: 24px;
     line-height: 35px;
     margin-top: 28px;
     color: #000000;
   }
+
   #content {
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: normal;
     font-size: 18px;
     line-height: 26px;
     color: #666666;
@@ -86,10 +81,11 @@ export const portfolioItem = css`
 
 export const FieldWrapper = css`
   margin-top: 12px;
-  & div {
-    display: inline-block;
-    height: 30px;
-    border: 1px solid #ff7659;
+
+  & span {
+    padding: 7px 20px;
+    margin-right: 10px;
+    border: 1px solid ${mainColor};
     border-radius: 20px;
     padding: 0 20px 0 20px;
     font-family: "Noto Sans KR";
@@ -101,6 +97,7 @@ export const FieldWrapper = css`
   }
   & div:nth-of-type(n + 2) {
     margin-left: 10px;
+
   }
 `;
 
@@ -120,20 +117,14 @@ export const portfolioItemUnderBar = css`
   }
   p:nth-of-type(2) {
     display: inline;
-    font-family: "Noto Sans KR";
-    font-style: normal;
-    font-weight: normal;
     font-size: 18px;
     line-height: 26px;
     color: #000000;
   }
   div span {
     justify-self: flex-end;
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 26px;
+
+    font-size: 16px;
     color: #666666;
   }
   div span:nth-of-type(2) {
