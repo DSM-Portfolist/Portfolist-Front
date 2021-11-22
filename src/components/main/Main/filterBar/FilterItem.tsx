@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { getFieldSelector } from "../../../../modules/atom/portfolio";
 import { useFieldValue } from "../../../../modules/atom/portfolio/search";
@@ -12,6 +12,14 @@ const FilterItem = () => {
   const [useField, setUseField] = useRecoilState(useFieldValue);
   const [text, setText] = useState<string>("");
   const [arrowSelect, setArrowSelect] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(useField);
+  }, [useField]);
+
+  function UseFieldAdd(field: any) {
+    setUseField(useField?.concat(field));
+  }
 
   return (
     <div className="field-item-wrap">
@@ -49,6 +57,7 @@ const FilterItem = () => {
               key={index}
               onClick={() => {
                 setText(field.content);
+                UseFieldAdd(field.content);
                 setArrowSelect(false);
               }}
             >
