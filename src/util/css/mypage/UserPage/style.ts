@@ -87,9 +87,17 @@ export const FieldWrapper = css`
     margin-right: 10px;
     border: 1px solid ${mainColor};
     border-radius: 20px;
-    font-size: 16px;
-    font-weight: 700;
-    color: ${mainColor};
+    padding: 0 20px 0 20px;
+    font-family: "Noto Sans KR";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+    color: #ff7659;
+  }
+  & div:nth-of-type(n + 2) {
+    margin-left: 10px;
+
   }
 `;
 
