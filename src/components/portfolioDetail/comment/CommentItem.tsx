@@ -2,15 +2,31 @@ import React from "react";
 import { Profile } from "../../../util/assets";
 import * as S from "./style";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
-import { useMutation } from "react-query";
-import { deleteComment } from "../../../util/api/portfolio/comment";
+import { deleteComment, getComment } from "../../../util/api/portfolio/comment";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { portfolioId } from "../../../modules/atom/portfolio";
+import { commentListSelector } from "../../../modules/atom/portfolio/comment";
 
 interface Props {
   comment: CommentType;
 }
 
 const CommentItem = ({ comment }: Props) => {
-  const commentDelete = useMutation((id: number) => deleteComment(id));
+  const portId = useRecoilValue(portfolioId);
+  const [comments, setComments] = useRecoilState(commentListSelector(portId));
+
+  const CommentDelete = (id: number) => {
+    deleteComment(id)
+      .then(() => {
+        getComment(portId).then((res) => {
+          setComments(res.data);
+          console.log(comments);
+        });
+      })
+      .catch((e) => {
+        throw e;
+      });
+  };
 
   return (
     <S.CommentItemWrapper>
@@ -33,9 +49,7 @@ const CommentItem = ({ comment }: Props) => {
         </S.Content>
         <S.Util>
           {comment?.is_mine ? (
-            <span onClick={() => commentDelete.mutate(comment.comment_id)}>
-              삭제
-            </span>
+            <span onClick={() => CommentDelete(comment.comment_id)}>삭제</span>
           ) : (
             ""
           )}

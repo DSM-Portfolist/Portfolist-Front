@@ -19,9 +19,20 @@ export const Title = styled.div`
     margin-top: 10px;
     display: flex;
     flex-direction: row;
-
     input {
       display: none;
+    }
+
+    label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      p {
+        color: #989898;
+        font-size: 18px;
+        margin-left: 10px;
+        line-height: 10px; /* 이거 figma 복붙아닙니다 */
+      }
     }
   }
 `;

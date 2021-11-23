@@ -56,11 +56,18 @@ export const getPortfolioSelecor = selector<PortfolioType>({
     }
   },
 });
-
 /* export const getPortfolioSelecor = selectorFamily<PortfolioType, number>({
   key: "portfolio",
-  get: (id: number) => async () => {
-    const posts = await getPortfolio(id);
-    return posts;
-  },
+  get:
+    (id: number) =>
+    ({ get }) => {
+      const atom = get(portfoilo(id));
+      return atom;
+    },
+  set:
+    (id: number) =>
+    async ({ set }) => {
+      const res = await getPortfolio(id);
+      set(portfoilo(id), res.data);
+    },
 }); */
