@@ -4,6 +4,10 @@ import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";
 
 const BannerContainer = () => {
+  const fileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+  };
+
   return (
     <S.BannerWrap className="make-container">
       <S.Title>
@@ -18,7 +22,7 @@ const BannerContainer = () => {
         <div className="file-wrap">
           <label htmlFor="file">
             <img src={File} alt="파일 아이콘" />
-            <input type="file" id="file" />
+            <input type="file" id="file" onChange={(e) => fileChange(e)} />
           </label>
         </div>
       </S.Title>

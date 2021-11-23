@@ -15,7 +15,6 @@ export const LicenseWrapper = styled.section`
       margin-top: 30px;
     }
   }
-  margin-bottom: 1000px;
 `;
 
 export const MapWrapper = styled.div`
