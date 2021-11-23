@@ -31,3 +31,5 @@ export { default as File } from "./icon/file.svg";
 export const DefaultImage =
   "https://www.ibossedu.co.kr/template/DESIGN_shared/program/theme/01/THUMBNAIL_60_60_icon_rep_box.gif";
 
+export const DefaultProfile =
+  "https://belabef.com/common/img/default_profile.png";
