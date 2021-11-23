@@ -22,3 +22,6 @@ export { default as ExperienceList } from "./portfolioDetail/items/experience/Ex
 export { default as PortfolioMake } from "./portfolioMake/portfolioMake";
 export { default as Footer } from "./commom/footer/Footer";
 export { default as Token } from "./signin/login/Token";
+export { default as MyPage } from "./mypage/mypage/Mypage";
+export { default as UserPage } from "./mypage/userPage/UserPage";
+export { default as MypageModify } from "./mypage/mypage/mypageModify/MypageModify";

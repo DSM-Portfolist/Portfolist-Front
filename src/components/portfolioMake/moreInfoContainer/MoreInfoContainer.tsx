@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import { PlusButton, MinusButton } from "../../../util/assets";
-import { ToastSuccess, ToastError } from "../../../hook/toastHook";
+import { ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { inputDataArrType } from "../../../util/interface/portfolio/portfolioMakeType";
 
 const MoreInfoContainer = () => {
   const [more_info, setMoreInfo] = useState<inputDataArrType[]>([
-    { id: "11", key: "", value: "" },
+    { id: "11", name: "", content: "" },
   ]);
 
   const [DatalastId, setDatalastId] = useState<number>(1);
@@ -16,7 +16,7 @@ const MoreInfoContainer = () => {
   useEffect(() => {
     console.log(more_info);
     console.log(DatalastId);
-  }, [more_info]);
+  }, [DatalastId, more_info]);
 
   const newId = (index: number, num: number) => {
     if (num === 1) {
@@ -28,10 +28,10 @@ const MoreInfoContainer = () => {
   };
 
   const handlerOnChange = (event: any) => {
-    //input value 넣을 배열 찾아서 넣기
+    //input content 넣을 배열 찾아서 넣기
     let parentClassNameId = event.target.parentElement.className.split(" ");
     let eventNodeId = event.target.id;
-    let eventTargetValue = event.target.value;
+    let eventTargetcontent = event.target.content;
     setMoreInfo(
       more_info.map((more_info: any, index: number) => {
         console.log(
@@ -39,9 +39,9 @@ const MoreInfoContainer = () => {
         );
         if (more_info.id === parentClassNameId[0]) {
           if (eventNodeId === "inputName") {
-            return { ...more_info, key: eventTargetValue };
+            return { ...more_info, name: eventTargetcontent };
           } else {
-            return { ...more_info, value: eventTargetValue };
+            return { ...more_info, content: eventTargetcontent };
           }
         } else {
           return more_info;
@@ -54,7 +54,7 @@ const MoreInfoContainer = () => {
     //빈 input 추가 하는 함수
     setMoreInfo((dataArr: any) => [
       ...dataArr,
-      { id: newId(dataArr.length + 1, 1), key: "", value: "" },
+      { id: newId(dataArr.length + 1, 1), name: "", content: "" },
     ]);
   };
 
@@ -91,14 +91,14 @@ const MoreInfoContainer = () => {
                 type="text"
                 id="inputName"
                 placeholder="ex)email"
-                value={more_info.key}
+                value={more_info.name}
               />
               <div></div>
               <input
                 type="text"
                 id="inputContent"
                 placeholder="ex)kub0803@gmail.com"
-                value={more_info.value}
+                value={more_info.content}
               />
               <img
                 src={MinusButton}

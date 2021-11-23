@@ -4,8 +4,8 @@ export interface InputIsNullType {
 
 export interface inputDataArrType {
   id: string;
-  key: string;
-  value: string;
+  name: string;
+  content: string;
 }
 
 export interface imageListType {
