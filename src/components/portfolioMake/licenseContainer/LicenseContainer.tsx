@@ -24,6 +24,10 @@ const LicenseContainer = () => {
     ]);
   };
 
+  const deleteList = (id: number) => {
+    
+  }
+
   const addContentList = (p_index: number) => {
     setCertificateList(
       certificateList.map(
@@ -41,6 +45,10 @@ const LicenseContainer = () => {
       )
     );
   };
+
+  const deleteContentList = () => {
+    
+  }
 
   return (
     <S.LicenseWrapper className="make-container">
