@@ -34,7 +34,7 @@ const Header = () => {
                 <img src={Logo} alt="포트폴리스트 로고" />
               </Link>
               <Link
-                to="/portfolio-list?page=1&size=10&field=&sort=date,desc&query="
+                to="list?page=1&size=10&field=&sort=date&query&searchType=="
                 className="list-item"
               >
                 <span>포트폴리오</span>

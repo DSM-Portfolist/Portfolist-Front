@@ -28,6 +28,7 @@ const List = () => {
               title={list.title}
               content={list.introduce}
               id={list.portfolio_id}
+              url={list.thumbnail}
             />
           ))}
         </S.ListItemWrapper>

@@ -7,9 +7,10 @@ interface ListProps {
   title: string;
   content: string;
   id?: number;
+  url?: string | null;
 }
 
-const ListItem = ({ title, content, id }: ListProps) => {
+const ListItem = ({ title, content, id, url }: ListProps) => {
   const history = useHistory();
 
   function TestSlice(txt: string) {
@@ -23,7 +24,7 @@ const ListItem = ({ title, content, id }: ListProps) => {
   return (
     <S.ItemWrapper onClick={() => history.push(`/portfolio/${id}`)}>
       <div className="folio-img">
-        <img src={Flower} alt="포트폴리오 이미지 " />
+        <img src={url === null ? `${Flower}` : url} alt="포트폴리오 이미지 " />
       </div>
       <div className="more-explore">
         <span>{title}</span>

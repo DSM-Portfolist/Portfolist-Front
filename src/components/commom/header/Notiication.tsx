@@ -29,7 +29,7 @@ const Notiication = () => {
             style={noti ? { height: 200 } : { height: 0 }}
           >
             {notification?.length === 0 ? (
-              <>알림이 없습니다.</>
+              <div className="notification-none">알림이 없습니다.</div>
             ) : (
               <>
                 {notification?.map((item, index) => (

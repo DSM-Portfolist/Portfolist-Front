@@ -1,11 +1,11 @@
-import { atom, selector } from "recoil";
+import { atom, selector, useRecoilValue } from "recoil";
 import {
   getField,
   getPortfolioList,
 } from "../../../util/api/portfolio/portfolio";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
 import { FieldType } from "../../../util/interface/Sign/loginType";
-import { useFieldValue } from "./search";
+import { searchValue, useFieldValue } from "./search";
 
 export const portfolioId = atom<number>({
   key: "portfolioId",
@@ -38,7 +38,8 @@ export const getPortListSelector = selector<PortListType[]>({
   get: async ({ get }) => {
     try {
       const field = await get(useFieldValue);
-      const res = await getPortfolioList(field);
+      const query = await get(searchValue);
+      const res = await getPortfolioList(field, query, "title");
       return res.data.portfolio_list;
     } catch (e) {
       console.log(e);
