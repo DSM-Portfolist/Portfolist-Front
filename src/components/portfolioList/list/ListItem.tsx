@@ -5,8 +5,8 @@ import * as S from "./style";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
 import {
   BeforeTouching,
+  DefaultProfile,
   Flower,
-  Profile,
   Touching,
 } from "../../../util/assets";
 import {
@@ -41,7 +41,10 @@ const ListItem = ({ list }: Prop) => {
   return (
     <S.ListItemWrapper>
       <div className="portfoilo-img">
-        <img src={Flower} alt="포트폴리오 배너" />
+        <img
+          src={list.thumbnail === null ? `${Flower}` : list.thumbnail}
+          alt="포트폴리오 배너"
+        />
       </div>
       <S.Content touchingBoolean={touchingBoolean}>
         <div className="tag-wrapper">
@@ -84,12 +87,14 @@ const ListItem = ({ list }: Prop) => {
         <div className="user-profile">
           <img
             src={
-              list.profile_img === null ? `${Profile}` : `${list.profile_img}`
+              list.user.profile_img === null
+                ? `${DefaultProfile}`
+                : list.user.profile_img
             }
             alt="사용자의 프로필 사진"
           />
           <Link to={`/user-page`} title="유저 페이지 이동합니다.">
-            <strong>{list.name}</strong>님이 포트폴리오
+            <strong>{list.user.name}</strong>님의 포트폴리오
           </Link>
         </div>
       </S.Content>
