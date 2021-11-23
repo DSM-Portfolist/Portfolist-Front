@@ -30,7 +30,7 @@ const SearchInput = () => {
     }
 
     history.push(
-      `/portfolio-list?page=1&size=10&field=&sort=date,${test}&query=${searchContent}`
+      `/list?page=1&size=10&field=&sort=date,${test}&query=${searchContent}&searchType=`
     );
   }, [history, isFocusing, searchContent, test]);
 

@@ -9,7 +9,7 @@ import deleteButtonX from "../../../util/assets/icon/deleteButtonX.svg";
 
 const LicenseContainer = () => {
   const [certificateList, setCertificateList] = useState<CertificateListType[]>(
-    [{ title: "", certificate_list: [] }]
+    [{ title: "", certificate_list: [""] }]
   );
 
   console.log(certificateList);
@@ -19,10 +19,36 @@ const LicenseContainer = () => {
       ...certificateList,
       {
         title: "",
-        certificate_list: [],
+        certificate_list: [""],
       },
     ]);
   };
+
+  const deleteList = (id: number) => {
+    
+  }
+
+  const addContentList = (p_index: number) => {
+    setCertificateList(
+      certificateList.map(
+        (certificateList: CertificateListType, index: number) => {
+          console.log(certificateList);
+          if (p_index === index) {
+            return {
+              ...certificateList,
+              certificate_list: certificateList.certificate_list.concat(""),
+            };
+          } else {
+            return certificateList;
+          }
+        }
+      )
+    );
+  };
+
+  const deleteContentList = () => {
+    
+  }
 
   return (
     <S.LicenseWrapper className="make-container">
@@ -34,6 +60,7 @@ const LicenseContainer = () => {
       </S.HeaderButton>
       {certificateList.map(
         (certificateList: CertificateListType, index: number) => {
+          const { certificate_list, title } = certificateList;
           console.log(certificateList);
           console.log(index);
           return (
@@ -46,20 +73,32 @@ const LicenseContainer = () => {
                   alt=""
                 />
               </S.TitleWrapper>
-              <div className="infoContainer">
-                <S.InputBox>
-                  <textarea
-                    id="inputContent"
-                    placeholder="내용을 입력해주세요."
-                  ></textarea>
-                  <img src={MinusButton} alt="" />
-                </S.InputBox>
-                {index + 1 < certificateList.certificate_list.length ? (
-                  ""
-                ) : (
-                  <span className="addContent">내용 추가</span>
-                )}
-              </div>
+              {certificate_list.map((certificate_list: any) => {
+                console.log(certificate_list);
+                return (
+                  <div className="infoContainer">
+                    <S.InputBox>
+                      <textarea
+                        id="inputContent"
+                        placeholder="내용을 입력해주세요."
+                      ></textarea>
+                      <img src={MinusButton} alt="" />
+                    </S.InputBox>
+                    {index + 1 < certificate_list.length ? (
+                      ""
+                    ) : (
+                      <span
+                        className="addContent"
+                        onClick={() => {
+                          addContentList(index);
+                        }}
+                      >
+                        내용 추가
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
             </S.MapWrapper>
           );
         }

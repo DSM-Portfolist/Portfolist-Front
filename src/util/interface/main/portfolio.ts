@@ -1,7 +1,5 @@
-import { StringLiteral } from "@babel/types";
-
 export interface recentPortfolioType {
-  img: string;
+  thumbnail: string | null;
   introduce: string;
   portfolio_id: number;
   title: string;
@@ -9,7 +7,7 @@ export interface recentPortfolioType {
 
 export interface monthPortfolioType {
   id: number;
-  img: string | null;
+  thumbnail: string | null;
   title: string;
   introduce: string;
   name: string;

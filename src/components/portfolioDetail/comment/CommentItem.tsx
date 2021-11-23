@@ -5,7 +5,7 @@ import { CommentType } from "../../../util/interface/portfolio/commentType";
 import { deleteComment, getComment } from "../../../util/api/portfolio/comment";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { portfolioId } from "../../../modules/atom/portfolio";
-import { getCommentList } from "../../../modules/atom/portfolio/comment";
+import { commentListSelector } from "../../../modules/atom/portfolio/comment";
 
 interface Props {
   comment: CommentType;
@@ -13,7 +13,7 @@ interface Props {
 
 const CommentItem = ({ comment }: Props) => {
   const portId = useRecoilValue(portfolioId);
-  const [comments, setComments] = useRecoilState(getCommentList);
+  const [comments, setComments] = useRecoilState(commentListSelector(portId));
 
   const CommentDelete = (id: number) => {
     deleteComment(id)

@@ -3,7 +3,7 @@ import { portfolioId } from "..";
 import { getPortfolio } from "../../../../util/api/portfolio/portfolio";
 import { PortfolioType } from "../../../../util/interface/portfolio/portfolioDetailType";
 
-export const portfoilo = atomFamily<PortfolioType, number>({
+export const portfoilo = atom<PortfolioType>({
   key: "portfolioValue",
   default: {
     portfolio_id: 0,

@@ -11,6 +11,12 @@ export const MainContainer = styled.div`
     font-size: 20px;
     color: #848484;
   }
+
+  input {
+    ::placeholder {
+      color: #c7c7c7;
+    }
+  }
 `;
 
 export const FinshButton = styled.div`
