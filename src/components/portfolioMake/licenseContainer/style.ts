@@ -77,6 +77,7 @@ export const InputBox = styled.div`
   width: 100%;
   height: 80px;
   transition: 0.5s;
+  cursor: pointer;
   img {
     display: none;
   }
@@ -88,7 +89,7 @@ export const InputBox = styled.div`
   textarea {
     width: 95%;
     font-weight: 500;
-    height: 70px;
+    height: 65px;
     font-size: 18px;
     color: #000000;
     resize: none;
