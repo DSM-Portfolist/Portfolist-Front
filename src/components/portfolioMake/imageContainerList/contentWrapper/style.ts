@@ -8,7 +8,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const BoxItem = styled.div`
-  &:nth-child(n + 2) {
+  &:nth-of-type(n + 2) {
     margin-top: 10px;
   }
   .Title {
@@ -34,8 +34,10 @@ export const BoxItem = styled.div`
     margin-top: 10px;
     color: #000000;
     overflow-y: scroll;
+    overflow-x: hidden;
     width: 100%;
     height: 70px;
+    resize: none;
     &::placeholder {
       color: #bbbbbb;
     }

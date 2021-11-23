@@ -4,11 +4,14 @@ import { imageListType } from "../../../../util/interface/portfolio/portfolioMak
 
 const ImageWrapper = () => {
   let formData = new FormData();
+  let jbRandom = Math.random();
   const [imageFile, setImageFile] = useState<any[]>([]);
   const [previewURL, setPreviewURL] = useState<string[]>([]);
   const [imageList, setImageList] = useState<imageListType[]>([
-    { isInFile: false, index: 0 },
+    { isInFile: false, index: 0 + jbRandom },
   ]);
+
+  console.log(imageList);
 
   function checkFormData() {
     //FormData 값 확인하기
@@ -23,7 +26,7 @@ const ImageWrapper = () => {
 
   const updateFieldChanged = (item: boolean, index: number) => {
     let newArr = imageList.map((value: any, i: number) => {
-      if (index === i) {
+      if (index === value.index) {
         return { ...value, isInFile: item };
       } else {
         return value;
@@ -48,9 +51,10 @@ const ImageWrapper = () => {
   };
 
   const addImageList = () => {
+    var jbRandom = Math.random();
     setImageList((imageLis: any) => [
       ...imageLis,
-      { isInFile: false, index: imageList.length },
+      { isInFile: false, index: imageList.length + jbRandom },
     ]);
   };
 
@@ -58,7 +62,7 @@ const ImageWrapper = () => {
     <S.ImageWrapper>
       {imageList.map((v: any, index: number) => {
         return (
-          <>
+          <S.ImageContainer key={index}>
             {!v.isInFile ? (
               <>
                 <input
@@ -68,6 +72,7 @@ const ImageWrapper = () => {
                   accept="image/jpg,impge/png,image/jpeg,image/gif"
                   onChange={(e: any) => {
                     handleFileOnChange(e, v.index);
+                    console.log(v.index);
                   }}
                 />
                 <label htmlFor="input-file">이미지 넣기</label>
@@ -82,7 +87,7 @@ const ImageWrapper = () => {
                 )}
               </S.ImageItem>
             )}
-          </>
+          </S.ImageContainer>
         );
       })}
     </S.ImageWrapper>
