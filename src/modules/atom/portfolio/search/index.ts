@@ -9,3 +9,8 @@ export const useFieldValue = atom<string[]>({
   key: "useFieldValue",
   default: [],
 });
+
+export const sortValue = atom<string>({
+  key: "sortValue",
+  default: "asc",
+});
