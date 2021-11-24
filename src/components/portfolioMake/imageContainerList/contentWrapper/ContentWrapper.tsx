@@ -4,7 +4,7 @@ import * as S from "./style";
 import { ToastSuccess, ToastError } from "../../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import {
   box_data,
   container_text,
@@ -12,13 +12,9 @@ import {
 import { ContainerTextListType } from "../../../../util/interface/portfolioPost/postType";
 
 const ContentWrapper = (props: any) => {
-  const { setContainerList, identity } = props;
+  const { setContainerList, identity, updateBoxData } = props;
 
-  const defaultBoxData = useRecoilValue(box_data);
-  const [boxData, setboxData] =
-    useState<ContainerTextListType[]>(defaultBoxData);
-
-  console.log(boxData);
+  const [boxData, setboxData] = useRecoilState(box_data);
 
   const addContainerText = () => {
     var jbRandom = Math.random();
@@ -44,7 +40,7 @@ const ContentWrapper = (props: any) => {
     }
   };
 
-  const handdleOnchange = (e: any, id: number) => {
+  const handdleOnchange = (e: any, id: number, arr_index: number) => {
     setboxData(
       boxData.map((value: any, index: number) => {
         if (value.id === id) {
@@ -55,10 +51,6 @@ const ContentWrapper = (props: any) => {
       })
     );
   };
-
-  const updateBoxData = () => {
-    
-  }
 
   return (
     <S.ContentContainer>
@@ -73,7 +65,7 @@ const ContentWrapper = (props: any) => {
                 name="box_title"
                 value={box_title}
                 onChange={(e: any) => {
-                  handdleOnchange(e, id);
+                  handdleOnchange(e, id, index);
                 }}
               />
               <img
@@ -81,7 +73,6 @@ const ContentWrapper = (props: any) => {
                 alt="MinusButton"
                 onClick={() => {
                   DeleteContainerText(index);
-                  /* DeleteContainerText(id); */
                 }}
               />
             </div>
@@ -91,7 +82,7 @@ const ContentWrapper = (props: any) => {
               name="box_content"
               value={box_content}
               onChange={(e: any) => {
-                handdleOnchange(e, id);
+                handdleOnchange(e, id, index);
               }}
             ></textarea>
             {index + 1 < boxData.length ? (
