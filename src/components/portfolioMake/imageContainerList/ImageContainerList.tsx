@@ -14,7 +14,7 @@ const ImageContainerList = () => {
   const [container_list, setContainerList] = useState(defalutContainerList);
   const boxData = useRecoilValue(box_data);
 
-  console.log(container_list, 'asd');
+  console.log(container_list);
 
   const AddContainerListItem = () => {
     var jbRandom = Math.random();
@@ -33,9 +33,8 @@ const ImageContainerList = () => {
       ToastError("삭제할 수 없습니다");
     } else {
       setContainerList(
-        container_list?.filter((value: any) => {
-          console.log(value.id, id);
-          return value.id !== id;
+        container_list?.filter((value: any, index: number) => {
+          return index !== id;
         })
       );
     }
@@ -68,6 +67,7 @@ const ImageContainerList = () => {
         </button>
       </header>
       {container_list.map((value: any, index: number) => {
+        /* console.log(value); */
         return (
           <S.ImageWrapeerList key={index}>
             <header>
@@ -83,14 +83,17 @@ const ImageContainerList = () => {
                 src={MinusButton}
                 className="MinusButton"
                 onClick={() => {
-                  removeContainerList(value.id);
+                  removeContainerList(index);
                 }}
                 alt="삭제버튼"
               />
             </header>
             <S.ImageListSection>
               <ImageWrapper identity={index} />
-              <ContentWrapper setContainerList={setContainerList} />
+              <ContentWrapper
+                setContainerList={setContainerList}
+                identity={index}
+              />
             </S.ImageListSection>
           </S.ImageWrapeerList>
         );
