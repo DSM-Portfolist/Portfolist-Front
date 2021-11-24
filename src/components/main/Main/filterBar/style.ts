@@ -18,28 +18,48 @@ export const FilterWrapper = styled.div`
 `;
 
 export const FilterItemWrap = styled.div`
-  width: 61%;
+  width: 55%;
   height: 100%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 
-  .field-item-wrap {
-    width: 30%;
+  .wrapper {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 
-    .filed-wrap {
-      width: 100%;
-      width: 75%;
-      position: relative;
+    #field-text {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
 
-      .category_wrap {
-        padding-bottom: 5px;
-        box-sizing: border-box;
+    .filter-wrap {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      align-items: flex-end;
+
+      .field-item-wrap {
+        width: 30%;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: center;
+
+        .filed-wrap {
+          width: 100%;
+          width: 85%;
+          position: relative;
+
+          .category_wrap {
+            padding-bottom: 5px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+          }
+        }
       }
     }
   }
