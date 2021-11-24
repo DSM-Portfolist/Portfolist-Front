@@ -6,7 +6,13 @@ const RandomFunc = (num: number) => {
   return num + jbRandom;
 };
 
-export const box_data = atom<any[]>({
+interface BoxDataType {
+  id?: number;
+  box_title: string;
+  box_content: string;
+}
+
+export const box_data = atom<BoxDataType[]>({
   key: "box_data",
   default: [{ id: RandomFunc(0), box_title: "", box_content: "" }],
 });
