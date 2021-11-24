@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import * as S from "./style";
 import { FieldType } from "../../../util/interface/common";
 import { getFieldSelector } from "../../../modules/atom/portfolio";
@@ -20,24 +20,32 @@ const FieldSelectItem = ({ setText, arrowSelect, setArrowSelect }: Props) => {
     setUseField(useField?.concat(field));
   }
 
+  useEffect(() => {
+    console.log(useField);
+  }, [useField]);
+
   return (
     <S.FieldSelectItemWrapper
       arrowSelect={arrowSelect}
       style={arrowSelect ? { height: 200 } : { height: 0 }}
       ref={fieldRef}
     >
-      {field.map((field: FieldType) => (
-        <li
-          key={field.id}
-          onClick={() => {
-            setText(field.content);
-            UseFieldAdd(field.content);
-            setArrowSelect(false);
-          }}
-        >
-          {field.content}
-        </li>
-      ))}
+      {field.map((field: FieldType) => {
+        console.log(field);
+        return (
+          <li
+            key={field.id}
+            onClick={() => {
+              setText(field.content);
+              UseFieldAdd(field.content);
+
+              setArrowSelect(false);
+            }}
+          >
+            {field.content}
+          </li>
+        );
+      })}
     </S.FieldSelectItemWrapper>
   );
 };
