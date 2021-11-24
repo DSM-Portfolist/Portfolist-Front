@@ -12,7 +12,8 @@ import {
 import { ContainerTextListType } from "../../../../util/interface/portfolioPost/postType";
 
 const ContentWrapper = (props: any) => {
-  const { setContainerList } = props;
+  const { setContainerList, identity } = props;
+
   const defaultBoxData = useRecoilValue(box_data);
   const [boxData, setboxData] =
     useState<ContainerTextListType[]>(defaultBoxData);
@@ -36,8 +37,8 @@ const ContentWrapper = (props: any) => {
       ToastError("삭제할 수 없습니다");
     } else {
       setboxData(
-        boxData?.filter((arrItem: any) => {
-          return arrItem.id !== id;
+        boxData?.filter((arrItem: any, index: number) => {
+          return index !== id;
         })
       );
     }
@@ -54,6 +55,10 @@ const ContentWrapper = (props: any) => {
       })
     );
   };
+
+  const updateBoxData = () => {
+    
+  }
 
   return (
     <S.ContentContainer>
@@ -75,7 +80,8 @@ const ContentWrapper = (props: any) => {
                 src={MinusButton}
                 alt="MinusButton"
                 onClick={() => {
-                  DeleteContainerText(id);
+                  DeleteContainerText(index);
+                  /* DeleteContainerText(id); */
                 }}
               />
             </div>

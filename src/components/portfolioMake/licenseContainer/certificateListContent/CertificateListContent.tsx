@@ -23,10 +23,6 @@ const CertificateListContent = (props: Props) => {
     setTextList,
   } = props;
 
-  useEffect(() => {
-    console.log(props.textList);
-  }, [certificate_content, props.textList]);
-
   const addContentList = () => {
     setTextList(textList.concat(""));
   };
