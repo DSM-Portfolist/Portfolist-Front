@@ -7,12 +7,16 @@ import { getPortListSelector } from "../../../modules/atom/portfolio";
 import { useLocation } from "react-router";
 import QueryString from "query-string";
 import { getPortfolioList } from "../../../util/api/portfolio/portfolio";
-import { useFieldValue } from "../../../modules/atom/portfolio/search";
+import {
+  sortValue,
+  useFieldValue,
+} from "../../../modules/atom/portfolio/search";
 
 const MainList = () => {
   const [list, setList] = useState<PortListType[]>();
   const portfolioList = useRecoilValue(getPortListSelector);
   const useField = useRecoilValue(useFieldValue);
+  const sort = useRecoilValue(sortValue);
 
   const location = useLocation();
   const queryData = QueryString.parse(location.search);
@@ -21,7 +25,7 @@ const MainList = () => {
   useEffect(() => {
     const getPorfolio = async () => {
       try {
-        await getPortfolioList(useField, query, "title").then((res) => {
+        await getPortfolioList(useField, sort, query, "title").then((res) => {
           setList(res.data.portfolio_list);
         });
       } catch (e) {
@@ -31,7 +35,7 @@ const MainList = () => {
 
     getPorfolio();
     setList(portfolioList);
-  }, [portfolioList, query, useField]);
+  }, [portfolioList, query, sort, useField]);
 
   return (
     <S.MainListWrapper className="container">
