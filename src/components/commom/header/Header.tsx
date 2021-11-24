@@ -1,15 +1,27 @@
-import React, { useCallback, useEffect, useRef } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Link, withRouter, useHistory } from "react-router-dom";
 import { Logo, Magnifier } from "../../../util/assets";
 import * as S from "./style";
 import SubMenu from "./SubMenu";
 import Notiication from "./Notiication";
 import { useRecoilState } from "recoil";
 import { searchBar } from "../../../modules/atom/header";
+import { searchValue } from "../../../modules/atom/portfolio/search";
 
 const Header = () => {
+  const [selectText, setSelectText] = useState<boolean>(true);
   const [isFocusing, setIsFocusing] = useRecoilState(searchBar);
+  const [searchContent, setSearchContent] = useRecoilState(searchValue);
   const searchInputRef = useRef<any>(null);
+  const history = useHistory();
+
+  const searchHandler = (e: any) => {
+    console.log(e.target);
+    setSearchContent(e.target.value);
+    if (e.key === "Enter") {
+    }
+  };
+
   const focusOn = useCallback(() => {
     setIsFocusing(true);
   }, [setIsFocusing]);
@@ -22,7 +34,11 @@ const Header = () => {
     if (isFocusing) {
       searchInputRef.current.focus();
     }
-  }, [isFocusing]);
+
+    history.push(
+      `/list?page=1&size=10&field=&sort=date&query=${searchContent}&searchType=`
+    );
+  }, [history, isFocusing, searchContent]);
 
   return (
     <>
@@ -66,15 +82,17 @@ const Header = () => {
         )}
         <S.MagnifierWrapper isFocusing={isFocusing}>
           <S.Input>
+            <div className="select-box">
+              <span onClick={() => setSelectText(!selectText)}>
+                {selectText ? "제목" : "사용자"}
+              </span>
+            </div>
             <input
               type="text"
               placeholder="검색어를 입력해주세요"
               onBlur={focusOff}
-              onFocus={focusOn}
               ref={searchInputRef}
-              onChange={(e) => {
-                console.log(e);
-              }}
+              onKeyPress={(e: any) => setSearchContent(e.target.value)}
             />
             <img src={Magnifier} alt="검색아이콘" />
           </S.Input>

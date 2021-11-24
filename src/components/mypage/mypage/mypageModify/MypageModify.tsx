@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { Header } from "../../..";
 import { myInfoSelector } from "../../../../modules/selector/user";
 import * as S from "../../../../util/css/mypage/mypage/mypageModify/style";
@@ -10,8 +10,7 @@ import SecessionModal from "./SecessionModal";
 
 const MypageModify = () => {
   const [modal, setModal] = useState<boolean>(false);
-  const [userInfo, setUserInfo] = useRecoilState(myInfoSelector);
-
+  const userInfo = useRecoilValue(myInfoSelector);
 
   return (
     <S.MypageModifyContainer modal={modal}>
