@@ -14,12 +14,12 @@ const LicenseContainer = () => {
   );
 
   useEffect(() => {
-    console.log(certificateList);
-  }, [certificateList]);
-
-  useEffect(() => {
     updateCertificateList();
   }, [textList]);
+
+  useEffect(() => {
+    console.log(certificateList);     
+  }, [certificateList]);
 
   const updateCertificateList = () => {
     setCertificateList(
@@ -46,7 +46,12 @@ const LicenseContainer = () => {
     if (certificateList.length <= 1) {
       ToastError("삭제할 수 없습니다.");
     } else {
-      console.log(index);
+      setCertificateList(
+        certificateList?.filter((value: any, id: number) => {
+          console.log(id);
+          return id !== index;
+        })
+      );
     }
   };
 
