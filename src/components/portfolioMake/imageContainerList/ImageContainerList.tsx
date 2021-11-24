@@ -10,16 +10,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ImageContainerList = () => {
-  /* const [container_list, setContainerList] = useRecoilState(container_text); */
   const defalutContainerList = useRecoilValue(container_text);
   const [container_list, setContainerList] = useState(defalutContainerList);
   const boxData = useRecoilValue(box_data);
 
-  console.log(container_list);
+  console.log(container_list, 'asd');
 
   const AddContainerListItem = () => {
     var jbRandom = Math.random();
-    //console.log(jbRandom);
     setContainerList((value: any) => [
       ...value,
       {
@@ -31,7 +29,7 @@ const ImageContainerList = () => {
   };
 
   const removeContainerList = (id: number) => {
-    if (container_list.length === 1) {
+    if (container_list.length <= 1) {
       ToastError("삭제할 수 없습니다");
     } else {
       setContainerList(
@@ -91,7 +89,7 @@ const ImageContainerList = () => {
               />
             </header>
             <S.ImageListSection>
-              <ImageWrapper />
+              <ImageWrapper identity={index} />
               <ContentWrapper setContainerList={setContainerList} />
             </S.ImageListSection>
           </S.ImageWrapeerList>
