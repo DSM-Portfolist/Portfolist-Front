@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { Magnifier } from "../../../util/assets";
 import { searchValue } from "../../../modules/atom/portfolio/search/index";
 import * as S from "./style";
@@ -8,14 +8,17 @@ import { useHistory } from "react-router";
 const Searchbar = () => {
   const [selectText, setSelectText] = useState<boolean>(true);
   const [isFocusing, setIsFocusing] = useState<boolean>(false);
-  const setSearchContent = useSetRecoilState(searchValue);
+  const [searchContent, setSearchContent] = useRecoilState(searchValue);
   const searchInputRef = useRef<any>(null);
   const history = useHistory();
 
   const searchHandler = (e: any) => {
+    console.log(e.target.value);
+    setSearchContent(e.target.value);
     if (e.key === "Enter") {
-      setSearchContent(e.target.value);
-      history.push("/portfolio-list");
+      history.push(
+        `/list?page=1&size=10&field=&sort=date&query=${searchContent}&searchType=`
+      );
     }
   };
 
@@ -41,7 +44,7 @@ const Searchbar = () => {
           placeholder="검색어를 입력해주세요"
           onBlur={focusOff}
           ref={searchInputRef}
-          onChange={(e) => searchHandler(e)}
+          onChange={(e) => console.log(e.target.value)}
         />
         <img src={Magnifier} alt="검색아이콘" />
       </S.Input>

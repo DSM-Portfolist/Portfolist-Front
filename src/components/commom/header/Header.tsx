@@ -72,6 +72,9 @@ const Header = () => {
               onBlur={focusOff}
               onFocus={focusOn}
               ref={searchInputRef}
+              onChange={(e) => {
+                console.log(e);
+              }}
             />
             <img src={Magnifier} alt="검색아이콘" />
           </S.Input>
