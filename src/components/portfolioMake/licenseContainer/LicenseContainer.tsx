@@ -10,7 +10,7 @@ import CertificateListContent from "./certificateListContent/CertificateListCont
 const LicenseContainer = () => {
   const [textList, setTextList] = useState<string[]>([""]);
   const [certificateList, setCertificateList] = useState<CertificateListType[]>(
-    [{ title: "", certificate_list: textList }]
+    [{ title: "", certificate_list: [""] }]
   );
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const LicenseContainer = () => {
       ...certificateList,
       {
         title: "",
-        certificate_list: textList,
+        certificate_list: [""],
       },
     ]);
   };
