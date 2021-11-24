@@ -3,9 +3,9 @@ import * as S from "./style";
 import ImageWrapper from "./imageWrapper/ImageWrapper";
 import ContentWrapper from "./contentWrapper/ContentWrapper";
 import { MinusButton } from "../../../util/assets";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { container_text, box_data } from "../../../modules/atom/portfolioPost";
-import { ToastSuccess, ToastError } from "../../../hook/toastHook";
+import { ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,7 +14,9 @@ const ImageContainerList = () => {
   const [container_list, setContainerList] = useState(defalutContainerList);
   const boxData = useRecoilValue(box_data);
 
-  console.log(container_list);
+  useEffect(() => {
+    console.log(boxData);
+  }, [container_list]);
 
   const AddContainerListItem = () => {
     var jbRandom = Math.random();
@@ -58,6 +60,21 @@ const ImageContainerList = () => {
     );
   };
 
+  const updateBoxData = (index: number) => {
+    setContainerList(
+      container_list.map((value: any) => {
+        if (value.id === index) {
+          return {
+            ...value,
+            container_text_list: boxData,
+          };
+        } else {
+          return value;
+        }
+      })
+    );
+  };
+
   return (
     <S.MainWrapper className="make-container">
       <ToastContainer />
@@ -67,7 +84,6 @@ const ImageContainerList = () => {
         </button>
       </header>
       {container_list.map((value: any, index: number) => {
-        /* console.log(value); */
         return (
           <S.ImageWrapeerList key={index}>
             <header>
@@ -93,6 +109,7 @@ const ImageContainerList = () => {
               <ContentWrapper
                 setContainerList={setContainerList}
                 identity={index}
+                updateBoxData={updateBoxData}
               />
             </S.ImageListSection>
           </S.ImageWrapeerList>
