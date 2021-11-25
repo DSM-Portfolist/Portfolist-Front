@@ -8,6 +8,7 @@ export const MainWrapper = styled.section`
     font-size: 22px;
     color: #000000;
     margin-bottom: 30px;
+    font-weight: 700;
   }
 `;
 
