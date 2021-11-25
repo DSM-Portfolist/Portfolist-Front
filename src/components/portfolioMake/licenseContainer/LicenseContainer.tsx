@@ -8,31 +8,34 @@ import deleteButtonX from "../../../util/assets/icon/deleteButtonX.svg";
 import CertificateListContent from "./certificateListContent/CertificateListContent";
 
 const LicenseContainer = () => {
-  const [textList, setTextList] = useState<string[]>([""]);
+  const [textList, setTextList] = useState<any>([[""]]);
   const [certificateList, setCertificateList] = useState<CertificateListType[]>(
     [{ title: "", certificate_list: [""] }]
   );
 
   useEffect(() => {
-    updateCertificateList();
-  }, [textList]);
+    console.log(textList);
+    console.log(certificateList);
+  }, [textList, certificateList]);
 
-  useEffect(() => {
-    console.log(certificateList);     
-  }, [certificateList]);
-
-  const updateCertificateList = () => {
+  const updateCertificateList = (identity: number, index: number) => {
+    console.log(identity, index);
     setCertificateList(
-      certificateList.map((list: any) => {
-        return {
-          ...list,
-          certificate_list: textList,
-        };
+      certificateList.map((list: any, i: number) => {
+        if (identity === i) {
+          return {
+            ...list,
+            certificate_list: textList[identity],
+          };
+        } else {
+          return list;
+        }
       })
     );
   };
 
   const addList = () => {
+    setTextList((textList: any) => [...textList, [""]]);
     setCertificateList((certificateList: CertificateListType[]) => [
       ...certificateList,
       {
@@ -64,6 +67,7 @@ const LicenseContainer = () => {
         </span>
       </S.HeaderButton>
       {certificateList?.map((list: CertificateListType, index: number) => {
+        console.log(list);
         return (
           <S.MapWrapper>
             <S.TitleWrapper>
@@ -79,10 +83,10 @@ const LicenseContainer = () => {
             </S.TitleWrapper>
             <CertificateListContent
               certificate_content={list?.certificate_list}
-              certificateList={certificateList}
-              setCertificateList={setCertificateList}
+              updateCertificateList={updateCertificateList}
               textList={textList}
               setTextList={setTextList}
+              identity={index}
             />
           </S.MapWrapper>
         );
