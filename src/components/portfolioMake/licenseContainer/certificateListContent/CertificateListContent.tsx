@@ -8,41 +8,59 @@ import * as S from "./style";
 
 interface Props {
   certificate_content: string[];
-  setCertificateList: any;
-  certificateList: CertificateListType[];
   textList: any;
-  setTextList: (text: Array<string>) => void;
+  setTextList: any;
+  updateCertificateList: (identity: number, index: number) => void;
+  identity: number;
 }
 
 const CertificateListContent = (props: Props) => {
   const {
-    certificateList,
-    setCertificateList,
+    updateCertificateList,
+    identity,
     certificate_content,
     textList,
     setTextList,
   } = props;
 
-  const addContentList = () => {
-    setTextList(textList.concat(""));
+  const addContentList = (identity: number, index: number) => {
+    setTextList(textList[identity].push(""));
+    updateCertificateList(identity, textList[identity].length - 1);
   };
 
-  const onChangeEvent = (e: any, index: number) => {
+  const onChangeEvent = (e: any, identity: number, index: number) => {
     const { value } = e.target;
-    textList[index] = value;
-    setTextList(textList);
+    setTextList([
+      textList.map((item: string, i: number) => {
+        console.log(item);
+        if (i === identity) {
+          for (let j = 0; j < textList[identity].length; j++) {
+            if (index === j) {
+              textList[identity][j] = value;
+              return textList[identity][j];
+            } else {
+              return textList[identity][j];
+            }
+          }
+        } else {
+          return item;
+        }
+      }),
+    ]);
+    updateCertificateList(identity, index);
   };
 
   return (
     <>
       {certificate_content?.map((item: any, index: number) => {
+        console.log(item, index);
         return (
           <div className="infoContainer">
             <S.InputBox>
               <input
                 id="inputContent"
                 onChange={(e) => {
-                  onChangeEvent(e, index);
+                  onChangeEvent(e, identity, index);
                 }}
                 placeholder="내용을 입력해주세요."
               />
@@ -51,7 +69,12 @@ const CertificateListContent = (props: Props) => {
             {index + 1 < certificate_content.length ? (
               ""
             ) : (
-              <span className="addContent" onClick={addContentList}>
+              <span
+                className="addContent"
+                onClick={() => {
+                  addContentList(identity, index);
+                }}
+              >
                 내용 추가
               </span>
             )}
