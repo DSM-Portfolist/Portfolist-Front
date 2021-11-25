@@ -46,14 +46,14 @@ export const ImageWrap = styled.div`
   overflow: auto;
   &::-webkit-scrollbar {
     width: 7px;
-    height: 7px;
+    height: 6px;
   }
   &::-webkit-scrollbar-track {
     display: none;
   }
   &::-webkit-scrollbar-thumb {
     background: #ff7659;
-    border-radius: 5px;
+    border-radius: 4px;
   }
 
   img {
