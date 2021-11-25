@@ -29,6 +29,8 @@ export { default as FooterLogo } from "./icon/FooterLogo.png";
 export { default as FooterGithub } from "./icon/FooterGithub.png";
 export { default as File } from "./icon/file.svg";
 export { default as isInFile } from "./icon/isInFile.svg";
+export { default as Link } from "./icon/Link.svg";
+export { default as isInLink } from "./icon/isInLink.svg";
 export const DefaultImage =
   "https://www.ibossedu.co.kr/template/DESIGN_shared/program/theme/01/THUMBNAIL_60_60_icon_rep_box.gif";
 export const DefaultProfile =
