@@ -4,21 +4,20 @@ import { ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CertificateListType } from "../../../util/interface/portfolioPost/postType";
-import deleteButtonX from "../../../util/assets/icon/deleteButtonX.svg";
 import CertificateListContent from "./certificateListContent/CertificateListContent";
+import TextContainer from "./TextContainer/TextContainer";
 
 const LicenseContainer = () => {
   const [textList, setTextList] = useState<any>([[""]]);
-  const [certificateList, setCertificateList] = useState<CertificateListType[]>(
-    [{ title: "", certificate_list: [""] }]
-  );
+  const [certificateList, setCertificateList] = useState<any>([
+    { title: "", certificate_list: [""] },
+  ]);
 
   useEffect(() => {
-    console.log(textList);
     console.log(certificateList);
-  }, [textList, certificateList]);
+  }, [certificateList]);
 
-  const updateCertificateList = (identity: number, index: number) => {
+  /*  const updateCertificateList = (identity: number, index: number) => {
     console.log(identity, index);
     setCertificateList(
       certificateList.map((list: any, i: number) => {
@@ -33,9 +32,9 @@ const LicenseContainer = () => {
       })
     );
   };
-
+ */
   const addList = () => {
-    setTextList((textList: any) => [...textList, [""]]);
+    /* setTextList((textList: any) => [...textList, [""]]); */
     setCertificateList((certificateList: CertificateListType[]) => [
       ...certificateList,
       {
@@ -66,31 +65,10 @@ const LicenseContainer = () => {
           + Add new list
         </span>
       </S.HeaderButton>
-      {certificateList?.map((list: CertificateListType, index: number) => {
-        console.log(list);
-        return (
-          <S.MapWrapper>
-            <S.TitleWrapper>
-              <input type="text" placeholder="제목을 입력해 주세요." />
-              <img
-                src={deleteButtonX}
-                style={{ width: "27px", height: "27px", marginLeft: "5px" }}
-                onClick={() => {
-                  deleteList(index);
-                }}
-                alt=""
-              />
-            </S.TitleWrapper>
-            <CertificateListContent
-              certificate_content={list?.certificate_list}
-              updateCertificateList={updateCertificateList}
-              textList={textList}
-              setTextList={setTextList}
-              identity={index}
-            />
-          </S.MapWrapper>
-        );
-      })}
+      <TextContainer
+        certificateList={certificateList}
+        setCertificateList={setCertificateList}
+      />
     </S.LicenseWrapper>
   );
 };

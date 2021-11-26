@@ -23,12 +23,12 @@ const CertificateListContent = (props: Props) => {
     setTextList,
   } = props;
 
-  const addContentList = (identity: number, index: number) => {
+  /*  const addContentList = (identity: number, index: number) => {
     setTextList(textList[identity].push(""));
     updateCertificateList(identity, textList[identity].length - 1);
-  };
+  }; */
 
-  const onChangeEvent = (e: any, identity: number, index: number) => {
+  /*   const onChangeEvent = (e: any, identity: number, index: number) => {
     const { value } = e.target;
     setTextList([
       textList.map((item: string, i: number) => {
@@ -48,11 +48,11 @@ const CertificateListContent = (props: Props) => {
       }),
     ]);
     updateCertificateList(identity, index);
-  };
+  }; */
 
   return (
     <>
-      {certificate_content?.map((item: any, index: number) => {
+      {/* {certificate_content?.map((item: any, index: number) => {
         console.log(item, index);
         return (
           <div className="infoContainer">
@@ -80,7 +80,7 @@ const CertificateListContent = (props: Props) => {
             )}
           </div>
         );
-      })}
+      })} */}
     </>
   );
 };
