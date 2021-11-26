@@ -4,7 +4,6 @@ import { ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CertificateListType } from "../../../util/interface/portfolioPost/postType";
-import CertificateListContent from "./certificateListContent/CertificateListContent";
 import TextContainer from "./TextContainer/TextContainer";
 
 const LicenseContainer = () => {
