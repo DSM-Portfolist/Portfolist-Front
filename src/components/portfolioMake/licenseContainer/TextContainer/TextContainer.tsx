@@ -15,6 +15,7 @@ const TextContainer = (props: any) => {
   }, [certificateList]);
 
   const onChangeTitle = (e: any, index: number) => {
+    //제목 onChange Event
     setCertificateList(
       certificateList.map((item: any, i: number) => {
         if (i === index) {
@@ -27,6 +28,7 @@ const TextContainer = (props: any) => {
   };
 
   const deleteCertificateList = (index: number) => {
+    //컨테이너 삭제 함수
     if (certificateList.length <= 1) {
       ToastError("1개 이상의 리스트는 있어야 합니다.");
     } else {
@@ -39,6 +41,7 @@ const TextContainer = (props: any) => {
   };
 
   const onChangeContent = (e: any, parents_index: number, index: number) => {
+    //내용 onChange Event
     setCertificateList(
       certificateList.map((item: any, i: number) => {
         console.log(item);
@@ -57,6 +60,7 @@ const TextContainer = (props: any) => {
   };
 
   const addContentList = (parents_index: number) => {
+    //내용 추가하는 함수
     setCertificateList(
       certificateList.map((item: any, i: number) => {
         if (i === parents_index) {
@@ -72,13 +76,33 @@ const TextContainer = (props: any) => {
     );
   };
 
+  const deleteContent = (parents_index: number, index: number) => {
+    //내용 삭제하는 함수
+    if (certificateList[parents_index].certificate_list.length <= 1) {
+      ToastError("1개 이상의 리스트는 있어야 합니다.");
+    } else {
+      let newList = certificateList[parents_index].certificate_list?.filter(
+        (value: any, i: number) => {
+          return i !== index;
+        }
+      );
+      setCertificateList((certificateList: any) => [
+        {
+          ...certificateList[parents_index],
+          certificate_list: newList,
+        },
+      ]);
+    }
+  };
+
   return (
     <div>
       {certificateList?.map((list: any, index: number) => {
-        console.log(list, "list");
+        console.log(list);
         const { certificate_list, title } = list;
         return (
           <S.MapWrapper>
+            <ToastContainer />
             <S.TitleWrapper>
               <input
                 type="text"
@@ -99,7 +123,7 @@ const TextContainer = (props: any) => {
             </S.TitleWrapper>
             <>
               {certificate_list?.map((item: any, i: number) => {
-                console.log(item, index);
+                console.log(item, i);
                 return (
                   <div className="infoContainer">
                     <S.InputBox>
@@ -109,8 +133,15 @@ const TextContainer = (props: any) => {
                           onChangeContent(e, index, i);
                         }}
                         placeholder="내용을 입력해주세요."
+                        value={item}
                       />
-                      <img src={MinusButton} alt="" />
+                      <img
+                        src={MinusButton}
+                        alt=""
+                        onClick={() => {
+                          deleteContent(index, i);
+                        }}
+                      />
                     </S.InputBox>
                     {i + 1 < certificate_list.length ? (
                       ""
