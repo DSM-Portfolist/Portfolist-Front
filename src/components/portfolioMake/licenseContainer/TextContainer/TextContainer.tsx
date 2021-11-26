@@ -2,12 +2,15 @@ import React from "react";
 import { CertificateListType } from "../../../../util/interface/portfolioPost/postType";
 import deleteButtonX from "../../../../util/assets/icon/deleteButtonX.svg";
 import { MinusButton } from "../../../../util/assets";
+import { ToastError } from "../../../../hook/toastHook";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as S from "./style";
 
 const TextContainer = (props: any) => {
   const { certificateList, setCertificateList } = props;
 
-  function onChangeTitle(e: any, index: number) {
+  const onChangeTitle = (e: any, index: number) => {
     console.log(`onChangeEvent: ${index}`);
     setCertificateList(
       certificateList.map((item: any, i: number) => {
@@ -18,7 +21,19 @@ const TextContainer = (props: any) => {
         }
       })
     );
-  }
+  };
+
+  const deleteCertificateList = (index: number) => {
+    if (certificateList.length <= 1) {
+      ToastError("1개 이상의 리스트는 있어야 합니다.");
+    } else {
+      setCertificateList(
+        certificateList?.filter((value: any, i: number) => {
+          return i !== index;
+        })
+      );
+    }
+  };
 
   return (
     <div>
@@ -38,7 +53,9 @@ const TextContainer = (props: any) => {
               <img
                 src={deleteButtonX}
                 style={{ width: "27px", height: "27px", marginLeft: "5px" }}
-                onClick={() => {}}
+                onClick={() => {
+                  deleteCertificateList(index);
+                }}
                 alt=""
               />
             </S.TitleWrapper>
