@@ -17,24 +17,7 @@ const LicenseContainer = () => {
     console.log(certificateList);
   }, [certificateList]);
 
-  /*  const updateCertificateList = (identity: number, index: number) => {
-    console.log(identity, index);
-    setCertificateList(
-      certificateList.map((list: any, i: number) => {
-        if (identity === i) {
-          return {
-            ...list,
-            certificate_list: textList[identity],
-          };
-        } else {
-          return list;
-        }
-      })
-    );
-  };
- */
   const addList = () => {
-    /* setTextList((textList: any) => [...textList, [""]]); */
     setCertificateList((certificateList: CertificateListType[]) => [
       ...certificateList,
       {
@@ -44,24 +27,15 @@ const LicenseContainer = () => {
     ]);
   };
 
-  const deleteList = (index: number) => {
-    if (certificateList.length <= 1) {
-      ToastError("삭제할 수 없습니다.");
-    } else {
-      setCertificateList(
-        certificateList?.filter((value: any, id: number) => {
-          console.log(id);
-          return id !== index;
-        })
-      );
-    }
-  };
-
   return (
     <S.LicenseWrapper className="make-container">
       <ToastContainer />
       <S.HeaderButton>
-        <span className="addContent" onClick={addList}>
+        <span
+          className="addContent"
+          onClick={addList}
+          style={{ marginBottom: "12px" }}
+        >
           + Add new list
         </span>
       </S.HeaderButton>
