@@ -56,6 +56,22 @@ const TextContainer = (props: any) => {
     );
   };
 
+  const addContentList = (parents_index: number) => {
+    setCertificateList(
+      certificateList.map((item: any, i: number) => {
+        if (i === parents_index) {
+          certificateList[parents_index].certificate_list.push("");
+          return {
+            ...certificateList[parents_index],
+            certificate_list: certificateList[parents_index].certificate_list,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+  };
+
   return (
     <div>
       {certificateList?.map((list: any, index: number) => {
@@ -99,7 +115,12 @@ const TextContainer = (props: any) => {
                     {i + 1 < certificate_list.length ? (
                       ""
                     ) : (
-                      <span className="addContent" onClick={() => {}}>
+                      <span
+                        className="addContent"
+                        onClick={() => {
+                          addContentList(index);
+                        }}
+                      >
                         내용 추가
                       </span>
                     )}
