@@ -12,7 +12,7 @@ import {
   useFieldValue,
 } from "../../../modules/atom/portfolio/search";
 
-const MainList = () => {
+const MainList = ({ match }: any) => {
   const [list, setList] = useState<PortListType[]>();
   const portfolioList = useRecoilValue(getPortListSelector);
   const useField = useRecoilValue(useFieldValue);
@@ -25,9 +25,9 @@ const MainList = () => {
   useEffect(() => {
     const getPorfolio = async () => {
       try {
-        await getPortfolioList(useField, sort, query, "title").then((res) => {
-          setList(res.data.portfolio_list);
-        });
+        const data = await getPortfolioList(useField, sort, query, "title");
+        setList(data.data.portfolio_list);
+        console.log(data);
       } catch (e) {
         console.log(e);
       }
