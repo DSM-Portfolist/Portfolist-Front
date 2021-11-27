@@ -16,9 +16,12 @@ const Header = () => {
   const history = useHistory();
 
   const searchHandler = (e: any) => {
-    console.log(e.target);
     setSearchContent(e.target.value);
+
     if (e.key === "Enter") {
+      history.push(
+        `list?page=0&size=10&field=&sort=date&query=${searchContent}&searchType=`
+      );
     }
   };
 
@@ -34,10 +37,6 @@ const Header = () => {
     if (isFocusing) {
       searchInputRef.current.focus();
     }
-
-    history.push(
-      `/list?page=1&size=10&field=&sort=date&query=${searchContent}&searchType=`
-    );
   }, [history, isFocusing, searchContent]);
 
   return (
@@ -50,7 +49,7 @@ const Header = () => {
                 <img src={Logo} alt="포트폴리스트 로고" />
               </Link>
               <Link
-                to="list?page=1&size=10&field=&sort=date&query&searchType=="
+                to="list?page=0&size=10&field=&sort=date&query=&searchType="
                 className="list-item"
               >
                 <span>포트폴리오</span>
@@ -81,7 +80,7 @@ const Header = () => {
           </S.BeforeLoginHeader>
         )}
         <S.MagnifierWrapper isFocusing={isFocusing}>
-          <S.Input>
+          <S.Input onChange={(e) => searchHandler(e)}>
             <div className="select-box">
               <span onClick={() => setSelectText(!selectText)}>
                 {selectText ? "제목" : "사용자"}
@@ -92,7 +91,7 @@ const Header = () => {
               placeholder="검색어를 입력해주세요"
               onBlur={focusOff}
               ref={searchInputRef}
-              onKeyPress={(e: any) => setSearchContent(e.target.value)}
+              onKeyPress={(e) => searchHandler(e)}
             />
             <img src={Magnifier} alt="검색아이콘" />
           </S.Input>
