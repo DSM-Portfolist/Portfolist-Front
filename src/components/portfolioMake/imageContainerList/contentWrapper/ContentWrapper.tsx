@@ -11,6 +11,10 @@ const ContentWrapper = (props: any) => {
   const { parent_index } = props;
   const [containerList, setContainerList] = useRecoilState(container_list);
 
+  useEffect(() => {
+    console.log(containerList);
+  }, [containerList]);
+
   const onChangeContainerTextList = (
     e: any,
     parent_index: number,
@@ -58,14 +62,15 @@ const ContentWrapper = (props: any) => {
     setContainerList(
       containerList.map((value: any, i: number) => {
         if (parent_index === i) {
-          containerList[parent_index].container_text_list.push({
-            box_title: "",
-            box_content: "",
-          });
           return {
             ...containerList[parent_index],
-            container_text_list:
-              containerList[parent_index].container_text_list,
+            container_text_list: [
+              ...containerList[parent_index].container_text_list,
+              {
+                box_title: "",
+                box_content: "",
+              },
+            ],
           };
         } else {
           return value;
