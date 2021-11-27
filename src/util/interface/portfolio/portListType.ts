@@ -1,16 +1,16 @@
-export interface PortListWrapType {}
-
 export interface PortListType {
   date: string;
   field: [];
   introduce: string;
   id: number;
-  name: string;
-  pofol_img: string;
-  profile_img: string | null;
+  thumbnail: string;
   title: string;
   total_comment: number;
   total_touching: number;
   touched: boolean;
-  user_id: number;
+  user: {
+    user_id: number;
+    name: string;
+    profile_img: string | null;
+  };
 }

@@ -13,9 +13,9 @@ import * as S from "./style";
 const TouchingItem = () => {
   const portfolioValue = useRecoilValue(getPortfolioSelecor);
   const [touchingBoolean, setTouchingBoolean] = useState<boolean>(
-    portfolioValue.touched
+    portfolioValue?.touched
   );
-  const [count, setCount] = useState<number>(portfolioValue.total_touching);
+  const [count, setCount] = useState<number>(portfolioValue?.total_touching);
 
   const touching = useMutation("touching", postTouching);
   const untouching = useMutation("untouching", deleteTouching);
