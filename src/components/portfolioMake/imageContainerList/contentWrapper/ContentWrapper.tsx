@@ -23,18 +23,23 @@ const ContentWrapper = (props: any) => {
     const { name, value } = e.target;
     setContainerList(
       containerList.map((item: any, i: number) => {
+        console.log(item);
         if (parent_index === i) {
-          if (name === "box_title") {
-            containerList[parent_index].container_text_list[index].box_title =
-              value;
-          } else {
-            containerList[parent_index].container_text_list[index].box_content =
-              value;
-          }
+          let newList = containerList[parent_index].container_text_list.map(
+            (child_item: any, child_index: number) => {
+              if (child_index === index) {
+                return {
+                  ...child_item,
+                  [name]: value,
+                };
+              } else {
+                return child_item;
+              }
+            }
+          );
           return {
-            ...containerList[parent_index],
-            container_text_list:
-              containerList[parent_index].container_text_list,
+            ...item,
+            container_text_list: newList,
           };
         } else {
           return item;
