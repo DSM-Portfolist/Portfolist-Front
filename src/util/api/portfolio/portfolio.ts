@@ -11,7 +11,7 @@ export function getPortfolioList(
   return request({
     url: `/portfolio/list?page=0&size=10&field=${
       field === undefined ? "" : field
-    }&sort=date, ${sort}&query=${query}&searchType=${type}`,
+    }&sort=date,${sort}&query=${query}&searchType=${type}`,
     method: "get",
     headers: { Authorization: token },
   });
