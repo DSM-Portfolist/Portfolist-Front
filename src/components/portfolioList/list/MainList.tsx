@@ -27,7 +27,6 @@ const MainList = ({ match }: any) => {
       try {
         const data = await getPortfolioList(useField, sort, query, "title");
         setList(data.data.portfolio_list);
-        console.log(data);
       } catch (e) {
         console.log(e);
       }
