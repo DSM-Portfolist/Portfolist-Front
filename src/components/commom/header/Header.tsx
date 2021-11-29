@@ -4,24 +4,23 @@ import { Logo, Magnifier } from "../../../util/assets";
 import * as S from "./style";
 import SubMenu from "./SubMenu";
 import Notiication from "./Notiication";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { searchBar } from "../../../modules/atom/header";
 import { searchValue } from "../../../modules/atom/portfolio/search";
 
 const Header = () => {
   const [selectText, setSelectText] = useState<boolean>(true);
   const [isFocusing, setIsFocusing] = useRecoilState(searchBar);
-  const [searchContent, setSearchContent] = useRecoilState(searchValue);
+  const setSearchText = useSetRecoilState(searchValue);
   const searchInputRef = useRef<any>(null);
   const history = useHistory();
 
   const searchHandler = (e: any) => {
-    setSearchContent(e.target.value);
-
     if (e.key === "Enter") {
       history.push(
-        `list?page=0&size=10&field=&sort=date&query=${searchContent}&searchType=`
+        `list?page=0&size=10&field=&sort=date&query=${e.target.value}&searchType=`
       );
+      setSearchText("");
     }
   };
 
@@ -37,7 +36,7 @@ const Header = () => {
     if (isFocusing) {
       searchInputRef.current.focus();
     }
-  }, [history, isFocusing, searchContent]);
+  }, [history, isFocusing]);
 
   return (
     <>
@@ -81,16 +80,18 @@ const Header = () => {
         )}
         <S.MagnifierWrapper isFocusing={isFocusing}>
           <S.Input onChange={(e) => searchHandler(e)}>
-            <div className="select-box">
-              <span onClick={() => setSelectText(!selectText)}>
-                {selectText ? "제목" : "사용자"}
-              </span>
-            </div>
+            <select
+              name="제목"
+              defaultValue="제목"
+              onChange={() => setSelectText(!selectText)}
+            >
+              <option value="사용자"></option>
+            </select>
             <input
+              ref={searchInputRef}
               type="text"
               placeholder="검색어를 입력해주세요"
               onBlur={focusOff}
-              ref={searchInputRef}
               onKeyPress={(e) => searchHandler(e)}
             />
             <img src={Magnifier} alt="검색아이콘" />

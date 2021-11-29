@@ -2,6 +2,11 @@ import request from "../index";
 
 const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 
+/* field: string[],
+  sort: string,
+  query: any,
+  type: string */
+
 export function getPortfolioList(
   field: string[],
   sort: string,
