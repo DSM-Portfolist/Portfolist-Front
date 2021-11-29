@@ -1,41 +1,47 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useRecoilValue } from "recoil";
 import * as S from "./style";
+import { reCommentControl } from "../../../modules/atom/portfolio/comment";
 import CommentItem from "./CommentItem";
+import { useRecoilState } from "recoil";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
-import { ToastSuccess } from "../../../hook/toastHook";
+import { ToastError, ToastSuccess } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getComment, postComment } from "../../../util/api/portfolio/comment";
-import { commentListSelector } from "../../../modules/atom/portfolio/comment";
-import { portfolioId } from "../../../modules/atom/portfolio";
+import { useLocation } from "react-router";
+import QueryString from "query-string";
 
-const Comment = ({ match }: any) => {
-  const id = useRecoilValue(portfolioId);
-  const comments = useRecoilValue(commentListSelector(1));
+const Comment = () => {
+  const [reComment, setReComment] = useRecoilState(reCommentControl);
+  const [comments, setComments] = useState<CommentType[]>([]);
   const [commentContent, setCommentContent] = useState<string>("");
-  // const [comments, setComments] = useState<CommentType[]>([]);
   const commentRef = useRef(null);
+
+  const location = useLocation();
+  const queryData = QueryString.parse(location.search);
+  const id: any = queryData.id;
 
   function CommentAdd(content: string, id: number) {
     if (commentRef) {
       postComment(id, content)
         .then(() => {
           ToastSuccess("댓글이 작성되었습니다.");
+          getTest();
         })
-        .catch((e) => {});
+        .catch((e) => {
+          ToastError("댓글 작성에 실패했습니다.");
+          console.log(e);
+        });
     }
   }
 
-  /*  const getTest = useCallback(() => {
-    getComment(id).then((res) => setComments(res.data));
-  }, [id]);
+  const getTest = useCallback(() => {
+    getComment(id).then((res) => setComments(res.data.comments));
+  }, []);
 
   useEffect(() => {
     getTest();
-    console.log(comments);
-  }, [comments, getTest]);
- */
+  }, []);
 
   return (
     <>
@@ -58,7 +64,25 @@ const Comment = ({ match }: any) => {
         ) : (
           <>
             {comments?.map((comment: CommentType) => (
-              <CommentItem key={comment.comment_id} comment={comment} />
+              <>
+                <CommentItem
+                  key={comment.comment_id}
+                  comment={comment}
+                  portfolioId={id}
+                  getTest={getTest}
+                />
+                <button
+                  className="more_text"
+                  onClick={() => setReComment(!reComment)}
+                >
+                  + 답글 달기
+                </button>
+                <S.Input
+                  reComment={reComment}
+                  type="text"
+                  placeholder="답글을 작성해 주세요"
+                />
+              </>
             ))}
             {comments?.length >= 5 ? <S.MoreButton>더보기</S.MoreButton> : ""}
           </>
