@@ -76,7 +76,7 @@ const ListItem = ({ list }: Prop) => {
         </div>
         <div className="title">
           <Link
-            to={`/portfolio/${list.id}`}
+            to={`/portfolio?id=${list.id}`}
             title="포트폴리오 상세 페이지 이동합니다."
           >
             {list.title}
