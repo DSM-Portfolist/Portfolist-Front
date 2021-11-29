@@ -4,24 +4,23 @@ import { Logo, Magnifier } from "../../../util/assets";
 import * as S from "./style";
 import SubMenu from "./SubMenu";
 import Notiication from "./Notiication";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { searchBar } from "../../../modules/atom/header";
 import { searchValue } from "../../../modules/atom/portfolio/search";
 
 const Header = () => {
   const [selectText, setSelectText] = useState<boolean>(true);
   const [isFocusing, setIsFocusing] = useRecoilState(searchBar);
-  const [searchContent, setSearchContent] = useRecoilState(searchValue);
+  const setSearchText = useSetRecoilState(searchValue);
   const searchInputRef = useRef<any>(null);
   const history = useHistory();
 
   const searchHandler = (e: any) => {
-    setSearchContent(e.target.value);
-
     if (e.key === "Enter") {
       history.push(
-        `list?page=0&size=10&field=&sort=date&query=${searchContent}&searchType=`
+        `list?page=0&size=10&field=&sort=date&query=${e.target.value}&searchType=`
       );
+      setSearchText("");
     }
   };
 
@@ -37,7 +36,7 @@ const Header = () => {
     if (isFocusing) {
       searchInputRef.current.focus();
     }
-  }, [history, isFocusing, searchContent]);
+  }, [history, isFocusing]);
 
   return (
     <>
