@@ -7,7 +7,7 @@ import { PortListType } from "../../../util/interface/portfolio/portListType";
 import { FieldType } from "../../../util/interface/Sign/loginType";
 import { searchValue, sortValue, useFieldValue } from "./search";
 
-export const portfolioId = atom<number>({
+export const portfolioId = atom<number | any>({
   key: "portfolioId",
   default: 0,
 });
