@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import * as S from "./style";
 import ImageWrapper from "./imageWrapper/ImageWrapper";
 import ContentWrapper from "./contentWrapper/ContentWrapper";
@@ -65,7 +65,7 @@ const ImageContainerList = () => {
       <ToastContainer />
       <header>
         <button type="button" onClick={addContainerListItem}>
-          리스트 추가하기
+          + Add new list
         </button>
       </header>
       {containerList.map((value: any, index: number) => {

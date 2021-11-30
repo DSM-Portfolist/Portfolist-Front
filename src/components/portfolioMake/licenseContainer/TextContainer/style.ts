@@ -76,6 +76,7 @@ export const HeaderButton = styled.header`
     color: #ff7659;
     cursor: pointer;
     font-weight: 700;
+    margin-bottom: 15px;
   }
 `;
 
