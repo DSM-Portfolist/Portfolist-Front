@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as S from "./style";
 import { imageListType } from "../../../../util/interface/portfolio/portfolioMakeType";
 
-const ImageWrapper = () => {
+const ImageWrapper = ({ identity }: any) => {
   let formData = new FormData();
   let jbRandom = Math.random();
   const [imageFile, setImageFile] = useState<any[]>([]);
@@ -11,7 +11,7 @@ const ImageWrapper = () => {
     { isInFile: false, index: 0 + jbRandom },
   ]);
 
-  console.log(imageList);
+  console.log(imageFile);
 
   function checkFormData() {
     //FormData 값 확인하기
@@ -45,7 +45,6 @@ const ImageWrapper = () => {
       setPreviewURL((previewURL: any) => [...previewURL, reader.result]);
       formData.append("file", file);
       updateFieldChanged(true, index);
-      checkFormData();
     };
     reader.readAsDataURL(file);
   };
@@ -67,15 +66,14 @@ const ImageWrapper = () => {
               <>
                 <input
                   type="file"
-                  id="input-file"
+                  id={`input-file${identity}`}
                   style={{ display: "none" }}
                   accept="image/jpg,impge/png,image/jpeg,image/gif"
                   onChange={(e: any) => {
                     handleFileOnChange(e, v.index);
-                    console.log(v.index);
                   }}
                 />
-                <label htmlFor="input-file">이미지 넣기</label>
+                <label htmlFor={`input-file${identity}`}>이미지 넣기</label>
               </>
             ) : (
               <S.ImageItem key={index}>

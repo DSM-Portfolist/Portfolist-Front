@@ -22,12 +22,13 @@ const List = () => {
           </button>
         </S.GoWrapper>
         <S.ListItemWrapper>
-          {recentPorfolio.map((list: recentPortfolioType, index: number) => (
+          {recentPorfolio?.map((list: recentPortfolioType, index: number) => (
             <ListItem
               key={index}
               title={list.title}
               content={list.introduce}
               id={list.portfolio_id}
+              url={list.thumbnail}
             />
           ))}
         </S.ListItemWrapper>

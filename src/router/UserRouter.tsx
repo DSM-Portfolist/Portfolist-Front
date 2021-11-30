@@ -8,10 +8,10 @@ import {
   SignUp,
   PortfolioMake,
   Token,
+  MyPage,
+  MypageModify,
+  UserPage,
 } from "../components";
-import MyPage from "../components/mypage/mypage/Mypage";
-import UserPage from "../components/mypage/userPage/UserPage";
-import MypageModify from "../components/mypage/mypage/mypageModify/MypageModify";
 
 const UserRouter = () => {
   return (
@@ -20,8 +20,8 @@ const UserRouter = () => {
         <Route path="/" component={Main} exact />
         <Route path="/login" component={Login} exact />
         <Route path="/sign-up" component={SignUp} exact />
-        <Route path="/portfolio-list" component={PortfolioList} exact />
-        <Route path="/portfolio/:id" component={PortfolioDatail} exact />
+        <Route path="/list" component={PortfolioList} exact />
+        <Route path="/portfolio" component={PortfolioDatail} exact />
         <Route path="/login-github" component={Token} exact />
         <Route path="/my-page" component={MyPage} exact />
         <Route path="/my-page-modify" component={MypageModify} exact />

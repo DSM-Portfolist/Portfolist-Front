@@ -1,42 +1,30 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { useRecoilState } from "recoil";
-import { searchValue } from "../../../modules/atom/portfolio/search";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  sortValue,
+  useFieldValue,
+} from "../../../modules/atom/portfolio/search";
 import { SelectedArrow } from "../../../util/assets";
 import * as S from "./style";
 
 const SearchInput = () => {
   const filterList = ["최신순", "오래된순"];
-  const [selectText, setSelectText] = useState<boolean>(true);
-  const [isFocusing, setIsFocusing] = useState<boolean>(false);
   const [arrowSelect, setArrowSelect] = useState<boolean>(false);
   const [filter, setFilter] = useState<string>("최신순");
-  const [test, setTest] = useState<string>("asc");
-  const [searchContent, setSearchContent] = useRecoilState(searchValue);
-  const searchInputRef = useRef<any>(null);
+  const [sort, setSort] = useRecoilState(sortValue);
+  const useField = useRecoilValue(useFieldValue);
   const history = useHistory();
 
-  const focusOn = useCallback(() => {
-    setIsFocusing(true);
-  }, []);
-
-  const focusOff = useCallback(() => {
-    setIsFocusing(false);
-  }, []);
-
   useEffect(() => {
-    if (isFocusing) {
-      searchInputRef.current.focus();
-    }
-
     history.push(
-      `/portfolio-list?page=1&size=10&field=&sort=date,${test}&query=${searchContent}`
+      `/list?page=1&size=10&field=${useField}&sort=date,${sort}&query=&searchType=`
     );
-  }, [history, isFocusing, searchContent, test]);
+  }, [history, sort, useField]);
 
   return (
     <>
-      <S.SearchInput isFocusing={isFocusing}>
+      {/* <S.SearchInput isFocusing={isFocusing}>
         <div className="select-box">
           <span onClick={() => setSelectText(!selectText)}>
             {selectText ? "제목" : "사용자"}
@@ -50,7 +38,7 @@ const SearchInput = () => {
           onFocus={focusOn}
           ref={searchInputRef}
         />
-      </S.SearchInput>
+      </S.SearchInput> */}
       <S.Filter arrowSelect={arrowSelect}>
         <div
           className="categoy_wrap"
@@ -74,7 +62,7 @@ const SearchInput = () => {
               onClick={() => {
                 setFilter(i);
                 setArrowSelect(false);
-                setTest(test === "asc" ? "desc" : "asc");
+                setSort(sort === "asc" ? "desc" : "asc");
               }}
             >
               {i}

@@ -19,9 +19,20 @@ export const Title = styled.div`
     margin-top: 10px;
     display: flex;
     flex-direction: row;
-
     input {
       display: none;
+    }
+
+    label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      p {
+        color: #989898;
+        font-size: 18px;
+        margin-left: 10px;
+        line-height: 10px; /* 이거 figma 복붙아닙니다 */
+      }
     }
   }
 `;
@@ -33,6 +44,17 @@ export const ImageWrap = styled.div`
   flex-direction: row;
   justify-content: space-between;
   overflow: auto;
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ff7659;
+    border-radius: 4px;
+  }
 
   img {
     width: 190px;

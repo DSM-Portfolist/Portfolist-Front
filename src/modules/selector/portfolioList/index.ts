@@ -1,6 +1,4 @@
 import { selector, selectorFamily } from "recoil";
-import { getSearch } from "../../../util/api/portfolio/portfolio";
-import { PortListType } from "../../../util/interface/portfolio/portListType";
 
 /* export const getSearchPortfolio = selectorFamily<PortListType[], string>({
   key: "serarch/get",

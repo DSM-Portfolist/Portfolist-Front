@@ -5,7 +5,7 @@ import * as S from "../style";
 const imageList = [
   {
     id: 1,
-    url: "https://cdn.pixabay.com/photo/2021/10/05/14/32/ocean-6682870_960_720.jpg",
+    url: "https://images.unsplash.com/photo-1506878206813-92402b8ded23?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const imageList = [
   },
   {
     id: 4,
-    url: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+    url: "https://images.unsplash.com/uploads/1413349410189e2a95d2e/39982a21?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   },
   {
     id: 5,

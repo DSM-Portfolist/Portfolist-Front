@@ -5,9 +5,9 @@ import {
 } from "../../../util/api/portfolio/portfolio";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
 import { FieldType } from "../../../util/interface/Sign/loginType";
-import { useFieldValue } from "./search";
+import { searchValue, sortValue, useFieldValue } from "./search";
 
-export const portfolioId = atom<number>({
+export const portfolioId = atom<number | any>({
   key: "portfolioId",
   default: 0,
 });
@@ -38,7 +38,9 @@ export const getPortListSelector = selector<PortListType[]>({
   get: async ({ get }) => {
     try {
       const field = await get(useFieldValue);
-      const res = await getPortfolioList(field);
+      const query = await get(searchValue);
+      const sort = await get(sortValue);
+      const res = await getPortfolioList(field, sort, query, "title");
       return res.data.portfolio_list;
     } catch (e) {
       console.log(e);

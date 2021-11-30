@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { ToastSuccess } from "../../../hook/toastHook";
 import { subMenu } from "../../../modules/atom/header";
 import { myInfoSelector } from "../../../modules/selector/user";
-import { Profile } from "../../../util/assets";
+import { DefaultProfile } from "../../../util/assets";
 import * as S from "./style";
 
 const SubMenu = () => {
@@ -22,7 +22,11 @@ const SubMenu = () => {
           <S.NotiWrapper>
             <img
               className="profile-img"
-              src={Profile}
+              src={
+                userInfo?.profile_img === null
+                  ? `${DefaultProfile}`
+                  : userInfo?.profile_img
+              }
               alt="프로필 사진"
               onMouseUp={() => setMoreItem(!moreItem)}
             />
