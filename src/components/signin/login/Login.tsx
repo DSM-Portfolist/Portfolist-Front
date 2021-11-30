@@ -18,7 +18,7 @@ interface LoginType {
 }
 
 const Login = () => {
-  const JWT_EXPIRY_TIME = 10000;
+  //const JWT_EXPIRY_TIME = 10000;
   const history = useHistory();
 
   const [buttonColor, setButtonColor] = useState<boolean>(false);
@@ -44,6 +44,7 @@ const Login = () => {
       .post(`${MAINURL}/login/normal`, loginInput)
       .then((res) => {
         localStorage.setItem("access_token_portfolist", res.data.access_token);
+        //   setToken(res.data.access_token);
         localStorage.setItem(
           "refresh_token_portfolist",
           res.data.refresh_token

@@ -31,6 +31,7 @@ export const InputWrapper = styled.div`
     padding: 1%;
     outline: none;
     border: none;
+    font-family: "Noto Sans KR";
     transition: all 0.8s;
   }
 `;

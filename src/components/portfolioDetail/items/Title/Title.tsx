@@ -47,7 +47,6 @@ const Title = ({ match }: any) => {
       )}
 
       <S.HeadTitle>
-        <span role="img">&#127802;</span>
         <span className="title">{portfolioValue?.title}</span>
         <span className="sub-title">{portfolioValue?.introduce}</span>
       </S.HeadTitle>

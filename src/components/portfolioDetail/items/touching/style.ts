@@ -24,7 +24,7 @@ export const TouchingBox = styled.div`
     margin-top: 10px;
     color: white;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
   }
 `;
 
