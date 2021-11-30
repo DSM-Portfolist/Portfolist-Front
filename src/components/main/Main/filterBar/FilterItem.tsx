@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { ToastSuccess } from "../../../../hook/toastHook";
 import { getFieldSelector } from "../../../../modules/atom/portfolio";
+import {
+  selectFieldList,
+  selectFieldNum,
+} from "../../../../modules/atom/portfolio/main";
 import { useFieldValue } from "../../../../modules/atom/portfolio/search";
 import { NoSelectedArrow, SelectedArrow } from "../../../../util/assets";
 import { mainColor } from "../../../../util/css/color/color";
@@ -12,14 +17,27 @@ const FilterItem = () => {
   const [useField, setUseField] = useRecoilState(useFieldValue);
   const [text, setText] = useState<string>("");
   const [arrowSelect, setArrowSelect] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log(useField);
-  }, [useField]);
+  const [selectField, setSelectField] = useRecoilState(selectFieldList);
+  const fieldNum = useRecoilValue(selectFieldNum);
 
   function UseFieldAdd(field: any) {
-    setUseField(useField?.concat(field));
+    if (selectField.length <= 2) {
+      setUseField(useField?.concat(field));
+      setSelectField(selectField?.concat({ id: fieldNum + 1 }));
+      ToastSuccess("분야는 3개까지 선택 할 수 있습니다.");
+    }
   }
+
+  useEffect(() => {
+    /* if (selectField.length !== 1) {
+      if (text === "ALL") {
+        setSelectField(
+          selectField?.filter((id: any) => id.id === selectFieldNum)
+        );
+      }
+    } */
+    //console.log(useField);
+  }, [field, selectField, setSelectField, text, useField]);
 
   return (
     <div className="field-item-wrap">
@@ -46,11 +64,11 @@ const FilterItem = () => {
         <S.FieldSelectWrap arrowSelect={arrowSelect}>
           <li
             onClick={() => {
-              setText("");
+              setText("ALL");
               setArrowSelect(false);
             }}
           >
-            없음
+            ALL
           </li>
           {field.map((field: FieldType, index: number) => (
             <li

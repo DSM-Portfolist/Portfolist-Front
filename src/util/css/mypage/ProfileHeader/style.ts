@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 export const profileHeader = css`
   padding-bottom: 30px;
   width: 100%;
-  height: 177px;
+  height: 200px;
   border-bottom: 2px solid #e7e7e7;
   display: flex;
   flex-direction: row;

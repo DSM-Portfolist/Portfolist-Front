@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as S from "../../../../util/css/mypage/mypage/mypageModify/style";
+import FieldItemBox from "./FieldItemBox";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { FieldType } from "../../../../util/interface/Sign/loginType";
-import FieldItemBox from "./FieldItemBox";
 import { patchUserInfo } from "../../../../util/api/mypage";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { getFieldSelector } from "../../../../modules/atom/portfolio";
 import { isModifyModal } from "../../../../modules/atom/mypage";
-import { myInfoSelector } from "../../../../modules/selector/user";
-import { getUser } from "../../../../util/api/user/info";
+import { userInfoValue } from "../../../../modules/selector/user";
 import { myIntroduce, myName } from "../../../../modules/atom/mypage/mypage";
 
-const MyInfoModifyDetail = () => {
-  const [userInfo, setUserInfo] = useRecoilState(myInfoSelector);
+const MyInfoModifyDetail = ({ getUserInfo }: any) => {
+  const userInfo = useRecoilValue(userInfoValue);
   const [selectIdArr, setSelectIdArr] = useState<any>([]);
   const [selectNameArr, setSelectNameArr] = useState<any>([]);
-
   const fieldList = useRecoilValue(getFieldSelector);
   const setIsModify = useSetRecoilState(isModifyModal);
   const [name, setName] = useRecoilState(myName);
@@ -27,9 +25,7 @@ const MyInfoModifyDetail = () => {
     patchUserInfo(selectIdArr, name, introduce)
       .then(() => {
         ToastSuccess("프로필이 수정되었습니다.");
-        getUser().then((res) => {
-          setUserInfo(res.data);
-        });
+        getUserInfo();
         setIsModify(false);
       })
       .catch((e) => {
@@ -37,10 +33,6 @@ const MyInfoModifyDetail = () => {
         throw e;
       });
   };
-
-  useEffect(() => {
-    console.log(userInfo);
-  }, [userInfo]);
 
   const handleSelect = (content: string, textList: any) => {
     //분야 배열에 추가 중복 허용 x
@@ -60,16 +52,10 @@ const MyInfoModifyDetail = () => {
     }
   };
 
-  console.log(selectIdArr);
-
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
   return (
     <>
       <ToastContainer />
-      <S.ModifyDetailContainer onSubmit={onSubmitHandler}>
+      <S.ModifyDetailContainer>
         <ToastContainer />
         <S.InputWrapper>
           <input

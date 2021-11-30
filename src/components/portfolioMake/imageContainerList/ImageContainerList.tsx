@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import * as S from "./style";
 import ImageWrapper from "./imageWrapper/ImageWrapper";
 import ContentWrapper from "./contentWrapper/ContentWrapper";
@@ -65,13 +65,9 @@ const ImageContainerList = () => {
     <S.MainWrapper className="make-container">
       <ToastContainer />
       <header>
-        <span
-          className="addContent"
-          onClick={addContainerListItem}
-          style={{ marginBottom: "12px" }}
-        >
+        <button type="button" onClick={addContainerListItem}>
           + Add new list
-        </span>
+        </button>
       </header>
       {containerList.map((value: any, index: number) => {
         const { container_title } = value;

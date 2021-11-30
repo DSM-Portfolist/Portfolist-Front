@@ -6,7 +6,11 @@ export const MainWrapper = styled.section`
     display: flex;
     justify-content: flex-end;
   }
-  .addContent {
+
+  button[type="button"] {
+    margin-bottom: 15px;
+    cursor: pointer;
+    background-color: white;
     font-size: 18px;
     color: #ff7659;
     cursor: pointer;
@@ -16,9 +20,11 @@ export const MainWrapper = styled.section`
 
 export const ImageWrapeerList = styled.div`
   margin-top: 15px;
-  &:nth-of-type(n + 3) {
-    margin-top: 30px;
+
+  &:nth-of-type(n + 2) {
+    margin-bottom: 60px;
   }
+
   .Title {
     width: 100%;
 

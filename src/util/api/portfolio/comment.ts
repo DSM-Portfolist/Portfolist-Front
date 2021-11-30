@@ -10,8 +10,8 @@ export async function getComment(id: number) {
   });
 }
 
-export const postComment = async (id: number, content: string) => {
-  return await request({
+export const postComment = (id: number, content: string) => {
+  return request({
     url: `/comment/${id}`,
     method: "post",
     data: { content: content },
@@ -19,9 +19,26 @@ export const postComment = async (id: number, content: string) => {
   });
 };
 
-export const deleteComment = async (id: number) => {
-  return await request({
+export const deleteComment = (id: number) => {
+  return request({
     url: `/comment/${id}`,
+    method: "delete",
+    headers: { Authorization: token },
+  });
+};
+
+export const postReComment = (id: number, content: string) => {
+  return request({
+    url: `/re-comment/${id}`,
+    method: "post",
+    data: { content: content },
+    headers: { Authorization: token },
+  });
+};
+
+export const deleteReComment = (id: number) => {
+  return request({
+    url: `/re-comment/${id}`,
     method: "delete",
     headers: { Authorization: token },
   });

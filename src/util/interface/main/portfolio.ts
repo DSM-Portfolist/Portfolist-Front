@@ -19,3 +19,7 @@ export interface notificationType {
   id: number;
   type: "TOUCHING" | "COMMENT" | "RECOMMENT" | "P_ADD" | "P_MODIFY";
 }
+
+export interface SelectFieldListType {
+  id: number;
+}

@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { ToastSuccess } from "../../../hook/toastHook";
 import { subMenu } from "../../../modules/atom/header";
 import { myInfoSelector } from "../../../modules/selector/user";
-import { DefaultProfile, Profile } from "../../../util/assets";
+import { DefaultProfile } from "../../../util/assets";
 import * as S from "./style";
 
 const SubMenu = () => {

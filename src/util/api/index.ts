@@ -2,6 +2,9 @@ import axios, { AxiosError } from "axios";
 import { ToastError } from "../../hook/toastHook";
 
 export const MAINURL = process.env.REACT_APP_API_URL;
+export const token = `Bearer ${localStorage.getItem(
+  "access_token_portfolist"
+)}`;
 
 const instance = axios.create({
   baseURL: MAINURL,

@@ -10,7 +10,7 @@ const CertificateList = () => {
     <>
       {portfolioValue?.certificate_container_list.map((item, index) => (
         <S.Wrap key={index}>
-          <h1>{item?.title}</h1>
+          <span className="title">{item?.title}</span>
           {item.certificate_list.map((text, index) => (
             <span key={index}>{text}</span>
           ))}
