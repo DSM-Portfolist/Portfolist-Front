@@ -40,7 +40,7 @@ export const portfolioMakeList = atom({
   default: {
     title: "",
     introduce: "",
-    field: [], //이거 없음
+    field: [1], //이거 없음
     open: true, //이거 없음
     more_info: [
       {
