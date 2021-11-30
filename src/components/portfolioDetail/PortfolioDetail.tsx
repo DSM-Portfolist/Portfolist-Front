@@ -22,12 +22,12 @@ const PortfolioDetail = () => {
     <>
       <Header />
       <S.DetailWrappper>
-        <PdfFile />
         <Title />
         <TouchingItem />
         <MoreInfo />
         <ExperienceList />
         <CertificateList />
+        <PdfFile />
         <Comment />
       </S.DetailWrappper>
     </>

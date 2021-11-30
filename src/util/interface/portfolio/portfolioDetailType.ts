@@ -34,7 +34,7 @@ export interface MoreInfoType {
 export interface ContainerListType {
   map?: any;
   container_title: string;
-  container_img: string[];
+  container_img_list: string[];
   container_text_list: ContainerTextType[];
 }
 
