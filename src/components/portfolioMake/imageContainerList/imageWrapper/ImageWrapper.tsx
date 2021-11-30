@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { imageListType } from "../../../../util/interface/portfolio/portfolioMakeType";
+import { container_list } from "../../../../modules/atom/portfolioPost";
+import { useRecoilState } from "recoil";
+import { imgFile } from "../../../../util/api/portfolio/portfolioPost";
 
 const ImageWrapper = ({ identity }: any) => {
-  let formData = new FormData();
+  const [containerList, setContainerList] = useRecoilState(container_list);
   let jbRandom = Math.random();
   const [imageFile, setImageFile] = useState<any[]>([]);
   const [previewURL, setPreviewURL] = useState<string[]>([]);
@@ -11,18 +14,42 @@ const ImageWrapper = ({ identity }: any) => {
     { isInFile: false, index: 0 + jbRandom },
   ]);
 
-  console.log(imageFile);
+  console.log(containerList);
 
-  function checkFormData() {
-    //FormData 값 확인하기
-    for (let key of formData.keys()) {
-      console.log(key);
+  useEffect(() => {
+    let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
+    if (imageFile.length !== 0) {
+      imgFile(imageFile)
+        .then((res: any) => {
+          addImageContainer(res.data.file, isComponentMounted);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } else {
+      return;
     }
-    // FormData의 value 확인
-    for (let value of formData.values()) {
-      console.log(value);
+  }, [imageFile]);
+
+  const addImageContainer = (res: string, isComponentMounted: boolean) => {
+    console.log(res);
+    if (isComponentMounted) {
+      setContainerList(
+        containerList.map((value: any, i: number) => {
+          if (i === identity) {
+            return {
+              ...value,
+              container_img_list: value.container_img_list.concat(String(res)),
+            };
+          } else {
+            return value;
+          }
+        })
+      );
+    } else {
+      return;
     }
-  }
+  };
 
   const updateFieldChanged = (item: boolean, index: number) => {
     let newArr = imageList.map((value: any, i: number) => {
@@ -41,9 +68,8 @@ const ImageWrapper = ({ identity }: any) => {
     let reader = new FileReader();
     let file = e.target.files[0];
     reader.onloadend = () => {
-      setImageFile(imageFile.concat(file));
+      setImageFile(file);
       setPreviewURL((previewURL: any) => [...previewURL, reader.result]);
-      formData.append("file", file);
       updateFieldChanged(true, index);
     };
     reader.readAsDataURL(file);

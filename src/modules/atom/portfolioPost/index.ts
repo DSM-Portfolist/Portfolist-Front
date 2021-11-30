@@ -18,6 +18,7 @@ export const container_list = atom<ContainerListType[]>({
           box_content: "",
         },
       ],
+      container_img_list: [],
     },
   ],
 });
