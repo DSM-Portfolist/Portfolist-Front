@@ -7,7 +7,6 @@ const BannerContainer = () => {
   const [fileInputName, setFileInputName] = useState("");
 
   const onChangeFileHanddler = (e: any) => {
-    console.log(e.target.files);
     const { files } = e.target;
     setFileInputName(files[0].name); //file에 담긴 name useState로 저장
   };
