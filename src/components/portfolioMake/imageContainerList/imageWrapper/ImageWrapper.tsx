@@ -17,10 +17,11 @@ const ImageWrapper = ({ identity }: any) => {
   console.log(containerList);
 
   useEffect(() => {
+    let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
     if (imageFile.length !== 0) {
       imgFile(imageFile)
         .then((res: any) => {
-          addImageContainer(res.data.file);
+          addImageContainer(res.data.file, isComponentMounted);
         })
         .catch((err) => {
           console.error(err);
@@ -30,20 +31,24 @@ const ImageWrapper = ({ identity }: any) => {
     }
   }, [imageFile]);
 
-  const addImageContainer = (res: string) => {
+  const addImageContainer = (res: string, isComponentMounted: boolean) => {
     console.log(res);
-    setContainerList(
-      containerList.map((value: any, i: number) => {
-        if (i === identity) {
-          return {
-            ...value,
-            container_img_list: value.container_img_list.concat(String(res)),
-          };
-        } else {
-          return value;
-        }
-      })
-    );
+    if (isComponentMounted) {
+      setContainerList(
+        containerList.map((value: any, i: number) => {
+          if (i === identity) {
+            return {
+              ...value,
+              container_img_list: value.container_img_list.concat(String(res)),
+            };
+          } else {
+            return value;
+          }
+        })
+      );
+    } else {
+      return;
+    }
   };
 
   const updateFieldChanged = (item: boolean, index: number) => {
