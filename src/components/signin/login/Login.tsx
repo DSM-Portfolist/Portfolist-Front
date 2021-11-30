@@ -6,7 +6,6 @@ import { useMutation } from "react-query";
 import { Link, useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useLocalStorage } from "usehooks-ts";
 import { ToastError, ToastSuccess } from "../../../hook/toastHook";
 import { MAINURL } from "../../../util/api";
 import { Github, Logo } from "../../../util/assets";
@@ -21,7 +20,6 @@ interface LoginType {
 const Login = () => {
   //const JWT_EXPIRY_TIME = 10000;
   const history = useHistory();
-  //const [token, setToken] = useLocalStorage("access-token", "");
 
   const [buttonColor, setButtonColor] = useState<boolean>(false);
   const [emailBor, setEmailBor] = useState<boolean>(false);
