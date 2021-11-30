@@ -26,6 +26,7 @@ const ImageContainerList = () => {
             box_content: "",
           },
         ],
+        container_img_list: [],
       },
     ]);
   };
@@ -64,9 +65,13 @@ const ImageContainerList = () => {
     <S.MainWrapper className="make-container">
       <ToastContainer />
       <header>
-        <button type="button" onClick={addContainerListItem}>
-          리스트 추가하기
-        </button>
+        <span
+          className="addContent"
+          onClick={addContainerListItem}
+          style={{ marginBottom: "12px" }}
+        >
+          + Add new list
+        </span>
       </header>
       {containerList.map((value: any, index: number) => {
         const { container_title } = value;

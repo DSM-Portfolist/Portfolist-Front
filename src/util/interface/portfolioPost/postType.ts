@@ -19,6 +19,7 @@ export interface ContainerListType {
   id?: number;
   container_title: string;
   container_text_list: ContainerTextListType[];
+  container_img_list: string[];
 }
 
 export interface ContainerTextListType {
