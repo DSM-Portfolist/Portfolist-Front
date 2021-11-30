@@ -16,7 +16,13 @@ const PortfolioMake = () => {
   const portfolioMakeArr = useRecoilValue(portfolioMakeList);
 
   const portfolioSubmit = () => {
-    portfolioMakeSubmit(portfolioMakeArr);
+    portfolioMakeSubmit(portfolioMakeArr)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
