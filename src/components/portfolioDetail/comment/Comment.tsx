@@ -84,7 +84,6 @@ const Comment = () => {
                 />
               </>
             ))}
-            {comments?.length >= 5 ? <S.MoreButton>더보기</S.MoreButton> : ""}
           </>
         )}
       </S.CommentWrapper>

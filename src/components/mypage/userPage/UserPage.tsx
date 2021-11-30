@@ -26,7 +26,7 @@ const UserPage = ({ match }: any) => {
     <div css={[baseBackground, column]}>
       <Header></Header>
       <section css={[myPageSection]}>
-        <ProfileHeader userInfo={userInfo} />
+        <ProfileHeader />
         <article>
           <div css={[center, sectionTitleWrapper]}>
             <span>{userInfo.name}</span>
