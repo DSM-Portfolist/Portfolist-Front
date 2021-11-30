@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { imageList } from "../../../components/portfolioMake/bannerContainer/items/ImageSelector";
 import { ContainerListType } from "../../../util/interface/portfolioPost/postType";
 
 interface BoxDataType {
@@ -21,4 +22,9 @@ export const container_list = atom<ContainerListType[]>({
       container_img_list: [],
     },
   ],
+});
+
+export const bannerImgAtom = atom<string>({
+  key: "bannerImgAtom",
+  default: imageList[0].url,
 });
