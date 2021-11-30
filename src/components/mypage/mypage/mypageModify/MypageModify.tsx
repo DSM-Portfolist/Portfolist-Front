@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { useRecoilValue } from "recoil";
+import React, { useCallback, useState } from "react";
+import { useRecoilState } from "recoil";
 import { Header } from "../../..";
-import { myInfoSelector } from "../../../../modules/selector/user";
+import { userInfoValue } from "../../../../modules/selector/user";
+import { getUser } from "../../../../util/api/user/info";
 import * as S from "../../../../util/css/mypage/mypage/mypageModify/style";
 import ImageUploadWrapper from "./ImageUploadWrapper";
 import MyInfoModify from "./MyInfoModify";
@@ -10,7 +11,11 @@ import SecessionModal from "./SecessionModal";
 
 const MypageModify = () => {
   const [modal, setModal] = useState<boolean>(false);
-  const userInfo = useRecoilValue(myInfoSelector);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoValue);
+
+  const getUserInfo = useCallback(() => {
+    getUser().then((res) => setUserInfo(res.data));
+  }, [setUserInfo]);
 
   return (
     <S.MypageModifyContainer modal={modal}>
@@ -19,7 +24,7 @@ const MypageModify = () => {
       <S.MainSection>
         <S.MyProfileWrapper>
           <ImageUploadWrapper userInfo={userInfo} />
-          <MyInfoModify />
+          <MyInfoModify getUserInfo={getUserInfo} />
         </S.MyProfileWrapper>
         <MypageModifyMainContent setModal={setModal} modal={modal} />
       </S.MainSection>
