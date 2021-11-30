@@ -3,10 +3,15 @@ import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";
 import { imgFile } from "../../../util/api/portfolio/portfolioPost";
-import { bannerImgAtom } from "../../../modules/atom/portfolioPost";
+import {
+  bannerImgAtom,
+  portfolioMakeList,
+} from "../../../modules/atom/portfolioPost";
 import { useRecoilState } from "recoil";
 
 const BannerContainer = () => {
+  const [portfolioMakeArr, setPortfolioMakeArr] =
+    useRecoilState(portfolioMakeList);
   const [fileInputName, setFileInputName] = useState("");
   const [bannerImg, setBannerImg] = useRecoilState(bannerImgAtom);
 
@@ -15,6 +20,13 @@ const BannerContainer = () => {
     if (bannerImg.isClickBannder === true) {
       setFileInputName("");
     }
+  }, [bannerImg]);
+
+  useEffect(() => {
+    setPortfolioMakeArr({
+      ...portfolioMakeArr,
+      thumbnail: bannerImg.thumbnail,
+    });
   }, [bannerImg]);
 
   const onChangeFileHanddler = (e: any) => {
