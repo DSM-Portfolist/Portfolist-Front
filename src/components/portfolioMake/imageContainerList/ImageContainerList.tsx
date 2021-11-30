@@ -26,6 +26,7 @@ const ImageContainerList = () => {
             box_content: "",
           },
         ],
+        container_img_list: [],
       },
     ]);
   };
