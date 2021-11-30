@@ -11,7 +11,7 @@ interface BoxDataType {
   box_content: string;
 }
 
-export const container_list = atom<ContainerListType[]>({
+export const container_list_atom = atom<any>({
   key: "container_text",
   default: [
     {
@@ -41,7 +41,7 @@ export const portfolioMakeList = atom({
     title: "",
     introduce: "",
     field: [], //이거 없음
-    is_open: true, //이거 없음
+    open: true, //이거 없음
     more_info: [
       {
         name: "",
