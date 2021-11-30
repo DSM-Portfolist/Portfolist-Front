@@ -2,14 +2,25 @@ import React, { useState } from "react";
 import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";
+import { imgFile } from "../../../util/api/portfolio/portfolioPost";
 
 const BannerContainer = () => {
   const [fileInputName, setFileInputName] = useState("");
 
   const onChangeFileHanddler = (e: any) => {
-    console.log(e.target.files);
-    const { files } = e.target;
-    setFileInputName(files[0].name); //file에 담긴 name useState로 저장
+    let file = e.target.files[0];
+    setFileInputName(file.name); //file에 담긴 name useState로 저장
+    postImageFile(file);
+  };
+
+  const postImageFile = (file: any) => {
+    imgFile(file)
+      .then((res) => { //recoil로 배너 이미지 경로 바꾸면 끝~
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
