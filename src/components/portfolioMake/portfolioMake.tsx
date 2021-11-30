@@ -13,14 +13,10 @@ import { portfolioMakeList } from "../../modules/atom/portfolioPost";
 import { portfolioMakeSubmit } from "../../util/api/portfolio/portfolioPost";
 
 const PortfolioMake = () => {
-  const test = useRecoilValue(portfolioMakeList);
-
-  useEffect(() => {
-    console.log(test);
-  }, [test]);
+  const portfolioMakeArr = useRecoilValue(portfolioMakeList);
 
   const portfolioSubmit = () => {
-    portfolioMakeSubmit(test);
+    portfolioMakeSubmit(portfolioMakeArr);
   };
 
   return (
