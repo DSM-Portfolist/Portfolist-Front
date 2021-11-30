@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { Link, isInFile, File, isInLink } from "../../../util/assets/index";
 import { imgFile } from "../../../util/api/portfolio/portfolioPost";
+import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
+import { useRecoilState } from "recoil";
 
 const FileLinkContainer = () => {
+  const [portfolioMakeArr, setPortfolioMakeArr] =
+    useRecoilState(portfolioMakeList);
   const [linkInputName, setLinkInputName] = useState<string>("");
   const [fileResponse, setFileResponse] = useState<string>("");
   const [fileInputName, setFileInputName] = useState<string>("");
@@ -14,6 +18,20 @@ const FileLinkContainer = () => {
       postFile(imageFile);
     }
   }, [imageFile]);
+
+  useEffect(() => {
+    setPortfolioMakeArr({
+      ...portfolioMakeArr,
+      link: linkInputName,
+    });
+  }, [linkInputName]);
+  
+  useEffect(() => {
+    setPortfolioMakeArr({
+      ...portfolioMakeArr,
+      file: fileResponse,
+    });
+  }, [fileResponse]);
 
   const onChangeFileHanddler = (e: any) => {
     const { files } = e.target;
