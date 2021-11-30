@@ -45,12 +45,20 @@ const TextContainer = (props: any) => {
     setCertificateList(
       certificateList.map((item: any, i: number) => {
         console.log(item);
+        /* certificateList[parents_index].certificate_list */
         if (i === parents_index) {
-          certificateList[parents_index].certificate_list[index] =
-            e.target.value;
+          let newArr = item.certificate_list.map(
+            (value: any, child_index: number) => {
+              if (child_index === index) {
+                return e.target.value;
+              } else {
+                return value;
+              }
+            }
+          );
           return {
             ...certificateList[parents_index],
-            certificate_list: certificateList[parents_index].certificate_list,
+            certificate_list: newArr,
           };
         } else {
           return item;
@@ -64,10 +72,10 @@ const TextContainer = (props: any) => {
     setCertificateList(
       certificateList.map((item: any, i: number) => {
         if (i === parents_index) {
-          certificateList[parents_index].certificate_list.push("");
+          let newList = [...item.certificate_list, ""];
           return {
             ...certificateList[parents_index],
-            certificate_list: certificateList[parents_index].certificate_list,
+            certificate_list: newList,
           };
         } else {
           return item;
