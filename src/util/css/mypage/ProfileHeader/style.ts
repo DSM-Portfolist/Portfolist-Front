@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 export const profileHeader = css`
   padding-bottom: 30px;
   width: 100%;
-  height: 177px;
+  height: 200px;
   border-bottom: 2px solid #e7e7e7;
   display: flex;
   flex-direction: row;
@@ -60,12 +60,15 @@ export const profileBottom = css`
     height: 30px;
     background: #ff7d64;
     border-radius: 4px;
-    box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
     color: white;
     cursor: pointer;
-
     font-weight: 500;
     font-size: 16px;
     line-height: 23px;
+    transition: all 0.5s;
+
+    :hover {
+      box-shadow: 0 2px 3px #80808040;
+    }
   }
 `;

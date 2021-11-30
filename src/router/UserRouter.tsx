@@ -11,6 +11,8 @@ import {
   MyPage,
   MypageModify,
   UserPage,
+  EmailAuth,
+  EmailAuthFail,
 } from "../components";
 
 const UserRouter = () => {
@@ -21,12 +23,14 @@ const UserRouter = () => {
         <Route path="/login" component={Login} exact />
         <Route path="/sign-up" component={SignUp} exact />
         <Route path="/list" component={PortfolioList} exact />
-        <Route path="/portfolio/:id" component={PortfolioDatail} exact />
+        <Route path="/portfolio" component={PortfolioDatail} exact />
         <Route path="/login-github" component={Token} exact />
         <Route path="/my-page" component={MyPage} exact />
         <Route path="/my-page-modify" component={MypageModify} exact />
         <Route path="/user-page/:userId" component={UserPage} exact />
         <Route path="/portfolio-make" component={PortfolioMake} exact />
+        <Route path="/sign/emailauth" component={EmailAuth} exact />
+        <Route path="/sign/emailauthfail" component={EmailAuthFail} exact />
       </Switch>
     </BrowserRouter>
   );

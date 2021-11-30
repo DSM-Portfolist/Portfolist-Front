@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { column } from "../../../util/css/mypage/UserPage/style";
 import { Link } from "react-router-dom";
 import { row } from "../../../util/css/signin/style";
+import * as S from "./style";
 import {
   profileBottom,
   profileHeader,
@@ -10,15 +11,23 @@ import {
   profileWrapper,
 } from "../../../util/css/mypage/ProfileHeader/style";
 import { center } from "../../../util/css/mypage/mypage/style";
-import { UserInfoType } from "../../../util/interface/user";
-interface Props {
-  userInfo?: UserInfoType;
-}
+import { useRecoilState } from "recoil";
+import { userInfoValue } from "../../../modules/selector/user";
+import { getUser } from "../../../util/api/user/info";
+import { token } from "../../../util/api";
 
-const ProfileHeader = ({ userInfo }: Props) => {
-  const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
+const ProfileHeader = () => {
+  const [userInfo, setUserInfo] = useRecoilState(userInfoValue);
   const baseProfileImage =
     "https://www.ibossedu.co.kr/template/DESIGN_shared/program/theme/01/THUMBNAIL_60_60_icon_rep_box.gif";
+
+  const getUserInfo = useCallback(() => {
+    getUser().then((res) => setUserInfo(res.data));
+  }, [setUserInfo]);
+
+  useEffect(() => {
+    getUserInfo();
+  }, [getUserInfo]);
 
   return (
     <header css={profileHeader}>
@@ -33,13 +42,12 @@ const ProfileHeader = ({ userInfo }: Props) => {
       />
       <div css={[column, profileWrapper]}>
         <h1>{userInfo?.name}</h1>
-        <p id="introduce">
-          {userInfo?.introduce === null ? (
-            <span>아직 소개가 없어요</span>
-          ) : (
-            userInfo?.introduce
-          )}
-        </p>
+        {userInfo?.introduce === null ? (
+          <p id="introduce">아직 소개가 없어요</p>
+        ) : (
+          <p id="introduce">{userInfo?.introduce}</p>
+        )}
+
         <div css={[row, profileBottom]}>
           <h3>분야</h3>
           {userInfo?.field === null ? (
@@ -47,7 +55,7 @@ const ProfileHeader = ({ userInfo }: Props) => {
           ) : (
             <>
               {userInfo?.field?.map((field) => (
-                <p>{field}</p>
+                <S.FieldItem>{field}</S.FieldItem>
               ))}
             </>
           )}

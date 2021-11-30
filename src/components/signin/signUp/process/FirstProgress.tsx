@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { MAINURL } from "../../../../util/api";
 import { CloseEye, Logo, OpenEye } from "../../../../util/assets";
 import { mainColor } from "../../../../util/css/color/color";
@@ -33,7 +34,10 @@ const FirstProgress = ({
 
   // 이메일 인증 API
   const emailAccess = useMutation((email) =>
-    axios.post(`${MAINURL}/email`, { email: email })
+    axios
+      .post(`${MAINURL}/email`, { email: email })
+      .then(() => ToastSuccess("이메일 요청에 성공했습니다."))
+      .catch((e) => ToastError("이메일 요청에 실패하였습니다."))
   );
 
   const EmailAccessHandler = (email: any) => {

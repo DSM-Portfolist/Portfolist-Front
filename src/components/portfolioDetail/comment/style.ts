@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../../../util/css/color/color";
 
+interface Props {
+  reComment?: boolean;
+}
+
 export const CommentWrapper = styled.div`
   width: 100%;
   min-width: 760px;
@@ -36,7 +40,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const CommentList = styled.div`
-  margin: 40px 0;
+  margin: 40px 0 0;
 
   .comment-info {
     padding-bottom: 12px;
@@ -63,7 +67,7 @@ export const CommentItemWrapper = styled.div`
   }
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<Props>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -95,10 +99,21 @@ export const Content = styled.div`
       }
     }
 
-    p {
+    pre {
       margin-top: 5px;
     }
   }
+
+  .more_text {
+    margin-top: 10px;
+    padding: 0 5px;
+    width: fit-content;
+    cursor: pointer;
+  }
+`;
+
+export const Input = styled.input<Props>`
+  display: ${({ reComment }) => (reComment ? "flex" : "none")};
 `;
 
 export const Util = styled.div`
@@ -131,12 +146,12 @@ export const MoreButton = styled.button`
   }
 `;
 
-export const ReComment = styled.div`
+export const ReComment = styled.div<Props>`
   width: 90%;
   margin-left: 10%;
   border-top: 1px solid #f0f0f0;
 
-  display: flex;
+  display: ${({ reComment }) => (reComment ? "flex" : "none")};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

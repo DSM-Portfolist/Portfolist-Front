@@ -1,43 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import * as S from "./style";
 import ImageWrapper from "./imageWrapper/ImageWrapper";
 import ContentWrapper from "./contentWrapper/ContentWrapper";
 import { MinusButton } from "../../../util/assets";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { container_text, box_data } from "../../../modules/atom/portfolioPost";
-import { ToastSuccess, ToastError } from "../../../hook/toastHook";
+import { useRecoilState } from "recoil";
+import { container_list } from "../../../modules/atom/portfolioPost";
+import { ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ImageContainerList = () => {
-  /* const [container_list, setContainerList] = useRecoilState(container_text); */
-  const defalutContainerList = useRecoilValue(container_text);
-  const [container_list, setContainerList] = useState(defalutContainerList);
-  const boxData = useRecoilValue(box_data);
+  const [containerList, setContainerList] = useRecoilState(container_list);
 
-  console.log(container_list);
+  console.log(containerList);
 
-  const AddContainerListItem = () => {
-    var jbRandom = Math.random();
-    //console.log(jbRandom);
+  const addContainerListItem = () => {
+    // 컨테이너를 추가하는 함수
     setContainerList((value: any) => [
       ...value,
       {
-        id: container_list.length + jbRandom,
         container_title: "",
-        container_text_list: boxData,
+        container_text_list: [
+          {
+            box_title: "",
+            box_content: "",
+          },
+        ],
+        container_img_list: [],
       },
     ]);
   };
 
-  const removeContainerList = (id: number) => {
-    if (container_list.length === 1) {
-      ToastError("삭제할 수 없습니다");
+  const removeContainerList = (index: number) => {
+    if (containerList.length <= 1) {
+      ToastError("최소 1개의 리스트가 필요합니다.");
     } else {
       setContainerList(
-        container_list?.filter((value: any) => {
-          console.log(value.id, id);
-          return value.id !== id;
+        containerList?.filter((value: any, i: number) => {
+          return index !== i;
         })
       );
     }
@@ -45,13 +45,13 @@ const ImageContainerList = () => {
 
   const onChangeTitle = (
     e: React.ChangeEvent<HTMLInputElement>,
-    id: number
+    index: number
   ) => {
     setContainerList(
-      container_list.map((value: any) => {
-        if (value.id === id) {
+      containerList.map((value: any, i: number) => {
+        if (i === index) {
           return {
-            ...value,
+            ...containerList[index],
             container_title: e.target.value,
           };
         } else {
@@ -65,19 +65,21 @@ const ImageContainerList = () => {
     <S.MainWrapper className="make-container">
       <ToastContainer />
       <header>
-        <button type="button" onClick={AddContainerListItem}>
-          리스트 추가하기
+        <button type="button" onClick={addContainerListItem}>
+          + Add new list
         </button>
       </header>
-      {container_list.map((value: any, index: number) => {
+      {containerList.map((value: any, index: number) => {
+        const { container_title } = value;
         return (
           <S.ImageWrapeerList key={index}>
             <header>
               <input
                 type="text"
                 className="Title"
+                value={container_title}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  onChangeTitle(e, value.id);
+                  onChangeTitle(e, index);
                 }}
                 placeholder="자신만의 특별한 경험(경력, 인턴, 교육 등)이 있다면 입력해주세요."
               />
@@ -85,14 +87,14 @@ const ImageContainerList = () => {
                 src={MinusButton}
                 className="MinusButton"
                 onClick={() => {
-                  removeContainerList(value.id);
+                  removeContainerList(index);
                 }}
                 alt="삭제버튼"
               />
             </header>
             <S.ImageListSection>
-              <ImageWrapper />
-              <ContentWrapper setContainerList={setContainerList} />
+              <ImageWrapper identity={index} />
+              <ContentWrapper parent_index={index} />
             </S.ImageListSection>
           </S.ImageWrapeerList>
         );

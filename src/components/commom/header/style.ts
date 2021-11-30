@@ -107,6 +107,10 @@ export const Notification = styled.div<Props>`
   box-shadow: 0px 7px 6px rgba(164, 164, 164, 0.25);
   display: flex;
   flex-direction: column;
+
+  .notification-none {
+    margin: 10px;
+  }
 `;
 
 export const NotiMent = styled.div`
@@ -180,6 +184,7 @@ export const Input = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
 
   input {
     width: 80%;

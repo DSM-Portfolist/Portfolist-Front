@@ -6,26 +6,28 @@ export const MainWrapper = styled.section`
     display: flex;
     justify-content: flex-end;
   }
+
   button[type="button"] {
-    width: 140px;
-    height: 40px;
-    background: #ff7659;
-    border-radius: 20px;
-    color: #fff;
-    font-weight: 500;
-    font-size: 16px;
+    margin-bottom: 15px;
     cursor: pointer;
+    background-color: white;
+    font-size: 18px;
+    color: #ff7659;
+    cursor: pointer;
+    font-weight: 700;
   }
 `;
 
 export const ImageWrapeerList = styled.div`
   margin-top: 15px;
+
   &:nth-of-type(n + 2) {
-    margin-top: 30px;
+    margin-bottom: 40px;
   }
+
   .Title {
     width: 100%;
-   
+
     font-weight: 500;
     font-size: 22px;
     &::placeholder {

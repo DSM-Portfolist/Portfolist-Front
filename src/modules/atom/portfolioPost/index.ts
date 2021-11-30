@@ -1,29 +1,30 @@
 import { atom } from "recoil";
+import { imageList } from "../../../components/portfolioMake/bannerContainer/items/ImageSelector";
 import { ContainerListType } from "../../../util/interface/portfolioPost/postType";
 
-const RandomFunc = (num: number) => {
-  var jbRandom = Math.random();
-  return num + jbRandom;
-};
+interface BoxDataType {
+  id?: number;
+  box_title: string;
+  box_content: string;
+}
 
-export const box_data = atom<any[]>({
-  key: "box_data",
-  default: [{ id: RandomFunc(0), box_title: "", box_content: "" }],
-});
-
-export const container_text = atom<ContainerListType[]>({
+export const container_list = atom<ContainerListType[]>({
   key: "container_text",
   default: [
     {
-      id: RandomFunc(0),
       container_title: "",
       container_text_list: [
         {
-          id: RandomFunc(0),
           box_title: "",
           box_content: "",
         },
       ],
+      container_img_list: [],
     },
   ],
+});
+
+export const bannerImgAtom = atom<string>({
+  key: "bannerImgAtom",
+  default: imageList[0].url,
 });

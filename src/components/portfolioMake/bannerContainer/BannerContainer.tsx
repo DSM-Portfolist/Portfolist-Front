@@ -1,11 +1,14 @@
-import React from "react";
-import { File } from "../../../util/assets";
+import React, { useState } from "react";
+import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";
 
 const BannerContainer = () => {
-  const fileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+  const [fileInputName, setFileInputName] = useState("");
+
+  const onChangeFileHanddler = (e: any) => {
+    const { files } = e.target;
+    setFileInputName(files[0].name); //file에 담긴 name useState로 저장
   };
 
   return (
@@ -21,8 +24,18 @@ const BannerContainer = () => {
         </span>
         <div className="file-wrap">
           <label htmlFor="file">
-            <img src={File} alt="파일 아이콘" />
-            <input type="file" id="file" onChange={(e) => fileChange(e)} />
+            {fileInputName ? (
+              <img src={isInFile} alt="파일이 있을때 아이콘" />
+            ) : (
+              <img src={File} alt="파일 아이콘" />
+            )}
+            <input
+              type="file"
+              id="file"
+              accept="image/jpg,impge/png,image/jpeg,image/gif"
+              onChange={(e) => onChangeFileHanddler(e)}
+            />
+            <p>{fileInputName ? fileInputName : "파일을 선택해 주세요."}</p>
           </label>
         </div>
       </S.Title>
