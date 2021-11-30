@@ -34,3 +34,40 @@ export const bannerImgAtom = atom<BannderStateType>({
     isClickBannder: true,
   },
 });
+
+export const portfolioMakeList = atom({
+  key: "portfolioMakeListAtom",
+  default: {
+    title: "",
+    introduce: "",
+    field: [], //이거 없음
+    is_open: true, //이거 없음
+    more_info: [
+      {
+        name: "",
+        content: "",
+      },
+    ],
+    container_list: [
+      {
+        container_title: "",
+        container_text_list: [
+          {
+            box_title: "",
+            box_content: "",
+          },
+        ],
+        container_img_list: [],
+      },
+    ],
+    certificate_container_list: [
+      {
+        title: "",
+        certificate_list: [],
+      },
+    ],
+    link: "",
+    file: "",
+    thumbnail: "",
+  },
+});
