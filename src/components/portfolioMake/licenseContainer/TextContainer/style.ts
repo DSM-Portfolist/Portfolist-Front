@@ -6,7 +6,6 @@ export const LicenseWrapper = styled.section`
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 10px;
-
     .addContent {
       font-style: normal;
       font-weight: normal;

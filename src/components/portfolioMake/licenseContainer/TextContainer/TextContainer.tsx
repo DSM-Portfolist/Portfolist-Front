@@ -101,7 +101,7 @@ const TextContainer = (props: any) => {
         console.log(list);
         const { certificate_list, title } = list;
         return (
-          <S.MapWrapper>
+          <S.MapWrapper key={index}>
             <ToastContainer />
             <S.TitleWrapper>
               <input
@@ -126,7 +126,7 @@ const TextContainer = (props: any) => {
                 console.log(item, i);
                 return (
                   <div className="infoContainer">
-                    <S.InputBox>
+                    <S.InputBox key={i}>
                       <input
                         id="inputContent"
                         onChange={(e) => {
