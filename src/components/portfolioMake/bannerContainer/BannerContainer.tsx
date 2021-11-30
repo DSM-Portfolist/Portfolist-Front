@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";
 import { imgFile } from "../../../util/api/portfolio/portfolioPost";
+import { bannerImgAtom } from "../../../modules/atom/portfolioPost";
+import { useRecoilState } from "recoil";
 
 const BannerContainer = () => {
   const [fileInputName, setFileInputName] = useState("");
+  const [bannerImg, setBannerImg] = useRecoilState(bannerImgAtom);
+
+  useEffect(() => {
+    console.log(bannerImg);
+    if (bannerImg.isClickBannder === true) {
+      setFileInputName("");
+    }
+  }, [bannerImg]);
 
   const onChangeFileHanddler = (e: any) => {
     let file = e.target.files[0];
@@ -15,7 +25,12 @@ const BannerContainer = () => {
 
   const postImageFile = (file: any) => {
     imgFile(file)
-      .then((res) => { //recoil로 배너 이미지 경로 바꾸면 끝~
+      .then((res) => {
+        //recoil로 배너 이미지 경로 바꾸면 끝~
+        setBannerImg({
+          thumbnail: res.data.file,
+          isClickBannder: false,
+        });
         console.log(res);
       })
       .catch((err) => {
