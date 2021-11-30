@@ -23,9 +23,9 @@ const SubMenu = () => {
             <img
               className="profile-img"
               src={
-                userInfo.profile_img === null
+                userInfo?.profile_img === null
                   ? `${DefaultProfile}`
-                  : userInfo.profile_img
+                  : userInfo?.profile_img
               }
               alt="프로필 사진"
               onMouseUp={() => setMoreItem(!moreItem)}
