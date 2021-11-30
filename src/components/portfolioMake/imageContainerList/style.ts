@@ -21,8 +21,8 @@ export const MainWrapper = styled.section`
 export const ImageWrapeerList = styled.div`
   margin-top: 15px;
 
-  &:nth-of-type(n + 2) {
-    margin-bottom: 60px;
+  &:nth-of-type(n + 3) {
+    margin-top: 50px;
   }
 
   .Title {
