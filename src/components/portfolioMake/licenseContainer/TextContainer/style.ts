@@ -8,6 +8,8 @@ export const LicenseWrapper = styled.section`
     margin-top: 10px;
 
     .addContent {
+      font-style: normal;
+      font-weight: normal;
       font-size: 14px;
       color: #bbbbbb;
       cursor: pointer;
@@ -70,11 +72,11 @@ export const HeaderButton = styled.header`
   }
 
   .addContent {
-    margin-bottom: 15px;
     font-size: 18px;
     color: #ff7659;
     cursor: pointer;
     font-weight: 700;
+    margin-bottom: 15px;
   }
 `;
 

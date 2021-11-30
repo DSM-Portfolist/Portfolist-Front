@@ -16,7 +16,8 @@ export const MainWrapper = styled.section`
   }
   .infoContainer {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    gap: 0px 120px;
     flex-wrap: wrap;
     margin-top: 20px;
   }

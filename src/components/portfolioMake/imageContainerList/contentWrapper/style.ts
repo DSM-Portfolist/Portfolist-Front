@@ -53,6 +53,7 @@ export const BoxItem = styled.div`
     }
   }
   .addContent {
+    margin-bottom: 15px;
     font-size: 12px;
     color: #bbbbbb;
     cursor: pointer;
