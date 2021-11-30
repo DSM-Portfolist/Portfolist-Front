@@ -9,15 +9,21 @@ const MoreInfo = () => {
   const portfolioValue = useRecoilValue(getPortfolioSelecor);
 
   return (
-    <S.MoreInfoWrapper>
-      <div className="more-wrapper">
-        {portfolioValue?.more_info_list?.map(
-          (info: MoreInfoType, index: number) => (
-            <MoreInfoItem key={index} info={info} />
-          )
-        )}
-      </div>
-    </S.MoreInfoWrapper>
+    <>
+      {portfolioValue?.more_info_list?.length === 0 ? (
+        ""
+      ) : (
+        <S.MoreInfoWrapper>
+          <div className="more-wrapper">
+            {portfolioValue?.more_info_list?.map(
+              (info: MoreInfoType, index: number) => (
+                <MoreInfoItem key={index} info={info} />
+              )
+            )}
+          </div>
+        </S.MoreInfoWrapper>
+      )}
+    </>
   );
 };
 

@@ -184,6 +184,7 @@ export const Input = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
 
   input {
     width: 80%;

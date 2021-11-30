@@ -1,43 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import * as S from "./style";
 import { Search, ListItem } from "../..";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { getPortListSelector } from "../../../modules/atom/portfolio";
 import { useLocation } from "react-router";
 import QueryString from "query-string";
-import { getPortfolioList } from "../../../util/api/portfolio/portfolio";
-import { useFieldValue } from "../../../modules/atom/portfolio/search";
+import { searchValue } from "../../../modules/atom/portfolio/search";
 
 const MainList = () => {
-  const [list, setList] = useState<PortListType[]>();
   const portfolioList = useRecoilValue(getPortListSelector);
-  const useField = useRecoilValue(useFieldValue);
+  const setSearchText = useSetRecoilState(searchValue);
 
   const location = useLocation();
   const queryData = QueryString.parse(location.search);
   const query = queryData.query;
 
   useEffect(() => {
-    const getPorfolio = async () => {
-      try {
-        await getPortfolioList(useField, query, "title").then((res) => {
-          setList(res.data.portfolio_list);
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    getPorfolio();
-    setList(portfolioList);
-  }, [portfolioList, query, useField]);
+    setSearchText(query);
+  }, [query, setSearchText]);
 
   return (
     <S.MainListWrapper className="container">
       <Search />
       <S.ListWrapper>
-        {list?.length === 0 ? (
+        {portfolioList?.length === 0 ? (
           <p className="list-not-comment">작성된 포트폴리오가 없습니다</p>
         ) : (
           <>
@@ -48,7 +35,7 @@ const MainList = () => {
             )}
 
             <S.ListContent>
-              {list?.map((list: PortListType, index: number) => (
+              {portfolioList?.map((list: PortListType, index: number) => (
                 <ListItem key={index} list={list} />
               ))}
             </S.ListContent>

@@ -2,11 +2,21 @@ import request from "../index";
 
 const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 
-export function getPortfolioList(field: string[], query: any, type: string) {
+/* field: string[],
+  sort: string,
+  query: any,
+  type: string */
+
+export function getPortfolioList(
+  field: string[],
+  sort: string,
+  query: any,
+  type: string
+) {
   return request({
-    url: `/portfolio/list?page=0&size=5&field=${
+    url: `/portfolio/list?page=0&size=10&field=${
       field === undefined ? "" : field
-    }&query=${query}&searchType=${type}`,
+    }&sort=date,${sort}&query=${query}&searchType=${type}`,
     method: "get",
     headers: { Authorization: token },
   });

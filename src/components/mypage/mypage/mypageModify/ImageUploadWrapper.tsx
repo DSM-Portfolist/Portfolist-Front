@@ -6,10 +6,16 @@ import { postProfileImage } from "../../../../util/api/mypage/image";
 import { ProfileImageWrapper } from "../../../../util/css/mypage/mypage/mypageModify/style";
 import { profileImage } from "../../../../util/css/mypage/ProfileHeader/style";
 
-const ImageUploadWrapper = () => {
+interface Props {
+  userInfo: any;
+}
+
+const ImageUploadWrapper = ({ userInfo }: Props) => {
   const [imageFile, setImageFile] = useState<any>([]);
   const [previewURL, setPreviewURL] = useState<any>("");
   const [isCustomImage, setIsCustomImage] = useState<boolean>(false);
+
+  console.log(userInfo);
 
   let formData = new FormData();
 
@@ -57,24 +63,30 @@ const ImageUploadWrapper = () => {
 
   return (
     <ProfileImageWrapper>
-      {!isCustomImage ? (
-        <img
-          css={profileImage}
-          alt="기본이미지"
-          src="https://belabef.com/common/img/default_profile.png"
-        />
+      {userInfo.github_user ? (
+        <img css={profileImage} alt="" src={userInfo.profile_img} />
       ) : (
-        <img css={profileImage} alt="" src={previewURL} />
+        <>
+          {!isCustomImage ? (
+            <img
+              css={profileImage}
+              alt="기본이미지"
+              src="https://belabef.com/common/img/default_profile.png"
+            />
+          ) : (
+            <img css={profileImage} alt="" src={previewURL} />
+          )}
+          <input
+            type="file"
+            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            onChange={handleFileOnChange}
+            style={{ display: "none" }}
+            id="input-file"
+          />
+          <label htmlFor="input-file">이미지 업로드</label>
+          <div onClick={deleteImageHandler}>기본 이미지 변경</div>
+        </>
       )}
-      <input
-        type="file"
-        accept="image/jpg,impge/png,image/jpeg,image/gif"
-        onChange={handleFileOnChange}
-        style={{ display: "none" }}
-        id="input-file"
-      />
-      <label htmlFor="input-file">이미지 업로드</label>
-      <div onClick={deleteImageHandler}>기본 이미지 변경</div>
     </ProfileImageWrapper>
   );
 };

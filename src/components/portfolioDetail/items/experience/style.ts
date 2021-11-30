@@ -7,6 +7,7 @@ export const ExperienceWrapper = styled.div`
 
 export const MainTitle = styled.span`
   font-size: 24px;
+  font-weight: 700;
 `;
 
 export const ContainerBox = styled.div`

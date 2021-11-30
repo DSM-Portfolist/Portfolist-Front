@@ -26,18 +26,21 @@ const FieldSelectItem = ({ setText, arrowSelect, setArrowSelect }: Props) => {
       style={arrowSelect ? { height: 200 } : { height: 0 }}
       ref={fieldRef}
     >
-      {field.map((field: FieldType) => (
-        <li
-          key={field.id}
-          onClick={() => {
-            setText(field.content);
-            UseFieldAdd(field.content);
-            setArrowSelect(false);
-          }}
-        >
-          {field.content}
-        </li>
-      ))}
+      {field.map((field: FieldType) => {
+        return (
+          <li
+            key={field.id}
+            onClick={() => {
+              setText(field.content);
+              UseFieldAdd(field.content);
+
+              setArrowSelect(false);
+            }}
+          >
+            {field.content}
+          </li>
+        );
+      })}
     </S.FieldSelectItemWrapper>
   );
 };

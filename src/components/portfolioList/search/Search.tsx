@@ -20,6 +20,7 @@ const Search = () => {
     if (useField?.length >= 6) {
       ToastError("필터는 최대 5개까지 가능합니다.");
     }
+    console.log(useField);
   }, [useField]);
 
   return (
@@ -57,7 +58,12 @@ const Search = () => {
         </div>
         <S.FieldWrapper>
           {useField?.map((field: any, index: number) => (
-            <FieldItem field={field} key={index} setUseField={setUseField} />
+            <FieldItem
+              field={field}
+              key={index}
+              setUseField={setUseField}
+              useField={useField}
+            />
           ))}
         </S.FieldWrapper>
       </S.FieldSelectWrapper>
