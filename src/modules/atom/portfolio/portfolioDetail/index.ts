@@ -16,7 +16,7 @@ export const portfoilo = atom<PortfolioType>({
     container_list: [
       {
         container_title: "",
-        container_img: [""],
+        container_img_list: [""],
         container_text_list: [{ box_title: "", box_content: "" }],
       },
     ],
