@@ -1,27 +1,37 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { Link, isInFile, File, isInLink } from "../../../util/assets/index";
+import { imgFile } from "../../../util/api/portfolio/portfolioPost";
 
 const FileLinkContainer = () => {
-  const [linkInputName, setLinkInputName] = useState("");
-  const [fileInputName, setFileInputName] = useState("");
+  const [linkInputName, setLinkInputName] = useState<string>("");
+  const [fileResponse, setFileResponse] = useState<string>("");
+  const [fileInputName, setFileInputName] = useState<string>("");
   const [imageFile, setImageFile] = useState<any>([]);
 
-  let formData = new FormData();
-
-  useEffect(() => {},[])
+  useEffect(() => {
+    if (imageFile.length !== 0) {
+      postFile(imageFile);
+    }
+  }, [imageFile]);
 
   const onChangeFileHanddler = (e: any) => {
     const { files } = e.target;
     setFileInputName(files[0].name); //file에 담긴 name useState로 저장
-    let reader = new FileReader();
     let file = e.target.files[0];
-    reader.onloadend = () => {
-      setImageFile(file);
-      formData.append("file", file);
-    };
-    reader.readAsDataURL(file);
-    /* postProfileImage(file); */
+    setImageFile(file);
+  };
+
+  const postFile = (file: any) => {
+    imgFile(file)
+      .then((res) => {
+        //recoil로 배너 이미지 경로 바꾸면 끝~
+        console.log(res);
+        setFileResponse(res.data.file);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const onChangeLinkValue = (e: any) => {

@@ -26,7 +26,6 @@ const BannerContainer = () => {
   const postImageFile = (file: any) => {
     imgFile(file)
       .then((res) => {
-        //recoil로 배너 이미지 경로 바꾸면 끝~
         setBannerImg({
           thumbnail: res.data.file,
           isClickBannder: false,
