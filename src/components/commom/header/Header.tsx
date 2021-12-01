@@ -7,6 +7,8 @@ import Notiication from "./Notiication";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { searchBar } from "../../../modules/atom/header";
 import { searchValue } from "../../../modules/atom/portfolio/search";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Header = () => {
   const [selectText, setSelectText] = useState<boolean>(true);
@@ -40,6 +42,7 @@ const Header = () => {
 
   return (
     <>
+      <ToastContainer />
       <S.HeaderWrapper>
         {localStorage.getItem("access_token_portfolist") ? (
           <S.Container>
