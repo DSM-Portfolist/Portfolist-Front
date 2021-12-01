@@ -1,7 +1,12 @@
 import styled from "@emotion/styled";
 import arrowimg from "../../../../util/assets/icon/selectedArrow.svg";
 
+export const MainContainer = styled.div`
+  display: flex;
+`;
+
 export const FieldItemWrapper = styled.div`
+  display: flex;
   select {
     width: 150px;
     height: 33px;
