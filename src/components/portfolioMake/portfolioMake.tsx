@@ -11,6 +11,7 @@ import PrecautionsContainer from "./precautionsContainer/PrecautionsContainer";
 import { useRecoilValue } from "recoil";
 import { portfolioMakeList } from "../../modules/atom/portfolioPost";
 import { portfolioMakeSubmit } from "../../util/api/portfolio/portfolioPost";
+import OptionContainer from "./optionContainer/OptionContainer";
 
 const PortfolioMake = () => {
   const portfolioMakeArr = useRecoilValue(portfolioMakeList);
@@ -30,6 +31,7 @@ const PortfolioMake = () => {
       <Header />
       <S.MainContainer>
         <PrecautionsContainer /> {/* 주의사항을 적는 Text 컴포넌트 */}
+        <OptionContainer /> {/* 분야랑 공개 비공개 설정 컴포넌트 */}
         <TitleContainer /> {/* 제목 컴포넌트 */}
         <MoreInfoContainer /> {/*이메일이나 깃허브 넣는 컴포넌트*/}
         <ImageContainerList /> {/* 자신의 경험을 넣을 수 있는 이미지 리스트 */}
