@@ -5,6 +5,8 @@ export const OptionContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  padding: 60px 0 40px 0;
+  border-bottom: #e9e9e9 solid 1px;
 `;
 
 export const FieldItemWrapper = styled.div`
