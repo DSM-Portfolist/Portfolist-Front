@@ -2,7 +2,7 @@ import { atom, selector } from "recoil";
 import { getUser } from "../../../util/api/user/info";
 import { UserInfoType } from "../../../util/interface/user";
 
-export const userInfoValue = atom<UserInfoType>({
+export const userInfoValue = atom<UserInfoType | undefined>({
   key: "userInfo",
   default: {
     field: [""],
