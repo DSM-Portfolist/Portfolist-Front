@@ -22,69 +22,75 @@ const FilterItem = () => {
 
   function UseFieldAdd(field: any) {
     if (selectField.length <= 2) {
-      setUseField(useField?.concat(field));
-      setSelectField(selectField?.concat({ id: fieldNum + 1 }));
-      ToastSuccess("분야는 3개까지 선택 할 수 있습니다.");
+      try {
+        setUseField(useField?.concat(field));
+        setSelectField(selectField?.concat({ id: fieldNum + 1 }));
+        ToastSuccess("분야는 3개까지 선택 할 수 있습니다.");
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 
   useEffect(() => {
-    /* if (selectField.length !== 1) {
+    if (selectField.length !== 1) {
       if (text === "ALL") {
         setSelectField(
           selectField?.filter((id: any) => id.id === selectFieldNum)
         );
       }
-    } */
+    }
     //console.log(useField);
   }, [field, selectField, setSelectField, text, useField]);
 
   return (
-    <div className="field-item-wrap">
-      <div className="filed-wrap">
-        <div
-          className="category_wrap"
-          style={{
-            borderBottom:
-              text === "" ? "2px solid #C4C4C4" : `2px solid ${mainColor}`,
-          }}
-          onClick={() => setArrowSelect(!arrowSelect)}
-        >
-          <p>{text}</p>
-          <S.ArrowImg
-            src={text === "" ? NoSelectedArrow : SelectedArrow}
-            alt="화살표 상태"
-            style={
-              arrowSelect
-                ? { transform: "rotate(180deg)" }
-                : { transform: "rotate(0deg)" }
-            }
-          />
-        </div>
-        <S.FieldSelectWrap arrowSelect={arrowSelect}>
-          <li
-            onClick={() => {
-              setText("ALL");
-              setArrowSelect(false);
+    <>
+      <div className="field-item-wrap">
+        <div className="filed-wrap">
+          <div
+            className="category_wrap"
+            style={{
+              borderBottom:
+                text === "" ? "2px solid #C4C4C4" : `2px solid ${mainColor}`,
             }}
+            onClick={() => setArrowSelect(!arrowSelect)}
           >
-            ALL
-          </li>
-          {field.map((field: FieldType, index: number) => (
+            <p>{text}</p>
+            <S.ArrowImg
+              src={text === "" ? NoSelectedArrow : SelectedArrow}
+              alt="화살표 상태"
+              style={
+                arrowSelect
+                  ? { transform: "rotate(180deg)" }
+                  : { transform: "rotate(0deg)" }
+              }
+            />
+          </div>
+          <S.FieldSelectWrap arrowSelect={arrowSelect}>
             <li
-              key={index}
               onClick={() => {
-                setText(field.content);
-                UseFieldAdd(field.content);
+                setText("ALL");
                 setArrowSelect(false);
               }}
             >
-              {field.content}
+              ALL
             </li>
-          ))}
-        </S.FieldSelectWrap>
+            {field.map((field: FieldType) => (
+              <li
+                key={field.id}
+                onClick={() => {
+                  setText(field.content);
+                  UseFieldAdd(field.content);
+                  setArrowSelect(false);
+                }}
+              >
+                {field.content}
+              </li>
+            ))}
+          </S.FieldSelectWrap>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
