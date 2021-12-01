@@ -5,6 +5,7 @@ import { container_list_atom } from "../../../../modules/atom/portfolioPost";
 import { useRecoilState } from "recoil";
 import { imgFile } from "../../../../util/api/portfolio/portfolioPost";
 import { TrashCan } from "../../../../util/assets";
+import { ToastError } from "../../../../hook/toastHook";
 
 const ImageWrapper = ({ identity }: any) => {
   const [containerList, setContainerList] = useRecoilState(container_list_atom);
@@ -15,7 +16,9 @@ const ImageWrapper = ({ identity }: any) => {
     { isInFile: false, index: 0 + jbRandom },
   ]);
 
-  console.log(containerList);
+  useEffect(() => {
+    console.log(imageList);
+  }, [imageList]);
 
   useEffect(() => {
     let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
@@ -33,6 +36,7 @@ const ImageWrapper = ({ identity }: any) => {
   }, [imageFile]);
 
   const addImageContainer = (res: string, isComponentMounted: boolean) => {
+    //서버에게 post할때 보낼 이미지 리스트 추가
     console.log(res);
     if (isComponentMounted) {
       setContainerList(
@@ -53,6 +57,7 @@ const ImageWrapper = ({ identity }: any) => {
   };
 
   const updateFieldChanged = (item: boolean, index: number) => {
+    //isInFile boolean 함수 변경
     let newArr = imageList.map((value: any, i: number) => {
       if (index === value.index) {
         return { ...value, isInFile: item };
@@ -77,6 +82,7 @@ const ImageWrapper = ({ identity }: any) => {
   };
 
   const addImageList = () => {
+    //이미지 추가 버튼 기능
     var jbRandom = Math.random();
     setImageList((imageLis: any) => [
       ...imageLis,
@@ -84,9 +90,35 @@ const ImageWrapper = ({ identity }: any) => {
     ]);
   };
 
+  const deleteImage = (index: number) => {
+    if (imageList.length <= 1) {
+      ToastError("이미지는 최소한 1개는 있어야 합니다");
+    } else {
+      setImageList(
+        imageList.filter((item: any, i: number) => {
+          return i !== index;
+        })
+      );
+      setContainerList(
+        containerList.map((item: any, i: number) => {
+          if (i === index) {
+            let newList = item.container_img_list.splice();
+            newList.splice(index, 1);
+            console.log(newList);
+            return {
+              ...item,
+              container_img_list: newList,
+            };
+          }
+        })
+      );
+    }
+  };
+
   return (
     <S.ImageWrapper>
       {imageList.map((v: any, index: number) => {
+        console.log(index);
         return (
           <S.ImageContainer key={index}>
             {!v.isInFile ? (
@@ -105,7 +137,13 @@ const ImageWrapper = ({ identity }: any) => {
             ) : (
               <S.ImageItem key={index}>
                 <img src={previewURL[index]} className="PreviewURL" alt="" />
-                <img src={TrashCan} alt="쓰레기통" />
+                <img
+                  src={TrashCan}
+                  onClick={() => {
+                    deleteImage(index);
+                  }}
+                  alt="쓰레기통"
+                />
                 {v.index + 1 < imageList.length ? (
                   ""
                 ) : (
