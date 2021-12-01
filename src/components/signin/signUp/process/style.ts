@@ -161,8 +161,7 @@ export const NextButton = styled.button<Props>`
   font-size: 18px;
   width: 300px;
   height: 40px;
-  background: ${({ btnColor }: buttonType) =>
-    btnColor ? "#FF7659" : "#DADADA"};
+  background: ${({ btnColor }) => (btnColor ? "#FF7659" : "#DADADA")};
   box-shadow: 0px 2px 6px rgba(119, 119, 119, 0.25);
   border-radius: 5px;
   transition: all 0.3s;
@@ -176,9 +175,9 @@ export const InputItemWrap = styled.div`
   position: relative;
 
   input {
+    font-family: "Noto Sans KR";
     transition: all 0.5s;
-    color : black;
-    
+    color: black;
   }
 
   & p {

@@ -10,10 +10,12 @@ const NotificationModule = () => {
   const [isClick, setIsClick] = useState<boolean>(status.notification);
 
   const toggleButton = () => {
+    console.log(isClick);
     try {
       if (isClick) {
         setIsClick(false);
         putNotification(true);
+
         ToastSuccess("포트폴리오 알림이 활성화되었습니다.");
       } else {
         setIsClick(true);

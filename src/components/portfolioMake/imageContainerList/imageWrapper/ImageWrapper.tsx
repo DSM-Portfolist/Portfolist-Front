@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { imageListType } from "../../../../util/interface/portfolio/portfolioMakeType";
-import { container_list } from "../../../../modules/atom/portfolioPost";
+import { container_list_atom } from "../../../../modules/atom/portfolioPost";
 import { useRecoilState } from "recoil";
 import { imgFile } from "../../../../util/api/portfolio/portfolioPost";
+import { TrashCan } from "../../../../util/assets";
 
 const ImageWrapper = ({ identity }: any) => {
-  const [containerList, setContainerList] = useRecoilState(container_list);
+  const [containerList, setContainerList] = useRecoilState(container_list_atom);
   let jbRandom = Math.random();
   const [imageFile, setImageFile] = useState<any[]>([]);
   const [previewURL, setPreviewURL] = useState<string[]>([]);
@@ -104,6 +105,7 @@ const ImageWrapper = ({ identity }: any) => {
             ) : (
               <S.ImageItem key={index}>
                 <img src={previewURL[index]} className="PreviewURL" alt="" />
+                <img src={TrashCan} alt="쓰레기통" />
                 {v.index + 1 < imageList.length ? (
                   ""
                 ) : (

@@ -8,14 +8,16 @@ import * as S from "./style";
 const MoreInfo = () => {
   const portfolioValue = useRecoilValue(getPortfolioSelecor);
 
+  console.log(portfolioValue?.more_info);
+
   return (
     <>
-      {portfolioValue?.more_info_list?.length === 0 ? (
+      {portfolioValue?.more_info?.length === 0 ? (
         ""
       ) : (
         <S.MoreInfoWrapper>
           <div className="more-wrapper">
-            {portfolioValue?.more_info_list?.map(
+            {portfolioValue?.more_info?.map(
               (info: MoreInfoType, index: number) => (
                 <MoreInfoItem key={index} info={info} />
               )

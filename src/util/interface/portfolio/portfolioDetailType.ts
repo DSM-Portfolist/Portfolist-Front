@@ -12,7 +12,7 @@ export interface PortfolioType {
   introduce: string;
   is_mine: boolean;
   link: string;
-  more_info_list: MoreInfoType[];
+  more_info: MoreInfoType[];
   title: string;
   total_touching: number;
   touched: boolean;

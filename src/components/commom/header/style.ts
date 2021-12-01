@@ -35,7 +35,7 @@ export const Container = styled.div`
 
     a {
       color: #5a5a5a;
-      font-weight: 700;
+      font-weight: 500;
       font-size: 17px;
       margin-right: 27px;
     }

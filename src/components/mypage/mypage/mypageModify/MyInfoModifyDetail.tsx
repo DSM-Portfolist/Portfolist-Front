@@ -61,14 +61,14 @@ const MyInfoModifyDetail = ({ getUserInfo }: any) => {
           <input
             type="text"
             placeholder="사용하실 닉네임을 입력하세요"
-            defaultValue={userInfo.name}
+            defaultValue={userInfo?.name}
             name="name"
             onChange={(e: any) => setName(e.target.value)}
           />
           <input
             type="text"
             placeholder="자신을 한줄 소개 해주세요"
-            defaultValue={userInfo.introduce}
+            defaultValue={userInfo?.introduce}
             name="introduce"
             onChange={(e: any) => setIntroduce(e.target.value)}
           />

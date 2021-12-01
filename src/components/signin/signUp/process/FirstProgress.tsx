@@ -28,6 +28,7 @@ const FirstProgress = ({
   const [nextLevel, setNextLevel] = useState<boolean>(false);
   const [inputType, setInputType] = useState<boolean>(false);
   const [inputTypeReturn, setInputTypeReturn] = useState<boolean>(false);
+  const [passwordCheck, setPasswordCheck] = useState<string>("");
   let error = false;
 
   const { name, email, password, field } = inputs;
@@ -165,8 +166,16 @@ const FirstProgress = ({
               <span>비밀번호 확인</span>
               <S.InputItemWrap>
                 <input
+                  name="passwordCheck"
+                  value={passwordCheck}
                   type={inputType ? "text" : "password"}
                   placeholder="비밀번호를 다시입력해주세요"
+                  onChange={(e) => setPasswordCheck(e.target.value)}
+                  style={
+                    passwordCheck.length >= 4
+                      ? { borderBottom: `2px solid ${mainColor}` }
+                      : { borderBottom: "" }
+                  }
                 />
                 <img
                   src={inputTypeReturn ? OpenEye : CloseEye}
@@ -195,7 +204,9 @@ const FirstProgress = ({
               이전
             </S.PreButton>
             <S.PreButton
-              btnColor={btnColor}
+              style={{
+                background: `${mainColor}`,
+              }}
               onClick={(e) => {
                 handleSubmit(inputs, e);
               }}

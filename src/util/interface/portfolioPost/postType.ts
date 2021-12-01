@@ -32,3 +32,8 @@ export interface CertificateListType {
   title: string;
   certificate_list: string[];
 }
+
+export interface BannderStateType {
+  thumbnail: string;
+  isClickBannder: boolean;
+}

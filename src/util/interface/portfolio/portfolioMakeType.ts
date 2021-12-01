@@ -3,7 +3,6 @@ export interface InputIsNullType {
 }
 
 export interface inputDataArrType {
-  id: string;
   name: string;
   content: string;
 }
