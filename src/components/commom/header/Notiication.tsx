@@ -1,6 +1,7 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { notiBox } from "../../../modules/atom/header";
+import { notificationStatus } from "../../../modules/atom/mypage/mypage";
 import { notificationSelector } from "../../../modules/selector/mainpage";
 import { NoNotification, Notification } from "../../../util/assets";
 import NotiItem from "./NotiItem";
@@ -11,6 +12,9 @@ const Notiication = () => {
 
   const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
   const notification = useRecoilValue(notificationSelector);
+  const status = useRecoilValue(notificationStatus);
+
+  console.log(status);
 
   return (
     <>

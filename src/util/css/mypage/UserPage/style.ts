@@ -11,7 +11,7 @@ export const center = css`
   justify-content: center;
   align-items: center;
 
-  a {
+  div {
     font-weight: 700;
     font-size: 17px;
     color: black;

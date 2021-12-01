@@ -10,6 +10,7 @@ import QueryString from "query-string";
 import TouchingItem from "./items/touching/TouchingItem";
 import * as S from "./style";
 import { getPortfolioSelecor } from "../../modules/atom/portfolio/portfolioDetail";
+import Report from "./report/Report";
 
 const PortfolioDetail = () => {
   const setPortfolioId = useSetRecoilState(portfolioId);
@@ -36,6 +37,7 @@ const PortfolioDetail = () => {
         )}
         <Comment />
       </S.DetailWrappper>
+      <Report />
     </>
   );
 };

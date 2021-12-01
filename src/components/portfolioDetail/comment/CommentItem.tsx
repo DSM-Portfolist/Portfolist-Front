@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { DefaultProfile } from "../../../util/assets";
 import * as S from "./style";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
@@ -6,7 +6,10 @@ import { deleteComment } from "../../../util/api/portfolio/comment";
 import { ToastSuccess } from "../../../hook/toastHook";
 import ReComment from "./ReComment";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { reCommentControl } from "../../../modules/atom/portfolio/comment";
+import {
+  commentReoprt,
+  reCommentControl,
+} from "../../../modules/atom/portfolio/comment";
 
 interface Props {
   comment: CommentType;
@@ -16,6 +19,7 @@ interface Props {
 
 const CommentItem = ({ comment, getTest }: Props) => {
   const [reComment, setReComment] = useRecoilState(reCommentControl);
+  const setReportCommentModal = useSetRecoilState(commentReoprt);
 
   const CommentDelete = (id: number) => {
     deleteComment(id)
@@ -52,7 +56,6 @@ const CommentItem = ({ comment, getTest }: Props) => {
             ) : (
               <pre>{comment?.comment_content}</pre>
             )}
-          
           </div>
         </S.Content>
         <S.Util>
@@ -62,7 +65,7 @@ const CommentItem = ({ comment, getTest }: Props) => {
             ""
           )}
 
-          <span>신고</span>
+          <span onClick={() => setReportCommentModal(true)}>신고</span>
         </S.Util>
       </div>
 

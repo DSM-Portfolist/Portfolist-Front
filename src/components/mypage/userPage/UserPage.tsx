@@ -40,7 +40,11 @@ const UserPage = ({ match }: any) => {
           ) : (
             <>
               {userPortfolio?.map((portfolio, index) => (
-                <PortfolioList key={index} portfolio={portfolio} />
+                <PortfolioList
+                  key={index}
+                  portfolio={portfolio}
+                  profileimg={portfolio?.user?.profile_img}
+                />
               ))}
             </>
           )}

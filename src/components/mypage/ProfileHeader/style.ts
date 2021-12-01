@@ -56,6 +56,7 @@ export const ProfileBottom = styled.div`
   width: 100%;
   position: relative;
   align-items: center;
+  display: flex;
 
   & h3 {
     font-weight: 500;

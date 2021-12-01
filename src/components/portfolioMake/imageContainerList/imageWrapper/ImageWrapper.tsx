@@ -4,6 +4,7 @@ import { imageListType } from "../../../../util/interface/portfolio/portfolioMak
 import { container_list_atom } from "../../../../modules/atom/portfolioPost";
 import { useRecoilState } from "recoil";
 import { imgFile } from "../../../../util/api/portfolio/portfolioPost";
+import { TrashCan } from "../../../../util/assets";
 
 const ImageWrapper = ({ identity }: any) => {
   const [containerList, setContainerList] = useRecoilState(container_list_atom);
@@ -104,6 +105,7 @@ const ImageWrapper = ({ identity }: any) => {
             ) : (
               <S.ImageItem key={index}>
                 <img src={previewURL[index]} className="PreviewURL" alt="" />
+                <img src={TrashCan} alt="쓰레기통" />
                 {v.index + 1 < imageList.length ? (
                   ""
                 ) : (
