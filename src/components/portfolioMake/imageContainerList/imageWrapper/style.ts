@@ -38,6 +38,10 @@ export const ImageItem = styled.div`
     cursor: pointer;
     text-align: center;
   }
+  img[alt="쓰레기통"] {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 export const ImageContainer = styled.div`
