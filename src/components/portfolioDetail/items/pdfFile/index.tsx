@@ -1,26 +1,28 @@
 import React, { useState } from "react";
 import { Document, Page } from "react-pdf";
-import * as S from "./style";
 
-const PdfFile = () => {
+interface Props {
+  file: any;
+}
+
+const PdfFile = ({ file }: Props) => {
   const [numPages, setNumPages] = useState<any>(null);
-  const [pageNumber, setPageNumber] = useState<number>(1);
 
-  function onDocumentLoadSuccess(page: number) {
-    setNumPages(page);
-  }
+  console.log(file);
 
   return (
     <>
       <Document
         file={{
-          url: "https://42place.innovationacademy.kr/wp-content/uploads/2020/12/Resume_Dongjunkang_censored.pdf",
+          url: "http://portfolist-bucket.s3.ap-northeast-2.amazonaws.com/d4c979aa-ae23-4bc0-b6cd-1eb4cd80c5dd.pdf",
         }}
-        onLoadSuccess={() => {
-          onDocumentLoadSuccess(numPages);
-        }}
+        onLoadSuccess={({ numPages }) => setNumPages(numPages)}
       >
-        <Page pageNumber={pageNumber} />
+        {Array.apply(null, Array(numPages))
+          .map((x, i) => i + 1)
+          .map((page) => (
+            <Page pageNumber={page} />
+          ))}
       </Document>
     </>
   );

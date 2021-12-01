@@ -34,7 +34,7 @@ export const SearchContent = styled.span`
   display: flex;
   justify-content: flex-end;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
 `;
 
 export const ListItemWrapper = styled.div`
@@ -145,7 +145,7 @@ export const Content = styled.div`
     flex-direction: column;
 
     a:nth-of-type(1) {
-      font-weight: 700;
+      font-weight: 500;
       font-size: 16px;
       color: black;
       cursor: pointer;

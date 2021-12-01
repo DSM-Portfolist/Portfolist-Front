@@ -7,7 +7,7 @@ export const ExperienceWrapper = styled.div`
 
 export const MainTitle = styled.span`
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 500;
 `;
 
 export const ContainerBox = styled.div`
@@ -27,6 +27,9 @@ export const ContainerBox = styled.div`
     flex-direction: column;
 
     img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
       margin-bottom: 20px;
     }
   }
