@@ -12,3 +12,12 @@ export const imgFile = (file: any) => {
     headers: { Authorization: token, "Content-Type": "multipart/form-data" },
   });
 };
+
+export const portfolioMakeSubmit = (data: any) => {
+  return request({
+    url: "/portfolio",
+    method: "post",
+    data: data,
+    headers: { Authorization: token },
+  });
+};
