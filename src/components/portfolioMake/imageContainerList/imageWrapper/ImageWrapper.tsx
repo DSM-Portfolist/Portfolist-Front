@@ -17,10 +17,6 @@ const ImageWrapper = ({ identity }: any) => {
   ]);
 
   useEffect(() => {
-    console.log(imageList);
-  }, [imageList]);
-
-  useEffect(() => {
     let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
     if (imageFile.length !== 0) {
       imgFile(imageFile)
@@ -90,25 +86,40 @@ const ImageWrapper = ({ identity }: any) => {
     ]);
   };
 
-  const deleteImage = (index: number) => {
+  const deleteImage = (index: number) => { //이미지 삭제 이벤트
     if (imageList.length <= 1) {
       ToastError("이미지는 최소한 1개는 있어야 합니다");
     } else {
+      setPreviewURL(
+        //프리뷰 url 삭제
+        previewURL.filter((item: any, i: number) => {
+          return i !== index;
+        })
+      );
       setImageList(
+        //이미지 리스트 삭제
         imageList.filter((item: any, i: number) => {
           return i !== index;
         })
       );
       setContainerList(
+        //제작에 올라갈 이미지 리스트 삭제
         containerList.map((item: any, i: number) => {
-          if (i === index) {
-            let newList = item.container_img_list.splice();
-            newList.splice(index, 1);
-            console.log(newList);
+          console.log(i, index);
+          if (i === identity) {
+            console.log(item);
+            let newList = item.container_img_list.filter(
+              (value: any, filter_index: number) => {
+                return filter_index !== index;
+              }
+            );
             return {
               ...item,
               container_img_list: newList,
             };
+          } else {
+            console.log("else");
+            return item;
           }
         })
       );
@@ -118,7 +129,6 @@ const ImageWrapper = ({ identity }: any) => {
   return (
     <S.ImageWrapper>
       {imageList.map((v: any, index: number) => {
-        console.log(index);
         return (
           <S.ImageContainer key={index}>
             {!v.isInFile ? (
