@@ -9,6 +9,7 @@ import { searchBar } from "../../../modules/atom/header";
 import { searchValue } from "../../../modules/atom/portfolio/search";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { tokenAtom } from "../../../modules/atom/auth";
 
 const Header = () => {
   const [selectText, setSelectText] = useState<boolean>(true);
@@ -16,6 +17,7 @@ const Header = () => {
   const setSearchText = useSetRecoilState(searchValue);
   const searchInputRef = useRef<any>(null);
   const history = useHistory();
+  const [token, setToken] = useRecoilState(tokenAtom);
 
   const searchHandler = (e: any) => {
     if (e.key === "Enter") {
@@ -25,6 +27,11 @@ const Header = () => {
       setSearchText("");
     }
   };
+
+  useEffect(() => {
+    setToken(localStorage.getItem("access_token_portfolist"));
+    console.log(token);
+  }, []);
 
   const focusOn = useCallback(() => {
     setIsFocusing(true);
@@ -44,7 +51,7 @@ const Header = () => {
     <>
       <ToastContainer />
       <S.HeaderWrapper>
-        {localStorage.getItem("access_token_portfolist") ? (
+        {token ? (
           <S.Container>
             <div className="logo">
               <Link to="/">
@@ -75,7 +82,9 @@ const Header = () => {
           </S.Container>
         ) : (
           <S.BeforeLoginHeader>
-            <img src={Logo} alt="포트폴리스트 로고" />
+            <Link to="/">
+              <img src={Logo} alt="포트폴리스트 로고" />
+            </Link>
             <Link to="/login">
               <button>시작하기</button>
             </Link>

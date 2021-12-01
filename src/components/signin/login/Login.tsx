@@ -30,9 +30,7 @@ const Login = () => {
   });
 
   const onClick = useCallback(() => {
-    window.open(
-      `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=repo:status%20read:repo_hook%20user:email`
-    );
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=repo:status%20read:repo_hook%20user:email`;
   }, []);
 
   const refresh_token = localStorage.getItem("refresh_token_portfolist");

@@ -2,17 +2,17 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { ToastSuccess } from "../../../hook/toastHook";
+import { tokenAtom } from "../../../modules/atom/auth";
 import { subMenu } from "../../../modules/atom/header";
 import { myInfoSelector } from "../../../modules/selector/user";
 import { DefaultProfile } from "../../../util/assets";
 import * as S from "./style";
 
 const SubMenu = () => {
+  const history = useHistory();
+  const [token, setToken] = useRecoilState(tokenAtom);
   const userInfo = useRecoilValue(myInfoSelector);
   const [moreItem, setMoreItem] = useRecoilState(subMenu);
-
-  const history = useHistory();
-  const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 
   return (
     <>
@@ -36,8 +36,8 @@ const SubMenu = () => {
                 onClick={() => {
                   history.push("/");
                   ToastSuccess("로그아웃 되었습니다.");
-                  localStorage.removeItem("access_token_portfolist");
-                  localStorage.removeItem("refresh_token_portfolist");
+                  setToken(localStorage.removeItem("access_token_portfolist"));
+                  setToken(localStorage.removeItem("refresh_token_portfolist"));
                 }}
               >
                 로그아웃

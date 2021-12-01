@@ -14,8 +14,6 @@ const Notiication = () => {
   const notification = useRecoilValue(notificationSelector);
   const status = useRecoilValue(notificationStatus);
 
-  console.log(status);
-
   return (
     <>
       {token ? (
