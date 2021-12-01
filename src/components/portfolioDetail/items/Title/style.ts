@@ -43,12 +43,12 @@ export const DateWrapper = styled.div`
   align-items: center;
 
   .user-profile {
+    color: black;
     display: flex;
     align-items: center;
     margin-left: 30px;
 
-    span {
-      font-weight: 500;
+    a {
       cursor: pointer;
     }
 

@@ -144,7 +144,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
 
-    a:nth-of-type(1) {
+    span:nth-of-type(1) {
       font-weight: 500;
       font-size: 16px;
       color: black;
