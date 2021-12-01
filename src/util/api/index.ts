@@ -13,6 +13,9 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   function (config) {
+    const token = localStorage.getItem("access_token_portfolist");
+    config.headers.Authorization = "Bearer " + token;
+
     return config;
   },
   function (error: AxiosError) {
@@ -22,6 +25,9 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   function (config) {
+    /* const token = localStorage.getItem("access_token_portfolist");
+    config.headers.Authorization = "Bearer " + token; */
+
     return config;
   },
   function (error: AxiosError) {
