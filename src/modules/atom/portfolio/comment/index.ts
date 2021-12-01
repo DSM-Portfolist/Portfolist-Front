@@ -17,6 +17,11 @@ export const commentContent = atom<string>({
   default: "",
 });
 
+export const commentReoprt = atom<boolean>({
+  key: "commentReoprt",
+  default: false,
+});
+
 export const commentListSelector = selectorFamily<CommentType[], any>({
   key: "comments/get",
   get: (id) => async () => {

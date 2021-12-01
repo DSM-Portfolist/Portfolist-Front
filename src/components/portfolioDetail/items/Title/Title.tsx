@@ -12,7 +12,7 @@ const FieldItem = (field: any) => {
 
 const Title = ({ match }: any) => {
   const portfolioValue = useRecoilValue(getPortfolioSelecor);
-  const userId = portfolioValue.user.user_id;
+  const userId = portfolioValue?.user?.user_id;
 
   return (
     <S.TitleWrapper>
@@ -23,9 +23,9 @@ const Title = ({ match }: any) => {
           })}
         </S.FieldWrapper>
         <S.DateWrapper>
-          <span>{portfolioValue?.create_date}</span>
+          {/* <span>{DateSplitHook(portfolioValue?.create_date)}</span> */}
           <Link to={`/user-page/${userId}`} className="user-profile">
-            <span>{portfolioValue?.user.name}</span>
+            <span>{portfolioValue?.user?.name}</span>
             <img
               src={
                 portfolioValue?.user?.profile_img === null

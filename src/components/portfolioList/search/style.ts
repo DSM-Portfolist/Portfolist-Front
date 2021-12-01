@@ -18,7 +18,6 @@ export const SearchWrapper = styled.div`
   .field-select {
     display: flex;
     flex-direction: column;
-    position: absolute;
     margin-left: 5%;
   }
 `;
@@ -57,7 +56,7 @@ export const ArrowImg = styled.img`
 `;
 
 export const FieldWrapper = styled.div`
-  margin-left: 15%;
+  margin-left: 20px;
   display: flex;
   flex-direction: row;
 `;
