@@ -14,6 +14,11 @@ const SubMenu = () => {
   const userInfo = useRecoilValue(myInfoSelector);
   const [moreItem, setMoreItem] = useRecoilState(subMenu);
 
+  const history = useHistory();
+  const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
+
+  
+
   return (
     <>
       {token && (
