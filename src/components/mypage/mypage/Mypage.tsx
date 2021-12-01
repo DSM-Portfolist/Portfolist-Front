@@ -21,12 +21,14 @@ import {
   myTouchingPortfolioSelector,
 } from "../../../modules/atom/mypage/mypage";
 import { MyPortfolioType } from "../../../util/interface/MyPage/myPortfolioType";
+import { myInfoSelector } from "../../../modules/selector/user";
 
 const MyPage = () => {
   const [isClickMyPortfolio, setIsClickMyPortfolio] = useState<boolean>(true);
   const [isClickMyTouching, setIsClickMyTouching] = useState<boolean>(false);
   const [portfolioList, setPortoflioList] = useRecoilState(myPortfolioList);
   const myPortfolio = useRecoilValue(myPortfolioListSelector);
+  const myInfo = useRecoilValue(myInfoSelector);
 
   const touchPorfolio = useRecoilValue(myTouchingPortfolioSelector);
 
@@ -74,6 +76,7 @@ const MyPage = () => {
                   portfolio={portfolio}
                   isClickMyPortfolio={isClickMyPortfolio}
                   isClickMyTouching={isClickMyTouching}
+                  profileimg={myInfo?.profile_img}
                 />
               ))}
             </>
