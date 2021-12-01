@@ -30,7 +30,7 @@ const UserPage = ({ match }: any) => {
         <UserProfileHeader userInfo={userInfo} />
         <article>
           <div css={[center, sectionTitleWrapper]}>
-            <span>{userInfo.name}</span>
+            <span>{userInfo?.name}</span>
             <span>님의 포트폴리오</span>
           </div>
           {userPortfolio?.length === 0 ? (

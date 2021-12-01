@@ -21,12 +21,10 @@ const ListItem = ({ title, content, id, url }: ListProps) => {
     return txt;
   }
 
-  //url === null ? `${Flower}` : url
-
   return (
     <S.ItemWrapper onClick={() => history.push(`/portfolio/${id}`)}>
       <div className="folio-img">
-        <img src={Flower} alt="포트폴리오 이미지 " />
+        <img src={url === null ? `${Flower}` : url} alt="포트폴리오 이미지 " />
       </div>
       <div className="more-explore">
         <span>{title}</span>

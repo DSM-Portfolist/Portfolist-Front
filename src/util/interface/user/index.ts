@@ -4,7 +4,7 @@ export interface UserInfoType {
   introduce: string;
   name: string;
   profile_img: string;
-  github_user: boolean;
+  github_user?: false;
 }
 
 export interface UserType {

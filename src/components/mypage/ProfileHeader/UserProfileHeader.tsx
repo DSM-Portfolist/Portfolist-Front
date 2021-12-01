@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { token } from "../../../util/api";
 import { DefaultProfile } from "../../../util/assets";
 import { UserInfoType } from "../../../util/interface/user";
 import * as S from "./style";
@@ -38,12 +36,6 @@ const UserProfileHeader = ({ userInfo }: Props) => {
                 <S.FieldItem>{field}</S.FieldItem>
               ))}
             </>
-          )}
-
-          {token && (
-            <Link to="/my-page-modify">
-              <button>프로필 수정</button>
-            </Link>
           )}
         </S.ProfileBottom>
       </S.ProfileWrapper>

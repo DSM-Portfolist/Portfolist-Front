@@ -20,8 +20,6 @@ const PortfolioDetail = () => {
 
   setPortfolioId(id);
 
-  console.log(portfolioValue?.file);
-
   return (
     <>
       <Header />
@@ -31,7 +29,7 @@ const PortfolioDetail = () => {
         <MoreInfo />
         <ExperienceList />
         <CertificateList />
-        {portfolioValue?.file === null ? (
+        {portfolioValue?.file === "" ? (
           ""
         ) : (
           <PdfFile file={portfolioValue?.file} />

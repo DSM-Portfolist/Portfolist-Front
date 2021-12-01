@@ -5,16 +5,13 @@ interface Props {
   file: any;
 }
 
-const PdfFile = ({ file }: Props) => {
+const PdfFile = ({ file }: any) => {
   const [numPages, setNumPages] = useState<any>(null);
-
-  console.log(file);
-
   return (
     <>
       <Document
         file={{
-          url: "http://portfolist-bucket.s3.ap-northeast-2.amazonaws.com/d4c979aa-ae23-4bc0-b6cd-1eb4cd80c5dd.pdf",
+          url: file,
         }}
         onLoadSuccess={({ numPages }) => setNumPages(numPages)}
       >

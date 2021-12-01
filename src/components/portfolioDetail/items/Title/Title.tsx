@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail/index";
 import { deletePortfolio } from "../../../../util/api/portfolio/portfolio";
@@ -11,6 +12,7 @@ const FieldItem = (field: any) => {
 
 const Title = ({ match }: any) => {
   const portfolioValue = useRecoilValue(getPortfolioSelecor);
+  const userId = portfolioValue.user.user_id;
 
   return (
     <S.TitleWrapper>
@@ -22,7 +24,7 @@ const Title = ({ match }: any) => {
         </S.FieldWrapper>
         <S.DateWrapper>
           <span>{portfolioValue?.create_date}</span>
-          <div className="user-profile">
+          <Link to={`/user-page/${userId}`} className="user-profile">
             <span>{portfolioValue?.user.name}</span>
             <img
               src={
@@ -32,7 +34,7 @@ const Title = ({ match }: any) => {
               }
               alt="유저 프로필 이미지"
             />
-          </div>
+          </Link>
         </S.DateWrapper>
       </S.TitleInfo>
       {portfolioValue?.is_mine ? (
