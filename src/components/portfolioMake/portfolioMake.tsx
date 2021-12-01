@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Footer, Header } from "..";
 import * as S from "./style";
 import TitleContainer from "./titleContainer/TitleContainer";
@@ -11,16 +11,21 @@ import PrecautionsContainer from "./precautionsContainer/PrecautionsContainer";
 import { useRecoilValue } from "recoil";
 import { portfolioMakeList } from "../../modules/atom/portfolioPost";
 import { portfolioMakeSubmit } from "../../util/api/portfolio/portfolioPost";
+import { ToastError, ToastSuccess } from "../../hook/toastHook";
+import { useHistory } from "react-router";
 
 const PortfolioMake = () => {
   const portfolioMakeArr = useRecoilValue(portfolioMakeList);
+  const history = useHistory();
 
   const portfolioSubmit = () => {
     portfolioMakeSubmit(portfolioMakeArr)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        ToastSuccess("포트폴리오가 작성되었습니다.");
+        history.push("/");
       })
       .catch((err) => {
+        ToastError("포트폴리오 작성에 실패했습니다.");
         console.log(err);
       });
   };
