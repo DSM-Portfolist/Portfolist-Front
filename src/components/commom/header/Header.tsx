@@ -16,6 +16,10 @@ const Header = () => {
   const setSearchText = useSetRecoilState(searchValue);
   const searchInputRef = useRef<any>(null);
   const history = useHistory();
+  const [token, setToken] = useState(
+    localStorage.getItem("access_token_portfolist")
+  );
+  console.log(token);
 
   const searchHandler = (e: any) => {
     if (e.key === "Enter") {
@@ -25,6 +29,10 @@ const Header = () => {
       setSearchText("");
     }
   };
+
+  useEffect(() => {
+    setToken(localStorage.getItem("access_token_portfolist"));
+  }, [localStorage.getItem("access_token_portfolist")]);
 
   const focusOn = useCallback(() => {
     setIsFocusing(true);
@@ -44,7 +52,7 @@ const Header = () => {
     <>
       <ToastContainer />
       <S.HeaderWrapper>
-        {localStorage.getItem("access_token_portfolist") ? (
+        {token ? (
           <S.Container>
             <div className="logo">
               <Link to="/">
@@ -75,7 +83,9 @@ const Header = () => {
           </S.Container>
         ) : (
           <S.BeforeLoginHeader>
-            <img src={Logo} alt="포트폴리스트 로고" />
+            <Link to="/">
+              <img src={Logo} alt="포트폴리스트 로고" />
+            </Link>
             <Link to="/login">
               <button>시작하기</button>
             </Link>
