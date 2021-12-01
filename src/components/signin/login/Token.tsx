@@ -6,10 +6,10 @@ import { useHistory } from "react-router";
 const Token = ({ location }: any) => {
   const history = useHistory();
   const code = queryString.parse(location.search);
-  console.dir(code.code);
 
   useEffect(() => {
     github(code.code);
+
     history.push("/");
   }, [code.code, history]);
 

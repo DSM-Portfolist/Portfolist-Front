@@ -29,11 +29,10 @@ const Login = () => {
     password: "",
   });
 
+  const refresh_token = localStorage.getItem("refresh_token_portfolist");
   const onClick = useCallback(() => {
     window.location.href = `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=repo:status%20read:repo_hook%20user:email`;
   }, []);
-
-  const refresh_token = localStorage.getItem("refresh_token_portfolist");
 
   const { email, password } = loginInput;
 
@@ -42,14 +41,15 @@ const Login = () => {
       .post(`${MAINURL}/login/normal`, loginInput)
       .then((res) => {
         localStorage.setItem("access_token_portfolist", res.data.access_token);
-        //   setToken(res.data.access_token);
         localStorage.setItem(
           "refresh_token_portfolist",
           res.data.refresh_token
         );
       })
       .then(() => {
-        history.push("/");
+        setTimeout(() => {
+          history.push("/");
+        }, 2000);
       })
       .catch((e) => {
         throw e;
