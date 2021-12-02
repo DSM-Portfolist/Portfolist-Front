@@ -1,4 +1,7 @@
 import React from "react";
+import * as S from "./style";
+import Report from "./report/Report";
+import QueryString from "query-string";
 import { useLocation } from "react-router";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Header, Comment, Title, ExperienceList, Footer } from "..";
@@ -6,11 +9,10 @@ import { portfolioId } from "../../modules/atom/portfolio";
 import CertificateList from "./items/certificate/CertificateList";
 import MoreInfo from "./items/moreInfo/MoreInfo";
 import PdfFile from "./items/pdfFile";
-import QueryString from "query-string";
 import TouchingItem from "./items/touching/TouchingItem";
-import * as S from "./style";
 import { getPortfolioSelecor } from "../../modules/atom/portfolio/portfolioDetail";
-import Report from "./report/Report";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PortfolioDetail = () => {
   const setPortfolioId = useSetRecoilState(portfolioId);
@@ -24,6 +26,7 @@ const PortfolioDetail = () => {
   return (
     <>
       <Header />
+      <ToastContainer />
       <S.DetailWrappper>
         <Title />
         <TouchingItem />
