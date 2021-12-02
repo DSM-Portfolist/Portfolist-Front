@@ -27,7 +27,7 @@ export const FieldItemWrapper = styled.div`
 `;
 
 export const FieldItemContainer = styled.div`
-  margin: 0 10px;
+  margin-left: 15px;
   width: fit-content;
   background: #ff7659;
   border-radius: 20px;

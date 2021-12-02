@@ -10,9 +10,9 @@ import { portfolioMakeList } from "../../../../modules/atom/portfolioPost";
 
 const FieldItemWrapper = () => {
   const fieldList = useRecoilValue(getFieldSelector);
-  const [selectIdList, setSelectIdList] = useState<number[]>([]);
   const [portfolioMakeArr, setPortfolioMakeArr] =
     useRecoilState(portfolioMakeList);
+  const [selectIdList, setSelectIdList] = useState<number[]>([]);
 
   useEffect(() => {
     setPortfolioMakeArr({
