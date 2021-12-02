@@ -1,5 +1,4 @@
 import axios from "axios";
-import request from "../common/index";
 
 export const github = (data: any) => {
   return axios
