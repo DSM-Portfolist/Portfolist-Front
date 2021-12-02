@@ -15,7 +15,10 @@ const FieldItemWrapper = () => {
     useRecoilState(portfolioMakeList);
 
   useEffect(() => {
-    console.log(selectIdList);
+    setPortfolioMakeArr({
+      ...portfolioMakeArr,
+      field: selectIdList,
+    });
   }, [selectIdList]);
 
   const handleSelect = (e: any) => {
