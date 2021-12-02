@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { getFieldSelector } from "../../../../modules/atom/portfolio";
 import { CloseIcon } from "../../../../util/assets";
+import { ToastError } from "../../../../hook/toastHook";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as S from "./style";
+import { portfolioMakeList } from "../../../../modules/atom/portfolioPost";
 
 const FieldItemWrapper = () => {
   const fieldList = useRecoilValue(getFieldSelector);
   const [selectIdList, setSelectIdList] = useState<number[]>([]);
+  const [portfolioMakeArr, setPortfolioMakeArr] =
+    useRecoilState(portfolioMakeList);
 
   useEffect(() => {
     console.log(selectIdList);
@@ -19,9 +25,18 @@ const FieldItemWrapper = () => {
         setSelectIdList([...selectIdList, value]);
       }
     } else {
-      alert("3개 이상 안돼요");
+      ToastError("분야를 3개 이상 등록할 수 없습니다.");
     }
   };
+
+  const deleteFieldItem = (index: number) => {
+    setSelectIdList(
+      selectIdList.filter((item: any, i: number) => {
+        return index !== i;
+      })
+    );
+  };
+
   return (
     <S.MainContainer>
       <S.FieldItemWrapper>
@@ -43,9 +58,15 @@ const FieldItemWrapper = () => {
         </select>
         {selectIdList.map((item: any, index: number) => {
           return (
-            <S.FieldItemContainer>
-              <span>{item}</span>
-              <img src={CloseIcon} alt="닫기 아이콘" onClick={() => {}} />
+            <S.FieldItemContainer key={index}>
+              <span>{fieldList[item - 1].content}</span>
+              <img
+                src={CloseIcon}
+                alt="닫기 아이콘"
+                onClick={() => {
+                  deleteFieldItem(index);
+                }}
+              />
             </S.FieldItemContainer>
           );
         })}
