@@ -1,4 +1,4 @@
-import request from "../index";
+import request from "../common/index";
 
 const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 
@@ -28,14 +28,12 @@ export function getPortfolio(id: number) {
   return request({
     url: `/portfolio/${id}`,
     method: "get",
-    headers: { Authorization: token },
   });
 }
 
 export function deletePortfolio(id: number) {
   return request({
-    url: `/portfolio/id`,
+    url: `/portfolio/${id}`,
     method: "delete",
-    headers: { Authorization: token },
   });
 }

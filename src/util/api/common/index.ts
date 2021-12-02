@@ -1,20 +1,21 @@
 import axios, { AxiosError } from "axios";
-import { ToastError } from "../../hook/toastHook";
+import { ToastError } from "../../../hook/toastHook";
 
 export const MAINURL = process.env.REACT_APP_API_URL;
-export const token = `Bearer ${localStorage.getItem(
-  "access_token_portfolist"
-)}`;
+export const token = `${localStorage.getItem("access_token_portfolist")}`;
 
 const instance = axios.create({
   baseURL: MAINURL,
-  timeout: 10000,
+  //timeout: 10000,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 instance.interceptors.request.use(
   function (config) {
-    const token = localStorage.getItem("access_token_portfolist");
-    config.headers.Authorization = "Bearer " + token;
+    config.headers.Authorization =
+      "Bearer " + localStorage.getItem("access_token_portfolist");
 
     return config;
   },
@@ -25,9 +26,6 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   function (config) {
-    /* const token = localStorage.getItem("access_token_portfolist");
-    config.headers.Authorization = "Bearer " + token; */
-
     return config;
   },
   function (error: AxiosError) {
@@ -35,6 +33,7 @@ instance.interceptors.response.use(
 
     if (status === 400) {
       ToastError("유효하지 않은 요청이 발생했습니다.");
+      window.location.href = "/";
     } else if (status === 401) {
       // alert("로그인 후 이용해주세요.");
       //window.location.href = "/";
