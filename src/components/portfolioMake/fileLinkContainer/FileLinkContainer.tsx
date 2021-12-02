@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { Link, isInFile, File, isInLink } from "../../../util/assets/index";
-import { imgFile } from "../../../util/api/portfolio/portfolioPost";
+import { imgFile, pdfFile } from "../../../util/api/portfolio/portfolioPost";
 import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
 import { useRecoilState } from "recoil";
 
@@ -25,7 +25,7 @@ const FileLinkContainer = () => {
       link: linkInputName,
     });
   }, [linkInputName]);
-  
+
   useEffect(() => {
     setPortfolioMakeArr({
       ...portfolioMakeArr,
@@ -41,7 +41,7 @@ const FileLinkContainer = () => {
   };
 
   const postFile = (file: any) => {
-    imgFile(file)
+    pdfFile(file)
       .then((res) => {
         //recoil로 배너 이미지 경로 바꾸면 끝~
         console.log(res);
