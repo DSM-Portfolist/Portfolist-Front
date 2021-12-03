@@ -42,6 +42,7 @@ const PortfolioDetail = () => {
         <Comment />
       </S.DetailWrappper>
       <Report />
+      <Footer />
     </>
   );
 };
