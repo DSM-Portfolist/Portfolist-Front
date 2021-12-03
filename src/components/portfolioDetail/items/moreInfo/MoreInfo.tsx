@@ -1,26 +1,31 @@
 import React from "react";
-import {
-  MoreInfoType,
-  PortfolioType,
-} from "../../../../util/interface/portfolio/portfolioDetailType";
+import { useRecoilValue } from "recoil";
+import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail";
+import { MoreInfoType } from "../../../../util/interface/portfolio/portfolioDetailType";
 import MoreInfoItem from "./MoreInfoItem";
 import * as S from "./style";
 
-interface Props {
-  portfolio: PortfolioType;
-}
+const MoreInfo = () => {
+  const portfolioValue = useRecoilValue(getPortfolioSelecor);
 
-const MoreInfo = ({ portfolio }: Props) => {
+  console.log(portfolioValue?.more_info);
+
   return (
-    <S.MoreInfoWrapper>
-      <div className="more-wrapper">
-        {portfolio.default.more_info.map(
-          (info: MoreInfoType, index: number) => (
-            <MoreInfoItem key={index} info={info} />
-          )
-        )}
-      </div>
-    </S.MoreInfoWrapper>
+    <>
+      {portfolioValue?.more_info?.length === 0 ? (
+        ""
+      ) : (
+        <S.MoreInfoWrapper>
+          <div className="more-wrapper">
+            {portfolioValue?.more_info?.map(
+              (info: MoreInfoType, index: number) => (
+                <MoreInfoItem key={index} info={info} />
+              )
+            )}
+          </div>
+        </S.MoreInfoWrapper>
+      )}
+    </>
   );
 };
 

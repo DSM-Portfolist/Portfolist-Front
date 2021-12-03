@@ -2,13 +2,19 @@ import React from "react";
 import { Arrow } from "../../../../util/assets";
 import ListItem from "./ListItem";
 import * as S from "./style";
-import { list } from "./dummy.json";
+import { useRecoilValue } from "recoil";
+import { recentPortfolioSelector } from "../../../../modules/selector/mainpage";
+import { recentPortfolioType } from "../../../../util/interface/main/portfolio";
+import { useHistory } from "react-router";
 
 const List = () => {
+  const recentPorfolio = useRecoilValue(recentPortfolioSelector);
+  const history = useHistory();
+
   return (
     <div className="border-bottom">
       <S.ListWrapper>
-        <S.GoWrapper>
+        <S.GoWrapper onClick={() => history.push("/portfolio-list")}>
           <p>portfolio</p>
           <button>
             <span>Go</span>
@@ -16,12 +22,13 @@ const List = () => {
           </button>
         </S.GoWrapper>
         <S.ListItemWrapper>
-          {list.map((list, index) => (
+          {recentPorfolio?.map((list: recentPortfolioType, index: number) => (
             <ListItem
               key={index}
               title={list.title}
-              content={list.content}
-              id={list.id}
+              content={list.introduce}
+              id={list.portfolio_id}
+              url={list.thumbnail}
             />
           ))}
         </S.ListItemWrapper>

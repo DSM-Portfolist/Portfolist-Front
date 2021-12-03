@@ -1,6 +1,10 @@
 import React from "react";
 import UserRouter from "./router/UserRouter";
+
 import { QueryClient, QueryClientProvider } from "react-query";
+
+import { pdfjs } from "react-pdf";
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 function App() {
   const queryClient = new QueryClient();

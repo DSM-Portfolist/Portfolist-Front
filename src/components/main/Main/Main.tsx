@@ -1,9 +1,18 @@
-import { Header, Banner, List, MonthPortfolio, News } from "../../index";
+import {
+  Header,
+  Banner,
+  List,
+  MonthPortfolio,
+  News,
+  Footer,
+} from "../../index";
 import FilterBar from "./filterBar/FilterBar";
 import Introduce from "./introduce/Introduce";
 import * as S from "./style";
 
 const Main = () => {
+  const token = localStorage.getItem("access_token_portfolist");
+
   return (
     <S.MainWrapper>
       <Header />
@@ -12,7 +21,8 @@ const Main = () => {
       <List />
       <MonthPortfolio />
       <Introduce />
-      <News />
+      {token && <News />}
+      <Footer />
     </S.MainWrapper>
   );
 };

@@ -20,5 +20,19 @@ export { default as Touching } from "./icon/touching.svg";
 export { default as BeforeTouching } from "./icon/beforeTouching.svg";
 export { default as CloseIcon } from "./icon/closeIcon.svg";
 export { default as Magnifier } from "./icon/magnifier.svg";
+export { default as ModifyPensil } from "./icon/modifyPensil.svg";
 export { default as Crwon } from "./icon/crwon.png";
 export { default as TestImg } from "./img/testImg.svg";
+export { default as PlusButton } from "./icon/plusButton.svg";
+export { default as MinusButton } from "./icon/minusButton.svg";
+export { default as FooterLogo } from "./icon/FooterLogo.png";
+export { default as FooterGithub } from "./icon/FooterGithub.png";
+export { default as File } from "./icon/file.svg";
+export { default as isInFile } from "./icon/isInFile.svg";
+export { default as Link } from "./icon/Link.svg";
+export { default as isInLink } from "./icon/isInLink.svg";
+export { default as TrashCan } from "./icon/trashCan.svg";
+export const DefaultImage =
+  "https://www.ibossedu.co.kr/template/DESIGN_shared/program/theme/01/THUMBNAIL_60_60_icon_rep_box.gif";
+export const DefaultProfile =
+  "https://belabef.com/common/img/default_profile.png";

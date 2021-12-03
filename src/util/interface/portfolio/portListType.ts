@@ -1,12 +1,16 @@
-import { UserType } from "../main/userType";
-
 export interface PortListType {
-  id: number;
-  url: string;
+  date: string;
   field: [];
-  title: string;
   introduce: string;
-  touching: number;
+  id: number;
+  thumbnail: string;
+  title: string;
+  total_comment: number;
+  total_touching: number;
   touched: boolean;
-  user: UserType;
+  user: {
+    user_id: number;
+    name: string;
+    profile_img: string | null;
+  };
 }

@@ -1,72 +1,75 @@
 import React from "react";
-import { Profile } from "../../../util/assets";
+import { DefaultProfile } from "../../../util/assets";
 import * as S from "./style";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
+import { deleteComment } from "../../../util/api/portfolio/comment";
+import { ToastSuccess } from "../../../hook/toastHook";
+import ReComment from "./ReComment";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {
+  commentReoprt,
+  reCommentControl,
+} from "../../../modules/atom/portfolio/comment";
 
-interface Prop {
+interface Props {
   comment: CommentType;
-  setCommentList: any;
-  CommentDelete: any;
-  ReCommentDelete: any;
+  portfolioId: number;
+  getTest: () => void;
 }
 
-const CommentItem = ({ comment, CommentDelete, ReCommentDelete }: Prop) => {
+const CommentItem = ({ comment, getTest }: Props) => {
+  const [reComment, setReComment] = useRecoilState(reCommentControl);
+  const setReportCommentModal = useSetRecoilState(commentReoprt);
+
+  const CommentDelete = (id: number) => {
+    deleteComment(id)
+      .then(() => {
+        ToastSuccess("댓글이 삭제되었습니다.");
+        getTest();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
     <S.CommentItemWrapper>
       <div className="comment">
-        <S.Content>
-          <img src={Profile} alt="프로필 사진" />
+        <S.Content reComment={reComment}>
+          <img
+            src={
+              comment.user.profile_img === null
+                ? `${DefaultProfile}`
+                : comment.user.profile_img
+            }
+            alt="프로필 사진"
+          />
           <div className="content">
             <div className="user-name">
-              <strong>침착맨</strong>
+              <strong>{comment.user.name}</strong>
               <div className="comment-date">
-                <span>2021-09-26</span>
+                <span>{comment.cdate}</span>
               </div>
             </div>
-            <p>{comment.comment_content}</p>
+            {comment?.comment_content === null ? (
+              <p>삭제된 댓글 입니다.</p>
+            ) : (
+              <pre>{comment?.comment_content}</pre>
+            )}
           </div>
         </S.Content>
         <S.Util>
-          {comment.is_mine ? (
+          {comment?.mine ? (
             <span onClick={() => CommentDelete(comment.comment_id)}>삭제</span>
           ) : (
             ""
           )}
 
-          <span>신고</span>
+          <span onClick={() => setReportCommentModal(true)}>신고</span>
         </S.Util>
       </div>
-      {comment.re_comment.map((re_comment) => (
-        <S.ReComment key={re_comment.re_comment_id}>
-          <S.Content>
-            <img src={Profile} alt="프로필 사진" />
-            <div className="content">
-              <div className="user-name">
-                <strong>{re_comment.user.name}</strong>
-                <div className="comment-date">
-                  <span>{re_comment.rc_date}</span>
-                </div>
-              </div>
-              <p>{re_comment.re_comment_content}</p>
-            </div>
-          </S.Content>
-          <S.Util>
-            {re_comment.is_mine ? (
-              <span
-                onClick={() =>
-                  ReCommentDelete(comment.comment_id, re_comment.re_comment_id)
-                }
-              >
-                삭제
-              </span>
-            ) : (
-              ""
-            )}
 
-            <span>신고</span>
-          </S.Util>
-        </S.ReComment>
-      ))}
+      <ReComment comment={comment} getTest={getTest} />
     </S.CommentItemWrapper>
   );
 };

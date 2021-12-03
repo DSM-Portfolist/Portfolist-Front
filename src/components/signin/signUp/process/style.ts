@@ -19,7 +19,7 @@ export const SignSlider = styled.div<Props>`
   width: 200%;
   display: flex;
   justify-content: space-between;
-  transform: ${({ nextLevel }) =>
+  transform: ${({ nextLevel }: any) =>
     nextLevel ? "translateX(-54%)" : "translateX(0)"};
   transition: transform 1s ease-in 0s;
 `;
@@ -105,7 +105,7 @@ export const ProgressWrapper = styled.div`
 `;
 
 export const ProgressBar = styled.div<Props>`
-  width: ${({ nextLevel }) => (nextLevel ? "100%" : "50%")};
+  width: ${({ nextLevel }: any) => (nextLevel ? "100%" : "50%")};
   height: 5px;
   background: #ff7659;
   transition: 0.6s ease-in 0s;
@@ -154,15 +154,14 @@ export const InputItem = styled.div`
   }
 `;
 
-export const NextButton = styled.button`
+export const NextButton = styled.button<Props>`
   margin: 50px auto;
   cursor: pointer;
   color: white;
   font-size: 18px;
   width: 300px;
   height: 40px;
-  background: ${({ btnColor }: buttonType) =>
-    btnColor ? "#FF7659" : "#DADADA"};
+  background: ${({ btnColor }) => (btnColor ? "#FF7659" : "#DADADA")};
   box-shadow: 0px 2px 6px rgba(119, 119, 119, 0.25);
   border-radius: 5px;
   transition: all 0.3s;
@@ -176,7 +175,9 @@ export const InputItemWrap = styled.div`
   position: relative;
 
   input {
+    font-family: "Noto Sans KR";
     transition: all 0.5s;
+    color: black;
   }
 
   & p {

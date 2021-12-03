@@ -13,9 +13,28 @@ export const ListWrapper = styled.div`
   min-height: 1000px;
   background-color: white;
   display: flex;
+  flex-direction: column;
+
+  .list-not-comment {
+    color: gray;
+    margin: 30px 0;
+    font-size: 18px;
+  }
+`;
+
+export const ListContent = styled.div`
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+`;
+
+export const SearchContent = styled.span`
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
+  font-weight: 500;
 `;
 
 export const ListItemWrapper = styled.div`
@@ -125,8 +144,8 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
 
-    a:nth-child(1) {
-      font-weight: 700;
+    span:nth-of-type(1) {
+      font-weight: 500;
       font-size: 16px;
       color: black;
       cursor: pointer;

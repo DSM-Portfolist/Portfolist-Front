@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import {
-  BeforeTouching,
-  Flower,
-  Profile,
-  Touching,
-} from "../../../util/assets";
+import { useMutation } from "react-query";
+import { Link, useHistory } from "react-router-dom";
 import * as S from "./style";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
-import { Link } from "react-router-dom";
+import {
+  BeforeTouching,
+  DefaultProfile,
+  Flower,
+  Touching,
+} from "../../../util/assets";
+import {
+  deleteTouching,
+  postTouching,
+} from "../../../util/api/portfolio/useTouching";
+import { CountChangeHook } from "../../../hook/countChangeHook";
 
 interface Prop {
   list: PortListType;
@@ -19,11 +25,11 @@ const Tag = ({ field }: any) => {
 
 const ListItem = ({ list }: Prop) => {
   const [touchingBoolean, setTouchingBoolean] = useState<boolean>(list.touched);
-  const [count, setCount] = useState<number>(list.touching);
+  const [count, setCount] = useState<number>(list.total_touching);
 
-  function CountChangeHandler(count: number) {
-    touchingBoolean ? setCount(count - 1) : setCount(count + 1);
-  }
+  const touching = useMutation("touching", postTouching);
+  const untouching = useMutation("untouching", deleteTouching);
+  const history = useHistory();
 
   function TextSliceHandler(txt: string, len: number) {
     if (txt.length > len) {
@@ -36,42 +42,63 @@ const ListItem = ({ list }: Prop) => {
   return (
     <S.ListItemWrapper>
       <div className="portfoilo-img">
-        <img src={Flower} alt="포트폴리오 배너" />
+        <img
+          src={list.thumbnail === null ? `${Flower}` : list.thumbnail}
+          alt="포트폴리오 배너"
+          onClick={() => history.push(`/portfolio?id=${list.id}`)}
+        />
       </div>
       <S.Content touchingBoolean={touchingBoolean}>
         <div className="tag-wrapper">
           <div className="tag">
-            {list.field.map((field, index) => (
-              <Tag key={index} field={field} />
-            ))}
+            {list.field === null ? (
+              <></>
+            ) : (
+              <>
+                {list?.field.map((field: string, index: number) => (
+                  <Tag key={index} field={field} />
+                ))}
+              </>
+            )}
           </div>
           <div className="touching">
             <img
-              src={touchingBoolean ? Touching : BeforeTouching}
+              src={touchingBoolean ? `${Touching}` : `${BeforeTouching}`}
               alt="터칭 아이콘"
               onClick={() => {
-                console.log(touchingBoolean);
                 setTouchingBoolean(!touchingBoolean);
-                CountChangeHandler(count);
+                setCount(CountChangeHook(touchingBoolean, count));
+                touchingBoolean
+                  ? untouching.mutate(list.id)
+                  : touching.mutate(list.id);
               }}
             />
-            <span>{count === 0 ? "" : count}</span>
+            <span>{count === 0 ? "0" : count}</span>
           </div>
         </div>
-        <div className="title">
-          <Link
-            to={`/portfolio/${list.id}`}
-            title="포트폴리오 상세 페이지 이동합니다."
-          >
-            {list.title}
-          </Link>
-          <span>{TextSliceHandler(list.introduce, 32)}</span>
-          <span>댓글 8</span>
-        </div>
+        <Link
+          className="title"
+          to={`/portfolio?id=${list.id}`}
+          title="포트폴리오 상세 페이지 이동합니다."
+        >
+          <span>{list.title}</span>
+          <span>{TextSliceHandler(list.introduce, 18)}</span>
+          <span>댓글 {list.total_comment}</span>
+        </Link>
         <div className="user-profile">
-          <img src={Profile} alt="사용자의 프로필 사진" />
-          <Link to={`/user-page`} title="유저 페이지 이동합니다.">
-            <strong>{list.user.name}</strong>님이 포트폴리오
+          <img
+            src={
+              list.user.profile_img === null
+                ? `${DefaultProfile}`
+                : list.user.profile_img
+            }
+            alt="사용자의 프로필 사진"
+          />
+          <Link
+            to={`/user-page/${list.user.user_id}`}
+            title="유저 페이지 이동합니다."
+          >
+            <strong>{list.user.name}</strong>님의 포트폴리오
           </Link>
         </div>
       </S.Content>
