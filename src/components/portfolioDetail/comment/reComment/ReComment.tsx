@@ -1,11 +1,11 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { ToastSuccess } from "../../../hook/toastHook";
-import { reCommentControl } from "../../../modules/atom/portfolio/comment";
-import { deleteReComment } from "../../../util/api/portfolio/comment";
-import { DefaultProfile } from "../../../util/assets";
-import { CommentType } from "../../../util/interface/portfolio/commentType";
-import * as S from "./style";
+import { ToastSuccess } from "../../../../hook/toastHook";
+import { reCommentControl } from "../../../../modules/atom/portfolio/comment";
+import { deleteReComment } from "../../../../util/api/portfolio/comment";
+import { DefaultProfile } from "../../../../util/assets";
+import { CommentType } from "../../../../util/interface/portfolio/commentType";
+import * as S from "../style";
 
 interface Props {
   comment: CommentType;

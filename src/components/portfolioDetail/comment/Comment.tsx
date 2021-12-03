@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import * as S from "./style";
 import { reCommentControl } from "../../../modules/atom/portfolio/comment";
 import CommentItem from "./CommentItem";
@@ -39,7 +39,7 @@ const Comment = () => {
     getComment(id).then((res) => setComments(res.data.comments));
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getTest();
   }, []);
 
