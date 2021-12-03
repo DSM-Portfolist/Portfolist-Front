@@ -1,22 +1,8 @@
-import request from "../index";
+import request from "../common/index";
 const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 
-export const getMonthPortfolio = () => {
-  return request({
-    url: "/portfolio/month",
-    method: "get",
-  });
-};
-
-export const getRecentPortfolio = () => {
-  return request({
-    url: "/portfolio/recent",
-    method: "get",
-  });
-};
-
-export const getNotification = () => {
-  return request({
+export const getNotification = async () => {
+  return await request({
     url: "/user/notification",
     method: "get",
     headers: { Authorization: token },
@@ -51,8 +37,8 @@ export const deleteUser = () => {
 export const getNotificationStatus = () => {
   return request({
     url: "/user/notification/status",
-    method: "get",
     headers: { Authorization: token },
+    method: "get",
   });
 };
 

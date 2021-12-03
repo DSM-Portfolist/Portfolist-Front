@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MAINURL } from "..";
+import { MAINURL } from "../common";
 
 const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 

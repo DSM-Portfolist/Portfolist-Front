@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail/index";
 import { deletePortfolio } from "../../../../util/api/portfolio/portfolio";
 import { DefaultImage } from "../../../../util/assets";
@@ -10,9 +11,30 @@ const FieldItem = (field: any) => {
   return <S.FieldItemWrapper>{field.field}</S.FieldItemWrapper>;
 };
 
-const Title = ({ match }: any) => {
+const Title = () => {
   const portfolioValue = useRecoilValue(getPortfolioSelecor);
   const userId = portfolioValue?.user?.user_id;
+  const { push } = useHistory();
+
+  function deletePortfolioHandler(id: number) {
+    try {
+      deletePortfolio(id);
+      ToastSuccess("포트폴리오가 삭제되었습니다.");
+      setTimeout(() => {
+        push("/");
+      }, 1500);
+    } catch (e) {
+      ToastError("포트폴리오 삭제에 실패하였습니다.");
+      console.log(e);
+    }
+  }
+  function DateSplitHook(string: string) {
+    let dateArray = string?.split("T");
+    let dateList = dateArray?.[0].split("-");
+    let date = `${dateList?.[0]}년 ${dateList?.[1]}월 ${dateList?.[2]}일`;
+
+    return date;
+  }
 
   return (
     <S.TitleWrapper>
@@ -23,7 +45,7 @@ const Title = ({ match }: any) => {
           })}
         </S.FieldWrapper>
         <S.DateWrapper>
-          {/* <span>{DateSplitHook(portfolioValue?.create_date)}</span> */}
+          <span>{DateSplitHook(portfolioValue?.create_date)}</span>
           <Link to={`/user-page/${userId}`} className="user-profile">
             <span>{portfolioValue?.user?.name}</span>
             <img
@@ -37,12 +59,14 @@ const Title = ({ match }: any) => {
           </Link>
         </S.DateWrapper>
       </S.TitleInfo>
-      {portfolioValue?.is_mine ? (
+      {portfolioValue?.mine ? (
         <S.ModifyWrap>
-          <button onClick={() => deletePortfolio(match.id)}>
-            포트폴리오 수정
+          <button>포트폴리오 수정</button>
+          <button
+            onClick={() => deletePortfolioHandler(portfolioValue?.portfolio_id)}
+          >
+            포트폴리오 삭제
           </button>
-          <button>포트폴리오 삭제</button>
         </S.ModifyWrap>
       ) : (
         ""

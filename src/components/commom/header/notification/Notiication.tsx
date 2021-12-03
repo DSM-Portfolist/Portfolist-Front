@@ -1,24 +1,22 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { notiBox } from "../../../modules/atom/header";
-import { notificationStatus } from "../../../modules/atom/mypage/mypage";
-import { notificationSelector } from "../../../modules/selector/mainpage";
-import { NoNotification, Notification } from "../../../util/assets";
+import { notiBox } from "../../../../modules/atom/header";
+import { notificationSelector } from "../../../../modules/selector/user";
+//import { notificationStatus } from "../../../modules/atom/mypage/mypage";
+import { token } from "../../../../util/api/common";
+import { NoNotification, Notification } from "../../../../util/assets";
 import NotiItem from "./NotiItem";
 import * as S from "./style";
 
 const Notiication = () => {
   const [noti, setNoti] = useRecoilState(notiBox);
 
-  const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
   const notification = useRecoilValue(notificationSelector);
-  const status = useRecoilValue(notificationStatus);
-
-  console.log(status);
+  //const status = useRecoilValue(notificationStatus);
 
   return (
     <>
-      {token ? (
+      {token && (
         <S.NotiWrapper>
           <img
             className="noti-img"
@@ -43,8 +41,6 @@ const Notiication = () => {
             )}
           </S.Notification>
         </S.NotiWrapper>
-      ) : (
-        ""
       )}
     </>
   );

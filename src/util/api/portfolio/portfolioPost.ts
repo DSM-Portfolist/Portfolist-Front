@@ -1,4 +1,4 @@
-import request from "../index";
+import request from "../common/index";
 
 const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 

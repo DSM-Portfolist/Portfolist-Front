@@ -77,11 +77,12 @@ export const ModifyWrap = styled.div`
     color: ${mainColor};
     cursor: pointer;
     background-color: white;
-    transition: all 0.3s;
+    transition: all 0.8s;
 
     :hover {
-      background-color: ${mainColor};
       color: white;
+      background-color: ${mainColor};
+      box-shadow: 0 2px 3px #80808040;
     }
   }
 `;

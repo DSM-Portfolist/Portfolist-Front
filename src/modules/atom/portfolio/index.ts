@@ -22,11 +22,6 @@ export const isError = atom<boolean>({
   default: false,
 });
 
-export const fieldItem = atom<FieldType[]>({
-  key: "field",
-  default: [],
-});
-
 export const portfolioList = atom<PortListType[]>({
   key: "portfolioList",
   default: [],
@@ -52,14 +47,19 @@ export const getPortListSelector = selector<PortListType[]>({
 });
 
 // 필드 가져오기
-export const getFieldSelector = selector({
+export const getFieldSelector = selector<FieldType[]>({
   key: "field/get",
   get: async () => {
     try {
       const res = await getField();
-      return res.data;
+      return res?.data;
     } catch (e) {
       throw e;
     }
   },
+});
+
+export const fieldItem = atom<FieldType[]>({
+  key: "field",
+  default: getFieldSelector,
 });

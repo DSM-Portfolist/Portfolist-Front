@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Document, Page } from "react-pdf";
 
-interface Props {
-  file: any;
-}
-
 const PdfFile = ({ file }: any) => {
   const [numPages, setNumPages] = useState<any>(null);
   return (
