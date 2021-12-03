@@ -1,5 +1,7 @@
 import { atom, selector } from "recoil";
+import { getNotification } from "../../../util/api/mypage";
 import { getUser } from "../../../util/api/user/info";
+import { notificationType } from "../../../util/interface/main/portfolio";
 import { UserInfoType } from "../../../util/interface/user";
 
 export const userInfoValue = atom<UserInfoType | undefined>({
@@ -26,5 +28,17 @@ export const myInfoSelector = selector<UserInfoType>({
   },
   set: ({ set }, newValue) => {
     set(userInfoValue, newValue);
+  },
+});
+
+export const notificationSelector = selector<notificationType[]>({
+  key: "notification/get",
+  get: async () => {
+    try {
+      const res = await getNotification();
+      return res.data;
+    } catch (e) {
+      console.log(e);
+    }
   },
 });

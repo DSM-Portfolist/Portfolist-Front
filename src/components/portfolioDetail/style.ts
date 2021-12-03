@@ -9,4 +9,11 @@ export const DetailWrappper = styled.div`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  /*   .react-pdf__Document {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow: auto;
+  } */
 `;

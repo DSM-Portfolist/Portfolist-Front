@@ -1,4 +1,5 @@
-import request from "../index";
+import axios from "axios";
+import request, { MAINURL } from "../common/index";
 
 const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 
@@ -18,24 +19,19 @@ export function getPortfolioList(
 }
 
 export function getField() {
-  return request({
-    url: "/field",
-    method: "get",
-  });
+  return axios(`${MAINURL}/field`);
 }
 
 export function getPortfolio(id: number) {
   return request({
     url: `/portfolio/${id}`,
     method: "get",
-    headers: { Authorization: token },
   });
 }
 
 export function deletePortfolio(id: number) {
   return request({
-    url: `/portfolio/id`,
+    url: `/portfolio/${id}`,
     method: "delete",
-    headers: { Authorization: token },
   });
 }

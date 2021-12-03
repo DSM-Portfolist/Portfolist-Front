@@ -10,7 +10,7 @@ export interface PortfolioType {
   file: string;
   icon: string;
   introduce: string;
-  is_mine: boolean;
+  mine: boolean;
   link: string;
   more_info: MoreInfoType[];
   title: string;
