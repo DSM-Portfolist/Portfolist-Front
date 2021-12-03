@@ -24,6 +24,11 @@ export const notificationIsClick = atom<boolean>({
   default: false,
 });
 
+export const isNotificationDone = atom<number>({
+  key: "isNotificationDone",
+  default: 0,
+});
+
 export const myPortfolioList = atom<
   MyPortfolioType[] | MyTouchingPortfolioType[]
 >({
@@ -64,7 +69,5 @@ export const notificationStatus = selector({
       console.log(e);
     }
   },
-  set: () => {
-
-  }
+  set: () => {},
 });
