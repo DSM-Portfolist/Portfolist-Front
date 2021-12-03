@@ -64,4 +64,7 @@ export const notificationStatus = selector({
       console.log(e);
     }
   },
+  set: () => {
+
+  }
 });
