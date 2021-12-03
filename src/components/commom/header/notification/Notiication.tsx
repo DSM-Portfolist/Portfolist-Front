@@ -1,15 +1,9 @@
-import React, {
-  useEffect,
-  useCallback,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { notiBox } from "../../../../modules/atom/header";
 import {
   isNotificationDone,
   notificationIsClick,
-  notificationStatus,
 } from "../../../../modules/atom/mypage/mypage";
 import { notificationSelector } from "../../../../modules/selector/user";
 import { getNotificationStatus } from "../../../../util/api/mypage";
