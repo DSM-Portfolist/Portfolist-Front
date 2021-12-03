@@ -94,7 +94,7 @@ export const FieldSelectItemWrapper = styled.ul`
   flex-direction: column;
   transition: all 0.5s;
   position: absolute;
-  top: 28px;
+  top: 142px;
   border: ${({ arrowSelect }: SearchProp) =>
     arrowSelect ? "1px solid #eaeaea" : "none"};
 
