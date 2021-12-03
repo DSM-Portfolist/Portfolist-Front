@@ -30,7 +30,7 @@ export const Notification = styled.div<Props>`
   background: #ffffff;
   border: ${({ noti }) => (noti ? "1px solid #eaeaea" : "none")};
   position: absolute;
-  top: 40px;
+  top: 32px;
   right: -30px;
   transition: all 0.5s;
   z-index: 1;

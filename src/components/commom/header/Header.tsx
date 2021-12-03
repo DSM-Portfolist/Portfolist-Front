@@ -10,6 +10,7 @@ import { searchValue } from "../../../modules/atom/portfolio/search";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { reload } from "../../../modules/atom/auth";
+import LoginCompontent from "./loginCompontent";
 
 const Header = () => {
   const [selectText, setSelectText] = useState<boolean>(true);
@@ -86,14 +87,7 @@ const Header = () => {
             </ul>
           </S.Container>
         ) : (
-          <S.BeforeLoginHeader>
-            <Link to="/">
-              <img src={Logo} alt="포트폴리스트 로고" />
-            </Link>
-            <Link to="/login">
-              <button>시작하기</button>
-            </Link>
-          </S.BeforeLoginHeader>
+          <LoginCompontent /> // 시작하기 컴포넌트
         )}
         <S.MagnifierWrapper isFocusing={isFocusing}>
           <S.Input onChange={(e) => searchHandler(e)}>
