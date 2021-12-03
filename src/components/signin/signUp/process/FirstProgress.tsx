@@ -4,7 +4,7 @@ import { useMutation } from "react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
-import { MAINURL } from "../../../../util/api";
+import { MAINURL } from "../../../../util/api/common";
 import { CloseEye, Logo, OpenEye } from "../../../../util/assets";
 import { mainColor } from "../../../../util/css/color/color";
 import { SignUpType } from "../../../../util/interface/Sign/loginType";

@@ -16,10 +16,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 const PortfolioDetail = () => {
   const setPortfolioId = useSetRecoilState(portfolioId);
+  const portfolioValue = useRecoilValue(getPortfolioSelecor);
+
   const location = useLocation();
   const queryData = QueryString.parse(location.search);
   const id: any = queryData.id;
-  const portfolioValue = useRecoilValue(getPortfolioSelecor);
 
   setPortfolioId(id);
 
@@ -33,11 +34,7 @@ const PortfolioDetail = () => {
         <MoreInfo />
         <ExperienceList />
         <CertificateList />
-        {portfolioValue?.file === "" ? (
-          ""
-        ) : (
-          <PdfFile file={portfolioValue?.file} />
-        )}
+        {portfolioValue?.file && <PdfFile file={portfolioValue?.file} />}
         <Comment />
       </S.DetailWrappper>
       <Report />
