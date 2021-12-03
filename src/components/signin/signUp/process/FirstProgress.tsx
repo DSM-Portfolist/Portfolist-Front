@@ -50,7 +50,6 @@ const FirstProgress = ({
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
     setInputs({
       ...inputs,
       [name]: value,
@@ -60,7 +59,6 @@ const FirstProgress = ({
 
   const handleSubmit = (data: any, e: any) => {
     e.preventDefault();
-
     signUp.mutate(data);
   };
 
@@ -114,7 +112,6 @@ const FirstProgress = ({
                 />
                 <p>이메일 형식을 맞춰주세요.</p>
               </S.InputItemWrap>
-
               <div
                 className="email-button"
                 onClick={() => EmailAccessHandler(email)}
@@ -168,7 +165,7 @@ const FirstProgress = ({
                 <input
                   name="passwordCheck"
                   value={passwordCheck}
-                  type={inputType ? "text" : "password"}
+                  type={inputTypeReturn ? "text" : "password"}
                   placeholder="비밀번호를 다시입력해주세요"
                   onChange={(e) => setPasswordCheck(e.target.value)}
                   style={
