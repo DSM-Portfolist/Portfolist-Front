@@ -20,7 +20,7 @@ const FilterBar = () => {
             <span id="field-text">분야</span>
             <div className="filter-wrap">
               {selectField?.map((item: any, index: number) => (
-                <FilterItem key={item} />
+                <FilterItem key={index} />
               ))}
             </div>
           </div>
