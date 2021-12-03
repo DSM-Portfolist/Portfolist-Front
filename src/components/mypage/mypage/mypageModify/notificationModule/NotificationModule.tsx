@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { ToastError, ToastSuccess } from "../../../../../hook/toastHook";
-import { notificationStatus } from "../../../../../modules/atom/mypage/mypage";
+import { notificationIsClick, notificationStatus } from "../../../../../modules/atom/mypage/mypage";
 import { putNotification } from "../../../../../util/api/mypage";
 import * as S from "./style";
 
 const NotificationModule = () => {
   const status = useRecoilValue(notificationStatus);
-  const [isClick, setIsClick] = useState<boolean>(status.notification);
+  const [isClick, setIsClick] = useRecoilState(notificationIsClick);
 
   useEffect(() => {
     setIsClick(status.notification);
