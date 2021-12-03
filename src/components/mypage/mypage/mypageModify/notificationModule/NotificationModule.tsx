@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { ToastError, ToastSuccess } from "../../../../../hook/toastHook";
 import { notificationStatus } from "../../../../../modules/atom/mypage/mypage";
@@ -9,18 +9,21 @@ const NotificationModule = () => {
   const status = useRecoilValue(notificationStatus);
   const [isClick, setIsClick] = useState<boolean>(status.notification);
 
+  useEffect(() => {
+    setIsClick(status.notification);
+  }, [status]);
+
   const toggleButton = () => {
     console.log(isClick);
     try {
       if (isClick) {
+        putNotification(false);
         setIsClick(false);
-        putNotification(true);
-
-        ToastSuccess("포트폴리오 알림이 활성화되었습니다.");
+        ToastSuccess("포트폴리오 알림이 비활성화되었습니다.");
       } else {
         setIsClick(true);
-        putNotification(false);
-        ToastSuccess("포트폴리오 알림이 비활성화되었습니다.");
+        putNotification(true);
+        ToastSuccess("포트폴리오 알림이 활성화되었습니다.");
       }
     } catch (e) {
       ToastError("실패했습니다.");

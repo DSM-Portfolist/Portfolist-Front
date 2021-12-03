@@ -1,22 +1,19 @@
 import styled from "@emotion/styled";
-import arrowImg from "../../../util/assets/icon/selectedArrow.svg";
+import arrowimg from "../../../../util/assets/icon/selectedArrow.svg";
 
-export const OptionContainer = styled.div`
-  width: 100%;
+export const MainContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  padding: 60px 0 40px 0;
-  border-bottom: #e9e9e9 solid 1px;
 `;
 
 export const FieldItemWrapper = styled.div`
+  display: flex;
   select {
     width: 150px;
     height: 33px;
     -webkit-appearance: none; /* 네이티브 외형 감추기 */
     -moz-appearance: none;
     appearance: none;
-    background: url(${arrowImg}) no-repeat 98% 50%; /* 화살표 모양의 이미지 */
+    background: url(${arrowimg}) no-repeat 98% 50%; /* 화살표 모양의 이미지 */
     border-bottom: 3px #ff7659 solid;
     font-size: 17px;
     line-height: 23px;
@@ -30,7 +27,7 @@ export const FieldItemWrapper = styled.div`
 `;
 
 export const FieldItemContainer = styled.div`
-  margin: 0 10px;
+  margin-left: 15px;
   width: fit-content;
   background: #ff7659;
   border-radius: 20px;

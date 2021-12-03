@@ -13,6 +13,17 @@ export const imgFile = (file: any) => {
   });
 };
 
+export const pdfFile = (file: any) => {
+  const fd = new FormData();
+  fd.append("file", file);
+  return request({
+    url: `/pdf`,
+    method: "post",
+    data: fd,
+    headers: { Authorization: token, "Content-Type": "multipart/form-data" },
+  });
+};
+
 export const portfolioMakeSubmit = (data: any) => {
   return request({
     url: "/portfolio",
