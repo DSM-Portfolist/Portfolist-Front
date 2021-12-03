@@ -31,9 +31,13 @@ const PortfolioDetail = () => {
       <S.DetailWrappper>
         <Title />
         <TouchingItem />
-        <MoreInfo />
-        <ExperienceList />
-        <CertificateList />
+        {portfolioValue?.more_info?.[0].name && <MoreInfo />}
+        {portfolioValue?.container_list?.[0].container_title && (
+          <ExperienceList />
+        )}
+        {portfolioValue?.certificate_container_list?.[0].title && (
+          <CertificateList />
+        )}
         {portfolioValue?.file && <PdfFile file={portfolioValue?.file} />}
         <Comment />
       </S.DetailWrappper>
