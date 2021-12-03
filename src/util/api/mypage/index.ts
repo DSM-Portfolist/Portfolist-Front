@@ -85,3 +85,4 @@ export const patchPassword = (now_password: any, new_password: any) => {
     },
   });
 };
+
