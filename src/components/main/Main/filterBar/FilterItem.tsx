@@ -13,35 +13,38 @@ import { FieldType } from "../../../../util/interface/Sign/loginType";
 import * as S from "./style";
 
 const FilterItem = () => {
-  const field = useRecoilValue(getFieldSelector);
-  const [useField, setUseField] = useRecoilState(useFieldValue);
   const [text, setText] = useState<string>("");
   const [arrowSelect, setArrowSelect] = useState<boolean>(false);
+  const field = useRecoilValue(getFieldSelector);
+  const [useField, setUseField] = useRecoilState(useFieldValue);
   const [selectField, setSelectField] = useRecoilState(selectFieldList);
   const fieldNum = useRecoilValue(selectFieldNum);
 
   function UseFieldAdd(field: any) {
-    if (selectField.length <= 2) {
-      try {
+    try {
+      if (selectField.length <= 2) {
         setUseField(useField?.concat(field));
         setSelectField(selectField?.concat({ id: fieldNum + 1 }));
         ToastSuccess("분야는 3개까지 선택 할 수 있습니다.");
-      } catch (e) {
-        console.log(e);
       }
+    } catch (e) {
+      console.log(e);
     }
   }
 
   useEffect(() => {
-    if (selectField.length !== 1) {
-      if (text === "ALL") {
-        setSelectField(
-          selectField?.filter((id: any) => id.id === selectFieldNum)
-        );
+    try {
+      if (selectField.length !== 1) {
+        if (text === "ALL") {
+          setSelectField(
+            selectField?.filter((id: any) => id.id === selectFieldNum)
+          );
+        }
       }
+    } catch (e) {
+      console.log(e);
     }
-    //console.log(useField);
-  }, [field, selectField, setSelectField, text, useField]);
+  }, [selectField, setSelectField, text, useField]);
 
   return (
     <>
