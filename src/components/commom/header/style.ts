@@ -76,31 +76,11 @@ export const Container = styled.div`
 `;
 
 
-export const BeforeLoginHeader = styled(Container)`
-  button {
-    border: 1px solid #ff7659;
-    border-radius: 20px;
-    width: 110px;
-    height: 40px;
-    background-color: white;
-    color: ${mainColor};
-    font-weight: 500;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.8s;
-
-    :hover {
-      box-shadow: 0 2px 3px #80808040;
-      background-color: ${mainColor};
-      color: white;
-    }
-  }
-`;
 
 export const MoreItem = styled.ul`
   position: absolute;
   right: -44px;
-  top: 40px;
+  top: 37px;
   width: 120px;
   background: #ffffff;
   box-shadow: 0px 4px 9px rgba(164, 164, 164, 0.25);
