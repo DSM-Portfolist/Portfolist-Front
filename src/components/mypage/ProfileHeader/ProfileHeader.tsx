@@ -6,7 +6,7 @@ import { center } from "../../../util/css/mypage/mypage/style";
 import { useRecoilState } from "recoil";
 import { userInfoValue } from "../../../modules/selector/user";
 import { getUser } from "../../../util/api/user/info";
-import { token } from "../../../util/api";
+import { token } from "../../../util/api/common";
 import { UserInfoType } from "../../../util/interface/user";
 
 interface Props {

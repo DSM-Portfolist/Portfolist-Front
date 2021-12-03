@@ -3,23 +3,23 @@ import { Link, withRouter, useHistory } from "react-router-dom";
 import { Logo, Magnifier } from "../../../util/assets";
 import * as S from "./style";
 import SubMenu from "./SubMenu";
-import Notiication from "./Notiication";
+import Notiication from "./notification/Notiication";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { searchBar } from "../../../modules/atom/header";
 import { searchValue } from "../../../modules/atom/portfolio/search";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { reload } from "../../../modules/atom/auth";
 
 const Header = () => {
   const [selectText, setSelectText] = useState<boolean>(true);
   const [isFocusing, setIsFocusing] = useRecoilState(searchBar);
+  const [test, setTest] = useRecoilState(reload);
+
   const setSearchText = useSetRecoilState(searchValue);
   const searchInputRef = useRef<any>(null);
   const history = useHistory();
-  const [token, setToken] = useState(
-    localStorage.getItem("access_token_portfolist")
-  );
-  console.log(token);
+  const token = localStorage.getItem("access_token_portfolist");
 
   const searchHandler = (e: any) => {
     if (e.key === "Enter") {
@@ -30,9 +30,13 @@ const Header = () => {
     }
   };
 
-  useEffect(() => {
-    setToken(localStorage.getItem("access_token_portfolist"));
-  }, [localStorage.getItem("access_token_portfolist")]);
+  if (test === 1) {
+    window.location.reload();
+
+    if (token === null) {
+      setTest(0);
+    }
+  }
 
   const focusOn = useCallback(() => {
     setIsFocusing(true);
@@ -52,7 +56,7 @@ const Header = () => {
     <>
       <ToastContainer />
       <S.HeaderWrapper>
-        {token ? (
+        {token !== null ? (
           <S.Container>
             <div className="logo">
               <Link to="/">

@@ -2,7 +2,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ProfileImage } from "../../../hook/profileImg";
-import { portfoilo } from "../../../modules/atom/portfolio/portfolioDetail";
 import {
   column,
   center,
