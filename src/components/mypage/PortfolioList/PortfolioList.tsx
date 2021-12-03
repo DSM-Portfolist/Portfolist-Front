@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
 import { Link } from "react-router-dom";
+import { DateSplitHook } from "../../../hook/dateSplitHook";
 import { ProfileImage } from "../../../hook/profileImg";
 import {
   column,
@@ -24,22 +25,14 @@ const PortfolioList = ({
   portfolio,
   profileimg,
 }: Props) => {
-  function DateSplitHook(string: any) {
-    const dateArray = string?.split("-");
-    console.log(dateArray);
-    let date = `${dateArray[0]}년 ${dateArray[1]}월 ${dateArray[2]}일`;
-
-    return date;
-  }
+  const fieldList = () => {
+    portfolio?.field.map((field, index) => <span key={index}>{field}</span>);
+  };
 
   return (
     <Link to={`/portfolio?id=${portfolio?.id}`} css={[portfolioItem, column]}>
-      <img src={portfolio?.url} alt="이미지" />
-      <div css={[FieldWrapper, row]}>
-        {portfolio?.field?.map((field, index) => (
-          <span key={index}>{field}</span>
-        ))}
-      </div>
+      <img src={portfolio?.thumbnail} alt="이미지" />
+      <div css={[FieldWrapper, row]}>{fieldList}</div>
       <h1>{portfolio?.title}</h1>
       <p id="content">{portfolio?.introduce}</p>
       <div css={[portfolioItemUnderBar, row]}>
