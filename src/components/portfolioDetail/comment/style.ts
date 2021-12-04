@@ -1,14 +1,21 @@
 import styled from "@emotion/styled";
-import { mainColor } from "../../../util/css/color/color";
+import { grayColor, mainColor } from "../../../util/css/color/color";
 
 interface Props {
-  reComment?: boolean;
+  toggle?: boolean;
 }
 
 export const CommentWrapper = styled.div`
   width: 100%;
   min-width: 760px;
   margin: 50px auto 200px 0;
+
+  .no_comment {
+    margin: 30px auto;
+    color: ${grayColor};
+    font-size: 20px;
+    font-weight: 500;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -66,6 +73,13 @@ export const CommentItemWrapper = styled.div`
   }
 `;
 
+export const ReCommentWrap = styled.div<Props>`
+  width: 85%;
+  display: ${({ toggle }) => (toggle ? "flex" : "none")};
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
 export const Content = styled.div<Props>`
   display: flex;
   flex-direction: row;
@@ -83,6 +97,13 @@ export const Content = styled.div<Props>`
     height: 50px;
     object-fit: cover;
     border-radius: 50px;
+  }
+
+  .comment-delete {
+    margin: 30px auto;
+    color: ${grayColor};
+    font-size: 20px;
+    font-weight: 500;
   }
 
   .content {
@@ -116,7 +137,7 @@ export const Content = styled.div<Props>`
 `;
 
 export const Input = styled.input<Props>`
-  display: ${({ reComment }) => (reComment ? "flex" : "none")};
+  display: ${({ toggle }) => (toggle ? "flex" : "none")};
 `;
 
 export const Util = styled.div`
@@ -147,15 +168,4 @@ export const MoreButton = styled.button`
     border: none;
     color: white;
   }
-`;
-
-export const ReComment = styled.div<Props>`
-  width: 90%;
-  margin-left: 10%;
-  border-top: 1px solid #f0f0f0;
-
-  display: ${({ reComment }) => (reComment ? "flex" : "none")};
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
 `;
