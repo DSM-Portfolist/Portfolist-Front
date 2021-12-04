@@ -12,7 +12,7 @@ export const Wrapper = styled.section<Props>`
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.41);
-  position: absolute;
+  position: fixed;
   top: 0;
   z-index: 10;
   overflow: hidden;
