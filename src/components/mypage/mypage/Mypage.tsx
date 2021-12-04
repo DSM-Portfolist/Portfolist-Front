@@ -13,7 +13,7 @@ import {
 } from "../../../util/css/mypage/UserPage/style";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import PortfolioList from "../PortfolioList/PortfolioList";
-import { Header } from "../..";
+import { Footer, Header } from "../..";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   myPortfolioList,
@@ -51,7 +51,7 @@ const MyPage = () => {
 
   return (
     <div css={[baseBackground, column]}>
-      <Header></Header>
+      <Header />
       <section css={[myPageSection]}>
         <ProfileHeader />
         <article>
@@ -83,6 +83,7 @@ const MyPage = () => {
           )}
         </article>
       </section>
+      <Footer />
     </div>
   );
 };

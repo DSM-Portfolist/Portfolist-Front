@@ -25,7 +25,7 @@ const SubMenu = () => {
 
   useLayoutEffect(() => {
     getMyProfile();
-  }, []);
+  }, [moreItem]);
 
   return (
     <>
@@ -37,9 +37,14 @@ const SubMenu = () => {
             data?.profile_img === null ? `${DefaultProfile}` : data?.profile_img
           }
           alt="프로필 사진"
-          onMouseUp={() => setMoreItem(!moreItem)}
+          onMouseOver={() => setMoreItem(true)}
+          onMouseOut={() => setMoreItem(false)}
         />
-        <S.MoreItem style={moreItem ? { height: 120 } : { height: 0 }}>
+        <S.MoreItem
+          style={moreItem ? { height: 120 } : { height: 0 }}
+          onMouseOver={() => setMoreItem(true)}
+          onMouseOut={() => setMoreItem(false)}
+        >
           <Link to="/my-page">내 프로필</Link>
           <li
             onClick={() => {

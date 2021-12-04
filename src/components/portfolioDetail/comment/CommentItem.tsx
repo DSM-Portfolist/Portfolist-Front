@@ -4,12 +4,14 @@ import * as S from "./style";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
 import { deleteComment } from "../../../util/api/portfolio/comment";
 import { ToastSuccess } from "../../../hook/toastHook";
-import ReComment from "./ReComment";
+import ReComment from "./reComment/ReComment";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   commentReoprt,
   reCommentControl,
 } from "../../../modules/atom/portfolio/comment";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 interface Props {
   comment: CommentType;
@@ -45,12 +47,15 @@ const CommentItem = ({ comment, getTest }: Props) => {
             alt="프로필 사진"
           />
           <div className="content">
-            <div className="user-name">
+            <Link
+              to={`/user-page/${comment.user.user_id}`}
+              className="user-name"
+            >
               <strong>{comment.user.name}</strong>
               <div className="comment-date">
                 <span>{comment.cdate}</span>
               </div>
-            </div>
+            </Link>
             {comment?.comment_content === null ? (
               <p>삭제된 댓글 입니다.</p>
             ) : (

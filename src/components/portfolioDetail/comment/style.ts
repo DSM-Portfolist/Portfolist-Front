@@ -8,8 +8,7 @@ interface Props {
 export const CommentWrapper = styled.div`
   width: 100%;
   min-width: 760px;
-  height: 850px;
-  margin: 50px auto;
+  margin: 50px auto 200px 0;
 `;
 
 export const InputWrapper = styled.div`
@@ -73,6 +72,10 @@ export const Content = styled.div<Props>`
   justify-content: space-between;
   align-items: center;
   padding: 30px 0;
+
+  a {
+    color: black;
+  }
 
   img {
     margin: 0 10px;

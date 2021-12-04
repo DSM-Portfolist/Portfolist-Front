@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import { DateSplitHook } from "../../../../hook/dateSplitHook";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail/index";
 import { deletePortfolio } from "../../../../util/api/portfolio/portfolio";
@@ -27,13 +28,6 @@ const Title = () => {
       ToastError("포트폴리오 삭제에 실패하였습니다.");
       console.log(e);
     }
-  }
-  function DateSplitHook(string: string) {
-    let dateArray = string?.split("T");
-    let dateList = dateArray?.[0].split("-");
-    let date = `${dateList?.[0]}년 ${dateList?.[1]}월 ${dateList?.[2]}일`;
-
-    return date;
   }
 
   return (

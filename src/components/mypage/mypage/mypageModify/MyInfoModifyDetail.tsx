@@ -13,9 +13,8 @@ import { userInfoValue } from "../../../../modules/selector/user";
 import { myIntroduce, myName } from "../../../../modules/atom/mypage/mypage";
 
 const MyInfoModifyDetail = ({ getUserInfo }: any) => {
+  const [selectIdArr, setSelectIdArr] = useState<number[]>([]);
   const userInfo = useRecoilValue(userInfoValue);
-  const [selectIdArr, setSelectIdArr] = useState<any>([]);
-  const [selectNameArr, setSelectNameArr] = useState<any>([]);
   const fieldList = useRecoilValue(getFieldSelector);
   const setIsModify = useSetRecoilState(isModifyModal);
   const [name, setName] = useRecoilState(myName);
@@ -34,21 +33,14 @@ const MyInfoModifyDetail = ({ getUserInfo }: any) => {
       });
   };
 
-  const handleSelect = (content: string, textList: any) => {
-    //분야 배열에 추가 중복 허용 x
-    if (!textList.includes(content)) {
-      if (selectIdArr.length > 2) {
-        ToastError("분야는 최대 3개까지 가능합니다");
-      } else {
-        const item = fieldList.filter(
-          (item: FieldType) => item.content === content
-        );
-
-        const fieldId = item.map((item: FieldType) => item.id);
-
-        setSelectIdArr(selectIdArr.concat(fieldId));
-        setSelectNameArr(textList.concat(content));
+  const fieldSelectHandler = (e: any) => {
+    const { value } = e.target;
+    if (selectIdArr.length !== 3) {
+      if (!selectIdArr.includes(e)) {
+        setSelectIdArr([...selectIdArr, value]);
       }
+    } else {
+      ToastError("분야를 3개 이상 등록할 수 없습니다.");
     }
   };
 
@@ -79,29 +71,23 @@ const MyInfoModifyDetail = ({ getUserInfo }: any) => {
           </span>
           <select
             onChange={(e) => {
-              handleSelect(e.target.value, selectNameArr);
+              fieldSelectHandler(e);
             }}
           >
             <option selected disabled hidden>
               분야를 선택하세요
             </option>
-            {fieldList?.map((field: FieldType, index: number) => (
-              <option key={index} value={field.content}>
+            {fieldList.map((field: FieldType, index: number) => (
+              <option key={index} value={field.id}>
                 {field.content}
               </option>
             ))}
           </select>
-          {selectNameArr?.map((field: string, index: number) => (
-            <FieldItemBox
-              key={index}
-              setSelectIdArr={setSelectIdArr}
-              setSelectNameArr={setSelectNameArr}
-              selectNameArr={selectNameArr}
-              selectIdArr={selectIdArr}
-              fieldList={fieldList}
-              field={field}
-            />
-          ))}
+          <FieldItemBox
+            selectIdArr={selectIdArr}
+            setSelectIdArr={setSelectIdArr}
+            fieldList={fieldList}
+          />
         </S.FieldSelecteWrapper>
         <p>분야는 최대 3개까지 선택할 수 있습니다. </p>
         <S.ButtonContainer>
@@ -109,7 +95,7 @@ const MyInfoModifyDetail = ({ getUserInfo }: any) => {
             type="button"
             onClick={() => {
               setIsModify(false);
-              ToastSuccess("프로필이 취소되었습니다.");
+              ToastSuccess("프로필 수정이 취소되었습니다.");
             }}
           >
             취소
