@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
@@ -54,7 +55,7 @@ const FirstProgress = ({
       .then(() => {
         ToastSuccess("회원가입이 완료되었습니다.");
         setTimeout(() => {
-          push("/");
+          push("/login");
         }, 1000);
       })
       .catch((e) => {
@@ -93,7 +94,9 @@ const FirstProgress = ({
     <>
       <ToastContainer />
       <S.SignForm>
-        <img src={Logo} className="logo" alt="Portfolist 로고" />
+        <Link to="/">
+          <img src={Logo} alt="logo" className="logo" />
+        </Link>
         <ProgressBar nextLevel={nextLevel} />
         <S.SignSlider btnColor={btnColor} nextLevel={nextLevel}>
           <S.InputWrapper>

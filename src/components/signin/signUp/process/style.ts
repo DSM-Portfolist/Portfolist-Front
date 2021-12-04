@@ -31,7 +31,7 @@ export const SignForm = styled.form`
   flex-direction: column;
   overflow: hidden;
 
-  .logo {
+  a {
     width: 130px;
     margin: 0 auto;
   }
