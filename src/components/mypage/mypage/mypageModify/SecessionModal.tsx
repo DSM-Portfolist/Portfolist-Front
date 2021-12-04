@@ -18,12 +18,14 @@ const SecessionModal = (props: Props) => {
     try {
       deleteUser();
       ToastSuccess("회원 탈퇴에 성공하셨습니다.");
-      history.push("/");
-      localStorage.removeItem("access_token_portfolist");
-      localStorage.removeItem("refresh_token_portfolist");
+      setTimeout(() => {
+        history.push("/");
+        localStorage.removeItem("access_token_portfolist");
+        localStorage.removeItem("refresh_token_portfolist");
+      }, 1000);
     } catch (e) {
       ToastError("회원 탈퇴에 실패하셨습니다.");
-      throw new Error("회원 탈퇴에 실패하셨습니다.");
+      console.log(e);
     }
   };
 
