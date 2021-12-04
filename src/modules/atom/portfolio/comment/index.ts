@@ -2,11 +2,6 @@ import { atom, atomFamily, selectorFamily } from "recoil";
 import { getComment } from "../../../../util/api/portfolio/comment";
 import { CommentType } from "../../../../util/interface/portfolio/commentType";
 
-export const reCommentControl = atom({
-  key: "reCommentControl",
-  default: false,
-});
-
 export const commentList = atomFamily<CommentType[], number>({
   key: "commentList",
   default: [],
