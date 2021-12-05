@@ -29,8 +29,6 @@ const PortfolioList = ({
     portfolio?.field.map((field, index) => <span key={index}>{field}</span>);
   };
 
-  console.log(portfolio?.thumbnail);
-
   return (
     <Link to={`/portfolio?id=${portfolio?.id}`} css={[portfolioItem, column]}>
       <img src={portfolio?.thumbnail} alt="이미지" />

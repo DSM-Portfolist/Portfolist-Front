@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import {
@@ -18,14 +18,9 @@ interface Props {
 }
 
 const ReComment = ({ comment }: Props) => {
-  const [reCommentText, setReCommentText] = useState<string>("");
   const [reCommentList, setReCommentList] = useState<ReCommentType[]>([]);
-
-  const reComment = useCallback(() => {
-    getReComment(comment.comment_id).then((res) => {
-      setReCommentList(res.data);
-    });
-  }, []);
+  const [reCommentText, setReCommentText] = useState<string>("");
+  const commentRef = useRef(null);
 
   const reCommentDeleteHandler = (id: number) => {
     deleteReComment(id)
@@ -39,23 +34,26 @@ const ReComment = ({ comment }: Props) => {
       });
   };
 
-  const reCommentAddHandler = (e: any) => {
-    const { value } = e.target;
-    setReCommentText(value);
+  const reCommentAddHandler = (e: any, id: number, value: string) => {
+    e.preventDefault();
 
-    if (e.key === "Enter") {
-      postReComment(comment.comment_id, reCommentText)
+    if (commentRef) {
+      postReComment(id, value)
         .then(() => {
           ToastSuccess("답글이 작성되었습니다.");
+          setReCommentText("");
           reComment();
         })
         .catch(() => ToastError("답글 작성에 실패했습니다."));
     }
   };
 
+  const reComment = useCallback(() => {
+    getReComment(comment.comment_id).then((res) => setReCommentList(res.data));
+  }, []);
+
   useLayoutEffect(() => {
     reComment();
-    console.log(reCommentList);
   }, []);
 
   return (
@@ -64,8 +62,18 @@ const ReComment = ({ comment }: Props) => {
         <S.Input
           type="text"
           placeholder="답글을 작성해 주세요"
-          onKeyPress={(e) => reCommentAddHandler(e)}
+          onChange={(e) => setReCommentText(e.target.value)}
+          value={reCommentText}
+          ref={commentRef}
         />
+        <button
+          onClick={(e) =>
+            reCommentAddHandler(e, comment.comment_id, reCommentText)
+          }
+        >
+          등록
+        </button>
+
         {reCommentList?.map((rc) => (
           <S.ReComment key={rc.re_comment_id}>
             <S.Content>

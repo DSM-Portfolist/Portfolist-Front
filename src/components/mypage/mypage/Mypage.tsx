@@ -76,7 +76,11 @@ const MyPage = () => {
                   portfolio={portfolio}
                   isClickMyPortfolio={isClickMyPortfolio}
                   isClickMyTouching={isClickMyTouching}
-                  profileimg={myInfo?.profile_img}
+                  profileimg={
+                    isClickMyPortfolio
+                      ? myInfo?.profile_img
+                      : portfolio?.user?.profile_img
+                  }
                 />
               ))}
             </>
