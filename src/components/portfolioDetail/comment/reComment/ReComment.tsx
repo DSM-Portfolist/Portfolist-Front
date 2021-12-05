@@ -1,4 +1,5 @@
 import { useCallback, useLayoutEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import {
   deleteReComment,
@@ -58,47 +59,50 @@ const ReComment = ({ comment }: Props) => {
   }, []);
 
   return (
-    <S.ReCommentWrap>
+    <>
       <S.CommentInputWrap>
         <S.Input
           type="text"
           placeholder="답글을 작성해 주세요"
           onKeyPress={(e) => reCommentAddHandler(e)}
         />
-      </S.CommentInputWrap>
-      {reCommentList?.map((rc) => (
-        <S.ReComment key={rc.re_comment_id}>
-          <S.Content>
-            <img
-              src={
-                rc?.user?.profile_img === null
-                  ? `${DefaultProfile}`
-                  : rc.user.profile_img
-              }
-              alt="프로필 사진"
-            />
-            <div className="content">
-              <div className="user-name">
-                <strong>{rc.user.name}</strong>
-                <div className="comment-date">
-                  <span>{rc.rc_date}</span>
-                </div>
+        {reCommentList?.map((rc) => (
+          <S.ReComment key={rc.re_comment_id}>
+            <S.Content>
+              <img
+                src={
+                  rc?.user?.profile_img === null
+                    ? `${DefaultProfile}`
+                    : rc.user.profile_img
+                }
+                alt="프로필 사진"
+              />
+              <div className="content">
+                <Link
+                  to={`/user-page/${rc.user.user_id}`}
+                  className="user-name"
+                >
+                  <strong>{rc.user.name}</strong>
+                  <div className="comment-date">
+                    <span>{rc.rc_date}</span>
+                  </div>
+                </Link>
+                <pre>{rc.re_comment_content}</pre>
               </div>
-              <pre>{rc.re_comment_content}</pre>
-            </div>
-          </S.Content>
-          <S.Util>
-            {rc?.mine && (
-              <span onClick={() => reCommentDeleteHandler(rc.re_comment_id)}>
-                삭제
-              </span>
-            )}
+            </S.Content>
+            <S.Util>
+              {rc?.mine && (
+                <span onClick={() => reCommentDeleteHandler(rc.re_comment_id)}>
+                  삭제
+                </span>
+              )}
 
-            <span>신고</span>
-          </S.Util>
-        </S.ReComment>
-      ))}
-    </S.ReCommentWrap>
+              <span>신고</span>
+            </S.Util>
+          </S.ReComment>
+        ))}
+      </S.CommentInputWrap>
+    </>
   );
 };
 

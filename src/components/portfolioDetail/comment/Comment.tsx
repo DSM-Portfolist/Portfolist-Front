@@ -60,15 +60,13 @@ const Comment = () => {
           <span className="no_comment">작성된 댓글이 없습니다.</span>
         ) : (
           <>
-            {comments?.map((comment: CommentType) => (
-              <>
-                <CommentItem
-                  key={comment.comment_id}
-                  comment={comment}
-                  portfolioId={id}
-                  getTest={getTest}
-                />
-              </>
+            {comments?.map((comment: CommentType, index: number) => (
+              <CommentItem
+                key={index}
+                comment={comment}
+                portfolioId={id}
+                getTest={getTest}
+              />
             ))}
           </>
         )}

@@ -63,13 +63,12 @@ const CommentItem = ({ comment, getTest }: Props) => {
           {comment?.mine && (
             <span onClick={() => CommentDelete(comment.comment_id)}>삭제</span>
           )}
-
           <span onClick={() => setReportCommentModal(true)}>신고</span>
         </S.Util>
       </div>
 
       <button className="more_text" onClick={() => setToggle(!toggle)}>
-        {toggle ? "답글 접기" : "+ 답글 달기"}
+        {toggle ? "- 답글 접기" : "+ 답글 달기"}
       </button>
 
       <S.ReCommentWrap toggle={toggle}>
