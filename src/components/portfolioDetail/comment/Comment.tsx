@@ -1,8 +1,6 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import * as S from "./style";
-import { reCommentControl } from "../../../modules/atom/portfolio/comment";
 import CommentItem from "./CommentItem";
-import { useRecoilState } from "recoil";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
 import { ToastError, ToastSuccess } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
@@ -12,7 +10,6 @@ import { useLocation } from "react-router";
 import QueryString from "query-string";
 
 const Comment = () => {
-  const [reComment, setReComment] = useRecoilState(reCommentControl);
   const [comments, setComments] = useState<CommentType[]>([]);
   const [commentContent, setCommentContent] = useState<string>("");
   const commentRef = useRef(null);
@@ -60,29 +57,16 @@ const Comment = () => {
           </div>
         </S.CommentList>
         {comments?.length === 0 ? (
-          <>작성된 댓글이 없습니다.</>
+          <span className="no_comment">작성된 댓글이 없습니다.</span>
         ) : (
           <>
-            {comments?.map((comment: CommentType) => (
-              <>
-                <CommentItem
-                  key={comment.comment_id}
-                  comment={comment}
-                  portfolioId={id}
-                  getTest={getTest}
-                />
-                <button
-                  className="more_text"
-                  onClick={() => setReComment(!reComment)}
-                >
-                  + 답글 달기
-                </button>
-                <S.Input
-                  reComment={reComment}
-                  type="text"
-                  placeholder="답글을 작성해 주세요"
-                />
-              </>
+            {comments?.map((comment: CommentType, index: number) => (
+              <CommentItem
+                key={index}
+                comment={comment}
+                portfolioId={id}
+                getTest={getTest}
+              />
             ))}
           </>
         )}
