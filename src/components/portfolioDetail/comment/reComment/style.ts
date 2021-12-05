@@ -5,7 +5,7 @@ interface Props {
 }
 
 export const ReCommentWrap = styled.div<Props>`
-  width: 85%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -14,8 +14,10 @@ export const ReCommentWrap = styled.div<Props>`
 
 export const CommentInputWrap = styled.div`
   width: 100%;
-  height: 100px;
-  border: 1px solid red;
+  box-sizing: border-box;
+  margin-top: 10px;
+  padding-left: 4.7rem;
+  box-sizing: border-box;
 `;
 
 export const Input = styled.input<Props>`
@@ -23,7 +25,7 @@ export const Input = styled.input<Props>`
   display: flex;
   background-color: #efefef;
   border-radius: 20px;
-  padding: 8px 15px;
+  padding: 10px 20px;
   box-sizing: border-box;
 `;
 
@@ -89,11 +91,9 @@ export const Util = styled.div`
 `;
 
 export const ReComment = styled.div<Props>`
-  width: 90%;
-  margin-left: 10%;
+  width: 100%;
   border-top: 1px solid #f0f0f0;
-
-  display: ${({ toggle }) => (toggle ? "flex" : "none")};
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

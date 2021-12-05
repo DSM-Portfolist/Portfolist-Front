@@ -61,8 +61,17 @@ export const CommentItemWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   border-top: 1px solid #f0f0f0;
+  padding: 30px 0;
+  box-sizing: border-box;
+
+  .more_text {
+    margin-top: 1%;
+    margin-left: 4.7rem;
+    padding: 7px 10px;
+    width: fit-content;
+    border-radius: 5px;
+  }
 
   .comment {
     width: 100%;
@@ -74,7 +83,7 @@ export const CommentItemWrapper = styled.div`
 `;
 
 export const ReCommentWrap = styled.div<Props>`
-  width: 85%;
+  width: 100%;
   display: ${({ toggle }) => (toggle ? "flex" : "none")};
   flex-direction: column;
   align-items: flex-end;
@@ -85,7 +94,6 @@ export const Content = styled.div<Props>`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 0;
 
   a {
     color: black;
