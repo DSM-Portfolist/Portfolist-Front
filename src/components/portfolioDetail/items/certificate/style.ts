@@ -10,7 +10,7 @@ export const Wrap = styled.div`
 
   .title {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 500;
     margin: 20px 0;
   }
   span {

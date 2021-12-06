@@ -8,7 +8,6 @@ import {
   sectionTitleWrapper,
   center,
 } from "../../../util/css/mypage/UserPage/style";
-import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import PortfolioList from "../PortfolioList/PortfolioList";
 import { Header } from "../..";
 import { useRecoilValue } from "recoil";
@@ -16,6 +15,8 @@ import {
   userInfoSelector,
   userPortfolioListSelector,
 } from "../../../modules/atom/userpage/userpage";
+import UserProfileHeader from "../ProfileHeader/UserProfileHeader";
+
 const UserPage = ({ match }: any) => {
   const userPortfolio = useRecoilValue(
     userPortfolioListSelector(match.params.userId)
@@ -26,10 +27,10 @@ const UserPage = ({ match }: any) => {
     <div css={[baseBackground, column]}>
       <Header></Header>
       <section css={[myPageSection]}>
-        <ProfileHeader />
+        <UserProfileHeader userInfo={userInfo} />
         <article>
           <div css={[center, sectionTitleWrapper]}>
-            <span>{userInfo.name}</span>
+            <span>{userInfo?.name}</span>
             <span>님의 포트폴리오</span>
           </div>
           {userPortfolio?.length === 0 ? (
@@ -39,7 +40,11 @@ const UserPage = ({ match }: any) => {
           ) : (
             <>
               {userPortfolio?.map((portfolio, index) => (
-                <PortfolioList key={index} portfolio={portfolio} />
+                <PortfolioList
+                  key={index}
+                  portfolio={portfolio}
+                  profileimg={portfolio?.user?.profile_img}
+                />
               ))}
             </>
           )}

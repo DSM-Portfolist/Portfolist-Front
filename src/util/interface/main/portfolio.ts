@@ -7,7 +7,7 @@ export interface recentPortfolioType {
 
 export interface monthPortfolioType {
   id: number;
-  thumbnail: string | null;
+  thumbnail: string | undefined;
   title: string;
   introduce: string;
   name: string;

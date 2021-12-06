@@ -1,16 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { InputIsNullType } from "../../../util/interface/portfolio/portfolioMakeType";
+import { useRecoilState } from "recoil";
+import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
 
 const TitleContainer = () => {
+  const [portfolioMakeArr, setPortfolioMakeArr] =
+    useRecoilState(portfolioMakeList);
   const [isNullArr, setIsNullArr] = useState<InputIsNullType[]>([
     { isNull: true },
     { isNull: true },
   ]);
+  const [title, setTitle] = useState<string>("");
+  const [introduce, setIntroduce] = useState<string>("");
+
+  useEffect(() => {
+    setPortfolioMakeArr({ ...portfolioMakeArr, title: title });
+  }, [title]);
+  useEffect(() => {
+    setPortfolioMakeArr({ ...portfolioMakeArr, introduce: introduce });
+  }, [introduce]);
 
   const handlerOnChange = (e: any) => {
+    const { name, value } = e.target;
     //글작성을 했는지 안했는지 확인하는 함수
     isNullCheckFunc(e);
+    if (name === "title") {
+      setTitle(value);
+    } else if (name === "introduce") {
+      setIntroduce(value);
+    }
   };
 
   const isNullCheckFunc = (e: any) => {
@@ -18,7 +37,6 @@ const TitleContainer = () => {
     const { className, value } = e.target;
     if (value !== "") {
       let newArr = isNullArr.map((item: any, index: number) => {
-        console.log(item, index);
         if (className === "Title" && index === 0) {
           return { isNull: false };
         } else if (className === "Introduce" && index === 1) {
@@ -45,6 +63,7 @@ const TitleContainer = () => {
       <S.InputWrapper onChange={handlerOnChange}>
         <input
           type="text"
+          name="title"
           className="Title"
           placeholder="제목을 입력해주세요."
         />
@@ -53,6 +72,7 @@ const TitleContainer = () => {
       <S.InputWrapper onChange={handlerOnChange}>
         <input
           type="text"
+          name="introduce"
           className="Introduce"
           placeholder="본인을 간단하게 소개해주세요."
         />

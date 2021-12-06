@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useMutation } from "react-query";
@@ -7,7 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../hook/toastHook";
-import { MAINURL } from "../../../util/api";
+import { MAINURL } from "../../../util/api/common";
 import { Github, Logo } from "../../../util/assets";
 import { mainColor } from "../../../util/css/color/color";
 import * as S from "./style";
@@ -18,8 +16,9 @@ interface LoginType {
 }
 
 const Login = () => {
-  const JWT_EXPIRY_TIME = 10000;
-  const history = useHistory();
+  //const JWT_EXPIRY_TIME = 10000;
+  //const refresh_token = localStorage.getItem("refresh_token_portfolist");
+  const { push } = useHistory();
 
   const [buttonColor, setButtonColor] = useState<boolean>(false);
   const [emailBor, setEmailBor] = useState<boolean>(false);
@@ -29,13 +28,9 @@ const Login = () => {
     password: "",
   });
 
-  const onClick = useCallback(() => {
-    window.open(
-      `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=repo:status%20read:repo_hook%20user:email`
-    );
+  const onGithubHandler = useCallback(() => {
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=repo:status%20read:repo_hook%20user:email`;
   }, []);
-
-  const refresh_token = localStorage.getItem("refresh_token_portfolist");
 
   const { email, password } = loginInput;
 
@@ -50,17 +45,18 @@ const Login = () => {
         );
       })
       .then(() => {
-        history.push("/");
+        ToastSuccess("로그인에 성공하였습니다.");
+        push("/");
       })
       .catch((e) => {
         throw e;
       })
   );
 
-  const onClientRefresh = useMutation("refresh", () =>
+  /* const onClientRefresh = useMutation("refresh", () =>
     axios.post("/refresh", refresh_token).then((res) => console.log(res))
   );
-
+ */
   /*   useEffect(() => {
     setTimeout(() => {
       onClientRefresh.mutate();
@@ -83,7 +79,7 @@ const Login = () => {
 
     if (loginNormal.isSuccess) {
       ToastSuccess("로그인에 성공하셨습니다.");
-      history.push("/");
+      push("/");
     } else if (loginNormal.isError) {
       ToastError("정보를 다시 입력해주세요");
     }
@@ -98,7 +94,7 @@ const Login = () => {
   return (
     <S.BackWrapper>
       <ToastContainer />
-      <S.Content onSubmit={(e) => onSubmit(e, loginInput)}>
+      <S.Content>
         <Link to="/">
           <img src={Logo} alt="Portfolist 로고" />
         </Link>
@@ -130,8 +126,13 @@ const Login = () => {
           />
         </S.InputWrapper>
         <S.ButtonWrapper btnColor={buttonColor}>
-          <button className="login-button">login</button>
-          <S.GitBtn onClick={onClick}>
+          <button
+            className="login-button"
+            onClick={(e) => onSubmit(e, loginInput)}
+          >
+            login
+          </button>
+          <S.GitBtn onClick={onGithubHandler}>
             <img src={Github} alt="깃허브 로고"></img>
             <span>Github 로그인</span>
           </S.GitBtn>

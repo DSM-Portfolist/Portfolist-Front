@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 
+
 export const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -21,6 +22,7 @@ export const ImageWrapper = styled.div`
 `;
 
 export const ImageItem = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -30,6 +32,7 @@ export const ImageItem = styled.div`
     object-fit: cover;
     border: dotted #979797 1px;
     margin-top: 13px;
+    cursor: pointer;
   }
   span {
     font-size: 14px;
@@ -38,7 +41,14 @@ export const ImageItem = styled.div`
     cursor: pointer;
     text-align: center;
   }
+  img[alt="쓰레기통"] {
+    position: absolute;
+    top: 24px;
+    right: 3px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
 `;
 
-export const ImageContainer = styled.div`
-`
+export const ImageContainer = styled.div``;

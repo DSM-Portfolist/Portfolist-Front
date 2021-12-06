@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { deleteProfileImage } from "../../../../util/api/mainpage/image";
 import { postProfileImage } from "../../../../util/api/mypage/image";
+import { DefaultProfile } from "../../../../util/assets";
 import { ProfileImageWrapper } from "../../../../util/css/mypage/mypage/mypageModify/style";
-import { profileImage } from "../../../../util/css/mypage/ProfileHeader/style";
 
 interface Props {
   userInfo: any;
@@ -64,18 +64,14 @@ const ImageUploadWrapper = ({ userInfo }: Props) => {
   return (
     <ProfileImageWrapper>
       {userInfo.github_user ? (
-        <img css={profileImage} alt="" src={userInfo.profile_img} />
+        <img className="profileImg" alt="" src={userInfo.profile_img} />
       ) : (
         <>
-          {!isCustomImage ? (
-            <img
-              css={profileImage}
-              alt="기본이미지"
-              src="https://belabef.com/common/img/default_profile.png"
-            />
-          ) : (
-            <img css={profileImage} alt="" src={previewURL} />
-          )}
+          <img
+            className="profileImg"
+            alt="기본이미지"
+            src={!isCustomImage ? `${DefaultProfile}` : `${previewURL}`}
+          />
           <input
             type="file"
             accept="image/jpg,impge/png,image/jpeg,image/gif"

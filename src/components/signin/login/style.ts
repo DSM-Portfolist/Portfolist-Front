@@ -9,7 +9,7 @@ export const BackWrapper = styled.div`
   align-items: center;
 `;
 
-export const Content = styled.form`
+export const Content = styled.div`
   width: 300px;
   height: 440px;
   display: flex;
@@ -31,6 +31,7 @@ export const InputWrapper = styled.div`
     padding: 1%;
     outline: none;
     border: none;
+    font-family: "Noto Sans KR";
     transition: all 0.8s;
   }
 `;

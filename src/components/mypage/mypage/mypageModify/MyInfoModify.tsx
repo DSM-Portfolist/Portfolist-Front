@@ -23,8 +23,8 @@ const MyInfoModify = ({ getUserInfo }: any) => {
     <>
       {!isModify ? (
         <MainWrapper>
-          <h1>{userInfo.name}</h1>
-          <p>{userInfo.introduce}</p>
+          <h1>{userInfo?.name}</h1>
+          <p>{userInfo?.introduce}</p>
           <FieldWrapper>
             <span>분야</span>
             {userInfo?.field?.map((field, index) => (

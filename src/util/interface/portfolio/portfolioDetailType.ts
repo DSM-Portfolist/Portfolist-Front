@@ -10,9 +10,9 @@ export interface PortfolioType {
   file: string;
   icon: string;
   introduce: string;
-  is_mine: boolean;
+  mine: boolean;
   link: string;
-  more_info_list: MoreInfoType[];
+  more_info: MoreInfoType[];
   title: string;
   total_touching: number;
   touched: boolean;
@@ -34,7 +34,7 @@ export interface MoreInfoType {
 export interface ContainerListType {
   map?: any;
   container_title: string;
-  container_img: string[];
+  container_img_list: string[];
   container_text_list: ContainerTextType[];
 }
 
