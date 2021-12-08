@@ -28,8 +28,6 @@ export const ContainerBox = styled.div`
 
     img {
       width: 300px;
-      height: 200px;
-      object-fit: cover;
       margin-bottom: 20px;
     }
   }
