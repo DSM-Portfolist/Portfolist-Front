@@ -1,6 +1,8 @@
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
+import { commentReoprt } from "../../../../modules/atom/portfolio/comment";
 import {
   deleteReComment,
   getReComment,
@@ -18,6 +20,7 @@ interface Props {
 }
 
 const ReComment = ({ comment }: Props) => {
+  const setReportCommentModal = useSetRecoilState(commentReoprt);
   const [reCommentList, setReCommentList] = useState<ReCommentType[]>([]);
   const [reCommentText, setReCommentText] = useState<string>("");
   const commentRef = useRef(null);
@@ -105,7 +108,7 @@ const ReComment = ({ comment }: Props) => {
                 </span>
               )}
 
-              <span>신고</span>
+              <span onClick={() => setReportCommentModal(true)}>신고</span>
             </S.Util>
           </S.ReComment>
         ))}
