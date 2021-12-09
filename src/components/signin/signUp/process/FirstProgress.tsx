@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MAINURL } from "../../../../util/api";
+import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
+import { MAINURL } from "../../../../util/api/common";
 import { CloseEye, Logo, OpenEye } from "../../../../util/assets";
 import { mainColor } from "../../../../util/css/color/color";
 import { SignUpType } from "../../../../util/interface/Sign/loginType";
@@ -23,17 +26,22 @@ const FirstProgress = ({
   fieldList,
   setFieldList,
 }: Props) => {
+  const { push } = useHistory();
   const [btnColor, setBtnColor] = useState<boolean>(false);
   const [nextLevel, setNextLevel] = useState<boolean>(false);
   const [inputType, setInputType] = useState<boolean>(false);
   const [inputTypeReturn, setInputTypeReturn] = useState<boolean>(false);
+  const [passwordCheck, setPasswordCheck] = useState<string>("");
   let error = false;
 
   const { name, email, password, field } = inputs;
 
   // 이메일 인증 API
   const emailAccess = useMutation((email) =>
-    axios.post(`${MAINURL}/email`, { email: email })
+    axios
+      .post(`${MAINURL}/email`, { email: email })
+      .then(() => ToastSuccess("이메일 요청에 성공했습니다."))
+      .catch((e) => ToastError("이메일 요청에 실패하였습니다."))
   );
 
   const EmailAccessHandler = (email: any) => {
@@ -41,7 +49,22 @@ const FirstProgress = ({
   };
 
   // 회원가입 API
-  const signUp = useMutation((inputs) => axios.post(`${MAINURL}/join`, inputs));
+  const signUp = useMutation((inputs) =>
+    axios
+      .post(`${MAINURL}/join`, inputs)
+      .then(() => {
+        ToastSuccess("회원가입이 완료되었습니다.");
+        setTimeout(() => {
+          push("/login");
+        }, 1000);
+      })
+      .catch((e) => {
+        ToastError("회훤가입에 실패했습니다.");
+        if (e.stauts === 404) {
+          ToastError("이메일 인증을 다시해주세요.");
+        }
+      })
+  );
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -71,7 +94,9 @@ const FirstProgress = ({
     <>
       <ToastContainer />
       <S.SignForm>
-        <img src={Logo} className="logo" alt="Portfolist 로고" />
+        <Link to="/">
+          <img src={Logo} alt="logo" className="logo" />
+        </Link>
         <ProgressBar nextLevel={nextLevel} />
         <S.SignSlider btnColor={btnColor} nextLevel={nextLevel}>
           <S.InputWrapper>
@@ -161,8 +186,16 @@ const FirstProgress = ({
               <span>비밀번호 확인</span>
               <S.InputItemWrap>
                 <input
+                  name="passwordCheck"
+                  value={passwordCheck}
                   type={inputType ? "text" : "password"}
                   placeholder="비밀번호를 다시입력해주세요"
+                  onChange={(e) => setPasswordCheck(e.target.value)}
+                  style={
+                    passwordCheck.length >= 4
+                      ? { borderBottom: `2px solid ${mainColor}` }
+                      : { borderBottom: "" }
+                  }
                 />
                 <img
                   src={inputTypeReturn ? OpenEye : CloseEye}
@@ -191,7 +224,9 @@ const FirstProgress = ({
               이전
             </S.PreButton>
             <S.PreButton
-              btnColor={btnColor}
+              style={{
+                background: `${mainColor}`,
+              }}
               onClick={(e) => {
                 handleSubmit(inputs, e);
               }}

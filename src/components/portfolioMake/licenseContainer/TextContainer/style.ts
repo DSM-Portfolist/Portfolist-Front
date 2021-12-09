@@ -6,7 +6,6 @@ export const LicenseWrapper = styled.section`
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 10px;
-
     .addContent {
       font-style: normal;
       font-weight: normal;
@@ -76,6 +75,7 @@ export const HeaderButton = styled.header`
     color: #ff7659;
     cursor: pointer;
     font-weight: 700;
+    margin-bottom: 15px;
   }
 `;
 

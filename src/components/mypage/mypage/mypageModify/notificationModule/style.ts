@@ -36,7 +36,7 @@ export const ToggleButton = styled.div<Props>`
     width: 70px;
     height: 35px;
     background: ${({ isClick }) =>
-      isClick ? "rgb(233, 236, 239)" : "#ff7d64"}; //rgb(233, 236, 239) ff7d64
+      isClick ? "#ff7d64" : "rgb(233, 236, 239)"}; //rgb(233, 236, 239) ff7d64
     box-sizing: border-box;
     border-radius: 25.5px;
   }
@@ -47,7 +47,7 @@ export const ToggleButton = styled.div<Props>`
     border-radius: 50px;
     top: 12px;
     right: ${({ isClick }) =>
-      isClick ? "39px" : "5px"}; //오른쪽 5px 왼쪽 39px
+      isClick ? "5px" : "39px"}; //오른쪽 5px 왼쪽 39px
     transition: 0.5s;
   }
 `;

@@ -27,6 +27,9 @@ export const Title = styled.div`
 `;
 
 export const ContentBox = styled.div`
+  overflow: auto;
+  padding: 10px 0;
+  box-sizing: border-box;
   width: 100%;
   height: 300px;
   background: #fdfdfd;

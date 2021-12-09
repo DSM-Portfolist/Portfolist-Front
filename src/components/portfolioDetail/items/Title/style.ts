@@ -43,12 +43,12 @@ export const DateWrapper = styled.div`
   align-items: center;
 
   .user-profile {
+    color: black;
     display: flex;
     align-items: center;
     margin-left: 30px;
 
-    span {
-      font-weight: 500;
+    a {
       cursor: pointer;
     }
 
@@ -77,11 +77,12 @@ export const ModifyWrap = styled.div`
     color: ${mainColor};
     cursor: pointer;
     background-color: white;
-    transition: all 0.3s;
+    transition: all 0.8s;
 
     :hover {
-      background-color: ${mainColor};
       color: white;
+      background-color: ${mainColor};
+      box-shadow: 0 2px 3px #80808040;
     }
   }
 `;
@@ -92,11 +93,6 @@ export const HeadTitle = styled.div`
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #e9e9e9;
-
-  span:nth-of-type(1) {
-    font-size: 60px;
-    margin-bottom: 15px;
-  }
 
   .title {
     font-size: 35px;

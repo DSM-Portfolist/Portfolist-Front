@@ -13,7 +13,7 @@ import {
 } from "../../../util/css/mypage/UserPage/style";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import PortfolioList from "../PortfolioList/PortfolioList";
-import { Header } from "../..";
+import { Footer, Header } from "../..";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   myPortfolioList,
@@ -21,12 +21,14 @@ import {
   myTouchingPortfolioSelector,
 } from "../../../modules/atom/mypage/mypage";
 import { MyPortfolioType } from "../../../util/interface/MyPage/myPortfolioType";
+import { myInfoSelector } from "../../../modules/selector/user";
 
 const MyPage = () => {
   const [isClickMyPortfolio, setIsClickMyPortfolio] = useState<boolean>(true);
   const [isClickMyTouching, setIsClickMyTouching] = useState<boolean>(false);
   const [portfolioList, setPortoflioList] = useRecoilState(myPortfolioList);
   const myPortfolio = useRecoilValue(myPortfolioListSelector);
+  const myInfo = useRecoilValue(myInfoSelector);
 
   const touchPorfolio = useRecoilValue(myTouchingPortfolioSelector);
 
@@ -49,7 +51,7 @@ const MyPage = () => {
 
   return (
     <div css={[baseBackground, column]}>
-      <Header></Header>
+      <Header />
       <section css={[myPageSection]}>
         <ProfileHeader />
         <article>
@@ -74,12 +76,14 @@ const MyPage = () => {
                   portfolio={portfolio}
                   isClickMyPortfolio={isClickMyPortfolio}
                   isClickMyTouching={isClickMyTouching}
+                  profileimg={myInfo?.profile_img}
                 />
               ))}
             </>
           )}
         </article>
       </section>
+      <Footer />
     </div>
   );
 };

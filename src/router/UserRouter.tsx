@@ -11,6 +11,8 @@ import {
   MyPage,
   MypageModify,
   UserPage,
+  EmailAuth,
+  EmailAuthFail,
 } from "../components";
 
 const UserRouter = () => {
@@ -27,6 +29,8 @@ const UserRouter = () => {
         <Route path="/my-page-modify" component={MypageModify} exact />
         <Route path="/user-page/:userId" component={UserPage} exact />
         <Route path="/portfolio-make" component={PortfolioMake} exact />
+        <Route path="/sign/emailauth" component={EmailAuth} exact />
+        <Route path="/sign/emailauthfail" component={EmailAuthFail} exact />
       </Switch>
     </BrowserRouter>
   );

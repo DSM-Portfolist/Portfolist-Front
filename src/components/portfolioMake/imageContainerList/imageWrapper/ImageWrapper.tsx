@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { imageListType } from "../../../../util/interface/portfolio/portfolioMakeType";
-import { container_list } from "../../../../modules/atom/portfolioPost";
+import { container_list_atom } from "../../../../modules/atom/portfolioPost";
 import { useRecoilState } from "recoil";
 import { imgFile } from "../../../../util/api/portfolio/portfolioPost";
+import { TrashCan } from "../../../../util/assets";
+import { ToastError } from "../../../../hook/toastHook";
 
 const ImageWrapper = ({ identity }: any) => {
-  const [containerList, setContainerList] = useRecoilState(container_list);
+  const [containerList, setContainerList] = useRecoilState(container_list_atom);
   let jbRandom = Math.random();
   const [imageFile, setImageFile] = useState<any[]>([]);
   const [previewURL, setPreviewURL] = useState<string[]>([]);
   const [imageList, setImageList] = useState<imageListType[]>([
     { isInFile: false, index: 0 + jbRandom },
   ]);
-
-  console.log(containerList);
 
   useEffect(() => {
     let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
@@ -32,6 +32,7 @@ const ImageWrapper = ({ identity }: any) => {
   }, [imageFile]);
 
   const addImageContainer = (res: string, isComponentMounted: boolean) => {
+    //서버에게 post할때 보낼 이미지 리스트 추가
     console.log(res);
     if (isComponentMounted) {
       setContainerList(
@@ -52,6 +53,7 @@ const ImageWrapper = ({ identity }: any) => {
   };
 
   const updateFieldChanged = (item: boolean, index: number) => {
+    //isInFile boolean 함수 변경
     let newArr = imageList.map((value: any, i: number) => {
       if (index === value.index) {
         return { ...value, isInFile: item };
@@ -76,11 +78,52 @@ const ImageWrapper = ({ identity }: any) => {
   };
 
   const addImageList = () => {
+    //이미지 추가 버튼 기능
     var jbRandom = Math.random();
     setImageList((imageLis: any) => [
       ...imageLis,
       { isInFile: false, index: imageList.length + jbRandom },
     ]);
+  };
+
+  const deleteImage = (index: number) => { //이미지 삭제 이벤트
+    if (imageList.length <= 1) {
+      ToastError("이미지는 최소한 1개는 있어야 합니다");
+    } else {
+      setPreviewURL(
+        //프리뷰 url 삭제
+        previewURL.filter((item: any, i: number) => {
+          return i !== index;
+        })
+      );
+      setImageList(
+        //이미지 리스트 삭제
+        imageList.filter((item: any, i: number) => {
+          return i !== index;
+        })
+      );
+      setContainerList(
+        //제작에 올라갈 이미지 리스트 삭제
+        containerList.map((item: any, i: number) => {
+          console.log(i, index);
+          if (i === identity) {
+            console.log(item);
+            let newList = item.container_img_list.filter(
+              (value: any, filter_index: number) => {
+                return filter_index !== index;
+              }
+            );
+            return {
+              ...item,
+              container_img_list: newList,
+            };
+          } else {
+            console.log("else");
+            return item;
+          }
+        })
+      );
+    }
   };
 
   return (
@@ -104,6 +147,13 @@ const ImageWrapper = ({ identity }: any) => {
             ) : (
               <S.ImageItem key={index}>
                 <img src={previewURL[index]} className="PreviewURL" alt="" />
+                <img
+                  src={TrashCan}
+                  onClick={() => {
+                    deleteImage(index);
+                  }}
+                  alt="쓰레기통"
+                />
                 {v.index + 1 < imageList.length ? (
                   ""
                 ) : (

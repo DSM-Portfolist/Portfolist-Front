@@ -4,7 +4,7 @@ export const MainContainer = styled.section`
   display: flex;
   flex-direction: column;
   margin-top: 50px;
-  padding-bottom: 20px;
+  padding-bottom: 2.5rem;
   border-bottom: #e9e9e9 solid 1px;
 `;
 

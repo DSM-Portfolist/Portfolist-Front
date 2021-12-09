@@ -1,15 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";
+import { imgFile } from "../../../util/api/portfolio/portfolioPost";
+import {
+  bannerImgAtom,
+  portfolioMakeList,
+} from "../../../modules/atom/portfolioPost";
+import { useRecoilState } from "recoil";
 
 const BannerContainer = () => {
+  const [portfolioMakeArr, setPortfolioMakeArr] =
+    useRecoilState(portfolioMakeList);
   const [fileInputName, setFileInputName] = useState("");
+  const [bannerImg, setBannerImg] = useRecoilState(bannerImgAtom);
+
+  useEffect(() => {
+    console.log(bannerImg);
+    if (bannerImg.isClickBannder === true) {
+      setFileInputName("");
+    }
+  }, [bannerImg]);
+
+  useEffect(() => {
+    setPortfolioMakeArr({
+      ...portfolioMakeArr,
+      thumbnail: bannerImg.thumbnail,
+    });
+  }, [bannerImg]);
 
   const onChangeFileHanddler = (e: any) => {
-    console.log(e.target.files);
-    const { files } = e.target;
-    setFileInputName(files[0].name); //file에 담긴 name useState로 저장
+    let file = e.target.files[0];
+    setFileInputName(file.name); //file에 담긴 name useState로 저장
+    postImageFile(file);
+  };
+
+  const postImageFile = (file: any) => {
+    imgFile(file)
+      .then((res) => {
+        setBannerImg({
+          thumbnail: res.data.file,
+          isClickBannder: false,
+        });
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

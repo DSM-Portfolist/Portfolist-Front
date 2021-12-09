@@ -5,11 +5,11 @@ import { ToastSuccess, ToastError } from "../../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRecoilState } from "recoil";
-import { container_list } from "../../../../modules/atom/portfolioPost";
+import { container_list_atom } from "../../../../modules/atom/portfolioPost";
 
 const ContentWrapper = (props: any) => {
   const { parent_index } = props;
-  const [containerList, setContainerList] = useRecoilState(container_list);
+  const [containerList, setContainerList] = useRecoilState(container_list_atom);
 
   useEffect(() => {
     console.log(containerList);

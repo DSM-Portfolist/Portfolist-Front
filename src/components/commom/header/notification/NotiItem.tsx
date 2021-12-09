@@ -1,5 +1,5 @@
 import React from "react";
-import { NoticeMent } from "../../../hook/noticeMentHook";
+import { NoticeMent } from "../../../../hook/noticeMentHook";
 import * as S from "./style";
 
 interface Props {

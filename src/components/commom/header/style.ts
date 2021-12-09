@@ -35,7 +35,7 @@ export const Container = styled.div`
 
     a {
       color: #5a5a5a;
-      font-weight: 700;
+      font-weight: 500;
       font-size: 17px;
       margin-right: 27px;
     }
@@ -75,81 +75,12 @@ export const Container = styled.div`
   }
 `;
 
-export const NotiWrapper = styled.li`
-  position: relative;
 
-  .noti-img {
-    width: 25px;
-    margin-top: 4px;
-    height: 25px;
-    cursor: pointer;
-  }
-
-  .profile-img {
-    width: 35px;
-    height: 35px;
-    object-fit: cover;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-`;
-
-export const Notification = styled.div<Props>`
-  width: 350px;
-  background: #ffffff;
-  border: ${({ noti }) => (noti ? "1px solid #eaeaea" : "none")};
-  position: absolute;
-  top: 40px;
-  right: -30px;
-  transition: all 0.5s;
-  z-index: 1;
-  overflow: auto;
-  box-shadow: 0px 7px 6px rgba(164, 164, 164, 0.25);
-  display: flex;
-  flex-direction: column;
-
-  .notification-none {
-    margin: 10px;
-  }
-`;
-
-export const NotiMent = styled.div`
-  margin: 7px 10px 0 10px;
-  font-size: 16px;
-  font-family: "NanumSquare";
-  display: flex;
-  flex-direction: row;
-
-  span:nth-of-type(1) {
-    color: ${mainColor};
-  }
-`;
-
-export const BeforeLoginHeader = styled(Container)`
-  button {
-    border: 1px solid #ff7659;
-    border-radius: 20px;
-    width: 110px;
-    height: 40px;
-    background-color: white;
-    color: ${mainColor};
-    font-weight: 500;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.8s;
-
-    :hover {
-      box-shadow: 0 2px 3px #80808040;
-      background-color: ${mainColor};
-      color: white;
-    }
-  }
-`;
 
 export const MoreItem = styled.ul`
   position: absolute;
   right: -44px;
-  top: 40px;
+  top: 37px;
   width: 120px;
   background: #ffffff;
   box-shadow: 0px 4px 9px rgba(164, 164, 164, 0.25);

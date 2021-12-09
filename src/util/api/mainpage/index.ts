@@ -1,8 +1,10 @@
-import request from "../index";
+import axios from "axios";
+import { MAINURL } from "../common";
 
 export const getMonthPortfolio = () => {
-  return request({
-    url: "/porfolio/month",
-    method: "get",
-  });
+  return axios(`${MAINURL}/portfolio/month`);
+};
+
+export const getRecentPortfolio = () => {
+  return axios(`${MAINURL}/portfolio/recent`);
 };

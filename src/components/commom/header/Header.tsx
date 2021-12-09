@@ -3,17 +3,24 @@ import { Link, withRouter, useHistory } from "react-router-dom";
 import { Logo, Magnifier } from "../../../util/assets";
 import * as S from "./style";
 import SubMenu from "./SubMenu";
-import Notiication from "./Notiication";
+import Notiication from "./notification/Notiication";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { searchBar } from "../../../modules/atom/header";
 import { searchValue } from "../../../modules/atom/portfolio/search";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { reload } from "../../../modules/atom/auth";
+import LoginCompontent from "./loginCompontent";
 
 const Header = () => {
   const [selectText, setSelectText] = useState<boolean>(true);
   const [isFocusing, setIsFocusing] = useRecoilState(searchBar);
+  const [test, setTest] = useRecoilState(reload);
+
   const setSearchText = useSetRecoilState(searchValue);
   const searchInputRef = useRef<any>(null);
   const history = useHistory();
+  const token = localStorage.getItem("access_token_portfolist");
 
   const searchHandler = (e: any) => {
     if (e.key === "Enter") {
@@ -23,6 +30,14 @@ const Header = () => {
       setSearchText("");
     }
   };
+
+  if (test === 1) {
+    window.location.reload();
+
+    if (token === null) {
+      setTest(0);
+    }
+  }
 
   const focusOn = useCallback(() => {
     setIsFocusing(true);
@@ -40,8 +55,9 @@ const Header = () => {
 
   return (
     <>
+      <ToastContainer />
       <S.HeaderWrapper>
-        {localStorage.getItem("access_token_portfolist") ? (
+        {token !== null ? (
           <S.Container>
             <div className="logo">
               <Link to="/">
@@ -71,12 +87,7 @@ const Header = () => {
             </ul>
           </S.Container>
         ) : (
-          <S.BeforeLoginHeader>
-            <img src={Logo} alt="포트폴리스트 로고" />
-            <Link to="/login">
-              <button>시작하기</button>
-            </Link>
-          </S.BeforeLoginHeader>
+          <LoginCompontent /> // 시작하기 컴포넌트
         )}
         <S.MagnifierWrapper isFocusing={isFocusing}>
           <S.Input onChange={(e) => searchHandler(e)}>

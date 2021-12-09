@@ -10,6 +10,7 @@ body {
 p,
 a,
 li,
+pre,
 span,
 strong,
 button,
@@ -25,7 +26,7 @@ h6 {
 
 .make-container {
   border-bottom: 1px solid #e9e9e9;
-  padding: 25px 0;
+  padding: 2.5rem 0;
 }
 
 code {
@@ -108,4 +109,16 @@ option {
   margin: 0 auto;
   width: 73%;
   background-color: #f3f3f38f;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff7659;
+  border-radius: 4px;
 }
