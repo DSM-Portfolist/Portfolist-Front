@@ -1,11 +1,11 @@
 # Portfolist-Front
 ### 개발자를 위한 포트폴리오 제작 & 공유 서비스 입니다.
 
-</br></br>
-### 기술 스택
+</br>
+#### 기술 스택
 **TypeScript, emotion, react-query, recoil**
 
-### 시연영상
+#### 시연영상
 
 https://youtu.be/TE1TaYrIe44
 
