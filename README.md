@@ -1,15 +1,14 @@
 # Portfolist-Front
 ### 개발자를 위한 포트폴리오 제작 & 공유 서비스 입니다.
 
-</br>
-#### 기술 스택
-**TypeScript, emotion, react-query, recoil**
+
+#### 기술스택
+TypeScript, emotion, react-query, recoil
 
 #### 시연영상
-
 https://youtu.be/TE1TaYrIe44
 
-</br></br>
+
 ### 메인페이지
 ![localhost_3000_ (2)](https://user-images.githubusercontent.com/63506240/145490786-82676967-5050-4ef7-b5c6-756bc9e805cd.png)
 
