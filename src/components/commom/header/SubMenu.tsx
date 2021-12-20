@@ -1,6 +1,8 @@
 import React, { useLayoutEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import { GithubUser } from "../../../hook/githubUser";
+import { ProfileImage } from "../../../hook/profileImg";
 import { ToastSuccess } from "../../../hook/toastHook";
 import { subMenu } from "../../../modules/atom/header";
 import { getUser } from "../../../util/api/user/info";
@@ -29,7 +31,6 @@ const SubMenu = () => {
 
   return (
     <>
-      <li>반갑습니다. {data?.name}님!</li>
       <NotiWrapper>
         <img
           className="profile-img"
@@ -41,10 +42,17 @@ const SubMenu = () => {
           onMouseOut={() => setMoreItem(false)}
         />
         <S.MoreItem
-          style={moreItem ? { height: 120 } : { height: 0 }}
+          style={moreItem ? { display: "flex" } : { display: "flex" }}
           onMouseOver={() => setMoreItem(true)}
           onMouseOut={() => setMoreItem(false)}
         >
+          <S.MoreItemInfo>
+            <img src={ProfileImage(data?.profile_img)} alt="프로필사진" />
+            <div className="info_wrpaper">
+              <span>{data?.name}</span>
+              <span>{GithubUser(data?.github_user)}</span>
+            </div>
+          </S.MoreItemInfo>
           <Link to="/my-page">내 프로필</Link>
           <li
             onClick={() => {
