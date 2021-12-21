@@ -46,13 +46,6 @@ const SubMenu = () => {
           onMouseOver={() => setMoreItem(true)}
           onMouseOut={() => setMoreItem(false)}
         >
-          <S.MoreItemInfo>
-            <img src={ProfileImage(data?.profile_img)} alt="프로필사진" />
-            <div className="info_wrpaper">
-              <span>{data?.name}</span>
-              <span>{GithubUser(data?.github_user)}</span>
-            </div>
-          </S.MoreItemInfo>
           <Link to="/my-page">내 프로필</Link>
           <li
             onClick={() => {
