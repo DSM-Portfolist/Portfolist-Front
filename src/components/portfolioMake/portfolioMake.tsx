@@ -13,13 +13,19 @@ import { portfolioMakeList } from "../../modules/atom/portfolioPost";
 import { portfolioMakeSubmit } from "../../util/api/portfolio/portfolioPost";
 import OptionContainer from "./optionContainer/OptionContainer";
 import { ToastError, ToastSuccess } from "../../hook/toastHook";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const PortfolioMake = () => {
   const portfolioMakeArr = useRecoilValue(portfolioMakeList);
+
   const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log(location);
+  }, []);
 
   const portfolioSubmit = () => {
     portfolioMakeSubmit(portfolioMakeArr)
