@@ -15,22 +15,7 @@ const ImageUploadWrapper = ({ userInfo }: Props) => {
   const [previewURL, setPreviewURL] = useState<any>("");
   const [isCustomImage, setIsCustomImage] = useState<boolean>(false);
 
-  console.log(userInfo);
-
   let formData = new FormData();
-
-  function checkFormData() {
-    //FormData 값 확인하기
-    for (let key of formData.keys()) {
-      console.log(key);
-    }
-    // FormData의 value 확인
-    for (let value of formData.values()) {
-      console.log(value);
-    }
-  }
-
-  console.log(imageFile);
 
   // 이미지 삭제
   const deleteImageHandler = () => {
@@ -54,11 +39,17 @@ const ImageUploadWrapper = ({ userInfo }: Props) => {
       setPreviewURL(reader.result);
       formData.append("file", file);
       setIsCustomImage(true);
-      checkFormData();
     };
     reader.readAsDataURL(file);
 
-    postProfileImage(file);
+    /* try {
+      postProfileImage(file);
+      ToastSuccess("프로필 이미지가 변경되었습니다.");
+      setTimeout(() => {}, 1000);
+    } catch (e) {
+      ToastError("프로필 이미지 변경에 실패하였습니다.");
+      console.log(e);
+    } */
   };
 
   return (

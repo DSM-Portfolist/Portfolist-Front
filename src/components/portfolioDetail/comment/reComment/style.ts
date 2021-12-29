@@ -12,12 +12,16 @@ export const ReCommentWrap = styled.div<Props>`
   border: 1px solid red;
 `;
 
-export const CommentInputWrap = styled.div`
+export const CommentInputWrap = styled.form`
   width: 100%;
   box-sizing: border-box;
   margin-top: 10px;
   padding-left: 4.7rem;
   box-sizing: border-box;
+
+  button {
+    display: none;
+  }
 `;
 
 export const Input = styled.input<Props>`

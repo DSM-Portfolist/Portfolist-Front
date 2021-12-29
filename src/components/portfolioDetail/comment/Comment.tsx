@@ -18,15 +18,19 @@ const Comment = () => {
   const queryData = QueryString.parse(location.search);
   const id: any = queryData.id;
 
-  function CommentAdd(content: string, id: number) {
+  function submit(content: string, id: number, e: any) {
+    e.preventDefault();
+
     if (commentRef) {
       postComment(id, content)
         .then(() => {
           ToastSuccess("댓글이 작성되었습니다.");
+          setCommentContent("");
           getTest();
         })
         .catch((e) => {
           ToastError("댓글 작성에 실패했습니다.");
+          setCommentContent("");
           console.log(e);
         });
     }
@@ -48,8 +52,10 @@ const Comment = () => {
           <textarea
             placeholder="댓글을 입력해주세요"
             onChange={(e) => setCommentContent(e.target.value)}
+            value={commentContent}
+            ref={commentRef}
           />
-          <button onClick={() => CommentAdd(commentContent, id)}>등록</button>
+          <button onClick={(e) => submit(commentContent, id, e)}>등록</button>
         </S.InputWrapper>
         <S.CommentList>
           <div className="comment-info">
