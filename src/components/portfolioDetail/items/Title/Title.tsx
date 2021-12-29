@@ -17,6 +17,8 @@ const Title = () => {
   const userId = portfolioValue?.user?.user_id;
   const { push } = useHistory();
 
+  console.log(portfolioValue);
+
   function deletePortfolioHandler(id: number) {
     try {
       deletePortfolio(id);
@@ -55,7 +57,14 @@ const Title = () => {
       </S.TitleInfo>
       {portfolioValue?.mine ? (
         <S.ModifyWrap>
-          <button>포트폴리오 수정</button>
+          <Link
+            to={{
+              pathname: "/portfolio-modify",
+              state: { portfolioID: portfolioValue.portfolio_id },
+            }}
+          >
+            <button>포트폴리오 수정</button>
+          </Link>
           <button
             onClick={() => deletePortfolioHandler(portfolioValue?.portfolio_id)}
           >
