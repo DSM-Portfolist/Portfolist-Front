@@ -14,7 +14,6 @@ export const postProfileImage = (file: File) => {
   return request({
     url: "/user/profile",
     method: "post",
-    headers: { Authorization: token },
     data: { file },
   });
 };
