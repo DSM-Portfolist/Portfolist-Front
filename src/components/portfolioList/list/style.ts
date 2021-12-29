@@ -39,7 +39,7 @@ export const SearchContent = styled.span`
 
 export const ListItemWrapper = styled.div`
   border-radius: 3px;
-  margin: 1.17rem;
+  margin: 1rem;
   width: 15rem;
   height: 390px;
   box-shadow: 0px 4px 4px rgba(214, 214, 214, 0.25);
@@ -126,7 +126,6 @@ export const Content = styled.div`
 
       img {
         cursor: pointer;
-        width: 21px;
         height: 22px;
         object-fit: cover;
       }

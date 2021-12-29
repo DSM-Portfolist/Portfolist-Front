@@ -6,18 +6,29 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.41);
 `;
 
 export const EmailModal = styled.div`
   width: 300px;
-  height: 250px;
-  background-color: white;
-  box-shadow: 0 2px 3px #80808040;
+  height: 220px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 20px;
+
+  img {
+    width: 150px;
+  }
 
   .text_wrp {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    span {
+      margin: 5px 0;
+    }
   }
 `;

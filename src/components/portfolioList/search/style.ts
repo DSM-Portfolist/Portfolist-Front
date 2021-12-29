@@ -44,6 +44,7 @@ export const FieldSelectWrapper = styled.div`
       padding-bottom: 2px;
       width: 100%;
       transition: all 0.3s;
+      color: #909090;
     }
   }
 `;

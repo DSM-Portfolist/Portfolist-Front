@@ -15,7 +15,7 @@ const MypageModifyMainContent = (props: Props) => {
   const userInfo = useRecoilValue(myInfoSelector);
   return (
     <MainContentWrapper>
-      {userInfo.github_user ? "" : <PasswordModify />}
+      {userInfo?.github_user ? "" : <PasswordModify />}
       <SecessionModify setModal={setModal} modal={modal} />
       <NotificationModule />
     </MainContentWrapper>

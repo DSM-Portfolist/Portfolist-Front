@@ -27,9 +27,8 @@ export const ContainerBox = styled.div`
     flex-direction: column;
 
     img {
+      margin-bottom: 10px;
       width: 300px;
-      height: 200px;
-      object-fit: cover;
       margin-bottom: 20px;
     }
   }

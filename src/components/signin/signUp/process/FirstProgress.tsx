@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
@@ -24,6 +26,7 @@ const FirstProgress = ({
   fieldList,
   setFieldList,
 }: Props) => {
+  const { push } = useHistory();
   const [btnColor, setBtnColor] = useState<boolean>(false);
   const [nextLevel, setNextLevel] = useState<boolean>(false);
   const [inputType, setInputType] = useState<boolean>(false);
@@ -46,7 +49,22 @@ const FirstProgress = ({
   };
 
   // 회원가입 API
-  const signUp = useMutation((inputs) => axios.post(`${MAINURL}/join`, inputs));
+  const signUp = useMutation((inputs) =>
+    axios
+      .post(`${MAINURL}/join`, inputs)
+      .then(() => {
+        ToastSuccess("회원가입이 완료되었습니다.");
+        setTimeout(() => {
+          push("/login");
+        }, 1000);
+      })
+      .catch((e) => {
+        ToastError("회훤가입에 실패했습니다.");
+        if (e.stauts === 404) {
+          ToastError("이메일 인증을 다시해주세요.");
+        }
+      })
+  );
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -76,7 +94,9 @@ const FirstProgress = ({
     <>
       <ToastContainer />
       <S.SignForm>
-        <img src={Logo} className="logo" alt="Portfolist 로고" />
+        <Link to="/">
+          <img src={Logo} alt="logo" className="logo" />
+        </Link>
         <ProgressBar nextLevel={nextLevel} />
         <S.SignSlider btnColor={btnColor} nextLevel={nextLevel}>
           <S.InputWrapper>

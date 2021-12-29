@@ -13,9 +13,12 @@ const Searchbar = () => {
   const history = useHistory();
 
   const searchHandler = (e: any) => {
-    console.log(e.target);
     setSearchContent(e.target.value);
+
     if (e.key === "Enter") {
+      history.push(
+        `/list?page=1&size=10&field=&sort=date&query=${searchContent}&searchType=`
+      );
     }
   };
 
@@ -27,9 +30,6 @@ const Searchbar = () => {
     if (isFocusing) {
       searchInputRef.current.focus();
     }
-    history.push(
-      `/list?page=1&size=10&field=&sort=date&query=${searchContent}&searchType=`
-    );
   }, [history, isFocusing, searchContent]);
 
   return (
@@ -45,7 +45,7 @@ const Searchbar = () => {
           placeholder="검색어를 입력해주세요"
           onBlur={focusOff}
           ref={searchInputRef}
-          onKeyPress={(e: any) => setSearchContent(e.target.value)}
+          onKeyPress={(e: any) => searchHandler(e.target.value)}
         />
         <img src={Magnifier} alt="검색아이콘" />
       </S.Input>

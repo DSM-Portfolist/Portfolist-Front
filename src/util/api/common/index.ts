@@ -38,8 +38,8 @@ instance.interceptors.response.use(
       //alert("로그인 후 이용해주세요.");
       //window.location.href = "/login";
     } else if (status === 403) {
-      alert("잘못된 접근 입니다.");
-      window.location.href = "/";
+      // alert("잘못된 접근 입니다.");
+      // window.location.href = "/";
     } else if (status === 407) {
       ToastError("서버에 요류가 발생했습니다.");
     } else if (status === 429) {
