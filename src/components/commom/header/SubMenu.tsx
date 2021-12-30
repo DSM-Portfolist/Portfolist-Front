@@ -31,7 +31,7 @@ const SubMenu = () => {
 
   return (
     <>
-      <NotiWrapper>
+      <NotiWrapper style={{ display: "none" }}> {/* 버그로 인한 잠시 display none */}
         <img
           className="profile-img"
           src={
