@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import queryString from "query-string";
 import { useHistory } from "react-router";
 import axios from "axios";
