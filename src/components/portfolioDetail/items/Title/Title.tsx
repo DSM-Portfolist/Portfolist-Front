@@ -59,7 +59,7 @@ const Title = () => {
         <S.ModifyWrap>
           <Link
             to={{
-              pathname: "/portfolio-modify",
+              pathname: `/portfolio-modify/${portfolioValue.portfolio_id}`,
               state: { portfolioID: portfolioValue.portfolio_id },
             }}
           >
