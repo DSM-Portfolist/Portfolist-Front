@@ -1,13 +1,7 @@
-import {
-  Header,
-  Banner,
-  List,
-  MonthPortfolio,
-  News,
-  Footer,
-} from "../../index";
+import { Header, Banner, MonthPortfolio, News, Footer } from "../../index";
 import FilterBar from "./filterBar/FilterBar";
 import Introduce from "./introduce/Introduce";
+import List from "./portList/List";
 import * as S from "./style";
 
 const Main = () => {
