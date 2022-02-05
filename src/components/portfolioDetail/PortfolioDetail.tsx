@@ -1,4 +1,3 @@
-import React from "react";
 import * as S from "./style";
 import Report from "./report/Report";
 import QueryString from "query-string";
