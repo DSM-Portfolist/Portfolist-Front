@@ -11,10 +11,14 @@ import { useRecoilState } from "recoil";
 const LicenseContainer = () => {
   const [portfolioModifyArr, setPortfolioModifyArr] =
     useRecoilState(portfolioModifyList);
-  const [textList, setTextList] = useState<any>([[""]]);
   const [certificateList, setCertificateList] = useState<any>([
     { title: "", certificate_list: [""] },
   ]);
+
+  useEffect(() => {
+    console.log([portfolioModifyArr.certificate_container_list])
+    setCertificateList(portfolioModifyArr.certificate_container_list)
+  }, [portfolioModifyArr.certificate_container_list])
 
   useEffect(() => {
     setPortfolioModifyArr({
