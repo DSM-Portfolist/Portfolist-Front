@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Document, Page } from "react-pdf";
 
 const PdfFile = ({ file }: any) => {

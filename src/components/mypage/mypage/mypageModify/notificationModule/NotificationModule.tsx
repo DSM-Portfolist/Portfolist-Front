@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { ToastError, ToastSuccess } from "../../../../../hook/toastHook";
 import {
@@ -16,7 +16,7 @@ const NotificationModule = () => {
 
   useEffect(() => {
     setIsClick(status.notification);
-  }, []);
+  }, [setIsClick, status.notification]);
 
   const toggleButton = () => {
     try {

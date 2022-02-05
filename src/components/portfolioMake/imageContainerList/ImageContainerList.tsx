@@ -22,7 +22,7 @@ const ImageContainerList = () => {
       ...portfolioMakeArr,
       container_list: containerList,
     });
-  }, [containerList]);
+  }, [containerList, portfolioMakeArr, setPortfolioMakeArr]);
 
   const addContainerListItem = () => {
     // 컨테이너를 추가하는 함수

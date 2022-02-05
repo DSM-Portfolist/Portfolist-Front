@@ -1,8 +1,6 @@
-/** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
+import { useState } from "react";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { deleteProfileImage } from "../../../../util/api/mainpage/image";
-import { postProfileImage } from "../../../../util/api/mypage/image";
 import { DefaultProfile } from "../../../../util/assets";
 import { ProfileImageWrapper } from "../../../../util/css/mypage/mypage/mypageModify/style";
 
@@ -11,7 +9,7 @@ interface Props {
 }
 
 const ImageUploadWrapper = ({ userInfo }: Props) => {
-  const [imageFile, setImageFile] = useState<any>([]);
+  // const [imageFile, setImageFile] = useState<any>([]);
   const [previewURL, setPreviewURL] = useState<any>("");
   const [isCustomImage, setIsCustomImage] = useState<boolean>(false);
 
@@ -35,21 +33,12 @@ const ImageUploadWrapper = ({ userInfo }: Props) => {
     let reader = new FileReader();
     let file = e.target.files[0];
     reader.onloadend = () => {
-      setImageFile(file);
+      //  setImageFile(file);
       setPreviewURL(reader.result);
       formData.append("file", file);
       setIsCustomImage(true);
     };
     reader.readAsDataURL(file);
-
-    /* try {
-      postProfileImage(file);
-      ToastSuccess("프로필 이미지가 변경되었습니다.");
-      setTimeout(() => {}, 1000);
-    } catch (e) {
-      ToastError("프로필 이미지 변경에 실패하였습니다.");
-      console.log(e);
-    } */
   };
 
   return (

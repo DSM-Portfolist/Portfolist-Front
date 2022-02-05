@@ -53,11 +53,11 @@ const ReComment = ({ comment }: Props) => {
 
   const reComment = useCallback(() => {
     getReComment(comment.comment_id).then((res) => setReCommentList(res.data));
-  }, []);
+  }, [comment.comment_id]);
 
   useLayoutEffect(() => {
     reComment();
-  }, []);
+  }, [reComment]);
 
   return (
     <>

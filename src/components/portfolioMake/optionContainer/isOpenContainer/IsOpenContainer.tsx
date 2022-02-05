@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { portfolioMakeList } from "../../../../modules/atom/portfolioPost";
 import * as S from "./style";
@@ -13,7 +13,7 @@ const IsOpenContainer = () => {
       ...portfolioMakeArr,
       open: isClick,
     });
-  }, [isClick]);
+  }, [isClick, portfolioMakeArr, setPortfolioMakeArr]);
 
   const toggleButton = () => {
     if (isClick) {
