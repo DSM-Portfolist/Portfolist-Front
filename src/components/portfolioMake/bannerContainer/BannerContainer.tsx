@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";
@@ -16,7 +16,6 @@ const BannerContainer = () => {
   const [bannerImg, setBannerImg] = useRecoilState(bannerImgAtom);
 
   useEffect(() => {
-    console.log(bannerImg);
     if (bannerImg.isClickBannder === true) {
       setFileInputName("");
     }
@@ -27,7 +26,7 @@ const BannerContainer = () => {
       ...portfolioMakeArr,
       thumbnail: bannerImg.thumbnail,
     });
-  }, [bannerImg]);
+  }, [bannerImg, portfolioMakeArr, setPortfolioMakeArr]);
 
   const onChangeFileHanddler = (e: any) => {
     let file = e.target.files[0];

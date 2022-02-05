@@ -1,8 +1,6 @@
-/** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
+import { useState } from "react";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { deleteProfileImage } from "../../../../util/api/mainpage/image";
-import { postProfileImage } from "../../../../util/api/mypage/image";
 import { DefaultProfile } from "../../../../util/assets";
 import { ProfileImageWrapper } from "../../../../util/css/mypage/mypage/mypageModify/style";
 
@@ -11,7 +9,7 @@ interface Props {
 }
 
 const ImageUploadWrapper = ({ userInfo }: Props) => {
-  const [imageFile, setImageFile] = useState<any>([]);
+  // const [imageFile, setImageFile] = useState<any>([]);
   const [previewURL, setPreviewURL] = useState<any>("");
   const [isCustomImage, setIsCustomImage] = useState<boolean>(false);
 
@@ -35,7 +33,7 @@ const ImageUploadWrapper = ({ userInfo }: Props) => {
     let reader = new FileReader();
     let file = e.target.files[0];
     reader.onloadend = () => {
-      setImageFile(file);
+      //  setImageFile(file);
       setPreviewURL(reader.result);
       formData.append("file", file);
       setIsCustomImage(true);

@@ -38,11 +38,11 @@ const Comment = () => {
 
   const getTest = useCallback(() => {
     getComment(id).then((res) => setComments(res.data.comments));
-  }, []);
+  }, [id]);
 
   useLayoutEffect(() => {
     getTest();
-  }, []);
+  }, [getTest]);
 
   return (
     <>

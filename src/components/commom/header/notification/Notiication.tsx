@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { notiBox } from "../../../../modules/atom/header";
 import { isNotificationDone } from "../../../../modules/atom/mypage/mypage";
@@ -27,7 +27,7 @@ const Notiication = () => {
 
   useEffect(() => {
     getNotification();
-  }, [isNo]);
+  }, [getNotification, isNo]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./style";
 import { InputIsNullType } from "../../../util/interface/portfolio/portfolioMakeType";
 import { useRecoilState } from "recoil";
@@ -16,10 +16,10 @@ const TitleContainer = () => {
 
   useEffect(() => {
     setPortfolioMakeArr({ ...portfolioMakeArr, title: title });
-  }, [title]);
+  }, [portfolioMakeArr, setPortfolioMakeArr, title]);
   useEffect(() => {
     setPortfolioMakeArr({ ...portfolioMakeArr, introduce: introduce });
-  }, [introduce]);
+  }, [introduce, portfolioMakeArr, setPortfolioMakeArr]);
 
   const handlerOnChange = (e: any) => {
     const { name, value } = e.target;
