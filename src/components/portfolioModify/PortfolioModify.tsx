@@ -8,7 +8,7 @@ import LicenseContainer from "./licenseContainer/LicenseContainer";
 import BannerContainer from "./bannerContainer/BannerContainer";
 import FileLinkContainer from "./fileLinkContainer/FileLinkContainer";
 import PrecautionsContainer from "./precautionsContainer/PrecautionsContainer";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { portfolioModifyList } from "../../modules/atom/portfolioModify/index"
 import { portfolioModifySubmit } from "../../util/api/portfolio/portfolioModify";
 import OptionContainer from "./optionContainer/OptionContainer";
@@ -16,19 +16,68 @@ import { ToastError, ToastSuccess } from "../../hook/toastHook";
 import { useHistory, useLocation } from "react-router";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getPortfolio } from "../../util/api/portfolio/portfolio";
+
+interface stateType {
+  portfolioID: number;
+}
 
 const PortfolioModify = () => {
-  const portfolioModifyArr = useRecoilValue(portfolioModifyList);
+  const [portfolioModifyArr, setPortfolioModifyArr] = useRecoilState(portfolioModifyList);
 
   const history = useHistory();
-  const location = useLocation();
+  const location = useLocation<stateType>();
 
   useEffect(() => {
-    console.log(location);
-  }, []);
+    getPortfolioData(location.state.portfolioID)
+  },[location.state.portfolioID])
+
+  const fieldToId = (fieldName:string) => {
+    switch (fieldName){
+      case "FrontEnd":
+        return 1
+      case "SERVER":
+        return 2
+      case "ANDROID":
+        return 3
+      case "AI":
+        return 4
+      case "DATA ANALYSIS":
+        return 5
+      case "DESIGN":
+        return 6
+      case "DevOps":
+        return 7
+    }
+  }
+
+  const getPortfolioData = (id:number) => {
+    getPortfolio(id)
+    .then((res) => {
+      console.log(res.data)
+      const { title,introduce,field, more_info, container_list, certificate_container_list, link, file,thumbnail} = res.data;
+      setPortfolioModifyArr({
+        ...portfolioModifyArr,
+        title: title,
+        introduce: introduce,
+        field: field.map((value:string) => {
+          return fieldToId(value)
+        }),
+        more_info: more_info,
+        container_list: container_list,
+        certificate_container_list: certificate_container_list,
+        link: link,
+        file: file,
+        thumbnail: thumbnail,
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
 
   const portfolioSubmit = () => {
-    portfolioModifySubmit(portfolioModifyArr, "1") //location id 두 번째 파라미터에 추가하기
+    portfolioModifySubmit(portfolioModifyArr, location.state.portfolioID) //location id 두 번째 파라미터에 추가하기
       .then(() => {
         ToastSuccess("포트폴리오가 수정되었습니다.");
         setTimeout(() => {
