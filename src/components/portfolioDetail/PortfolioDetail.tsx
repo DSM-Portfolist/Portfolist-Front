@@ -12,7 +12,7 @@ import TouchingItem from "./items/touching/TouchingItem";
 import { getPortfolioSelecor } from "../../modules/atom/portfolio/portfolioDetail";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Title from "./items/title";
+import Title from "./items/titleItem";
 
 const PortfolioDetail = () => {
   const setPortfolioId = useSetRecoilState(portfolioId);
