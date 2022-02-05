@@ -25,3 +25,4 @@ export { default as UserPage } from "./mypage/userPage/UserPage";
 export { default as MypageModify } from "./mypage/mypage/mypageModify/MypageModify";
 export { default as EmailAuth } from "./signin/signUp/emailAuth/EmailAuth";
 export { default as EmailAuthFail } from "./signin/signUp/emailAuth/EmailAuthFail";
+export { default as PortfolioModify } from "./portfolioModify/PortfolioModify";

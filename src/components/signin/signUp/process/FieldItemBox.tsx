@@ -10,7 +10,6 @@ interface Props {
 
 const FieldItemBox = ({ field, setTextList, textList }: Props) => {
   function UseFieldDelete(txt: string) {
-    console.log(textList);
     setTextList(textList?.filter((field: string) => field !== txt));
   }
 

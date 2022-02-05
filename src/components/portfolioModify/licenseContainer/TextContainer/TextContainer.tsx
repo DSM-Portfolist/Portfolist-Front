@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { CertificateListType } from "../../../../util/interface/portfolioPost/postType";
 import deleteButtonX from "../../../../util/assets/icon/deleteButtonX.svg";
 import { MinusButton } from "../../../../util/assets";
 import { ToastError } from "../../../../hook/toastHook";
@@ -111,7 +112,7 @@ const TextContainer = (props: any) => {
                 onChange={(e) => {
                   onChangeTitle(e, index);
                 }}
-                value={title}
+                defaultValue={title}
               />
               <img
                 src={deleteButtonX}
@@ -133,7 +134,7 @@ const TextContainer = (props: any) => {
                           onChangeContent(e, index, i);
                         }}
                         placeholder="내용을 입력해주세요."
-                        value={item}
+                        defaultValue={item}
                       />
                       <img
                         src={MinusButton}
