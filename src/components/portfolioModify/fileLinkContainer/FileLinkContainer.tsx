@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { Link, isInFile, File, isInLink } from "../../../util/assets/index";
 import { imgFile, pdfFile } from "../../../util/api/portfolio/portfolioPost";
-import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
+import { portfolioModifyList } from "../../../modules/atom/portfolioModify";
 import { useRecoilState } from "recoil";
 
 const FileLinkContainer = () => {
-  const [portfolioMakeArr, setPortfolioMakeArr] =
-    useRecoilState(portfolioMakeList);
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+    useRecoilState(portfolioModifyList);
   const [linkInputName, setLinkInputName] = useState<string>("");
   const [fileResponse, setFileResponse] = useState<string>("");
   const [fileInputName, setFileInputName] = useState<string>("");
@@ -20,15 +20,15 @@ const FileLinkContainer = () => {
   }, [imageFile]);
 
   useEffect(() => {
-    setPortfolioMakeArr({
-      ...portfolioMakeArr,
+    setPortfolioModifyArr({
+      ...portfolioModifyArr,
       link: linkInputName,
     });
   }, [linkInputName]);
 
   useEffect(() => {
-    setPortfolioMakeArr({
-      ...portfolioMakeArr,
+    setPortfolioModifyArr({
+      ...portfolioModifyArr,
       file: fileResponse,
     });
   }, [fileResponse]);
