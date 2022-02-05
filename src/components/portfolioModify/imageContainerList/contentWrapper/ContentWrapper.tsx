@@ -5,15 +5,15 @@ import { ToastSuccess, ToastError } from "../../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRecoilState } from "recoil";
-import { container_list_atom } from "../../../../modules/atom/portfolioPost";
+import { container_list_modify_atom } from "../../../../modules/atom/portfolioModify";
 
 const ContentWrapper = (props: any) => {
   const { parent_index } = props;
-  const [containerList, setContainerList] = useRecoilState(container_list_atom);
+  const [containerListModify, setContainerListModify] = useRecoilState(container_list_modify_atom);
 
   useEffect(() => {
-    console.log(containerList);
-  }, [containerList]);
+    console.log(containerListModify);
+  }, [containerListModify]);
 
   const onChangeContainerTextList = (
     e: any,
@@ -21,11 +21,11 @@ const ContentWrapper = (props: any) => {
     index: number
   ) => {
     const { name, value } = e.target;
-    setContainerList(
-      containerList.map((item: any, i: number) => {
+    setContainerListModify(
+      containerListModify.map((item: any, i: number) => {
         console.log(item);
         if (parent_index === i) {
-          let newList = containerList[parent_index].container_text_list.map(
+          let newList = containerListModify[parent_index].container_text_list.map(
             (child_item: any, child_index: number) => {
               if (child_index === index) {
                 return {
@@ -49,28 +49,28 @@ const ContentWrapper = (props: any) => {
   };
 
   const DeleteContainerText = (parent_index: number, index: number) => {
-    if (containerList[parent_index].container_text_list.length <= 1) {
+    if (containerListModify[parent_index].container_text_list.length <= 1) {
       ToastError("삭제할 수 없습니다");
     } else {
-      let newList = containerList[parent_index].container_text_list?.filter(
+      let newList = containerListModify[parent_index].container_text_list?.filter(
         (value: any, i: number) => {
           return i !== index;
         }
       );
-      setContainerList((containerList: any) => [
-        { ...containerList[parent_index], container_text_list: newList },
+      setContainerListModify((containerListModify: any) => [
+        { ...containerListModify[parent_index], container_text_list: newList },
       ]);
     }
   };
 
   const addContainerText = (parent_index: number) => {
-    setContainerList(
-      containerList.map((value: any, i: number) => {
+    setContainerListModify(
+      containerListModify.map((value: any, i: number) => {
         if (parent_index === i) {
           return {
-            ...containerList[parent_index],
+            ...containerListModify[parent_index],
             container_text_list: [
-              ...containerList[parent_index].container_text_list,
+              ...containerListModify[parent_index].container_text_list,
               {
                 box_title: "",
                 box_content: "",
@@ -87,7 +87,7 @@ const ContentWrapper = (props: any) => {
   return (
     <S.ContentContainer>
       <ToastContainer />
-      {containerList[parent_index].container_text_list?.map(
+      {containerListModify[parent_index].container_text_list?.map(
         (value: any, index: number) => {
           const { box_content, box_title } = value;
           return (
@@ -119,7 +119,7 @@ const ContentWrapper = (props: any) => {
                 }}
               ></textarea>
               {index + 1 <
-              containerList[parent_index].container_text_list.length ? (
+              containerListModify[parent_index].container_text_list.length ? (
                 ""
               ) : (
                 <span
