@@ -68,7 +68,7 @@ const PortfolioModify = () => {
         certificate_container_list: certificate_container_list,
         link: link,
         file: file,
-        thumbnail: thumbnail,
+        thumbnail: "",
       })
     })
     .catch((err) => {
