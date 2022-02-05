@@ -3,7 +3,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { getFieldSelector } from "../../../../modules/atom/portfolio";
 import { CloseIcon } from "../../../../util/assets";
 import { ToastError } from "../../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as S from "./style";
 import { portfolioMakeList } from "../../../../modules/atom/portfolioPost";
@@ -19,7 +18,7 @@ const FieldItemWrapper = () => {
       ...portfolioMakeArr,
       field: selectIdList,
     });
-  }, [selectIdList]);
+  }, [portfolioMakeArr, selectIdList, setPortfolioMakeArr]);
 
   const handleSelect = (e: any) => {
     const { value } = e.target;

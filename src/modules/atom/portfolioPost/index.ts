@@ -1,15 +1,12 @@
 import { atom } from "recoil";
 import { imageList } from "../../../components/portfolioMake/bannerContainer/items/ImageSelector";
-import {
-  ContainerListType,
-  BannderStateType,
-} from "../../../util/interface/portfolioPost/postType";
+import { BannderStateType } from "../../../util/interface/portfolioPost/postType";
 
-interface BoxDataType {
-  id?: number;
-  box_title: string;
-  box_content: string;
-}
+// interface BoxDataType {
+//   id?: number;
+//   box_title: string;
+//   box_content: string;
+// }
 
 export const container_list_atom = atom<any>({
   key: "container_text",

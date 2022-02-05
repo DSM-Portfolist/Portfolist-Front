@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import queryString from "query-string";
 import { useHistory } from "react-router";
 import axios from "axios";
@@ -26,7 +26,7 @@ const Token = ({ location }: any) => {
       .catch((e) => console.log(e));
 
     history.push("/");
-  }, [code, code.code, history]);
+  }, [code, code.code, history, setTest, test]);
 
   return <div>hello</div>;
 };

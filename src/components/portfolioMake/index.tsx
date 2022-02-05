@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Footer, Header } from "..";
 import * as S from "./style";
 import TitleContainer from "./titleContainer/TitleContainer";
