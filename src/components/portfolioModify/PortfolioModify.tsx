@@ -9,8 +9,8 @@ import BannerContainer from "./bannerContainer/BannerContainer";
 import FileLinkContainer from "./fileLinkContainer/FileLinkContainer";
 import PrecautionsContainer from "./precautionsContainer/PrecautionsContainer";
 import { useRecoilValue } from "recoil";
-import { portfolioMakeList } from "../../modules/atom/portfolioPost";
-import { portfolioMakeSubmit } from "../../util/api/portfolio/portfolioPost";
+import { portfolioModifyList } from "../../modules/atom/portfolioModify/index"
+import { portfolioModifySubmit } from "../../util/api/portfolio/portfolioModify";
 import OptionContainer from "./optionContainer/OptionContainer";
 import { ToastError, ToastSuccess } from "../../hook/toastHook";
 import { useHistory, useLocation } from "react-router";
@@ -18,7 +18,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const PortfolioModify = () => {
-  const portfolioMakeArr = useRecoilValue(portfolioMakeList);
+  const portfolioModifyArr = useRecoilValue(portfolioModifyList);
 
   const history = useHistory();
   const location = useLocation();
@@ -28,22 +28,22 @@ const PortfolioModify = () => {
   }, []);
 
   const portfolioSubmit = () => {
-    portfolioMakeSubmit(portfolioMakeArr)
+    portfolioModifySubmit(portfolioModifyArr, "1") //location id 두 번째 파라미터에 추가하기
       .then(() => {
-        ToastSuccess("포트폴리오가 작성되었습니다.");
+        ToastSuccess("포트폴리오가 수정되었습니다.");
         setTimeout(() => {
           history.push("/");
         }, 1500);
       })
       .catch((err) => {
-        ToastError("포트폴리오 작성에 실패했습니다.");
+        ToastError("포트폴리오 수정에 실패했습니다.");
         console.log(err);
       });
   };
 
   useEffect(() => {
-    console.log(portfolioMakeArr);
-  }, [portfolioMakeArr]);
+    console.log(portfolioModifyArr);
+  }, [portfolioModifyArr]);
 
   return (
     <>
