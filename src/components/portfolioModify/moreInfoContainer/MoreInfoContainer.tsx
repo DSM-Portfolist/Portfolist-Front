@@ -68,7 +68,6 @@ const MoreInfoContainer = () => {
       </div>
       <div className="infoContainer">
         {more_info.map((more_info: any, index: number) => {
-          console.log(portfolioModifyArr.more_info[index].name, portfolioModifyArr.more_info[index].content)
           return (
             <S.InputBox
               key={index}
