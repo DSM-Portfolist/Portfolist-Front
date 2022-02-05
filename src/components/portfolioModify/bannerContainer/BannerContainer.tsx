@@ -3,17 +3,14 @@ import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";
 import { imgFile } from "../../../util/api/portfolio/portfolioPost";
-import {
-  bannerImgAtom,
-  portfolioMakeList,
-} from "../../../modules/atom/portfolioPost";
+import { bannerModifyImgAtom, portfolioModifyList } from "../../../modules/atom/portfolioModify";
 import { useRecoilState } from "recoil";
 
 const BannerContainer = () => {
-  const [portfolioMakeArr, setPortfolioMakeArr] =
-    useRecoilState(portfolioMakeList);
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+    useRecoilState(portfolioModifyList);
   const [fileInputName, setFileInputName] = useState("");
-  const [bannerImg, setBannerImg] = useRecoilState(bannerImgAtom);
+  const [bannerImg, setBannerImg] = useRecoilState(bannerModifyImgAtom);
 
   useEffect(() => {
     console.log(bannerImg);
@@ -23,8 +20,8 @@ const BannerContainer = () => {
   }, [bannerImg]);
 
   useEffect(() => {
-    setPortfolioMakeArr({
-      ...portfolioMakeArr,
+    setPortfolioModifyArr({
+      ...portfolioModifyArr,
       thumbnail: bannerImg.thumbnail,
     });
   }, [bannerImg]);
