@@ -25,7 +25,7 @@ const ImageWrapper = ({ identity }: any) => {
     } else{
       return
     }
-  }, [identity, portfolioModifyArr.container_list])
+  }, [identity, portfolioModifyArr.container_list, previewURL.length])
 
   useEffect(() => {
     let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
