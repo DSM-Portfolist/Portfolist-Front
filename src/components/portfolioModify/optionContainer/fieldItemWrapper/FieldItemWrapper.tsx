@@ -6,7 +6,6 @@ import { ToastError } from "../../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as S from "./style";
-import { portfolioMakeList } from "../../../../modules/atom/portfolioPost";
 import { portfolioModifyList } from "../../../../modules/atom/portfolioModify";
 
 const FieldItemWrapper = () => {
@@ -14,6 +13,10 @@ const FieldItemWrapper = () => {
   const [portfolioModifyArr, setPortfolioModifyArr] =
     useRecoilState(portfolioModifyList);
   const [selectIdList, setSelectIdList] = useState<number[]>([]);
+
+  useEffect(() => {
+    setSelectIdList(portfolioModifyArr.field)
+  }, [])
 
   useEffect(() => {
     setPortfolioModifyArr({
@@ -24,6 +27,7 @@ const FieldItemWrapper = () => {
 
   const handleSelect = (e: any) => {
     const { value } = e.target;
+    console.log(value)
     if (selectIdList.length !== 3) {
       if (!selectIdList.includes(e)) {
         setSelectIdList([...selectIdList, value]);
