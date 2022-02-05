@@ -14,6 +14,10 @@ const FileLinkContainer = () => {
   const [imageFile, setImageFile] = useState<any>([]);
 
   useEffect(() => {
+    setLinkInputName(portfolioModifyArr.link)
+  }, [portfolioModifyArr.link])
+
+  useEffect(() => {
     if (imageFile.length !== 0) {
       postFile(imageFile);
     }
@@ -71,6 +75,7 @@ const FileLinkContainer = () => {
         <input
           type="text"
           onChange={onChangeLinkValue}
+          defaultValue={linkInputName}
           placeholder="링크를 입력해주세요."
         />
       </S.LinkWrapper>
