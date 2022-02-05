@@ -42,7 +42,7 @@ const SubMenu = () => {
           onMouseOut={() => setMoreItem(false)}
         />
         <S.MoreItem
-          style={moreItem ? { display: "flex" } : { display: "flex" }}
+          // style={moreItem ? { display: "flex" } : { display: "flex" }}
           onMouseOver={() => setMoreItem(true)}
           onMouseOut={() => setMoreItem(false)}
         >
