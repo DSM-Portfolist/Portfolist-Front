@@ -27,7 +27,6 @@ const FieldItemWrapper = () => {
 
   const handleSelect = (e: any) => {
     const { value } = e.target;
-    console.log(value)
     if (selectIdList.length !== 3) {
       if (!selectIdList.includes(e)) {
         setSelectIdList([...selectIdList, value]);

@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { Footer, Header } from "..";
 import * as S from "./style";
 import TitleContainer from "./titleContainer/TitleContainer";
@@ -13,7 +12,7 @@ import { portfolioMakeList } from "../../modules/atom/portfolioPost";
 import { portfolioMakeSubmit } from "../../util/api/portfolio/portfolioPost";
 import OptionContainer from "./optionContainer/OptionContainer";
 import { ToastError, ToastSuccess } from "../../hook/toastHook";
-import { useHistory, useLocation } from "react-router";
+import { useHistory} from "react-router";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,11 +20,6 @@ const PortfolioMake = () => {
   const portfolioMakeArr = useRecoilValue(portfolioMakeList);
 
   const history = useHistory();
-  const location = useLocation();
-
-  useEffect(() => {
-    console.log(location);
-  }, []);
 
   const portfolioSubmit = () => {
     portfolioMakeSubmit(portfolioMakeArr)
@@ -40,10 +34,6 @@ const PortfolioMake = () => {
         console.log(err);
       });
   };
-
-  useEffect(() => {
-    console.log(portfolioMakeArr);
-  }, [portfolioMakeArr]);
 
   return (
     <>

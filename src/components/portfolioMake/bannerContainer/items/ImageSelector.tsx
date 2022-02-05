@@ -31,10 +31,6 @@ const ImageSelector = () => {
   const [imgSelect, setImgSelect] = useState<number>(1);
   const [bannerImg, setBannerImg] = useRecoilState(bannerImgAtom);
 
-  useEffect(() => {
-    console.log(bannerImg);
-  }, [bannerImg]);
-
   const backgroundColor = (list: any) => {
     setImgSelect(list.id);
     setBannerImg({

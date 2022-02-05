@@ -25,7 +25,6 @@ const ContentWrapper = (props: any) => {
     const { name, value } = e.target;
     setContainerListModify(
       containerListModify.map((item: any, i: number) => {
-        console.log(item);
         if (parent_index === i) {
           let newList = containerListModify[parent_index].container_text_list.map(
             (child_item: any, child_index: number) => {

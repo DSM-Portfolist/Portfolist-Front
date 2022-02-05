@@ -13,7 +13,6 @@ const BannerContainer = () => {
   const [bannerImg, setBannerImg] = useRecoilState(bannerModifyImgAtom);
 
   useEffect(() => {
-    console.log(bannerImg);
     if (bannerImg.isClickBannder === true) {
       setFileInputName("");
     }

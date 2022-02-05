@@ -41,15 +41,6 @@ const ImageUploadWrapper = ({ userInfo }: Props) => {
       setIsCustomImage(true);
     };
     reader.readAsDataURL(file);
-
-    /* try {
-      postProfileImage(file);
-      ToastSuccess("프로필 이미지가 변경되었습니다.");
-      setTimeout(() => {}, 1000);
-    } catch (e) {
-      ToastError("프로필 이미지 변경에 실패하였습니다.");
-      console.log(e);
-    } */
   };
 
   return (

@@ -10,10 +10,6 @@ import * as S from "./style";
 const TextContainer = (props: any) => {
   const { certificateList, setCertificateList } = props;
 
-  useEffect(() => {
-    console.log(certificateList);
-  }, [certificateList]);
-
   const onChangeTitle = (e: any, index: number) => {
     //제목 onChange Event
     setCertificateList(
@@ -44,7 +40,6 @@ const TextContainer = (props: any) => {
     //내용 onChange Event
     setCertificateList(
       certificateList.map((item: any, i: number) => {
-        console.log(item);
         /* certificateList[parents_index].certificate_list */
         if (i === parents_index) {
           let newArr = item.certificate_list.map(
@@ -106,7 +101,6 @@ const TextContainer = (props: any) => {
   return (
     <div>
       {certificateList?.map((list: any, index: number) => {
-        console.log(list);
         const { certificate_list, title } = list;
         return (
           <S.MapWrapper key={index}>
@@ -131,7 +125,6 @@ const TextContainer = (props: any) => {
             </S.TitleWrapper>
             <>
               {certificate_list?.map((item: any, i: number) => {
-                console.log(item, i);
                 return (
                   <div className="infoContainer">
                     <S.InputBox key={i}>

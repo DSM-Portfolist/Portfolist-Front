@@ -19,7 +19,6 @@ const ImageWrapper = ({ identity }: any) => {
   ]);
 
   useEffect(() => {
-    console.log(previewURL.length)
     if(previewURL.length <= 1){
       setPreviewURL([portfolioModifyArr.container_list[0].container_img_list[identity]]) 
     } else{
@@ -116,9 +115,7 @@ const ImageWrapper = ({ identity }: any) => {
       setContainerListModify(
         //제작에 올라갈 이미지 리스트 삭제
         containerListModify.map((item: any, i: number) => {
-          console.log(i, index);
           if (i === identity) {
-            console.log(item);
             let newList = item.container_img_list.filter(
               (value: any, filter_index: number) => {
                 return filter_index !== index;
@@ -129,7 +126,6 @@ const ImageWrapper = ({ identity }: any) => {
               container_img_list: newList,
             };
           } else {
-            console.log("else");
             return item;
           }
         })

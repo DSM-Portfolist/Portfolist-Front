@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";

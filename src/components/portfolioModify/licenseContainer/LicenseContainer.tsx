@@ -16,7 +16,6 @@ const LicenseContainer = () => {
   ]);
 
   useEffect(() => {
-    console.log([portfolioModifyArr.certificate_container_list])
     setCertificateList(portfolioModifyArr.certificate_container_list)
   }, [portfolioModifyArr.certificate_container_list])
 

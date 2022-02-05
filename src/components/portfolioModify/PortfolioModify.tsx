@@ -54,7 +54,6 @@ const PortfolioModify = () => {
   const getPortfolioData = (id:number) => {
     getPortfolio(id)
     .then((res) => {
-      console.log(res.data)
       const { title,introduce,field, more_info, container_list, certificate_container_list, link, file,thumbnail} = res.data;
       setPortfolioModifyArr({
         ...portfolioModifyArr,
@@ -89,10 +88,6 @@ const PortfolioModify = () => {
         console.log(err);
       });
   };
-
-  useEffect(() => {
-    console.log(portfolioModifyArr);
-  }, [portfolioModifyArr]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./style";
 import { Link, isInFile, File, isInLink } from "../../../util/assets/index";
 import { imgFile, pdfFile } from "../../../util/api/portfolio/portfolioPost";
