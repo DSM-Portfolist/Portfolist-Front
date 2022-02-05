@@ -5,15 +5,17 @@ import { ToastSuccess, ToastError } from "../../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRecoilState } from "recoil";
-import { container_list_modify_atom } from "../../../../modules/atom/portfolioModify";
+import { container_list_modify_atom, portfolioModifyList } from "../../../../modules/atom/portfolioModify";
 
 const ContentWrapper = (props: any) => {
   const { parent_index } = props;
   const [containerListModify, setContainerListModify] = useRecoilState(container_list_modify_atom);
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+  useRecoilState(portfolioModifyList);
 
   useEffect(() => {
-    console.log(containerListModify);
-  }, [containerListModify]);
+    setContainerListModify(portfolioModifyArr.container_list)
+  }, [portfolioModifyArr.container_list, setContainerListModify])
 
   const onChangeContainerTextList = (
     e: any,
@@ -96,7 +98,7 @@ const ContentWrapper = (props: any) => {
                 <input
                   placeholder="제목을 입력해주세요."
                   name="box_title"
-                  value={box_title}
+                  defaultValue={box_title}
                   onChange={(e: any) => {
                     onChangeContainerTextList(e, parent_index, index);
                   }}
@@ -113,7 +115,7 @@ const ContentWrapper = (props: any) => {
                 placeholder="내용을 입력해주세요."
                 className="Content"
                 name="box_content"
-                value={box_content}
+                defaultValue={box_content}
                 onChange={(e: any) => {
                   onChangeContainerTextList(e, parent_index, index);
                 }}
