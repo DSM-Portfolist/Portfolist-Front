@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { bannerImgAtom } from "../../../../modules/atom/portfolioPost";
+import { bannerModifyImgAtom } from "../../../../modules/atom/portfolioModify";
 import { mainColor } from "../../../../util/css/color/color";
 import * as S from "../style";
 
@@ -29,7 +29,7 @@ export const imageList = [
 
 const ImageSelector = () => {
   const [imgSelect, setImgSelect] = useState<number>(1);
-  const [bannerImg, setBannerImg] = useRecoilState(bannerImgAtom);
+  const [bannerImg, setBannerImg] = useRecoilState(bannerModifyImgAtom);
 
   useEffect(() => {
     console.log(bannerImg);
