@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { imageListType } from "../../../../util/interface/portfolio/portfolioMakeType";
-import { container_list_modify_atom } from "../../../../modules/atom/portfolioModify";
+import { container_list_modify_atom, portfolioModifyList } from "../../../../modules/atom/portfolioModify";
 import { useRecoilState } from "recoil";
 import { imgFile } from "../../../../util/api/portfolio/portfolioPost";
 import { TrashCan } from "../../../../util/assets";
@@ -9,12 +9,23 @@ import { ToastError } from "../../../../hook/toastHook";
 
 const ImageWrapper = ({ identity }: any) => {
   const [containerListModify, setContainerListModify] = useRecoilState(container_list_modify_atom);
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+  useRecoilState(portfolioModifyList);
   let jbRandom = Math.random();
   const [imageFile, setImageFile] = useState<any[]>([]);
   const [previewURL, setPreviewURL] = useState<string[]>([]);
   const [imageList, setImageList] = useState<imageListType[]>([
-    { isInFile: false, index: 0 + jbRandom },
+    { isInFile: true, index: 0 + jbRandom },
   ]);
+
+  useEffect(() => {
+    console.log(previewURL.length)
+    if(previewURL.length === 0){
+      setPreviewURL([portfolioModifyArr.container_list[0].container_img_list[identity]]) 
+    } else{
+      return
+    }
+  }, [identity, portfolioModifyArr.container_list])
 
   useEffect(() => {
     let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
