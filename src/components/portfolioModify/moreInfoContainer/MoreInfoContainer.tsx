@@ -6,18 +6,19 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { inputDataArrType } from "../../../util/interface/portfolio/portfolioMakeType";
 import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
+import { portfolioModifyList } from "../../../modules/atom/portfolioModify";
 import { useRecoilState } from "recoil";
 
 const MoreInfoContainer = () => {
-  const [portfolioMakeArr, setPortfolioMakeArr] =
-    useRecoilState(portfolioMakeList);
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+    useRecoilState(portfolioModifyList);
   const [more_info, setMoreInfo] = useState<inputDataArrType[]>([
     { name: "", content: "" },
   ]);
 
   useEffect(() => {
-    setPortfolioMakeArr({
-      ...portfolioMakeArr,
+    setPortfolioModifyArr({
+      ...portfolioModifyArr,
       more_info: more_info,
     });
   }, [more_info]);
