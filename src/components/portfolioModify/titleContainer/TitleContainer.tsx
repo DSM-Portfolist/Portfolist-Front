@@ -3,10 +3,11 @@ import * as S from "./style";
 import { InputIsNullType } from "../../../util/interface/portfolio/portfolioMakeType";
 import { useRecoilState } from "recoil";
 import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
+import { portfolioModifyList } from "../../../modules/atom/portfolioModify";
 
 const TitleContainer = () => {
-  const [portfolioMakeArr, setPortfolioMakeArr] =
-    useRecoilState(portfolioMakeList);
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+    useRecoilState(portfolioModifyList);
   const [isNullArr, setIsNullArr] = useState<InputIsNullType[]>([
     { isNull: true },
     { isNull: true },
@@ -15,10 +16,10 @@ const TitleContainer = () => {
   const [introduce, setIntroduce] = useState<string>("");
 
   useEffect(() => {
-    setPortfolioMakeArr({ ...portfolioMakeArr, title: title });
+    setPortfolioModifyArr({ ...portfolioModifyArr, title: title });
   }, [title]);
   useEffect(() => {
-    setPortfolioMakeArr({ ...portfolioMakeArr, introduce: introduce });
+    setPortfolioModifyArr({ ...portfolioModifyArr, introduce: introduce });
   }, [introduce]);
 
   const handlerOnChange = (e: any) => {
