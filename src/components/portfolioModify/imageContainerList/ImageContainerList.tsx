@@ -15,6 +15,10 @@ const ImageContainerList = () => {
     useRecoilState(portfolioModifyList);
 
   useEffect(() => {
+    setContainerListModify(portfolioModifyArr.container_list)
+  }, [portfolioModifyArr.container_list, setContainerListModify])
+
+  useEffect(() => {
     setPortfolioModifyArr({
       ...portfolioModifyArr,
       container_list: containerListModify,
@@ -84,7 +88,7 @@ const ImageContainerList = () => {
               <input
                 type="text"
                 className="Title"
-                value={container_title}
+                defaultValue={container_title}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   onChangeTitle(e, index);
                 }}
