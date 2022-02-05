@@ -5,16 +5,20 @@ import { ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { inputDataArrType } from "../../../util/interface/portfolio/portfolioMakeType";
-import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
 import { portfolioModifyList } from "../../../modules/atom/portfolioModify";
 import { useRecoilState } from "recoil";
 
 const MoreInfoContainer = () => {
   const [portfolioModifyArr, setPortfolioModifyArr] =
     useRecoilState(portfolioModifyList);
+
   const [more_info, setMoreInfo] = useState<inputDataArrType[]>([
     { name: "", content: "" },
-  ]);
+  ]); 
+
+  useEffect(() => {
+    setMoreInfo(portfolioModifyArr.more_info) 
+  },[portfolioModifyArr.more_info])
 
   useEffect(() => {
     setPortfolioModifyArr({
@@ -64,6 +68,7 @@ const MoreInfoContainer = () => {
       </div>
       <div className="infoContainer">
         {more_info.map((more_info: any, index: number) => {
+          console.log(portfolioModifyArr.more_info[index].name, portfolioModifyArr.more_info[index].content)
           return (
             <S.InputBox
               key={index}
@@ -76,7 +81,7 @@ const MoreInfoContainer = () => {
                 id="inputName"
                 placeholder="ex)email"
                 name="name"
-                value={more_info.name}
+                defaultValue={more_info.name}
               />
               <div></div>
               <input
@@ -84,7 +89,7 @@ const MoreInfoContainer = () => {
                 id="inputContent"
                 name="content"
                 placeholder="ex)kub0803@gmail.com"
-                value={more_info.content}
+                defaultValue={more_info.content}
               />
               <img
                 src={MinusButton}
