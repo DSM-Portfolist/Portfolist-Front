@@ -4,29 +4,26 @@ import ImageWrapper from "./imageWrapper/ImageWrapper";
 import ContentWrapper from "./contentWrapper/ContentWrapper";
 import { MinusButton } from "../../../util/assets";
 import { useRecoilState } from "recoil";
-import {
-  container_list_atom,
-  portfolioMakeList,
-} from "../../../modules/atom/portfolioPost";
+import { portfolioModifyList, container_list_modify_atom } from "../../../modules/atom/portfolioModify";
 import { ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ImageContainerList = () => {
-  const [containerList, setContainerList] = useRecoilState(container_list_atom);
-  const [portfolioMakeArr, setPortfolioMakeArr] =
-    useRecoilState(portfolioMakeList);
+  const [containerListModify, setContainerListModify] = useRecoilState(container_list_modify_atom);
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+    useRecoilState(portfolioModifyList);
 
   useEffect(() => {
-    setPortfolioMakeArr({
-      ...portfolioMakeArr,
-      container_list: containerList,
+    setPortfolioModifyArr({
+      ...portfolioModifyArr,
+      container_list: containerListModify,
     });
-  }, [containerList]);
+  }, [containerListModify]);
 
   const addContainerListItem = () => {
     // 컨테이너를 추가하는 함수
-    setContainerList((value: any) => [
+    setContainerListModify((value: any) => [
       ...value,
       {
         container_title: "",
@@ -42,11 +39,11 @@ const ImageContainerList = () => {
   };
 
   const removeContainerList = (index: number) => {
-    if (containerList.length <= 1) {
+    if (containerListModify.length <= 1) {
       ToastError("최소 1개의 리스트가 필요합니다.");
     } else {
-      setContainerList(
-        containerList?.filter((value: any, i: number) => {
+      setContainerListModify(
+        containerListModify?.filter((value: any, i: number) => {
           return index !== i;
         })
       );
@@ -57,11 +54,11 @@ const ImageContainerList = () => {
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    setContainerList(
-      containerList.map((value: any, i: number) => {
+    setContainerListModify(
+      containerListModify.map((value: any, i: number) => {
         if (i === index) {
           return {
-            ...containerList[index],
+            ...containerListModify[index],
             container_title: e.target.value,
           };
         } else {
@@ -79,7 +76,7 @@ const ImageContainerList = () => {
           + Add new list
         </button>
       </header>
-      {containerList.map((value: any, index: number) => {
+      {containerListModify.map((value: any, index: number) => {
         const { container_title } = value;
         return (
           <S.ImageWrapeerList key={index}>
