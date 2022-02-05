@@ -9,8 +9,8 @@ const TitleContainer = () => {
   const [portfolioModifyArr, setPortfolioModifyArr] =
     useRecoilState(portfolioModifyList);
   const [isNullArr, setIsNullArr] = useState<InputIsNullType[]>([
-    { isNull: true },
-    { isNull: true },
+    { isNull: false },
+    { isNull: false },
   ]);
   const [title, setTitle] = useState<string>("");
   const [introduce, setIntroduce] = useState<string>("");
