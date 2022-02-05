@@ -20,7 +20,7 @@ const MoreInfoContainer = () => {
       ...portfolioMakeArr,
       more_info: more_info,
     });
-  }, [more_info]);
+  }, [more_info, portfolioMakeArr, setPortfolioMakeArr]);
 
   const handlerOnChange = (e: any, index: number) => {
     //input content 넣을 배열 찾아서 넣기

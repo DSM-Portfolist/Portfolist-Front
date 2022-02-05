@@ -16,10 +16,10 @@ const TitleContainer = () => {
 
   useEffect(() => {
     setPortfolioMakeArr({ ...portfolioMakeArr, title: title });
-  }, [title]);
+  }, [portfolioMakeArr, setPortfolioMakeArr, title]);
   useEffect(() => {
     setPortfolioMakeArr({ ...portfolioMakeArr, introduce: introduce });
-  }, [introduce]);
+  }, [introduce, portfolioMakeArr, setPortfolioMakeArr]);
 
   const handlerOnChange = (e: any) => {
     const { name, value } = e.target;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./style";
 import { imageListType } from "../../../../util/interface/portfolio/portfolioMakeType";
 import { container_list_atom } from "../../../../modules/atom/portfolioPost";
@@ -86,7 +86,8 @@ const ImageWrapper = ({ identity }: any) => {
     ]);
   };
 
-  const deleteImage = (index: number) => { //이미지 삭제 이벤트
+  const deleteImage = (index: number) => {
+    //이미지 삭제 이벤트
     if (imageList.length <= 1) {
       ToastError("이미지는 최소한 1개는 있어야 합니다");
     } else {
