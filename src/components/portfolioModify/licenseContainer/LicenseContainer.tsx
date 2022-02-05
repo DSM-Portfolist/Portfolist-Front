@@ -5,20 +5,20 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CertificateListType } from "../../../util/interface/portfolioPost/postType";
 import TextContainer from "./TextContainer/TextContainer";
-import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
+import { portfolioModifyList } from "../../../modules/atom/portfolioModify";
 import { useRecoilState } from "recoil";
 
 const LicenseContainer = () => {
-  const [portfolioMakeArr, setPortfolioMakeArr] =
-    useRecoilState(portfolioMakeList);
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+    useRecoilState(portfolioModifyList);
   const [textList, setTextList] = useState<any>([[""]]);
   const [certificateList, setCertificateList] = useState<any>([
     { title: "", certificate_list: [""] },
   ]);
 
   useEffect(() => {
-    setPortfolioMakeArr({
-      ...portfolioMakeArr,
+    setPortfolioModifyArr({
+      ...portfolioModifyArr,
       certificate_container_list: certificateList,
     });
   }, [certificateList]);
