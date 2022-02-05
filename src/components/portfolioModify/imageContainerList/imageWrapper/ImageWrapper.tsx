@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { imageListType } from "../../../../util/interface/portfolio/portfolioMakeType";
-import { container_list_atom } from "../../../../modules/atom/portfolioPost";
+import { container_list_modify_atom } from "../../../../modules/atom/portfolioModify";
 import { useRecoilState } from "recoil";
 import { imgFile } from "../../../../util/api/portfolio/portfolioPost";
 import { TrashCan } from "../../../../util/assets";
 import { ToastError } from "../../../../hook/toastHook";
 
 const ImageWrapper = ({ identity }: any) => {
-  const [containerList, setContainerList] = useRecoilState(container_list_atom);
+  const [containerListModify, setContainerListModify] = useRecoilState(container_list_modify_atom);
   let jbRandom = Math.random();
   const [imageFile, setImageFile] = useState<any[]>([]);
   const [previewURL, setPreviewURL] = useState<string[]>([]);
@@ -35,8 +35,8 @@ const ImageWrapper = ({ identity }: any) => {
     //서버에게 post할때 보낼 이미지 리스트 추가
     console.log(res);
     if (isComponentMounted) {
-      setContainerList(
-        containerList.map((value: any, i: number) => {
+      setContainerListModify(
+        containerListModify.map((value: any, i: number) => {
           if (i === identity) {
             return {
               ...value,
@@ -102,9 +102,9 @@ const ImageWrapper = ({ identity }: any) => {
           return i !== index;
         })
       );
-      setContainerList(
+      setContainerListModify(
         //제작에 올라갈 이미지 리스트 삭제
-        containerList.map((item: any, i: number) => {
+        containerListModify.map((item: any, i: number) => {
           console.log(i, index);
           if (i === identity) {
             console.log(item);
