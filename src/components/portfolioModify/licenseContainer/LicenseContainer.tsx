@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./style";
-import { ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CertificateListType } from "../../../util/interface/portfolioPost/postType";
@@ -16,15 +15,15 @@ const LicenseContainer = () => {
   ]);
 
   useEffect(() => {
-    setCertificateList(portfolioModifyArr.certificate_container_list)
-  }, [portfolioModifyArr.certificate_container_list])
+    setCertificateList(portfolioModifyArr.certificate_container_list);
+  }, [portfolioModifyArr.certificate_container_list]);
 
   useEffect(() => {
     setPortfolioModifyArr({
       ...portfolioModifyArr,
       certificate_container_list: certificateList,
     });
-  }, [certificateList]);
+  }, [certificateList, portfolioModifyArr, setPortfolioModifyArr]);
 
   const addList = () => {
     setCertificateList((certificateList: CertificateListType[]) => [

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { MinusButton } from "../../../../util/assets";
 import * as S from "./style";
 import { ToastError } from "../../../../hook/toastHook";

@@ -13,7 +13,7 @@ const IsOpenContainer = () => {
       ...portfolioModifyArr,
       open: isClick,
     });
-  }, [isClick]);
+  }, [isClick, portfolioModifyArr, setPortfolioModifyArr]);
 
   const toggleButton = () => {
     if (isClick) {

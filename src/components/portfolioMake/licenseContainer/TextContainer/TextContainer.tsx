@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import deleteButtonX from "../../../../util/assets/icon/deleteButtonX.svg";
 import { MinusButton } from "../../../../util/assets";
 import { ToastError } from "../../../../hook/toastHook";

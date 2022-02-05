@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./style";
 import { InputIsNullType } from "../../../util/interface/portfolio/portfolioMakeType";
 import { useRecoilState } from "recoil";
-import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
 import { portfolioModifyList } from "../../../modules/atom/portfolioModify";
 
 const TitleContainer = () => {
@@ -17,10 +16,10 @@ const TitleContainer = () => {
 
   useEffect(() => {
     setPortfolioModifyArr({ ...portfolioModifyArr, title: title });
-  }, [title]);
+  }, [portfolioModifyArr, setPortfolioModifyArr, title]);
   useEffect(() => {
     setPortfolioModifyArr({ ...portfolioModifyArr, introduce: introduce });
-  }, [introduce]);
+  }, [introduce, portfolioModifyArr, setPortfolioModifyArr]);
 
   const handlerOnChange = (e: any) => {
     const { name, value } = e.target;

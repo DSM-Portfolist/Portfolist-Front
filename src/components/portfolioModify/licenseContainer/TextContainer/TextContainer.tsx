@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { CertificateListType } from "../../../../util/interface/portfolioPost/postType";
+import React from "react";
 import deleteButtonX from "../../../../util/assets/icon/deleteButtonX.svg";
 import { MinusButton } from "../../../../util/assets";
 import { ToastError } from "../../../../hook/toastHook";

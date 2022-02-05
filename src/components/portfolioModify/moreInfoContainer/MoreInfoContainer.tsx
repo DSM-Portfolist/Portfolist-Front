@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./style";
 import { PlusButton, MinusButton } from "../../../util/assets";
 import { ToastError } from "../../../hook/toastHook";
@@ -14,18 +14,18 @@ const MoreInfoContainer = () => {
 
   const [more_info, setMoreInfo] = useState<inputDataArrType[]>([
     { name: "", content: "" },
-  ]); 
+  ]);
 
   useEffect(() => {
-    setMoreInfo(portfolioModifyArr.more_info) 
-  },[portfolioModifyArr.more_info])
+    setMoreInfo(portfolioModifyArr.more_info);
+  }, [portfolioModifyArr.more_info]);
 
   useEffect(() => {
     setPortfolioModifyArr({
       ...portfolioModifyArr,
       more_info: more_info,
     });
-  }, [more_info]);
+  }, [more_info, portfolioModifyArr, setPortfolioModifyArr]);
 
   const handlerOnChange = (e: any, index: number) => {
     //input content 넣을 배열 찾아서 넣기
