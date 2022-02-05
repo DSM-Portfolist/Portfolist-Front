@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { DateSplitHook } from "../../../../hook/dateSplitHook";
@@ -6,7 +5,7 @@ import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail/index";
 import { deletePortfolio } from "../../../../util/api/portfolio/portfolio";
 import { DefaultImage } from "../../../../util/assets";
-import * as S from "./style";
+import * as S from './style'
 
 const FieldItem = (field: any) => {
   return <S.FieldItemWrapper>{field.field}</S.FieldItemWrapper>;
