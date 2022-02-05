@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { portfolioMakeList } from "../../../../modules/atom/portfolioPost";
+import { portfolioModifyList } from "../../../../modules/atom/portfolioModify";
 import * as S from "./style";
 
 const IsOpenContainer = () => {
   const [isClick, setIsClick] = useState<boolean>(true);
-  const [portfolioMakeArr, setPortfolioMakeArr] =
-    useRecoilState(portfolioMakeList);
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+    useRecoilState(portfolioModifyList);
 
   useEffect(() => {
-    setPortfolioMakeArr({
-      ...portfolioMakeArr,
+    setPortfolioModifyArr({
+      ...portfolioModifyArr,
       open: isClick,
     });
   }, [isClick]);

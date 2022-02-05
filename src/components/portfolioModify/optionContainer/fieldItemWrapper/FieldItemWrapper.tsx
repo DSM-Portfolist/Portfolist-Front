@@ -7,16 +7,17 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as S from "./style";
 import { portfolioMakeList } from "../../../../modules/atom/portfolioPost";
+import { portfolioModifyList } from "../../../../modules/atom/portfolioModify";
 
 const FieldItemWrapper = () => {
   const fieldList = useRecoilValue(getFieldSelector);
-  const [portfolioMakeArr, setPortfolioMakeArr] =
-    useRecoilState(portfolioMakeList);
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+    useRecoilState(portfolioModifyList);
   const [selectIdList, setSelectIdList] = useState<number[]>([]);
 
   useEffect(() => {
-    setPortfolioMakeArr({
-      ...portfolioMakeArr,
+    setPortfolioModifyArr({
+      ...portfolioModifyArr,
       field: selectIdList,
     });
   }, [selectIdList]);
