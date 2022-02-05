@@ -26,7 +26,7 @@ const Token = ({ location }: any) => {
       .catch((e) => console.log(e));
 
     history.push("/");
-  }, [code, code.code, history]);
+  }, [code, code.code, history, setTest, test]);
 
   return <div>hello</div>;
 };

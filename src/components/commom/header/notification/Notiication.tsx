@@ -27,7 +27,7 @@ const Notiication = () => {
 
   useEffect(() => {
     getNotification();
-  }, [isNo]);
+  }, [getNotification, isNo]);
 
   return (
     <>

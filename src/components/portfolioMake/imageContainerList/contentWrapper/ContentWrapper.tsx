@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { MinusButton } from "../../../../util/assets";
 import * as S from "./style";
-import { ToastSuccess, ToastError } from "../../../../hook/toastHook";
+import { ToastError } from "../../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRecoilState } from "recoil";

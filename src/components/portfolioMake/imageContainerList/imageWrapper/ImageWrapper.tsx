@@ -17,6 +17,29 @@ const ImageWrapper = ({ identity }: any) => {
   ]);
 
   useEffect(() => {
+    function addImageContainer(res: string, isComponentMounted: boolean) {
+      //서버에게 post할때 보낼 이미지 리스트 추가
+      console.log(res);
+      if (isComponentMounted) {
+        setContainerList(
+          containerList.map((value: any, i: number) => {
+            if (i === identity) {
+              return {
+                ...value,
+                container_img_list: value.container_img_list.concat(
+                  String(res)
+                ),
+              };
+            } else {
+              return value;
+            }
+          })
+        );
+      } else {
+        return;
+      }
+    }
+
     let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
     if (imageFile.length !== 0) {
       imgFile(imageFile)
@@ -29,28 +52,7 @@ const ImageWrapper = ({ identity }: any) => {
     } else {
       return;
     }
-  }, [imageFile]);
-
-  const addImageContainer = (res: string, isComponentMounted: boolean) => {
-    //서버에게 post할때 보낼 이미지 리스트 추가
-    console.log(res);
-    if (isComponentMounted) {
-      setContainerList(
-        containerList.map((value: any, i: number) => {
-          if (i === identity) {
-            return {
-              ...value,
-              container_img_list: value.container_img_list.concat(String(res)),
-            };
-          } else {
-            return value;
-          }
-        })
-      );
-    } else {
-      return;
-    }
-  };
+  }, [containerList, identity, imageFile, setContainerList]);
 
   const updateFieldChanged = (item: boolean, index: number) => {
     //isInFile boolean 함수 변경
