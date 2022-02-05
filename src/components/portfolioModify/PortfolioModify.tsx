@@ -55,7 +55,7 @@ const PortfolioModify = () => {
         <TitleContainer /> {/* 제목 컴포넌트 */} {/* 수정 완료 */}
         <MoreInfoContainer /> {/*이메일이나 깃허브 넣는 컴포넌트*/} {/* 수정 완료 */}
         <ImageContainerList /> {/* 자신의 경험을 넣을 수 있는 이미지 리스트 */} {/* 수정 완료 */}
-        <LicenseContainer /> {/* 자격증을 넣을 수 있는 리스트 */} {/* 바꿔야됨 */}
+        <LicenseContainer /> {/* 자격증을 넣을 수 있는 리스트 */} {/* 수정 완료 */}
         <FileLinkContainer /> {/*파일이나 링크를 넣을 수 있는 컴포넌트 */} {/* 바꿔야됨 */}
         <BannerContainer /> {/* 이미지 배너 선택하는 컴포넌트 */} {/* 바꿔야됨 */} 
         <S.FinshButton onClick={portfolioSubmit}>작성완료</S.FinshButton>
