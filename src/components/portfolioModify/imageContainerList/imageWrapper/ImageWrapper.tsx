@@ -20,7 +20,7 @@ const ImageWrapper = ({ identity }: any) => {
 
   useEffect(() => {
     console.log(previewURL.length)
-    if(previewURL.length === 0){
+    if(previewURL.length <= 1){
       setPreviewURL([portfolioModifyArr.container_list[0].container_img_list[identity]]) 
     } else{
       return
