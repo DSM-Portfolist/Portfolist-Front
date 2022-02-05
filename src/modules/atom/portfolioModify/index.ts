@@ -1,7 +1,11 @@
 import { atom } from "recoil";
+import { imageList } from "../../../components/portfolioMake/bannerContainer/items/ImageSelector";
+import {
+  BannderStateType,
+} from "../../../util/interface/portfolioPost/postType";
 
 export const container_list_modify_atom = atom<any>({
-  key: "container_text",
+  key: "container_text_Modify",
   default: [
     {
       container_title: "",
@@ -14,6 +18,14 @@ export const container_list_modify_atom = atom<any>({
       container_img_list: [],
     },
   ],
+});
+
+export const bannerModifyImgAtom = atom<BannderStateType>({
+  key: "bannerModifyImgAtom",
+  default: {
+    thumbnail: imageList[0].url,
+    isClickBannder: true,
+  },
 });
 
 
