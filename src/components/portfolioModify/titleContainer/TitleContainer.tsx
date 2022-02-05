@@ -65,6 +65,7 @@ const TitleContainer = () => {
         <input
           type="text"
           name="title"
+          defaultValue={portfolioModifyArr.title}
           className="Title"
           placeholder="제목을 입력해주세요."
         />
@@ -75,6 +76,7 @@ const TitleContainer = () => {
           type="text"
           name="introduce"
           className="Introduce"
+          defaultValue={portfolioModifyArr.introduce}
           placeholder="본인을 간단하게 소개해주세요."
         />
         {isNullArr[1].isNull ? <span className="introduce-span">*</span> : ""}
