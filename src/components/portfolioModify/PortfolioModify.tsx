@@ -35,19 +35,19 @@ const PortfolioModify = () => {
   const fieldToId = (fieldName:string) => {
     switch (fieldName){
       case "FrontEnd":
-        return 1
+        return "1"
       case "SERVER":
-        return 2
+        return "2"
       case "ANDROID":
-        return 3
+        return "3"
       case "AI":
-        return 4
+        return "4"
       case "DATA ANALYSIS":
-        return 5
+        return "5"
       case "DESIGN":
-        return 6
+        return "6"
       case "DevOps":
-        return 7
+        return "7"
     }
   }
 
