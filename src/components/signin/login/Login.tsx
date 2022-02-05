@@ -53,16 +53,6 @@ const Login = () => {
       })
   );
 
-  /* const onClientRefresh = useMutation("refresh", () =>
-    axios.post("/refresh", refresh_token).then((res) => console.log(res))
-  );
- */
-  /*   useEffect(() => {
-    setTimeout(() => {
-      onClientRefresh.mutate();
-    }, JWT_EXPIRY_TIME - 1000);
-  }, [onClientRefresh]);
- */
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
