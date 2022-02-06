@@ -1,4 +1,3 @@
-import React from "react";
 import FieldItemWrapper from "./fieldItemWrapper/FieldItemWrapper";
 import IsOpenContainer from "./isOpenContainer/IsOpenContainer";
 import * as S from "./style";

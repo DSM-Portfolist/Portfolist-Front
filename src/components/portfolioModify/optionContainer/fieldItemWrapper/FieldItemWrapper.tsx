@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { getFieldSelector } from "../../../../modules/atom/portfolio";
 import { CloseIcon } from "../../../../util/assets";
 import { ToastError } from "../../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as S from "./style";
 import { portfolioModifyList } from "../../../../modules/atom/portfolioModify";
@@ -15,8 +15,8 @@ const FieldItemWrapper = () => {
   const [selectIdList, setSelectIdList] = useState<number[]>([]);
 
   useEffect(() => {
-    setSelectIdList(portfolioModifyArr.field)
-  }, [])
+    setSelectIdList(portfolioModifyArr.field);
+  }, []);
 
   useEffect(() => {
     setPortfolioModifyArr({
@@ -28,8 +28,10 @@ const FieldItemWrapper = () => {
   const handleSelect = (e: any) => {
     const { value } = e.target;
     if (selectIdList.length !== 3) {
-      if (!selectIdList.includes(e)) {
+      if (!selectIdList.includes(value)) {
         setSelectIdList([...selectIdList, value]);
+      } else {
+        ToastError("같은 분야를 2개 이상 등록할 수 없습니다.");
       }
     } else {
       ToastError("분야를 3개 이상 등록할 수 없습니다.");
@@ -48,11 +50,12 @@ const FieldItemWrapper = () => {
     <S.MainContainer>
       <S.FieldItemWrapper>
         <select
+          defaultValue={100}
           onChange={(e) => {
             handleSelect(e);
           }}
         >
-          <option selected disabled hidden>
+          <option value={100} disabled hidden>
             분야를 선택하세요
           </option>
           {fieldList.map((item: any, index: number) => {

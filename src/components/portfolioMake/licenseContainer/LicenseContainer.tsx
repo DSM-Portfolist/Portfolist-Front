@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useCallback } from "react";
 import * as S from "./style";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,12 +15,16 @@ const LicenseContainer = () => {
     { title: "", certificate_list: [""] },
   ]);
 
-  useEffect(() => {
+  const setApiCertificateListData = useCallback(() => {
     setPortfolioMakeArr({
       ...portfolioMakeArr,
       certificate_container_list: certificateList,
     });
-  }, [certificateList, portfolioMakeArr, setPortfolioMakeArr]);
+  }, [certificateList]);
+
+  useEffect(() => {
+    setApiCertificateListData();
+  }, [setApiCertificateListData]);
 
   const addList = () => {
     setCertificateList((certificateList: CertificateListType[]) => [
@@ -40,7 +45,7 @@ const LicenseContainer = () => {
         </span>
       </S.HeaderButton>
       <TextContainer
-        certificateList={certificateList}
+        certificateList={certificateList || []}
         setCertificateList={setCertificateList}
       />
     </S.LicenseWrapper>

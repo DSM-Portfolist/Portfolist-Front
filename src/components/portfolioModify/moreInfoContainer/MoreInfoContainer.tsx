@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import * as S from "./style";
 import { PlusButton, MinusButton } from "../../../util/assets";
 import { ToastError } from "../../../hook/toastHook";
@@ -14,11 +15,11 @@ const MoreInfoContainer = () => {
 
   const [more_info, setMoreInfo] = useState<inputDataArrType[]>([
     { name: "", content: "" },
-  ]); 
+  ]);
 
   useEffect(() => {
-    setMoreInfo(portfolioModifyArr.more_info) 
-  },[portfolioModifyArr.more_info])
+    setMoreInfo(portfolioModifyArr.more_info);
+  }, []);
 
   useEffect(() => {
     setPortfolioModifyArr({

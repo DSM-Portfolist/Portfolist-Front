@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useCallback } from "react";
 import { useRecoilState } from "recoil";
 import { portfolioMakeList } from "../../../../modules/atom/portfolioPost";
 import * as S from "./style";
@@ -8,12 +9,16 @@ const IsOpenContainer = () => {
   const [portfolioMakeArr, setPortfolioMakeArr] =
     useRecoilState(portfolioMakeList);
 
+    const setApiData = useCallback(() => {
+      setPortfolioMakeArr({
+        ...portfolioMakeArr,
+        open: isClick,
+      });
+    }, [isClick])  
+
   useEffect(() => {
-    setPortfolioMakeArr({
-      ...portfolioMakeArr,
-      open: isClick,
-    });
-  }, [isClick, portfolioMakeArr, setPortfolioMakeArr]);
+    setApiData()
+  }, [setApiData]);
 
   const toggleButton = () => {
     if (isClick) {

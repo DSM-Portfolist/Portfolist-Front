@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRecoilState } from "recoil";
@@ -20,7 +20,6 @@ const Search = () => {
     if (useField?.length >= 6) {
       ToastError("필터는 최대 5개까지 가능합니다.");
     }
-    console.log(useField);
   }, [useField]);
 
   return (

@@ -1,4 +1,3 @@
-import React from "react";
 import { useHistory } from "react-router";
 import { useRecoilValue } from "recoil";
 import { selectFieldList } from "../../../../modules/atom/portfolio/main";

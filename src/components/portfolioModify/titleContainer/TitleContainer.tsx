@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 import * as S from "./style";
 import { InputIsNullType } from "../../../util/interface/portfolio/portfolioMakeType";
 import { useRecoilState } from "recoil";
-import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
 import { portfolioModifyList } from "../../../modules/atom/portfolioModify";
 
 const TitleContainer = () => {

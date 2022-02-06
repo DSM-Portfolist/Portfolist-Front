@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";
 import { imgFile } from "../../../util/api/portfolio/portfolioPost";
-import { bannerModifyImgAtom, portfolioModifyList } from "../../../modules/atom/portfolioModify";
+import {
+  bannerModifyImgAtom,
+  portfolioModifyList,
+} from "../../../modules/atom/portfolioModify";
 import { useRecoilState } from "recoil";
 
 const BannerContainer = () => {

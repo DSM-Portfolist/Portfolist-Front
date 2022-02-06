@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 import * as S from "./style";
 import { Link, isInFile, File, isInLink } from "../../../util/assets/index";
-import { imgFile, pdfFile } from "../../../util/api/portfolio/portfolioPost";
+import { pdfFile } from "../../../util/api/portfolio/portfolioPost";
 import { portfolioModifyList } from "../../../modules/atom/portfolioModify";
 import { useRecoilState } from "recoil";
 
@@ -14,8 +15,8 @@ const FileLinkContainer = () => {
   const [imageFile, setImageFile] = useState<any>([]);
 
   useEffect(() => {
-    setLinkInputName(portfolioModifyArr.link)
-  }, [portfolioModifyArr.link])
+    setLinkInputName(portfolioModifyArr.link);
+  }, []);
 
   useEffect(() => {
     if (imageFile.length !== 0) {

@@ -1,4 +1,3 @@
-import React from "react";
 import { useRecoilValue } from "recoil";
 import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail";
 import * as S from "./style";

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useCallback } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { getFieldSelector } from "../../../../modules/atom/portfolio";
 import { CloseIcon } from "../../../../util/assets";
@@ -13,12 +14,16 @@ const FieldItemWrapper = () => {
     useRecoilState(portfolioMakeList);
   const [selectIdList, setSelectIdList] = useState<number[]>([]);
 
-  useEffect(() => {
+  const setApiData = useCallback(() => {
     setPortfolioMakeArr({
       ...portfolioMakeArr,
       field: selectIdList,
     });
-  }, [portfolioMakeArr, selectIdList, setPortfolioMakeArr]);
+  }, [selectIdList]);
+
+  useEffect(() => {
+    setApiData();
+  }, [setApiData]);
 
   const handleSelect = (e: any) => {
     const { value } = e.target;
@@ -43,11 +48,12 @@ const FieldItemWrapper = () => {
     <S.MainContainer>
       <S.FieldItemWrapper>
         <select
+          defaultValue={100}
           onChange={(e) => {
             handleSelect(e);
           }}
         >
-          <option selected disabled hidden>
+          <option value={100} disabled hidden>
             분야를 선택하세요
           </option>
           {fieldList.map((item: any, index: number) => {

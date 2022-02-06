@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./style";
 import { imageListType } from "../../../../util/interface/portfolio/portfolioMakeType";
-import { container_list_modify_atom, portfolioModifyList } from "../../../../modules/atom/portfolioModify";
-import { useRecoilState } from "recoil";
+import {
+  container_list_modify_atom,
+  portfolioModifyList,
+} from "../../../../modules/atom/portfolioModify";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { imgFile } from "../../../../util/api/portfolio/portfolioPost";
 import { TrashCan } from "../../../../util/assets";
 import { ToastError } from "../../../../hook/toastHook";
 
 const ImageWrapper = ({ identity }: any) => {
-  const [containerListModify, setContainerListModify] = useRecoilState(container_list_modify_atom);
-  const [portfolioModifyArr, setPortfolioModifyArr] =
-  useRecoilState(portfolioModifyList);
+  const [containerListModify, setContainerListModify] = useRecoilState(
+    container_list_modify_atom
+  );
+  const portfolioModifyArr = useRecoilValue(portfolioModifyList);
   let jbRandom = Math.random();
   const [imageFile, setImageFile] = useState<any[]>([]);
   const [previewURL, setPreviewURL] = useState<string[]>([]);
@@ -19,14 +23,39 @@ const ImageWrapper = ({ identity }: any) => {
   ]);
 
   useEffect(() => {
-    if(previewURL.length <= 1){
-      setPreviewURL([portfolioModifyArr.container_list[0].container_img_list[identity]]) 
-    } else{
-      return
+    if (previewURL.length <= 1) {
+      setPreviewURL([
+        portfolioModifyArr.container_list[0].container_img_list[identity],
+      ]);
+    } else {
+      return;
     }
-  }, [identity, portfolioModifyArr.container_list, previewURL.length])
+  }, [identity, portfolioModifyArr.container_list, previewURL.length]);
 
   useEffect(() => {
+    const addImageContainer = (res: string, isComponentMounted: boolean) => {
+      //서버에게 post할때 보낼 이미지 리스트 추가
+      console.log(res);
+      if (isComponentMounted) {
+        setContainerListModify(
+          containerListModify.map((value: any, i: number) => {
+            if (i === identity) {
+              return {
+                ...value,
+                container_img_list: value.container_img_list.concat(
+                  String(res)
+                ),
+              };
+            } else {
+              return value;
+            }
+          })
+        );
+      } else {
+        return;
+      }
+    };
+
     let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
     if (imageFile.length !== 0) {
       imgFile(imageFile)
@@ -39,28 +68,7 @@ const ImageWrapper = ({ identity }: any) => {
     } else {
       return;
     }
-  }, [imageFile]);
-
-  const addImageContainer = (res: string, isComponentMounted: boolean) => {
-    //서버에게 post할때 보낼 이미지 리스트 추가
-    console.log(res);
-    if (isComponentMounted) {
-      setContainerListModify(
-        containerListModify.map((value: any, i: number) => {
-          if (i === identity) {
-            return {
-              ...value,
-              container_img_list: value.container_img_list.concat(String(res)),
-            };
-          } else {
-            return value;
-          }
-        })
-      );
-    } else {
-      return;
-    }
-  };
+  }, [containerListModify, identity, imageFile, setContainerListModify]);
 
   const updateFieldChanged = (item: boolean, index: number) => {
     //isInFile boolean 함수 변경
@@ -96,7 +104,8 @@ const ImageWrapper = ({ identity }: any) => {
     ]);
   };
 
-  const deleteImage = (index: number) => { //이미지 삭제 이벤트
+  const deleteImage = (index: number) => {
+    //이미지 삭제 이벤트
     if (imageList.length <= 1) {
       ToastError("이미지는 최소한 1개는 있어야 합니다");
     } else {
