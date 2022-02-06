@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { DefaultProfile } from "../../../util/assets";
 import * as S from "./style";
 import { CommentType } from "../../../util/interface/portfolio/commentType";

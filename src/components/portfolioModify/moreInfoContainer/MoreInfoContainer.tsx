@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import * as S from "./style";
 import { PlusButton, MinusButton } from "../../../util/assets";
@@ -18,14 +19,14 @@ const MoreInfoContainer = () => {
 
   useEffect(() => {
     setMoreInfo(portfolioModifyArr.more_info);
-  }, [portfolioModifyArr.more_info]);
+  }, []);
 
   useEffect(() => {
     setPortfolioModifyArr({
       ...portfolioModifyArr,
       more_info: more_info,
     });
-  }, [more_info, portfolioModifyArr, setPortfolioModifyArr]);
+  }, [more_info]);
 
   const handlerOnChange = (e: any, index: number) => {
     //input content 넣을 배열 찾아서 넣기

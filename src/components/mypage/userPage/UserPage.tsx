@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
 import * as S from "../mypage/style";
 import {
   myPageSection,

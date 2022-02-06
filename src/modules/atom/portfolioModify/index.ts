@@ -28,7 +28,6 @@ export const bannerModifyImgAtom = atom<BannderStateType>({
   },
 });
 
-
 export const portfolioModifyList = atom({
     key: "portfolioModifyListAtom",
     default: {
@@ -57,7 +56,7 @@ export const portfolioModifyList = atom({
       certificate_container_list: [
         {
           title: "",
-          certificate_list: [],
+          certificate_list: [""],
         },
       ],
       link: "",

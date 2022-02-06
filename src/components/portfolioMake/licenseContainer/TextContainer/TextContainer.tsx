@@ -103,7 +103,7 @@ const TextContainer = (props: any) => {
         return (
           <S.MapWrapper key={index}>
             <ToastContainer />
-            <S.TitleWrapper>
+            <S.TitleWrapper key={index}>
               <input
                 type="text"
                 placeholder="제목을 입력해 주세요."
@@ -124,8 +124,8 @@ const TextContainer = (props: any) => {
             <>
               {certificate_list?.map((item: any, i: number) => {
                 return (
-                  <div className="infoContainer">
-                    <S.InputBox key={i}>
+                  <div className="infoContainer" key={i}>
+                    <S.InputBox>
                       <input
                         id="inputContent"
                         onChange={(e) => {

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import * as S from "./style";
 import { Link, isInFile, File, isInLink } from "../../../util/assets/index";
@@ -15,7 +16,7 @@ const FileLinkContainer = () => {
 
   useEffect(() => {
     setLinkInputName(portfolioModifyArr.link);
-  }, [portfolioModifyArr.link]);
+  }, []);
 
   useEffect(() => {
     if (imageFile.length !== 0) {
@@ -28,14 +29,14 @@ const FileLinkContainer = () => {
       ...portfolioModifyArr,
       link: linkInputName,
     });
-  }, [linkInputName, portfolioModifyArr, setPortfolioModifyArr]);
+  }, [linkInputName]);
 
   useEffect(() => {
     setPortfolioModifyArr({
       ...portfolioModifyArr,
       file: fileResponse,
     });
-  }, [fileResponse, portfolioModifyArr, setPortfolioModifyArr]);
+  }, [fileResponse]);
 
   const onChangeFileHanddler = (e: any) => {
     const { files } = e.target;

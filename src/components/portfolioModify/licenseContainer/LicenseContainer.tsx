@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import * as S from "./style";
 import { ToastContainer } from "react-toastify";
@@ -16,14 +17,14 @@ const LicenseContainer = () => {
 
   useEffect(() => {
     setCertificateList(portfolioModifyArr.certificate_container_list);
-  }, [portfolioModifyArr.certificate_container_list]);
+  }, []);
 
   useEffect(() => {
     setPortfolioModifyArr({
       ...portfolioModifyArr,
       certificate_container_list: certificateList,
     });
-  }, [certificateList, portfolioModifyArr, setPortfolioModifyArr]);
+  }, [certificateList]);
 
   const addList = () => {
     setCertificateList((certificateList: CertificateListType[]) => [

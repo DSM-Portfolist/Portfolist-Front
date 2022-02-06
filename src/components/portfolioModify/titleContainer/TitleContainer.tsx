@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import * as S from "./style";
 import { InputIsNullType } from "../../../util/interface/portfolio/portfolioMakeType";
@@ -16,10 +17,10 @@ const TitleContainer = () => {
 
   useEffect(() => {
     setPortfolioModifyArr({ ...portfolioModifyArr, title: title });
-  }, [portfolioModifyArr, setPortfolioModifyArr, title]);
+  }, [title]);
   useEffect(() => {
     setPortfolioModifyArr({ ...portfolioModifyArr, introduce: introduce });
-  }, [introduce, portfolioModifyArr, setPortfolioModifyArr]);
+  }, [introduce]);
 
   const handlerOnChange = (e: any) => {
     const { name, value } = e.target;

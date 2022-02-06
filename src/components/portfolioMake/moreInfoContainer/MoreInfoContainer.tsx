@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState, useCallback } from "react";
 import * as S from "./style";
 import { PlusButton, MinusButton } from "../../../util/assets";
 import { ToastError } from "../../../hook/toastHook";
@@ -15,12 +16,16 @@ const MoreInfoContainer = () => {
     { name: "", content: "" },
   ]);
 
-  useEffect(() => {
+  const setApiMoreInfoData = useCallback(() => {
     setPortfolioMakeArr({
       ...portfolioMakeArr,
       more_info: more_info,
     });
-  }, [more_info, portfolioMakeArr, setPortfolioMakeArr]);
+  }, [more_info]);
+
+  useEffect(() => {
+    setApiMoreInfoData();
+  }, [setApiMoreInfoData]);
 
   const handlerOnChange = (e: any, index: number) => {
     //input content 넣을 배열 찾아서 넣기
@@ -75,7 +80,7 @@ const MoreInfoContainer = () => {
                 id="inputName"
                 placeholder="ex)email"
                 name="name"
-                value={more_info.name}
+                defaultValue={more_info.name}
               />
               <div></div>
               <input
@@ -83,7 +88,7 @@ const MoreInfoContainer = () => {
                 id="inputContent"
                 name="content"
                 placeholder="ex)kub0803@gmail.com"
-                value={more_info.content}
+                defaultValue={more_info.content}
               />
               <img
                 src={MinusButton}

@@ -1,29 +1,35 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import * as S from "./style";
 import ImageWrapper from "./imageWrapper/ImageWrapper";
 import ContentWrapper from "./contentWrapper/ContentWrapper";
 import { MinusButton } from "../../../util/assets";
 import { useRecoilState } from "recoil";
-import { portfolioModifyList, container_list_modify_atom } from "../../../modules/atom/portfolioModify";
+import {
+  portfolioModifyList,
+  container_list_modify_atom,
+} from "../../../modules/atom/portfolioModify";
 import { ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ImageContainerList = () => {
-  const [containerListModify, setContainerListModify] = useRecoilState(container_list_modify_atom);
+  const [containerListModify, setContainerListModify] = useRecoilState(
+    container_list_modify_atom
+  );
   const [portfolioModifyArr, setPortfolioModifyArr] =
     useRecoilState(portfolioModifyList);
 
   useEffect(() => {
-    setContainerListModify(portfolioModifyArr.container_list)
-  }, [portfolioModifyArr.container_list, setContainerListModify])
+    setContainerListModify(portfolioModifyArr.container_list);
+  }, []);
 
   useEffect(() => {
     setPortfolioModifyArr({
       ...portfolioModifyArr,
       container_list: containerListModify,
     });
-  }, [containerListModify, portfolioModifyArr, setPortfolioModifyArr]);
+  }, [containerListModify]);
 
   const addContainerListItem = () => {
     // 컨테이너를 추가하는 함수

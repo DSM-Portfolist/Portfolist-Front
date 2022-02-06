@@ -1,4 +1,3 @@
-import React from "react";
 import { Logo } from "../../../../util/assets";
 import { Container } from "../style";
 import styled from "@emotion/styled";

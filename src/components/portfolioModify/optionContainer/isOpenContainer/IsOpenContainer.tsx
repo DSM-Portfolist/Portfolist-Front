@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { portfolioModifyList } from "../../../../modules/atom/portfolioModify";
 import * as S from "./style";
@@ -13,7 +14,7 @@ const IsOpenContainer = () => {
       ...portfolioModifyArr,
       open: isClick,
     });
-  }, [isClick, portfolioModifyArr, setPortfolioModifyArr]);
+  }, [isClick]);
 
   const toggleButton = () => {
     if (isClick) {

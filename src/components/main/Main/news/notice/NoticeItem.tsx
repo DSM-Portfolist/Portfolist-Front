@@ -1,4 +1,3 @@
-import React from "react";
 import { NoticeMent } from "../../../../../hook/noticeMentHook";
 import { NewIcon } from "../../../../../util/assets";
 import * as S from "./style";
