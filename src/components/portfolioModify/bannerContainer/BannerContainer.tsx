@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
@@ -26,7 +27,7 @@ const BannerContainer = () => {
       ...portfolioModifyArr,
       thumbnail: bannerImg.thumbnail,
     });
-  }, [bannerImg, portfolioModifyArr, setPortfolioModifyArr]);
+  }, [bannerImg]);
 
   const onChangeFileHanddler = (e: any) => {
     let file = e.target.files[0];

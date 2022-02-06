@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import * as S from "./style";
 import ImageWrapper from "./imageWrapper/ImageWrapper";
@@ -16,14 +17,14 @@ const ImageContainerList = () => {
 
   useEffect(() => {
     setContainerListModify(portfolioModifyArr.container_list)
-  }, [portfolioModifyArr.container_list, setContainerListModify])
+  }, [])
 
   useEffect(() => {
     setPortfolioModifyArr({
       ...portfolioModifyArr,
       container_list: containerListModify,
     });
-  }, [containerListModify, portfolioModifyArr, setPortfolioModifyArr]);
+  }, [containerListModify]);
 
   const addContainerListItem = () => {
     // 컨테이너를 추가하는 함수
