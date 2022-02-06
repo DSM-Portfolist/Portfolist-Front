@@ -105,19 +105,13 @@ const PortfolioModify = () => {
       <ToastContainer />
       <S.MainContainer>
         <PrecautionsContainer /> {/* 주의사항을 적는 Text 컴포넌트 */}
-        <OptionContainer /> {/* 분야랑 공개 비공개 설정 컴포넌트 */}{" "}
-        {/* 수정 완료 */}
-        <TitleContainer /> {/* 제목 컴포넌트 */} {/* 수정 완료 */}
-        <MoreInfoContainer /> {/*이메일이나 깃허브 넣는 컴포넌트*/}{" "}
-        {/* 수정 완료 */}
-        <ImageContainerList /> {/* 자신의 경험을 넣을 수 있는 이미지 리스트 */}{" "}
-        {/* 수정 완료 */}
-        <LicenseContainer /> {/* 자격증을 넣을 수 있는 리스트 */}{" "}
-        {/* 수정 완료 */}
-        <FileLinkContainer /> {/*파일이나 링크를 넣을 수 있는 컴포넌트 */}{" "}
-        {/* 수정 완료 */}
-        <BannerContainer /> {/* 이미지 배너 선택하는 컴포넌트 */}{" "}
-        {/* 수정 완료 */}
+        <OptionContainer /> {/* 분야랑 공개 비공개 설정 컴포넌트 */}
+        <TitleContainer /> {/* 제목 컴포넌트 */}
+        <MoreInfoContainer /> {/*이메일이나 깃허브 넣는 컴포넌트*/}
+        <ImageContainerList /> {/* 자신의 경험을 넣을 수 있는 이미지 리스트 */}
+        <LicenseContainer /> {/* 자격증을 넣을 수 있는 리스트 */}
+        <FileLinkContainer /> {/*파일이나 링크를 넣을 수 있는 컴포넌트 */}
+        <BannerContainer /> {/* 이미지 배너 선택하는 컴포넌트 */}
         <S.FinshButton onClick={portfolioSubmit}>수정완료</S.FinshButton>
       </S.MainContainer>
       <Footer />
