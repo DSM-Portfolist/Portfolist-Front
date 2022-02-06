@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { Footer, Header } from "..";
 import * as S from "./style";
@@ -9,7 +10,7 @@ import BannerContainer from "./bannerContainer/BannerContainer";
 import FileLinkContainer from "./fileLinkContainer/FileLinkContainer";
 import PrecautionsContainer from "./precautionsContainer/PrecautionsContainer";
 import { useRecoilState } from "recoil";
-import { portfolioModifyList } from "../../modules/atom/portfolioModify/index";
+import {  portfolioModifyList } from "../../modules/atom/portfolioModify/index";
 import { portfolioModifySubmit } from "../../util/api/portfolio/portfolioModify";
 import OptionContainer from "./optionContainer/OptionContainer";
 import { ToastError, ToastSuccess } from "../../hook/toastHook";
@@ -17,54 +18,67 @@ import { useHistory, useLocation } from "react-router";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getPortfolio } from "../../util/api/portfolio/portfolio";
+import QueryString from "query-string";
 
 interface stateType {
   portfolioID: number;
 }
 
 const PortfolioModify = () => {
-  const [portfolioModifyArr, setPortfolioModifyArr] =
-    useRecoilState(portfolioModifyList);
+  const [portfolioModifyArr, setPortfolioModifyArr] = useRecoilState(portfolioModifyList);
 
   const history = useHistory();
   const location = useLocation<stateType>();
+  const query = QueryString.parse(location.search);
 
   useEffect(() => {
-    const getPortfolioData = (id: number) => {
-      getPortfolio(id)
-        .then((res) => {
-          const {
-            title,
-            introduce,
-            field,
-            more_info,
-            container_list,
-            certificate_container_list,
-            link,
-            file,
-          } = res.data;
-          setPortfolioModifyArr({
-            ...portfolioModifyArr,
-            title: title,
-            introduce: introduce,
-            field: field.map((value: string) => {
-              return fieldToId(value);
-            }),
-            more_info: more_info,
-            container_list: container_list,
-            certificate_container_list: certificate_container_list,
-            link: link,
-            file: file,
-            thumbnail: "",
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+    console.log(portfolioModifyArr);
+  },[portfolioModifyArr])
 
-    getPortfolioData(location.state.portfolioID);
-  }, [location.state.portfolioID, portfolioModifyArr, setPortfolioModifyArr]);
+  const getPortfolioData = (id: number) => {
+    getPortfolio(id)
+      .then((res) => {
+        const {
+          title,
+          introduce,
+          field,
+          more_info,
+          container_list,
+          link,
+          file,
+        } = res.data;
+        let { certificate_container_list } = res.data
+
+        certificate_container_list = certificate_container_list.map((value:any,index:number) => {
+          if(value.certificate_list.length <= 0) {
+            return { title:value.title, certificate_list: [""] }
+          } else {
+            return value
+          }
+        })
+        
+        setPortfolioModifyArr({
+          ...portfolioModifyArr,
+          title: title,
+          introduce: introduce,
+          field: field.map((value: string) => {
+            return fieldToId(value);
+          }),
+          more_info: more_info,
+          container_list: container_list,
+          certificate_container_list: certificate_container_list,
+          link: link,
+          file: file,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getPortfolioData(Number(query.id));
+  }, []);
 
   const fieldToId = (fieldName: string) => {
     switch (fieldName) {
