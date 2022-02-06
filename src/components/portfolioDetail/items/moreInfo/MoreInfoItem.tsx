@@ -1,4 +1,3 @@
-import React from "react";
 import { MoreInfoType } from "../../../../util/interface/portfolio/portfolioDetailType";
 import * as S from "./style";
 

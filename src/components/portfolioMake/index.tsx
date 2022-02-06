@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Footer, Header } from "..";
 import * as S from "./style";
 import TitleContainer from "./titleContainer/TitleContainer";
@@ -34,10 +33,6 @@ const PortfolioMake = () => {
         console.log(err);
       });
   };
-
-  useEffect(() => {
-    console.log(portfolioMakeArr);
-  }, [portfolioMakeArr]);
 
   return (
     <>

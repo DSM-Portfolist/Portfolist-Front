@@ -1,4 +1,3 @@
-import React from "react";
 import { CloseIcon } from "../../../../util/assets";
 import * as S from "./style";
 
@@ -10,7 +9,6 @@ interface Props {
 
 const FieldItemBox = ({ field, setTextList, textList }: Props) => {
   function UseFieldDelete(txt: string) {
-    console.log(textList);
     setTextList(textList?.filter((field: string) => field !== txt));
   }
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { useRecoilState } from "recoil";
 import { commentReoprt } from "../../../modules/atom/portfolio/comment";
 import { Logo } from "../../../util/assets";

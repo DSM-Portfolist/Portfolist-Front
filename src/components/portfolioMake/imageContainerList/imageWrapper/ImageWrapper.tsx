@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import * as S from "./style";
 import { imageListType } from "../../../../util/interface/portfolio/portfolioMakeType";
@@ -16,30 +17,28 @@ const ImageWrapper = ({ identity }: any) => {
     { isInFile: false, index: 0 + jbRandom },
   ]);
 
-  useEffect(() => {
-    function addImageContainer(res: string, isComponentMounted: boolean) {
-      //서버에게 post할때 보낼 이미지 리스트 추가
-      console.log(res);
-      if (isComponentMounted) {
-        setContainerList(
-          containerList.map((value: any, i: number) => {
-            if (i === identity) {
-              return {
-                ...value,
-                container_img_list: value.container_img_list.concat(
-                  String(res)
-                ),
-              };
-            } else {
-              return value;
-            }
-          })
-        );
-      } else {
-        return;
-      }
+  function addImageContainer(res: string, isComponentMounted: boolean) {
+    //서버에게 post할때 보낼 이미지 리스트 추가
+    console.log(res);
+    if (isComponentMounted) {
+      setContainerList(
+        containerList.map((value: any, i: number) => {
+          if (i === identity) {
+            return {
+              ...value,
+              container_img_list: value.container_img_list.concat(String(res)),
+            };
+          } else {
+            return value;
+          }
+        })
+      );
+    } else {
+      return;
     }
+  }
 
+  useEffect(() => {
     let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
     if (imageFile.length !== 0) {
       imgFile(imageFile)
@@ -52,7 +51,7 @@ const ImageWrapper = ({ identity }: any) => {
     } else {
       return;
     }
-  }, [containerList, identity, imageFile, setContainerList]);
+  }, [imageFile]);
 
   const updateFieldChanged = (item: boolean, index: number) => {
     //isInFile boolean 함수 변경
@@ -108,9 +107,7 @@ const ImageWrapper = ({ identity }: any) => {
       setContainerList(
         //제작에 올라갈 이미지 리스트 삭제
         containerList.map((item: any, i: number) => {
-          console.log(i, index);
           if (i === identity) {
-            console.log(item);
             let newList = item.container_img_list.filter(
               (value: any, filter_index: number) => {
                 return filter_index !== index;
@@ -121,7 +118,6 @@ const ImageWrapper = ({ identity }: any) => {
               container_img_list: newList,
             };
           } else {
-            console.log("else");
             return item;
           }
         })

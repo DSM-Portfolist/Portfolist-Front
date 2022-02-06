@@ -55,7 +55,9 @@ const Title = () => {
       </TitleInfo>
       {portfolioValue?.mine ? (
         <ModifyWrap>
-          <button>포트폴리오 수정</button>
+          <button onClick={() => { push(`/portfolio-modify?id=${portfolioValue.portfolio_id}`)}}>
+            포트폴리오 수정
+          </button>
           <button
             onClick={() => deletePortfolioHandler(portfolioValue?.portfolio_id)}
           >

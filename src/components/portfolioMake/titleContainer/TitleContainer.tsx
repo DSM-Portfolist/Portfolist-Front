@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useCallback } from "react";
 import * as S from "./style";
 import { InputIsNullType } from "../../../util/interface/portfolio/portfolioMakeType";
 import { useRecoilState } from "recoil";
@@ -14,12 +15,21 @@ const TitleContainer = () => {
   const [title, setTitle] = useState<string>("");
   const [introduce, setIntroduce] = useState<string>("");
 
-  useEffect(() => {
+  const setApiTitleData = useCallback(() => {
     setPortfolioMakeArr({ ...portfolioMakeArr, title: title });
-  }, [portfolioMakeArr, setPortfolioMakeArr, title]);
-  useEffect(() => {
+  }, [title]);
+
+  const setApiIntroduceData = useCallback(() => {
     setPortfolioMakeArr({ ...portfolioMakeArr, introduce: introduce });
-  }, [introduce, portfolioMakeArr, setPortfolioMakeArr]);
+  }, [introduce]);
+
+  useEffect(() => {
+    setApiTitleData();
+  }, [setApiTitleData]);
+
+  useEffect(() => {
+    setApiIntroduceData();
+  }, [setApiIntroduceData]);
 
   const handlerOnChange = (e: any) => {
     const { name, value } = e.target;

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useRecoilState } from "recoil";
 import { Header } from "../../..";
 import { userInfoValue } from "../../../../modules/selector/user";

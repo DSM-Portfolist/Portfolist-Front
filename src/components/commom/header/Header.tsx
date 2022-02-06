@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, withRouter, useHistory } from "react-router-dom";
 import { Logo, Magnifier } from "../../../util/assets";
 import * as S from "./style";

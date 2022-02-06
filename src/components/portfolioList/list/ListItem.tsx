@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useMutation } from "react-query";
 import { Link, useHistory } from "react-router-dom";
 import * as S from "./style";

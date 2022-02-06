@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { MinusButton } from "../../../../util/assets";
 import * as S from "./style";
 import { ToastError } from "../../../../hook/toastHook";
@@ -11,10 +10,6 @@ const ContentWrapper = (props: any) => {
   const { parent_index } = props;
   const [containerList, setContainerList] = useRecoilState(container_list_atom);
 
-  useEffect(() => {
-    console.log(containerList);
-  }, [containerList]);
-
   const onChangeContainerTextList = (
     e: any,
     parent_index: number,
@@ -23,7 +18,6 @@ const ContentWrapper = (props: any) => {
     const { name, value } = e.target;
     setContainerList(
       containerList.map((item: any, i: number) => {
-        console.log(item);
         if (parent_index === i) {
           let newList = containerList[parent_index].container_text_list.map(
             (child_item: any, child_index: number) => {
