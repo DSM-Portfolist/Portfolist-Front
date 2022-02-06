@@ -1,4 +1,3 @@
-import React from "react";
 import { DefaultProfile } from "../../../util/assets";
 import { UserInfoType } from "../../../util/interface/user";
 import * as S from "./style";

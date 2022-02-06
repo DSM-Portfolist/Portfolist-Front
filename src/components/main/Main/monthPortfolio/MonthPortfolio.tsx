@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { monthPortfolioSelector } from "../../../../modules/selector/mainpage";

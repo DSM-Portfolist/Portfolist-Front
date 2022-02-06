@@ -30,8 +30,7 @@ const FieldItemWrapper = () => {
     if (selectIdList.length !== 3) {
       if (!selectIdList.includes(value)) {
         setSelectIdList([...selectIdList, value]);
-      }
-      else{
+      } else {
         ToastError("같은 분야를 2개 이상 등록할 수 없습니다.");
       }
     } else {

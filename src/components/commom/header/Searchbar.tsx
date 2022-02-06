@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { Magnifier } from "../../../util/assets";
 import { searchValue } from "../../../modules/atom/portfolio/search/index";

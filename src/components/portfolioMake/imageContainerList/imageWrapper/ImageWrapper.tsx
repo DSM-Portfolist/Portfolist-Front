@@ -26,9 +26,7 @@ const ImageWrapper = ({ identity }: any) => {
           if (i === identity) {
             return {
               ...value,
-              container_img_list: value.container_img_list.concat(
-                String(res)
-              ),
+              container_img_list: value.container_img_list.concat(String(res)),
             };
           } else {
             return value;
@@ -39,7 +37,6 @@ const ImageWrapper = ({ identity }: any) => {
       return;
     }
   }
-
 
   useEffect(() => {
     let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값

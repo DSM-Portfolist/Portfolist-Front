@@ -21,10 +21,10 @@ const MoreInfoContainer = () => {
       ...portfolioMakeArr,
       more_info: more_info,
     });
-  },[more_info])
+  }, [more_info]);
 
   useEffect(() => {
-    setApiMoreInfoData()
+    setApiMoreInfoData();
   }, [setApiMoreInfoData]);
 
   const handlerOnChange = (e: any, index: number) => {

@@ -27,10 +27,10 @@ const BannerContainer = () => {
       ...portfolioMakeArr,
       thumbnail: bannerImg.thumbnail,
     });
-  }, [bannerImg.thumbnail])
+  }, [bannerImg.thumbnail]);
 
   useEffect(() => {
-    setApiThumbnailData()
+    setApiThumbnailData();
   }, [setApiThumbnailData]);
 
   const onChangeFileHanddler = (e: any) => {

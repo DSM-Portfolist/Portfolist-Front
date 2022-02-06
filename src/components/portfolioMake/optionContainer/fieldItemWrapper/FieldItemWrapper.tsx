@@ -19,10 +19,10 @@ const FieldItemWrapper = () => {
       ...portfolioMakeArr,
       field: selectIdList,
     });
-  }, [selectIdList])
+  }, [selectIdList]);
 
   useEffect(() => {
-    setApiData()
+    setApiData();
   }, [setApiData]);
 
   const handleSelect = (e: any) => {

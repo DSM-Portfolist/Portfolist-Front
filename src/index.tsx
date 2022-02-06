@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import ReactDOM from "react-dom";
 import { BarLoader } from "react-spinners";
 import { RecoilRoot } from "recoil";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import * as S from "../../../../util/css/mypage/mypage/mypageModify/style";
 import FieldItemBox from "./FieldItemBox";
 import { ToastContainer } from "react-toastify";

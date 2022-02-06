@@ -25,21 +25,21 @@ const FileLinkContainer = () => {
       ...portfolioMakeArr,
       link: linkInputName,
     });
-  },[linkInputName])
+  }, [linkInputName]);
 
   const setApiFileResponse = useCallback(() => {
     setPortfolioMakeArr({
       ...portfolioMakeArr,
       file: fileResponse,
     });
-  },[fileResponse])
+  }, [fileResponse]);
 
   useEffect(() => {
-    setApiLinkInputName()
+    setApiLinkInputName();
   }, [setApiLinkInputName]);
 
   useEffect(() => {
-    setApiFileResponse()
+    setApiFileResponse();
   }, [setApiFileResponse]);
 
   const onChangeFileHanddler = (e: any) => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import * as S from "./style";
 import { Search, ListItem } from "../..";
 import { PortListType } from "../../../util/interface/portfolio/portListType";

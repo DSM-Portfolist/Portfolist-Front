@@ -17,11 +17,11 @@ const TitleContainer = () => {
 
   const setApiTitleData = useCallback(() => {
     setPortfolioMakeArr({ ...portfolioMakeArr, title: title });
-  }, [title])
-  
+  }, [title]);
+
   const setApiIntroduceData = useCallback(() => {
     setPortfolioMakeArr({ ...portfolioMakeArr, introduce: introduce });
-  }, [introduce])
+  }, [introduce]);
 
   useEffect(() => {
     setApiTitleData();

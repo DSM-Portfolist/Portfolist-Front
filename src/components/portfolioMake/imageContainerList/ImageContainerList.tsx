@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import  { useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import * as S from "./style";
 import ImageWrapper from "./imageWrapper/ImageWrapper";
 import ContentWrapper from "./contentWrapper/ContentWrapper";
@@ -18,15 +18,15 @@ const ImageContainerList = () => {
   const [portfolioMakeArr, setPortfolioMakeArr] =
     useRecoilState(portfolioMakeList);
 
-  const setApiContainerListData = useCallback(()=>{
+  const setApiContainerListData = useCallback(() => {
     setPortfolioMakeArr({
       ...portfolioMakeArr,
       container_list: containerList,
     });
-  },[containerList])
+  }, [containerList]);
 
   useEffect(() => {
-    setApiContainerListData()
+    setApiContainerListData();
   }, [setApiContainerListData]);
 
   const addContainerListItem = () => {

@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
 import { Link } from "react-router-dom";
 import { DateSplitHook } from "../../../hook/dateSplitHook";
 import { ProfileImage } from "../../../hook/profileImg";

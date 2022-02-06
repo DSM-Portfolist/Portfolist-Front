@@ -10,7 +10,7 @@ import BannerContainer from "./bannerContainer/BannerContainer";
 import FileLinkContainer from "./fileLinkContainer/FileLinkContainer";
 import PrecautionsContainer from "./precautionsContainer/PrecautionsContainer";
 import { useRecoilState } from "recoil";
-import {  portfolioModifyList } from "../../modules/atom/portfolioModify/index";
+import { portfolioModifyList } from "../../modules/atom/portfolioModify/index";
 import { portfolioModifySubmit } from "../../util/api/portfolio/portfolioModify";
 import OptionContainer from "./optionContainer/OptionContainer";
 import { ToastError, ToastSuccess } from "../../hook/toastHook";
@@ -25,15 +25,12 @@ interface stateType {
 }
 
 const PortfolioModify = () => {
-  const [portfolioModifyArr, setPortfolioModifyArr] = useRecoilState(portfolioModifyList);
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+    useRecoilState(portfolioModifyList);
 
   const history = useHistory();
   const location = useLocation<stateType>();
   const query = QueryString.parse(location.search);
-
-  useEffect(() => {
-    console.log(portfolioModifyArr);
-  },[portfolioModifyArr])
 
   const getPortfolioData = (id: number) => {
     getPortfolio(id)
@@ -47,16 +44,18 @@ const PortfolioModify = () => {
           link,
           file,
         } = res.data;
-        let { certificate_container_list } = res.data
+        let { certificate_container_list } = res.data;
 
-        certificate_container_list = certificate_container_list.map((value:any,index:number) => {
-          if(value.certificate_list.length <= 0) {
-            return { title:value.title, certificate_list: [""] }
-          } else {
-            return value
+        certificate_container_list = certificate_container_list.map(
+          (value: any, index: number) => {
+            if (value.certificate_list.length <= 0) {
+              return { title: value.title, certificate_list: [""] };
+            } else {
+              return value;
+            }
           }
-        })
-        
+        );
+
         setPortfolioModifyArr({
           ...portfolioModifyArr,
           title: title,
@@ -100,7 +99,7 @@ const PortfolioModify = () => {
   };
 
   const portfolioSubmit = () => {
-    portfolioModifySubmit(portfolioModifyArr, location.state.portfolioID) //location id 두 번째 파라미터에 추가하기
+    portfolioModifySubmit(portfolioModifyArr, Number(query.id)) //location id 두 번째 파라미터에 추가하기
       .then(() => {
         ToastSuccess("포트폴리오가 수정되었습니다.");
         setTimeout(() => {

@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 import { center } from "../../../util/css/mypage/mypage/style";

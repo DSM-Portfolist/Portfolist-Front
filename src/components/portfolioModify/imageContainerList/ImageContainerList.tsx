@@ -5,19 +5,24 @@ import ImageWrapper from "./imageWrapper/ImageWrapper";
 import ContentWrapper from "./contentWrapper/ContentWrapper";
 import { MinusButton } from "../../../util/assets";
 import { useRecoilState } from "recoil";
-import { portfolioModifyList, container_list_modify_atom } from "../../../modules/atom/portfolioModify";
+import {
+  portfolioModifyList,
+  container_list_modify_atom,
+} from "../../../modules/atom/portfolioModify";
 import { ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ImageContainerList = () => {
-  const [containerListModify, setContainerListModify] = useRecoilState(container_list_modify_atom);
+  const [containerListModify, setContainerListModify] = useRecoilState(
+    container_list_modify_atom
+  );
   const [portfolioModifyArr, setPortfolioModifyArr] =
     useRecoilState(portfolioModifyList);
 
   useEffect(() => {
-    setContainerListModify(portfolioModifyArr.container_list)
-  }, [])
+    setContainerListModify(portfolioModifyArr.container_list);
+  }, []);
 
   useEffect(() => {
     setPortfolioModifyArr({
