@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { getFieldSelector } from "../../../../modules/atom/portfolio";
 import { CloseIcon } from "../../../../util/assets";
 import { ToastError } from "../../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as S from "./style";
 import { portfolioModifyList } from "../../../../modules/atom/portfolioModify";
@@ -15,15 +14,15 @@ const FieldItemWrapper = () => {
   const [selectIdList, setSelectIdList] = useState<number[]>([]);
 
   useEffect(() => {
-    setSelectIdList(portfolioModifyArr.field)
-  }, [])
+    setSelectIdList(portfolioModifyArr.field);
+  }, [portfolioModifyArr.field]);
 
   useEffect(() => {
     setPortfolioModifyArr({
       ...portfolioModifyArr,
       field: selectIdList,
     });
-  }, [selectIdList]);
+  }, [portfolioModifyArr, selectIdList, setPortfolioModifyArr]);
 
   const handleSelect = (e: any) => {
     const { value } = e.target;
