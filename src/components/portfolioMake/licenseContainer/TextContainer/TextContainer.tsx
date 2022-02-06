@@ -124,8 +124,8 @@ const TextContainer = (props: any) => {
             <>
               {certificate_list?.map((item: any, i: number) => {
                 return (
-                  <div className="infoContainer">
-                    <S.InputBox key={i}>
+                  <div className="infoContainer" key={i}>
+                    <S.InputBox>
                       <input
                         id="inputContent"
                         onChange={(e) => {
