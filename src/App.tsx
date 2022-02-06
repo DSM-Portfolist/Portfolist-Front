@@ -9,6 +9,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 function App() {
   const queryClient = new QueryClient();
 
+  console.log(process.env.REACT_APP_API_URL);
+
   return (
     <>
       <QueryClientProvider client={queryClient}>
