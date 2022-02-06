@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import * as S from "./style";
 import { imageListType } from "../../../../util/interface/portfolio/portfolioMakeType";
@@ -16,30 +17,31 @@ const ImageWrapper = ({ identity }: any) => {
     { isInFile: false, index: 0 + jbRandom },
   ]);
 
-  useEffect(() => {
-    function addImageContainer(res: string, isComponentMounted: boolean) {
-      //서버에게 post할때 보낼 이미지 리스트 추가
-      console.log(res);
-      if (isComponentMounted) {
-        setContainerList(
-          containerList.map((value: any, i: number) => {
-            if (i === identity) {
-              return {
-                ...value,
-                container_img_list: value.container_img_list.concat(
-                  String(res)
-                ),
-              };
-            } else {
-              return value;
-            }
-          })
-        );
-      } else {
-        return;
-      }
+  function addImageContainer(res: string, isComponentMounted: boolean) {
+    //서버에게 post할때 보낼 이미지 리스트 추가
+    console.log(res);
+    if (isComponentMounted) {
+      setContainerList(
+        containerList.map((value: any, i: number) => {
+          if (i === identity) {
+            return {
+              ...value,
+              container_img_list: value.container_img_list.concat(
+                String(res)
+              ),
+            };
+          } else {
+            return value;
+          }
+        })
+      );
+    } else {
+      return;
     }
+  }
 
+
+  useEffect(() => {
     let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
     if (imageFile.length !== 0) {
       imgFile(imageFile)
@@ -52,7 +54,7 @@ const ImageWrapper = ({ identity }: any) => {
     } else {
       return;
     }
-  }, [containerList, identity, imageFile, setContainerList]);
+  }, [imageFile]);
 
   const updateFieldChanged = (item: boolean, index: number) => {
     //isInFile boolean 함수 변경
