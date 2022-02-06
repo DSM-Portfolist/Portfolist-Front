@@ -103,7 +103,7 @@ const TextContainer = (props: any) => {
         return (
           <S.MapWrapper key={index}>
             <ToastContainer />
-            <S.TitleWrapper>
+            <S.TitleWrapper key={index} >
               <input
                 type="text"
                 placeholder="제목을 입력해 주세요."
