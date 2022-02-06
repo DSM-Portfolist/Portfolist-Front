@@ -55,7 +55,12 @@ const Title = () => {
       </TitleInfo>
       {portfolioValue?.mine ? (
         <ModifyWrap>
-          <button>포트폴리오 수정</button>
+          <Link to={{
+            pathname: `portfolio-modify/${portfolioValue.portfolio_id}`,
+            state: { portfolioID: portfolioValue.portfolio_id}
+          }}>
+            <button>포트폴리오 수정</button>
+          </Link>
           <button
             onClick={() => deletePortfolioHandler(portfolioValue?.portfolio_id)}
           >
