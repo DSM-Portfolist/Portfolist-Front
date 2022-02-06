@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useCallback } from "react";
 import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";
@@ -21,12 +22,16 @@ const BannerContainer = () => {
     }
   }, [bannerImg]);
 
-  useEffect(() => {
+  const setApiThumbnailData = useCallback(() => {
     setPortfolioMakeArr({
       ...portfolioMakeArr,
       thumbnail: bannerImg.thumbnail,
     });
-  }, [bannerImg, portfolioMakeArr, setPortfolioMakeArr]);
+  }, [bannerImg.thumbnail])
+
+  useEffect(() => {
+    setApiThumbnailData()
+  }, [setApiThumbnailData]);
 
   const onChangeFileHanddler = (e: any) => {
     let file = e.target.files[0];
