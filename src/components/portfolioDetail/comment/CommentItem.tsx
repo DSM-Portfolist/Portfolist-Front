@@ -3,32 +3,36 @@ import { DefaultProfile } from "../../../util/assets";
 import * as S from "./style";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
 import { deleteComment } from "../../../util/api/portfolio/comment";
-import { ToastSuccess } from "../../../hook/toastHook";
+import { ToastError, ToastSuccess } from "../../../hook/toastHook";
 import ReComment from "./reComment/ReComment";
 import { useSetRecoilState } from "recoil";
 import { commentReoprt } from "../../../modules/atom/portfolio/comment";
 import { Link } from "react-router-dom";
+import { useMutation, useQueryClient } from "react-query";
 
 interface Props {
   comment: CommentType;
   portfolioId: number;
-  getTest: () => void;
 }
 
-const CommentItem = ({ comment, getTest }: Props) => {
-  const setReportCommentModal = useSetRecoilState(commentReoprt);
+const CommentItem = ({ comment }: Props) => {
+  const queryClient = useQueryClient();
   const [toggle, setToggle] = useState<boolean>(false);
+  const setReportCommentModal = useSetRecoilState(commentReoprt);
 
-  const CommentDelete = (id: number) => {
-    deleteComment(id)
-      .then(() => {
+  const { mutate: deleteComments } = useMutation(
+    (id: number) => deleteComment(id),
+    {
+      onSuccess: () => {
         ToastSuccess("댓글이 삭제되었습니다.");
-        getTest();
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+
+        queryClient.invalidateQueries("comment");
+      },
+      onError: () => {
+        ToastError("댓글 삭제 요청에 실패했습니다.");
+      },
+    }
+  );
 
   return (
     <S.CommentItemWrapper>
@@ -61,7 +65,7 @@ const CommentItem = ({ comment, getTest }: Props) => {
         </S.Content>
         <S.Util>
           {comment?.mine && (
-            <span onClick={() => CommentDelete(comment.comment_id)}>삭제</span>
+            <span onClick={() => deleteComments(comment.comment_id)}>삭제</span>
           )}
           <span onClick={() => setReportCommentModal(true)}>신고</span>
         </S.Util>
