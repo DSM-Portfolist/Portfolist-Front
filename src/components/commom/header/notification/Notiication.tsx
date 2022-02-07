@@ -1,10 +1,15 @@
 import { useEffect, useCallback, useState } from "react";
+import { useQuery } from "react-query";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { notiBox } from "../../../../modules/atom/header";
 import { isNotificationDone } from "../../../../modules/atom/mypage/mypage";
 import { notificationSelector } from "../../../../modules/selector/user";
-import { getNotificationStatus } from "../../../../util/api/mypage";
+import {
+  getNotification,
+  getNotificationStatus,
+} from "../../../../util/api/mypage";
 import { NoNotification, Notification } from "../../../../util/assets";
+import { notificationType } from "../../../../util/interface/main/portfolio";
 import NotiItem from "./NotiItem";
 import * as S from "./style";
 
@@ -47,12 +52,12 @@ const Notiication = () => {
             onMouseOver={() => setNoti(true)}
             onMouseOut={() => setNoti(false)}
           >
-            {notification?.length === 0 ? (
+            {notification.length === 0 ? (
               <div className="notification-none">알림이 없습니다.</div>
             ) : (
               <>
-                {notification?.map((item, index) => (
-                  <NotiItem key={index} name={item.name} type={item.type} />
+                {notification.map((item: notificationType) => (
+                  <NotiItem key={item.id} name={item.name} type={item.type} />
                 ))}
               </>
             )}
