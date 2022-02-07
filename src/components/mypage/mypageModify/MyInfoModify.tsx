@@ -1,33 +1,26 @@
 import {
   MainWrapper,
   FieldWrapper,
-} from "../../../../util/css/mypage/mypage/mypageModify/style";
-import { ModifyPensil } from "../../../../util/assets/index";
+} from "../../../util/css/mypage/mypage/mypageModify/style";
+import { ModifyPensil } from "../../../util/assets/index";
 import MyInfoModifyDetail from "./MyInfoModifyDetail";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { userInfoValue } from "../../../../modules/selector/user";
-import { isModifyModal } from "../../../../modules/atom/mypage";
-import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { isModifyModal } from "../../../modules/atom/mypage";
 import styled from "@emotion/styled";
-import { mainColor } from "../../../../util/css/color/color";
+import { mainColor } from "../../../util/css/color/color";
 
-const MyInfoModify = ({ getUserInfo }: any) => {
+const MyInfoModify = ({ user }: any) => {
   const [isModify, setIsModify] = useRecoilState(isModifyModal);
-  const userInfo = useRecoilValue(userInfoValue);
-
-  useEffect(() => {
-    getUserInfo();
-  }, [getUserInfo]);
 
   return (
     <>
       {!isModify ? (
         <MainWrapper>
-          <h1>{userInfo?.name}</h1>
-          <p>{userInfo?.introduce}</p>
+          <h1>{user?.name}</h1>
+          <p>{user?.introduce}</p>
           <FieldWrapper>
             <span>분야</span>
-            {userInfo?.field?.map((field, index) => (
+            {user?.field?.map((field: string, index: number) => (
               <FieldItem key={index}>{field}</FieldItem>
             ))}
           </FieldWrapper>
@@ -40,7 +33,7 @@ const MyInfoModify = ({ getUserInfo }: any) => {
           />
         </MainWrapper>
       ) : (
-        <MyInfoModifyDetail getUserInfo={getUserInfo} />
+        <MyInfoModifyDetail user={user} />
       )}
     </>
   );

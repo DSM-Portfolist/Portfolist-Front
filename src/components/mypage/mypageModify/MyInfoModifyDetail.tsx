@@ -1,37 +1,40 @@
 import { useState } from "react";
-import * as S from "../../../../util/css/mypage/mypage/mypageModify/style";
+import * as S from "../../../util/css/mypage/mypage/mypageModify/style";
 import FieldItemBox from "./FieldItemBox";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
-import { FieldType } from "../../../../util/interface/Sign/loginType";
-import { patchUserInfo } from "../../../../util/api/mypage";
+import { ToastError, ToastSuccess } from "../../../hook/toastHook";
+import { FieldType } from "../../../util/interface/Sign/loginType";
+import { patchUserInfo } from "../../../util/api/mypage";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { getFieldSelector } from "../../../../modules/atom/portfolio";
-import { isModifyModal } from "../../../../modules/atom/mypage";
-import { userInfoValue } from "../../../../modules/selector/user";
-import { myIntroduce, myName } from "../../../../modules/atom/mypage/mypage";
+import { getFieldSelector } from "../../../modules/atom/portfolio";
+import { isModifyModal } from "../../../modules/atom/mypage";
+import { myIntroduce, myName } from "../../../modules/atom/mypage/mypage";
+import { useMutation, useQueryClient } from "react-query";
 
-const MyInfoModifyDetail = ({ getUserInfo }: any) => {
+const MyInfoModifyDetail = ({ user }: any) => {
+  const queryClient = useQueryClient();
+
   const [selectIdArr, setSelectIdArr] = useState<number[]>([]);
-  const userInfo = useRecoilValue(userInfoValue);
   const fieldList = useRecoilValue(getFieldSelector);
   const setIsModify = useSetRecoilState(isModifyModal);
   const [name, setName] = useRecoilState(myName);
   const [introduce, setIntroduce] = useRecoilState(myIntroduce);
 
-  const patchUserInfoHandler = () => {
-    patchUserInfo(selectIdArr, name, introduce)
-      .then(() => {
+  const { mutate: patchProfile } = useMutation(
+    () => patchUserInfo(selectIdArr, name, introduce),
+    {
+      onSuccess: () => {
         ToastSuccess("프로필이 수정되었습니다.");
-        getUserInfo();
         setIsModify(false);
-      })
-      .catch((e) => {
+
+        queryClient.invalidateQueries("user");
+      },
+      onError: () => {
         ToastError("정보를 다시 확인해주세요");
-        throw e;
-      });
-  };
+      },
+    }
+  );
 
   const fieldSelectHandler = (e: any) => {
     const { value } = e.target;
@@ -53,14 +56,14 @@ const MyInfoModifyDetail = ({ getUserInfo }: any) => {
           <input
             type="text"
             placeholder="사용하실 닉네임을 입력하세요"
-            defaultValue={userInfo?.name}
+            defaultValue={user?.name}
             name="name"
             onChange={(e: any) => setName(e.target.value)}
           />
           <input
             type="text"
             placeholder="자신을 한줄 소개 해주세요"
-            defaultValue={userInfo?.introduce}
+            defaultValue={user?.introduce}
             name="introduce"
             onChange={(e: any) => setIntroduce(e.target.value)}
           />
@@ -103,7 +106,7 @@ const MyInfoModifyDetail = ({ getUserInfo }: any) => {
           <input
             type="submit"
             value="수정 완료"
-            onClick={() => patchUserInfoHandler()}
+            onClick={() => patchProfile()}
           />
         </S.ButtonContainer>
       </S.ModifyDetailContainer>
