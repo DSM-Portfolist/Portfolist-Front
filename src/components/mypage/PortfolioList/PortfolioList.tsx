@@ -19,7 +19,7 @@ interface Props {
   profileimg: string | undefined;
 }
 
-const PortfolioList = ({
+const PortfolioListItem = ({
   isClickMyPortfolio,
   portfolio,
   profileimg,
@@ -51,4 +51,4 @@ const PortfolioList = ({
   );
 };
 
-export default PortfolioList;
+export default PortfolioListItem;

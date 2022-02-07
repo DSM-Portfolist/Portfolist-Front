@@ -18,7 +18,7 @@ const FilterBar = () => {
           <div className="wrapper">
             <span id="field-text">분야</span>
             <div className="filter-wrap">
-              {selectField?.map((item: any, index: number) => (
+              {selectField?.map((_: any, index: number) => (
                 <FilterItem key={index} />
               ))}
             </div>

@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { mainColor } from "../../../../util/css/color/color";
 import { Link } from "react-router-dom";
 
-const LoginCompontent = () => {
+const loginBeforeItem = () => {
   return (
     <BeforeLoginHeader>
       <Link to="/">
@@ -38,4 +38,4 @@ const BeforeLoginHeader = styled(Container)`
   }
 `;
 
-export default LoginCompontent;
+export default loginBeforeItem;

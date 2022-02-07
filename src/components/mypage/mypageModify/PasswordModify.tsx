@@ -1,20 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
-import { ToastSuccess, ToastError } from "../../../../hook/toastHook";
+import { ToastSuccess, ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   ContentItem,
   ButtonWrapper,
   ChangePasswordWrraper,
-} from "../../../../util/css/mypage/mypage/mypageModify/style";
+} from "../../../util/css/mypage/mypage/mypageModify/style";
 import PasswordChangeBox from "./PasswordChangeBox";
 import {
   PasswordTitle,
   PasswordType,
   PasswordData,
-} from "../../../../util/interface/MyPage/infoChangeType";
-import { patchPassword } from "../../../../util/api/mypage";
+} from "../../../util/interface/MyPage/infoChangeType";
+import { patchPassword } from "../../../util/api/mypage";
 
 const PasswordModify = () => {
   const [isClickPasswordButton, setIsClickPasswordButton] =

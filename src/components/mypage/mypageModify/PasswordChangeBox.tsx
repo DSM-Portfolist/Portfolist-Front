@@ -1,8 +1,8 @@
-import { CloseEye, OpenEye } from "../../../../util/assets";
+import { CloseEye, OpenEye } from "../../../util/assets";
 import {
   ChangePasswordItem,
   PasswordChangeWrapper,
-} from "../../../../util/css/mypage/mypage/mypageModify/style";
+} from "../../../util/css/mypage/mypage/mypageModify/style";
 
 interface Props {
   title: string;

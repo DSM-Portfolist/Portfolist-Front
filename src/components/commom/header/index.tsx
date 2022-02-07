@@ -10,7 +10,7 @@ import { searchValue } from "../../../modules/atom/portfolio/search";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { reload } from "../../../modules/atom/auth";
-import LoginCompontent from "./loginCompontent";
+import LoginCompontent from "./loginBeforeItem";
 
 const Header = () => {
   const [selectText, setSelectText] = useState<boolean>(true);

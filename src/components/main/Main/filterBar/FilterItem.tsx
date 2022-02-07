@@ -1,4 +1,5 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   selectFieldList,
@@ -17,20 +18,12 @@ const FilterItem = () => {
   const [useField, setUseField] = useRecoilState(useFieldValue);
   const [selectField, setSelectField] = useRecoilState(selectFieldList);
   const fieldNum = useRecoilValue(selectFieldNum);
-  const [field, setField] = useState<FieldType[]>();
 
-  useLayoutEffect(() => {
-    const getFieldHandler = async () => {
-      try {
-        const data = await getField();
-        setField(data.data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    getFieldHandler();
-  }, []);
+  const { data: field } = useQuery(["field"], () => getField(), {
+    cacheTime: Infinity,
+    staleTime: Infinity,
+    keepPreviousData: true,
+  });
 
   function UseFieldAdd(field: any) {
     if (selectField.length <= 2) {
@@ -81,7 +74,7 @@ const FilterItem = () => {
             >
               ALL
             </li>
-            {field?.map((field: FieldType) => (
+            {field?.data?.map((field: FieldType) => (
               <li
                 key={field.id}
                 onClick={() => {

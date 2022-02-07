@@ -1,9 +1,9 @@
-import { MainContentWrapper } from "../../../../util/css/mypage/mypage/mypageModify/style";
+import { MainContentWrapper } from "../../../util/css/mypage/mypage/mypageModify/style";
 import PasswordModify from "./PasswordModify";
 import SecessionModify from "./SecessionModify";
 import NotificationModule from "./notificationModule/NotificationModule";
 import { useRecoilValue } from "recoil";
-import { myInfoSelector } from "../../../../modules/selector/user";
+import { myInfoSelector } from "../../../modules/selector/user";
 
 interface Props {
   setModal: any;

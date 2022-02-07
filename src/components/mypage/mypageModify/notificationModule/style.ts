@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { grayColor } from "../../../../../util/css/color/color";
+import { grayColor } from "../../../../util/css/color/color";
 
 interface Props {
   isClick: boolean;

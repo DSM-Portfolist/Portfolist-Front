@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { ToastError, ToastSuccess } from "../../../../../hook/toastHook";
+import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import {
   isNotificationDone,
   notificationIsClick,
   notificationStatus,
-} from "../../../../../modules/atom/mypage/mypage";
-import { putNotification } from "../../../../../util/api/mypage";
+} from "../../../../modules/atom/mypage/mypage";
+import { putNotification } from "../../../../util/api/mypage";
 import * as S from "./style";
 
 const NotificationModule = () => {

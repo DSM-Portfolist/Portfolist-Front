@@ -1,6 +1,6 @@
-import * as S from "../../../../util/css/mypage/mypage/mypageModify/style";
-import { CloseIcon } from "../../../../util/assets";
-import { FieldType } from "../../../../util/interface/Sign/loginType";
+import * as S from "../../../util/css/mypage/mypage/mypageModify/style";
+import { CloseIcon } from "../../../util/assets";
+import { FieldType } from "../../../util/interface/Sign/loginType";
 
 interface Props {
   setSelectIdArr: any;

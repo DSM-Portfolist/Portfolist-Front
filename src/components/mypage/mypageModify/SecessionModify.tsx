@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { ContentItem } from "../../../../util/css/mypage/mypage/mypageModify/style";
+import { ContentItem } from "../../../util/css/mypage/mypage/mypageModify/style";
 
 interface Props {
   setModal: any;
