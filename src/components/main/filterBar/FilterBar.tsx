@@ -1,8 +1,8 @@
 import { useHistory } from "react-router";
 import { useRecoilValue } from "recoil";
-import { selectFieldList } from "../../../../modules/atom/portfolio/main";
-import { useFieldValue } from "../../../../modules/atom/portfolio/search";
-import { Arrow } from "../../../../util/assets";
+import { selectFieldList } from "../../../modules/atom/portfolio/main";
+import { useFieldValue } from "../../../modules/atom/portfolio/search";
+import { Arrow } from "../../../util/assets";
 import FilterItem from "./FilterItem";
 import * as S from "./style";
 

@@ -1,5 +1,5 @@
-import { NoticeMent } from "../../../../../hook/noticeMentHook";
-import { NewIcon } from "../../../../../util/assets";
+import { NoticeMent } from "../../../../hook/noticeMentHook";
+import { NewIcon } from "../../../../util/assets";
 import * as S from "./style";
 
 interface Props {

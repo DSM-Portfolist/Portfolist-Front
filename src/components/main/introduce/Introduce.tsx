@@ -1,5 +1,5 @@
 import { useHistory } from "react-router";
-import { MainContentItem } from "../../../../util/assets";
+import { MainContentItem } from "../../../util/assets";
 import * as S from "./style";
 
 const Introduce = () => {

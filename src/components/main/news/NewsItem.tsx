@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { notificationSelector } from "../../../../modules/selector/user";
+import { notificationSelector } from "../../../modules/selector/user";
 import NoticeItem from "./notice/NoticeItem";
 import * as S from "./style";
 

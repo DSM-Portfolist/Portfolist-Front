@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { MainImg1, MainImg2, MainImg3 } from "../../../util/assets";
+import { MainImg1, MainImg2, MainImg3 } from "../../util/assets";
 import * as S from "./style";
 
 const Banner = () => {

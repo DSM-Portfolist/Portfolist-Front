@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { mainColor } from "../../../../util/css/color/color";
+import { mainColor } from "../../../util/css/color/color";
 
 export const IntroduceWrapper = styled.div`
   margin: 90px auto;

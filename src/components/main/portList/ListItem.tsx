@@ -1,5 +1,5 @@
 import { useHistory } from "react-router";
-import { Flower } from "../../../../util/assets";
+import { Flower } from "../../../util/assets";
 import * as S from "./style";
 
 interface ListProps {

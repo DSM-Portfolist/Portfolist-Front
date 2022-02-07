@@ -1,9 +1,9 @@
-import { Arrow } from "../../../../util/assets";
+import { Arrow } from "../../../util/assets";
 import ListItem from "./ListItem";
 import * as S from "./style";
 import { useRecoilValue } from "recoil";
-import { recentPortfolioSelector } from "../../../../modules/selector/mainpage";
-import { recentPortfolioType } from "../../../../util/interface/main/portfolio";
+import { recentPortfolioSelector } from "../../../modules/selector/mainpage";
+import { recentPortfolioType } from "../../../util/interface/main/portfolio";
 import { useHistory } from "react-router";
 
 const List = () => {

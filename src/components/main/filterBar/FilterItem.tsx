@@ -4,12 +4,12 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import {
   selectFieldList,
   selectFieldNum,
-} from "../../../../modules/atom/portfolio/main";
-import { useFieldValue } from "../../../../modules/atom/portfolio/search";
-import { getField } from "../../../../util/api/portfolio/portfolio";
-import { NoSelectedArrow, SelectedArrow } from "../../../../util/assets";
-import { mainColor } from "../../../../util/css/color/color";
-import { FieldType } from "../../../../util/interface/Sign/loginType";
+} from "../../../modules/atom/portfolio/main";
+import { useFieldValue } from "../../../modules/atom/portfolio/search";
+import { getField } from "../../../util/api/portfolio/portfolio";
+import { NoSelectedArrow, SelectedArrow } from "../../../util/assets";
+import { mainColor } from "../../../util/css/color/color";
+import { FieldType } from "../../../util/interface/Sign/loginType";
 import * as S from "./style";
 
 const FilterItem = () => {
