@@ -18,7 +18,10 @@ const Comment = () => {
   const queryData = QueryString.parse(location.search);
   const id: any = queryData.id;
 
-  const { data: comments } = useQuery(["comment", id], () => getComment(id));
+  const { data: comments } = useQuery(["comment", id], () => getComment(id), {
+    cacheTime: Infinity,
+    staleTime: Infinity,
+  });
 
   const { mutate: postComments } = useMutation(
     (content: string) => postComment(id, content),
