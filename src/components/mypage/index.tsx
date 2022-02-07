@@ -25,9 +25,8 @@ const MyPage = () => {
   const { data: user } = useQuery(["user"], () => getUser(), {
     keepPreviousData: true,
     staleTime: Infinity,
+    cacheTime: Infinity,
   });
-
-  console.log(user);
 
   useEffect(() => {
     isClickMyPortfolio

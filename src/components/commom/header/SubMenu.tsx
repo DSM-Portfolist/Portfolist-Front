@@ -12,8 +12,10 @@ const SubMenu = () => {
   const { push } = useHistory();
   const [moreItem, setMoreItem] = useRecoilState(subMenu);
 
-  const { data } = useQuery(["profile"], () => getUser(), {
+  const { data : user } = useQuery(["user"], () => getUser(), {
     keepPreviousData: true,
+    cacheTime: Infinity,
+    staleTime: Infinity,
   });
 
   return (
@@ -22,9 +24,9 @@ const SubMenu = () => {
         <img
           className="profile-img"
           src={
-            data?.data?.profile_img === null
+            user?.data?.profile_img === null
               ? `${DefaultProfile}`
-              : data?.data?.profile_img
+              : user?.data?.profile_img
           }
           alt="프로필 사진"
           onMouseOver={() => setMoreItem(true)}

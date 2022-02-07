@@ -1,13 +1,9 @@
 import { useEffect, useCallback, useState } from "react";
-import { useQuery } from "react-query";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { notiBox } from "../../../../modules/atom/header";
 import { isNotificationDone } from "../../../../modules/atom/mypage/mypage";
 import { notificationSelector } from "../../../../modules/selector/user";
-import {
-  getNotification,
-  getNotificationStatus,
-} from "../../../../util/api/mypage";
+import { getNotificationStatus } from "../../../../util/api/mypage";
 import { NoNotification, Notification } from "../../../../util/assets";
 import { notificationType } from "../../../../util/interface/main/portfolio";
 import NotiItem from "./NotiItem";
