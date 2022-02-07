@@ -1,14 +1,10 @@
 import { useState } from "react";
-import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
-import { deleteProfileImage } from "../../../../util/api/mainpage/image";
-import { DefaultProfile } from "../../../../util/assets";
-import { ProfileImageWrapper } from "../../../../util/css/mypage/mypage/mypageModify/style";
+import { ToastError, ToastSuccess } from "../../../hook/toastHook";
+import { deleteProfileImage } from "../../../util/api/mainpage/image";
+import { DefaultProfile } from "../../../util/assets";
+import { ProfileImageWrapper } from "../../../util/css/mypage/mypage/mypageModify/style";
 
-interface Props {
-  userInfo: any;
-}
-
-const ImageUploadWrapper = ({ userInfo }: Props) => {
+const ImageUploadWrapper = ({ user }: any) => {
   // const [imageFile, setImageFile] = useState<any>([]);
   const [previewURL, setPreviewURL] = useState<any>("");
   const [isCustomImage, setIsCustomImage] = useState<boolean>(false);
@@ -43,8 +39,8 @@ const ImageUploadWrapper = ({ userInfo }: Props) => {
 
   return (
     <ProfileImageWrapper>
-      {userInfo.github_user ? (
-        <img className="profileImg" alt="" src={userInfo.profile_img} />
+      {user?.github_user ? (
+        <img className="profileImg" alt="" src={user?.profile_img} />
       ) : (
         <>
           <img
