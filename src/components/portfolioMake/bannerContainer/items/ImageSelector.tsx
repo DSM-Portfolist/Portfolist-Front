@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { bannerImgAtom } from "../../../../modules/atom/portfolioPost";
 import { mainColor } from "../../../../util/css/color/color";
 import * as S from "../style";
 
-const imageList = [
+export const imageList = [
   {
     id: 1,
     url: "https://images.unsplash.com/photo-1506878206813-92402b8ded23?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
@@ -27,15 +29,19 @@ const imageList = [
 
 const ImageSelector = () => {
   const [imgSelect, setImgSelect] = useState<number>(1);
+  const setBannerImg = useSetRecoilState(bannerImgAtom);
 
   const backgroundColor = (list: any) => {
     setImgSelect(list.id);
-    console.log(list.url);
+    setBannerImg({
+      thumbnail: list.url,
+      isClickBannder: true,
+    });
   };
 
   return (
     <S.ImageWrap>
-      {imageList.map((img, index) => (
+      {imageList.map((img) => (
         <img
           key={img.id}
           src={img.url}

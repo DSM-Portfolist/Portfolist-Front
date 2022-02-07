@@ -16,7 +16,7 @@ export const portfoilo = atom<PortfolioType>({
     container_list: [
       {
         container_title: "",
-        container_img: [""],
+        container_img_list: [""],
         container_text_list: [{ box_title: "", box_content: "" }],
       },
     ],
@@ -25,9 +25,9 @@ export const portfoilo = atom<PortfolioType>({
     file: "",
     icon: "",
     introduce: "",
-    is_mine: false,
+    mine: false,
     link: "",
-    more_info_list: [{ name: "", content: "" }],
+    more_info: [{ name: "", content: "" }],
     user: {
       name: "",
       profile_img: "",

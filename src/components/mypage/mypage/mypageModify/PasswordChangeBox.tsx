@@ -1,4 +1,3 @@
-import React from "react";
 import { CloseEye, OpenEye } from "../../../../util/assets";
 import {
   ChangePasswordItem,

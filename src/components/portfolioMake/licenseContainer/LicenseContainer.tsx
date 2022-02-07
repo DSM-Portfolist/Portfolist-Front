@@ -1,18 +1,30 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useCallback } from "react";
 import * as S from "./style";
-import { PlusButton, MinusButton } from "../../../util/assets";
-import { ToastError } from "../../../hook/toastHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CertificateListType } from "../../../util/interface/portfolioPost/postType";
-import deleteButtonX from "../../../util/assets/icon/deleteButtonX.svg";
+import TextContainer from "./TextContainer/TextContainer";
+import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
+import { useRecoilState } from "recoil";
 
 const LicenseContainer = () => {
-  const [certificateList, setCertificateList] = useState<CertificateListType[]>(
-    [{ title: "", certificate_list: [""] }]
-  );
+  const [portfolioMakeArr, setPortfolioMakeArr] =
+    useRecoilState(portfolioMakeList);
+  const [certificateList, setCertificateList] = useState<any>([
+    { title: "", certificate_list: [""] },
+  ]);
 
-  console.log(certificateList);
+  const setApiCertificateListData = useCallback(() => {
+    setPortfolioMakeArr({
+      ...portfolioMakeArr,
+      certificate_container_list: certificateList,
+    });
+  }, [certificateList]);
+
+  useEffect(() => {
+    setApiCertificateListData();
+  }, [setApiCertificateListData]);
 
   const addList = () => {
     setCertificateList((certificateList: CertificateListType[]) => [
@@ -24,32 +36,6 @@ const LicenseContainer = () => {
     ]);
   };
 
-  const deleteList = (id: number) => {
-    
-  }
-
-  const addContentList = (p_index: number) => {
-    setCertificateList(
-      certificateList.map(
-        (certificateList: CertificateListType, index: number) => {
-          console.log(certificateList);
-          if (p_index === index) {
-            return {
-              ...certificateList,
-              certificate_list: certificateList.certificate_list.concat(""),
-            };
-          } else {
-            return certificateList;
-          }
-        }
-      )
-    );
-  };
-
-  const deleteContentList = () => {
-    
-  }
-
   return (
     <S.LicenseWrapper className="make-container">
       <ToastContainer />
@@ -58,51 +44,10 @@ const LicenseContainer = () => {
           + Add new list
         </span>
       </S.HeaderButton>
-      {certificateList.map(
-        (certificateList: CertificateListType, index: number) => {
-          const { certificate_list, title } = certificateList;
-          console.log(certificateList);
-          console.log(index);
-          return (
-            <S.MapWrapper>
-              <S.TitleWrapper>
-                <input type="text" placeholder="제목을 입력해 주세요." />
-                <img
-                  src={deleteButtonX}
-                  style={{ width: "27px", height: "27px", marginLeft: "5px" }}
-                  alt=""
-                />
-              </S.TitleWrapper>
-              {certificate_list.map((certificate_list: any) => {
-                console.log(certificate_list);
-                return (
-                  <div className="infoContainer">
-                    <S.InputBox>
-                      <textarea
-                        id="inputContent"
-                        placeholder="내용을 입력해주세요."
-                      ></textarea>
-                      <img src={MinusButton} alt="" />
-                    </S.InputBox>
-                    {index + 1 < certificate_list.length ? (
-                      ""
-                    ) : (
-                      <span
-                        className="addContent"
-                        onClick={() => {
-                          addContentList(index);
-                        }}
-                      >
-                        내용 추가
-                      </span>
-                    )}
-                  </div>
-                );
-              })}
-            </S.MapWrapper>
-          );
-        }
-      )}
+      <TextContainer
+        certificateList={certificateList || []}
+        setCertificateList={setCertificateList}
+      />
     </S.LicenseWrapper>
   );
 };

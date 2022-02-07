@@ -2,6 +2,8 @@ import { MainContentWrapper } from "../../../../util/css/mypage/mypage/mypageMod
 import PasswordModify from "./PasswordModify";
 import SecessionModify from "./SecessionModify";
 import NotificationModule from "./notificationModule/NotificationModule";
+import { useRecoilValue } from "recoil";
+import { myInfoSelector } from "../../../../modules/selector/user";
 
 interface Props {
   setModal: any;
@@ -10,9 +12,10 @@ interface Props {
 
 const MypageModifyMainContent = (props: Props) => {
   const { setModal, modal } = props;
+  const userInfo = useRecoilValue(myInfoSelector);
   return (
     <MainContentWrapper>
-      <PasswordModify />
+      {userInfo?.github_user ? "" : <PasswordModify />}
       <SecessionModify setModal={setModal} modal={modal} />
       <NotificationModule />
     </MainContentWrapper>

@@ -5,25 +5,30 @@ import {
 import { ModifyPensil } from "../../../../util/assets/index";
 import MyInfoModifyDetail from "./MyInfoModifyDetail";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { myInfoSelector } from "../../../../modules/selector/user";
+import { userInfoValue } from "../../../../modules/selector/user";
 import { isModifyModal } from "../../../../modules/atom/mypage";
+import { useEffect } from "react";
+import styled from "@emotion/styled";
+import { mainColor } from "../../../../util/css/color/color";
 
-const MyInfoModify = () => {
+const MyInfoModify = ({ getUserInfo }: any) => {
   const [isModify, setIsModify] = useRecoilState(isModifyModal);
-  const userInfo = useRecoilValue(myInfoSelector);
+  const userInfo = useRecoilValue(userInfoValue);
+
+  useEffect(() => {
+    getUserInfo();
+  }, [getUserInfo]);
 
   return (
     <>
       {!isModify ? (
         <MainWrapper>
-          <h1>{userInfo.name}</h1>
-          <p>{userInfo.introduce}</p>
+          <h1>{userInfo?.name}</h1>
+          <p>{userInfo?.introduce}</p>
           <FieldWrapper>
-            <span>
-              <b>분야</b>
-            </span>
+            <span>분야</span>
             {userInfo?.field?.map((field, index) => (
-              <span key={index}>{field}</span>
+              <FieldItem key={index}>{field}</FieldItem>
             ))}
           </FieldWrapper>
           <img
@@ -35,10 +40,24 @@ const MyInfoModify = () => {
           />
         </MainWrapper>
       ) : (
-        <MyInfoModifyDetail />
+        <MyInfoModifyDetail getUserInfo={getUserInfo} />
       )}
     </>
   );
 };
 
 export default MyInfoModify;
+
+const FieldItem = styled.div`
+  margin: 0 10px;
+  width: fit-content;
+  border: 1.5px solid ${mainColor};
+  border-radius: 20px;
+  padding: 4px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${mainColor};
+  font-size: 17px;
+  transform: skew(-0.1deg);
+`;

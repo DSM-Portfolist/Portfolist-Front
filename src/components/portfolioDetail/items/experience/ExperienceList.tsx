@@ -1,7 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import * as S from "./style";
-import { TestImg } from "../../../../util/assets";
 import {
   ContainerListType,
   ContainerTextType,
@@ -19,8 +18,8 @@ const ExperienceList = () => {
             <S.MainTitle>{item?.container_title}</S.MainTitle>
             <S.ContainerBox key={index}>
               <div className="image-box">
-                {item?.container_img?.map((img: string, index: number) => (
-                  <img key={index} src={TestImg} alt="경험 이미지" />
+                {item?.container_img_list?.map((img: string, index: number) => (
+                  <img key={index} src={img} alt="이미지" />
                 ))}
               </div>
               <div className="content-box">

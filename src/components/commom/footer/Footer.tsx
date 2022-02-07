@@ -1,4 +1,3 @@
-import React from "react";
 import { FooterGithub, FooterLogo } from "../../../util/assets";
 import * as S from "./style";
 

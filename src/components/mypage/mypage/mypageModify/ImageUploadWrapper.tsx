@@ -1,30 +1,19 @@
-/** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
+import { useState } from "react";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { deleteProfileImage } from "../../../../util/api/mainpage/image";
-import { postProfileImage } from "../../../../util/api/mypage/image";
+import { DefaultProfile } from "../../../../util/assets";
 import { ProfileImageWrapper } from "../../../../util/css/mypage/mypage/mypageModify/style";
-import { profileImage } from "../../../../util/css/mypage/ProfileHeader/style";
 
-const ImageUploadWrapper = () => {
-  const [imageFile, setImageFile] = useState<any>([]);
+interface Props {
+  userInfo: any;
+}
+
+const ImageUploadWrapper = ({ userInfo }: Props) => {
+  // const [imageFile, setImageFile] = useState<any>([]);
   const [previewURL, setPreviewURL] = useState<any>("");
   const [isCustomImage, setIsCustomImage] = useState<boolean>(false);
 
   let formData = new FormData();
-
-  function checkFormData() {
-    //FormData 값 확인하기
-    for (let key of formData.keys()) {
-      console.log(key);
-    }
-    // FormData의 value 확인
-    for (let value of formData.values()) {
-      console.log(value);
-    }
-  }
-
-  console.log(imageFile);
 
   // 이미지 삭제
   const deleteImageHandler = () => {
@@ -44,37 +33,36 @@ const ImageUploadWrapper = () => {
     let reader = new FileReader();
     let file = e.target.files[0];
     reader.onloadend = () => {
-      setImageFile(file);
+      //  setImageFile(file);
       setPreviewURL(reader.result);
       formData.append("file", file);
       setIsCustomImage(true);
-      checkFormData();
     };
     reader.readAsDataURL(file);
-
-    postProfileImage(file);
   };
 
   return (
     <ProfileImageWrapper>
-      {!isCustomImage ? (
-        <img
-          css={profileImage}
-          alt="기본이미지"
-          src="https://belabef.com/common/img/default_profile.png"
-        />
+      {userInfo.github_user ? (
+        <img className="profileImg" alt="" src={userInfo.profile_img} />
       ) : (
-        <img css={profileImage} alt="" src={previewURL} />
+        <>
+          <img
+            className="profileImg"
+            alt="기본이미지"
+            src={!isCustomImage ? `${DefaultProfile}` : `${previewURL}`}
+          />
+          <input
+            type="file"
+            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            onChange={handleFileOnChange}
+            style={{ display: "none" }}
+            id="input-file"
+          />
+          <label htmlFor="input-file">이미지 업로드</label>
+          <div onClick={deleteImageHandler}>기본 이미지 변경</div>
+        </>
       )}
-      <input
-        type="file"
-        accept="image/jpg,impge/png,image/jpeg,image/gif"
-        onChange={handleFileOnChange}
-        style={{ display: "none" }}
-        id="input-file"
-      />
-      <label htmlFor="input-file">이미지 업로드</label>
-      <div onClick={deleteImageHandler}>기본 이미지 변경</div>
     </ProfileImageWrapper>
   );
 };

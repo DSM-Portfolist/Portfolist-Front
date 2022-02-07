@@ -1,28 +1,43 @@
-import request from "../index";
-
-const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
+import request from "../common/index";
 
 export async function getComment(id: number) {
   return await request({
     url: `/comment/${id}`,
     method: "get",
-    headers: { Authorization: token },
   });
 }
 
-export const postComment = async (id: number, content: string) => {
-  return await request({
+export const postComment = (id: number, content: string) => {
+  return request({
     url: `/comment/${id}`,
     method: "post",
     data: { content: content },
-    headers: { Authorization: token },
   });
 };
 
-export const deleteComment = async (id: number) => {
-  return await request({
+export const deleteComment = (id: number) => {
+  return request({
     url: `/comment/${id}`,
     method: "delete",
-    headers: { Authorization: token },
+  });
+};
+
+export const getReComment = (id: number) => {
+  return request({
+    url: `/re-comment/${id}`,
+  });
+};
+export const postReComment = (id: number, content: string) => {
+  return request({
+    url: `/re-comment/${id}`,
+    method: "post",
+    data: { content: content },
+  });
+};
+
+export const deleteReComment = (id: number) => {
+  return request({
+    url: `/re-comment/${id}`,
+    method: "delete",
   });
 };

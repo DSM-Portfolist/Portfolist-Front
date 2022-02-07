@@ -79,6 +79,15 @@ export const ProfileImageWrapper = styled.div`
   & div:hover {
     box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
   }
+
+  .profileImg {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #cccccc;
+    border-radius: 100%;
+    background-size: cover;
+    object-fit: cover;
+  }
 `;
 
 export const FieldItemContainer = styled.div`
@@ -129,7 +138,7 @@ export const MainWrapper = styled.div`
   }
 `;
 
-export const ModifyDetailContainer = styled.form`
+export const ModifyDetailContainer = styled.div`
   width: 67%;
   height: 100%;
   display: flex;
@@ -250,7 +259,11 @@ export const InputWrapper = styled.div`
 export const FieldWrapper = styled.div`
   width: 100%;
   margin-top: 23px;
+  display: flex;
+  align-items: center;
+
   & span {
+    margin-right: 15px;
     font-size: 20px;
     line-height: 23px;
     color: #000000;
@@ -258,7 +271,7 @@ export const FieldWrapper = styled.div`
   & span:nth-of-type(1) {
     font-weight: bold;
   }
-  & span:nth-of-type(n + 2) {
+  & span:nth-of-type(2) {
     margin-left: 5px;
   }
 `;

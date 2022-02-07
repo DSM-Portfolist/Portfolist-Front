@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./style";
 import {
   baseBackground,
@@ -13,7 +13,7 @@ import {
 } from "../../../util/css/mypage/UserPage/style";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
 import PortfolioList from "../PortfolioList/PortfolioList";
-import { Header } from "../..";
+import { Footer, Header } from "../..";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   myPortfolioList,
@@ -28,8 +28,9 @@ const MyPage = () => {
   const [isClickMyTouching, setIsClickMyTouching] = useState<boolean>(false);
   const [portfolioList, setPortoflioList] = useRecoilState(myPortfolioList);
   const myPortfolio = useRecoilValue(myPortfolioListSelector);
+  const myInfo = useRecoilValue(myInfoSelector);
+
   const touchPorfolio = useRecoilValue(myTouchingPortfolioSelector);
-  const userInfo = useRecoilValue(myInfoSelector);
 
   useEffect(() => {
     isClickMyPortfolio
@@ -50,9 +51,9 @@ const MyPage = () => {
 
   return (
     <div css={[baseBackground, column]}>
-      <Header></Header>
+      <Header />
       <section css={[myPageSection]}>
-        <ProfileHeader userInfo={userInfo} />
+        <ProfileHeader />
         <article>
           <div css={[center, sectionTitleWrapper]}>
             <NavWrapper
@@ -75,12 +76,18 @@ const MyPage = () => {
                   portfolio={portfolio}
                   isClickMyPortfolio={isClickMyPortfolio}
                   isClickMyTouching={isClickMyTouching}
+                  profileimg={
+                    isClickMyPortfolio
+                      ? myInfo?.profile_img
+                      : portfolio?.user?.profile_img
+                  }
                 />
               ))}
             </>
           )}
         </article>
       </section>
+      <Footer />
     </div>
   );
 };

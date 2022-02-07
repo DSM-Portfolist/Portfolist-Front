@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRecoilState } from "recoil";
@@ -57,7 +57,12 @@ const Search = () => {
         </div>
         <S.FieldWrapper>
           {useField?.map((field: any, index: number) => (
-            <FieldItem field={field} key={index} setUseField={setUseField} />
+            <FieldItem
+              field={field}
+              key={index}
+              setUseField={setUseField}
+              useField={useField}
+            />
           ))}
         </S.FieldWrapper>
       </S.FieldSelectWrapper>

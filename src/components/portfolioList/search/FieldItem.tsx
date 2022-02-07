@@ -1,4 +1,3 @@
-import React from "react";
 import { CloseIcon } from "../../../util/assets";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,7 +6,7 @@ import * as S from "./style";
 interface Props {
   field: string;
   setUseField?: any;
-  useField?: [];
+  useField?: string[];
 }
 
 const FieldItem = ({ field, setUseField, useField }: Props) => {

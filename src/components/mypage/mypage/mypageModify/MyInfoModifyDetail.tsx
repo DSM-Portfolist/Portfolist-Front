@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import * as S from "../../../../util/css/mypage/mypage/mypageModify/style";
+import FieldItemBox from "./FieldItemBox";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { FieldType } from "../../../../util/interface/Sign/loginType";
-import FieldItemBox from "./FieldItemBox";
 import { patchUserInfo } from "../../../../util/api/mypage";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { getFieldSelector } from "../../../../modules/atom/portfolio";
 import { isModifyModal } from "../../../../modules/atom/mypage";
-import { myInfoSelector } from "../../../../modules/selector/user";
-import { getUser } from "../../../../util/api/user/info";
+import { userInfoValue } from "../../../../modules/selector/user";
 import { myIntroduce, myName } from "../../../../modules/atom/mypage/mypage";
 
-const MyInfoModifyDetail = () => {
-  const [userInfo, setUserInfo] = useRecoilState(myInfoSelector);
-  const [selectIdArr, setSelectIdArr] = useState<any>([]);
-  const [selectNameArr, setSelectNameArr] = useState<any>([]);
-
+const MyInfoModifyDetail = ({ getUserInfo }: any) => {
+  const [selectIdArr, setSelectIdArr] = useState<number[]>([]);
+  const userInfo = useRecoilValue(userInfoValue);
   const fieldList = useRecoilValue(getFieldSelector);
   const setIsModify = useSetRecoilState(isModifyModal);
   const [name, setName] = useRecoilState(myName);
@@ -27,9 +24,7 @@ const MyInfoModifyDetail = () => {
     patchUserInfo(selectIdArr, name, introduce)
       .then(() => {
         ToastSuccess("프로필이 수정되었습니다.");
-        getUser().then((res) => {
-          setUserInfo(res.data);
-        });
+        getUserInfo();
         setIsModify(false);
       })
       .catch((e) => {
@@ -38,51 +33,34 @@ const MyInfoModifyDetail = () => {
       });
   };
 
-  useEffect(() => {
-    console.log(userInfo);
-  }, [userInfo]);
-
-  const handleSelect = (content: string, textList: any) => {
-    //분야 배열에 추가 중복 허용 x
-    if (!textList.includes(content)) {
-      if (selectIdArr.length > 2) {
-        ToastError("분야는 최대 3개까지 가능합니다");
-      } else {
-        const item = fieldList.filter(
-          (item: FieldType) => item.content === content
-        );
-
-        const fieldId = item.map((item: FieldType) => item.id);
-
-        setSelectIdArr(selectIdArr.concat(fieldId));
-        setSelectNameArr(textList.concat(content));
+  const fieldSelectHandler = (e: any) => {
+    const { value } = e.target;
+    if (selectIdArr.length !== 3) {
+      if (!selectIdArr.includes(e)) {
+        setSelectIdArr([...selectIdArr, value]);
       }
+    } else {
+      ToastError("분야를 3개 이상 등록할 수 없습니다.");
     }
-  };
-
-  console.log(selectIdArr);
-
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
   };
 
   return (
     <>
       <ToastContainer />
-      <S.ModifyDetailContainer onSubmit={onSubmitHandler}>
+      <S.ModifyDetailContainer>
         <ToastContainer />
         <S.InputWrapper>
           <input
             type="text"
             placeholder="사용하실 닉네임을 입력하세요"
-            defaultValue={userInfo.name}
+            defaultValue={userInfo?.name}
             name="name"
             onChange={(e: any) => setName(e.target.value)}
           />
           <input
             type="text"
             placeholder="자신을 한줄 소개 해주세요"
-            defaultValue={userInfo.introduce}
+            defaultValue={userInfo?.introduce}
             name="introduce"
             onChange={(e: any) => setIntroduce(e.target.value)}
           />
@@ -93,29 +71,23 @@ const MyInfoModifyDetail = () => {
           </span>
           <select
             onChange={(e) => {
-              handleSelect(e.target.value, selectNameArr);
+              fieldSelectHandler(e);
             }}
           >
             <option selected disabled hidden>
               분야를 선택하세요
             </option>
-            {fieldList?.map((field: FieldType, index: number) => (
-              <option key={index} value={field.content}>
+            {fieldList.map((field: FieldType, index: number) => (
+              <option key={index} value={field.id}>
                 {field.content}
               </option>
             ))}
           </select>
-          {selectNameArr?.map((field: string, index: number) => (
-            <FieldItemBox
-              key={index}
-              setSelectIdArr={setSelectIdArr}
-              setSelectNameArr={setSelectNameArr}
-              selectNameArr={selectNameArr}
-              selectIdArr={selectIdArr}
-              fieldList={fieldList}
-              field={field}
-            />
-          ))}
+          <FieldItemBox
+            selectIdArr={selectIdArr}
+            setSelectIdArr={setSelectIdArr}
+            fieldList={fieldList}
+          />
         </S.FieldSelecteWrapper>
         <p>분야는 최대 3개까지 선택할 수 있습니다. </p>
         <S.ButtonContainer>
@@ -123,7 +95,7 @@ const MyInfoModifyDetail = () => {
             type="button"
             onClick={() => {
               setIsModify(false);
-              ToastSuccess("프로필이 취소되었습니다.");
+              ToastSuccess("프로필 수정이 취소되었습니다.");
             }}
           >
             취소

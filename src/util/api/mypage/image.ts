@@ -1,4 +1,4 @@
-import request from "../index";
+import request from "../common/index";
 
 const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 
@@ -14,7 +14,6 @@ export const postProfileImage = (file: File) => {
   return request({
     url: "/user/profile",
     method: "post",
-    headers: { Authorization: token },
     data: { file },
   });
 };

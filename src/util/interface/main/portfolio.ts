@@ -7,7 +7,7 @@ export interface recentPortfolioType {
 
 export interface monthPortfolioType {
   id: number;
-  thumbnail: string | null;
+  thumbnail: string | undefined;
   title: string;
   introduce: string;
   name: string;
@@ -18,4 +18,8 @@ export interface notificationType {
   name: string;
   id: number;
   type: "TOUCHING" | "COMMENT" | "RECOMMENT" | "P_ADD" | "P_MODIFY";
+}
+
+export interface SelectFieldListType {
+  id: number;
 }

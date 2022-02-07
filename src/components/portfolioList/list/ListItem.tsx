@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useMutation } from "react-query";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as S from "./style";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
 import {
@@ -29,6 +29,7 @@ const ListItem = ({ list }: Prop) => {
 
   const touching = useMutation("touching", postTouching);
   const untouching = useMutation("untouching", deleteTouching);
+  const history = useHistory();
 
   function TextSliceHandler(txt: string, len: number) {
     if (txt.length > len) {
@@ -44,6 +45,7 @@ const ListItem = ({ list }: Prop) => {
         <img
           src={list.thumbnail === null ? `${Flower}` : list.thumbnail}
           alt="포트폴리오 배너"
+          onClick={() => history.push(`/portfolio?id=${list.id}`)}
         />
       </div>
       <S.Content touchingBoolean={touchingBoolean}>
@@ -74,16 +76,15 @@ const ListItem = ({ list }: Prop) => {
             <span>{count === 0 ? "0" : count}</span>
           </div>
         </div>
-        <div className="title">
-          <Link
-            to={`/portfolio/${list.id}`}
-            title="포트폴리오 상세 페이지 이동합니다."
-          >
-            {list.title}
-          </Link>
-          <span>{TextSliceHandler(list.introduce, 32)}</span>
+        <Link
+          className="title"
+          to={`/portfolio?id=${list.id}`}
+          title="포트폴리오 상세 페이지 이동합니다."
+        >
+          <span>{list.title}</span>
+          <span>{TextSliceHandler(list.introduce, 18)}</span>
           <span>댓글 {list.total_comment}</span>
-        </div>
+        </Link>
         <div className="user-profile">
           <img
             src={
@@ -93,7 +94,10 @@ const ListItem = ({ list }: Prop) => {
             }
             alt="사용자의 프로필 사진"
           />
-          <Link to={`/user-page`} title="유저 페이지 이동합니다.">
+          <Link
+            to={`/user-page/${list.user.user_id}`}
+            title="유저 페이지 이동합니다."
+          >
             <strong>{list.user.name}</strong>님의 포트폴리오
           </Link>
         </div>

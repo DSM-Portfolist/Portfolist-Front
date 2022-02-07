@@ -1,13 +1,13 @@
-import { atom, selector, useRecoilValue } from "recoil";
+import { atom, selector } from "recoil";
 import {
   getField,
   getPortfolioList,
 } from "../../../util/api/portfolio/portfolio";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
 import { FieldType } from "../../../util/interface/Sign/loginType";
-import { searchValue, useFieldValue } from "./search";
+import { searchValue, sortValue, useFieldValue } from "./search";
 
-export const portfolioId = atom<number>({
+export const portfolioId = atom<number | any>({
   key: "portfolioId",
   default: 0,
 });
@@ -22,11 +22,6 @@ export const isError = atom<boolean>({
   default: false,
 });
 
-export const fieldItem = atom<FieldType[]>({
-  key: "field",
-  default: [],
-});
-
 export const portfolioList = atom<PortListType[]>({
   key: "portfolioList",
   default: [],
@@ -39,7 +34,8 @@ export const getPortListSelector = selector<PortListType[]>({
     try {
       const field = await get(useFieldValue);
       const query = await get(searchValue);
-      const res = await getPortfolioList(field, query, "title");
+      const sort = await get(sortValue);
+      const res = await getPortfolioList(field, sort, query, "title");
       return res.data.portfolio_list;
     } catch (e) {
       console.log(e);
@@ -51,14 +47,19 @@ export const getPortListSelector = selector<PortListType[]>({
 });
 
 // 필드 가져오기
-export const getFieldSelector = selector({
+export const getFieldSelector = selector<FieldType[]>({
   key: "field/get",
   get: async () => {
     try {
       const res = await getField();
-      return res.data;
+      return res?.data;
     } catch (e) {
       throw e;
     }
   },
+});
+
+export const fieldItem = atom<FieldType[]>({
+  key: "field",
+  default: getFieldSelector,
 });

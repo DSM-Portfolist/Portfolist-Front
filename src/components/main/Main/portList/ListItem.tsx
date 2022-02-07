@@ -1,4 +1,3 @@
-import React from "react";
 import { useHistory } from "react-router";
 import { Flower } from "../../../../util/assets";
 import * as S from "./style";
@@ -11,7 +10,7 @@ interface ListProps {
 }
 
 const ListItem = ({ title, content, id, url }: ListProps) => {
-  const history = useHistory();
+  const { push } = useHistory();
 
   function TestSlice(txt: string) {
     let len = 12;
@@ -22,7 +21,7 @@ const ListItem = ({ title, content, id, url }: ListProps) => {
   }
 
   return (
-    <S.ItemWrapper onClick={() => history.push(`/portfolio/${id}`)}>
+    <S.ItemWrapper onClick={() => push(`/portfolio?id=${id}`)}>
       <div className="folio-img">
         <img src={url === null ? `${Flower}` : url} alt="포트폴리오 이미지 " />
       </div>

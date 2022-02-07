@@ -1,12 +1,11 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { monthPortfolioSelector } from "../../../../modules/selector/mainpage";
-import { Crwon, Flower } from "../../../../util/assets";
+import { Crwon } from "../../../../util/assets";
 import * as S from "./style";
 
 const MonthPortfolio = () => {
   const monthPortfolio = useRecoilValue(monthPortfolioSelector);
-
   return (
     <div className="border-bottom">
       <S.MonthWrapper>
@@ -15,9 +14,12 @@ const MonthPortfolio = () => {
           src={Crwon}
           alt="이달의 포트폴리오 강조 아이콘"
         />
-        <div className="img-wrapper">
-          <img src={Flower} alt="이달의 포트폴리오 이미지" />
-        </div>
+        <Link
+          to={`/portfolio?id=${monthPortfolio?.id}`}
+          className="img-wrapper"
+        >
+          <img src={monthPortfolio?.thumbnail} alt="이달의 포트폴리오 이미지" />
+        </Link>
         <S.Content>
           <h2>이달의 포트폴리오</h2>
           <p className="introduce">
