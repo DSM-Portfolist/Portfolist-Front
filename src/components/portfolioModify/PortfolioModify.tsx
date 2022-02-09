@@ -19,16 +19,19 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getPortfolio } from "../../util/api/portfolio/portfolio";
 import QueryString from "query-string";
+import { useMutation, useQueryClient } from "react-query";
 
 interface stateType {
   portfolioID: number;
 }
 
 const PortfolioModify = () => {
+  const history = useHistory();
+  const queryClient = useQueryClient();
+
   const [portfolioModifyArr, setPortfolioModifyArr] =
     useRecoilState(portfolioModifyList);
 
-  const history = useHistory();
   const location = useLocation<stateType>();
   const query = QueryString.parse(location.search);
 
@@ -47,7 +50,7 @@ const PortfolioModify = () => {
         let { certificate_container_list } = res.data;
 
         certificate_container_list = certificate_container_list.map(
-          (value: any, index: number) => {
+          (value: any) => {
             if (value.certificate_list.length <= 0) {
               return { title: value.title, certificate_list: [""] };
             } else {
@@ -75,6 +78,22 @@ const PortfolioModify = () => {
       });
   };
 
+  const { mutate: patchPortfolio } = useMutation(
+    () => portfolioModifySubmit(portfolioModifyArr, Number(query.id)),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("portfolio_detail");
+        ToastSuccess("포트폴리오가 수정되었습니다.");
+        setTimeout(() => {
+          history.push(`/portfolio?id=${Number(query.id)}`);
+        }, 1500);
+      },
+      onError: () => {
+        ToastError("포트폴리오 수정에 실패했습니다.");
+      },
+    }
+  );
+
   useEffect(() => {
     getPortfolioData(Number(query.id));
   }, []);
@@ -98,20 +117,6 @@ const PortfolioModify = () => {
     }
   };
 
-  const portfolioSubmit = () => {
-    portfolioModifySubmit(portfolioModifyArr, Number(query.id)) //location id 두 번째 파라미터에 추가하기
-      .then(() => {
-        ToastSuccess("포트폴리오가 수정되었습니다.");
-        setTimeout(() => {
-          history.push("/");
-        }, 1500);
-      })
-      .catch((err) => {
-        ToastError("포트폴리오 수정에 실패했습니다.");
-        console.log(err);
-      });
-  };
-
   return (
     <>
       <Header />
@@ -125,7 +130,7 @@ const PortfolioModify = () => {
         <LicenseContainer /> {/* 자격증을 넣을 수 있는 리스트 */}
         <FileLinkContainer /> {/*파일이나 링크를 넣을 수 있는 컴포넌트 */}
         <BannerContainer /> {/* 이미지 배너 선택하는 컴포넌트 */}
-        <S.FinshButton onClick={portfolioSubmit}>수정완료</S.FinshButton>
+        <S.FinshButton onClick={() => patchPortfolio()}>수정완료</S.FinshButton>
       </S.MainContainer>
       <Footer />
     </>
