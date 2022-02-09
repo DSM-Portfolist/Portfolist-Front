@@ -188,7 +188,7 @@ const FirstProgress = ({
                 <input
                   name="passwordCheck"
                   value={passwordCheck}
-                  type={inputType ? "text" : "password"}
+                  type={inputTypeReturn ? "text" : "password"}
                   placeholder="비밀번호를 다시입력해주세요"
                   onChange={(e) => setPasswordCheck(e.target.value)}
                   style={
