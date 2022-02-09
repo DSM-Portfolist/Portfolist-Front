@@ -1,8 +1,8 @@
 import { useEffect } from "react";
+import { useMutation, useQueryClient } from "react-query";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import {
-  isNotificationDone,
   notificationIsClick,
   notificationStatus,
 } from "../../../../modules/atom/mypage/mypage";
@@ -10,9 +10,19 @@ import { putNotification } from "../../../../util/api/mypage";
 import * as S from "./style";
 
 const NotificationModule = () => {
+  const queryClient = useQueryClient();
+
   const status = useRecoilValue(notificationStatus);
   const [isClick, setIsClick] = useRecoilState(notificationIsClick);
-  const [isNo, setIsNo] = useRecoilState(isNotificationDone);
+
+  const { mutate: notificationControl } = useMutation(
+    (click: boolean) => putNotification(click),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("noti_status");
+      },
+    }
+  );
 
   useEffect(() => {
     setIsClick(status.notification);
@@ -21,18 +31,12 @@ const NotificationModule = () => {
   const toggleButton = () => {
     try {
       if (isClick) {
-        putNotification(false).then((res) => {
-          console.log(res);
-          setIsNo(isNo + 1);
-        });
+        notificationControl(false);
         setIsClick(false);
         ToastSuccess("포트폴리오 알림이 비활성화되었습니다.");
       } else {
+        notificationControl(true);
         setIsClick(true);
-        putNotification(true).then((res) => {
-          console.log(res);
-          setIsNo(isNo + 1);
-        });
         ToastSuccess("포트폴리오 알림이 활성화되었습니다.");
       }
     } catch (e) {
