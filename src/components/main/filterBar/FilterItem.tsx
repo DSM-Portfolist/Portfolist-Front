@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
@@ -25,22 +25,19 @@ const FilterItem = () => {
     keepPreviousData: true,
   });
 
-  function UseFieldAdd(field: any) {
+  function UseFieldAdd() {
     if (selectField.length <= 2) {
-      setUseField(useField?.concat(field));
       setSelectField(selectField?.concat({ id: fieldNum + 1 }));
     }
   }
 
-  useEffect(() => {
-    if (selectField.length !== 1) {
-      if (text === "ALL") {
-        setSelectField(
-          selectField?.filter((id: any) => id.id === selectFieldNum)
-        );
-      }
-    }
-  }, [selectField, setSelectField, text, useField]);
+  function handleClickField(field: FieldType) {
+    setText(field.content);
+    setArrowSelect(false);
+    setUseField(useField?.concat(field.content));
+
+    UseFieldAdd();
+  }
 
   return (
     <>
@@ -75,14 +72,7 @@ const FilterItem = () => {
               ALL
             </li>
             {field?.data?.map((field: FieldType) => (
-              <li
-                key={field.id}
-                onClick={() => {
-                  setText(field.content);
-                  UseFieldAdd(field.content);
-                  setArrowSelect(false);
-                }}
-              >
+              <li key={field.id} onClick={() => handleClickField(field)}>
                 {field.content}
               </li>
             ))}
