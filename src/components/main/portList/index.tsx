@@ -13,7 +13,13 @@ const List = () => {
   return (
     <div className="border-bottom">
       <S.ListWrapper>
-        <S.GoWrapper onClick={() => history.push("/portfolio-list")}>
+        <S.GoWrapper
+          onClick={() =>
+            history.push(
+              "/list?page=0&size=10&field=&sort=date&query=&searchType="
+            )
+          }
+        >
           <p>portfolio</p>
           <button>
             <span>Go</span>

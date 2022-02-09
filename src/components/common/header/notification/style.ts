@@ -31,6 +31,7 @@ export const Notification = styled.div<Props>`
   padding-right: 10px;
   padding-left: 10px;
   width: 350px;
+  max-height: 200px;
   background: #ffffff;
   box-sizing: border-box;
   border-radius: 10px;
@@ -56,6 +57,7 @@ export const NotiMent = styled.div`
   font-family: "NanumSquare";
   display: flex;
   flex-direction: row;
+  color: #4d4d4d;
 
   span:nth-of-type(1) {
     color: ${mainColor};

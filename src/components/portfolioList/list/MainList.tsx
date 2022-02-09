@@ -28,11 +28,7 @@ const MainList = () => {
           <p className="list-not-comment">작성된 포트폴리오가 없습니다</p>
         ) : (
           <>
-            {query?.length === 0 ? (
-              ""
-            ) : (
-              <S.SearchContent>{query}의 검색결과...</S.SearchContent>
-            )}
+            {query && <S.SearchContent>{query}의 검색결과...</S.SearchContent>}
 
             <S.ListContent>
               {portfolioList?.map((list: PortListType, index: number) => (

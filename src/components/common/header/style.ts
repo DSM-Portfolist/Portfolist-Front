@@ -80,7 +80,7 @@ export const MoreItem = styled.ul`
   position: absolute;
   width: 250px;
   height: 368px;
-  top: 37px;
+  top: 35px;
   right: -5px;
   border: 1px solid #e6e6e6;
   box-sizing: border-box;
