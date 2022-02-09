@@ -11,12 +11,12 @@ import * as S from "./style";
 
 const NotificationModule = () => {
   const queryClient = useQueryClient();
-
+  
   const status = useRecoilValue(notificationStatus);
   const [isClick, setIsClick] = useRecoilState(notificationIsClick);
 
   const { mutate: notificationControl } = useMutation(
-    (click: boolean) => putNotification(click),
+    (status: boolean) => putNotification(status),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("noti_status");

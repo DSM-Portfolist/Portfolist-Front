@@ -4,7 +4,7 @@ export { default as FirstProgress } from "./signin/signUp/process/FirstProgress"
 export { default as SecProgress } from "./signin/signUp/process/SecProgress";
 export { default as ProgressBar } from "./signin/signUp/process/ProgressBar";
 export { default as Main } from "./main/Main";
-export { default as Header } from "./commom/header";
+export { default as Header } from "./common/header";
 export { default as Banner } from "./main/Banner";
 export { default as MonthPortfolio } from "./main/monthPortfolio/MonthPortfolio";
 export { default as Introduce } from "./main/introduce/Introduce";
@@ -18,7 +18,7 @@ export { default as PortfolioDatail } from "./portfolioDetail/PortfolioDetail";
 export { default as Comment } from "./portfolioDetail/comment/Comment";
 export { default as ExperienceList } from "./portfolioDetail/items/experience/ExperienceList";
 export { default as PortfolioMake } from "./portfolioMake";
-export { default as Footer } from "./commom/footer/Footer";
+export { default as Footer } from "./common/footer/Footer";
 export { default as Token } from "./signin/login/Token";
 export { default as MyPage } from "./mypage";
 export { default as UserPage } from "./mypage/userPage/UserPage";
