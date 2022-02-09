@@ -1,11 +1,11 @@
 import { useRecoilValue } from "recoil";
-import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail";
+import { portfoilo } from "../../../../modules/atom/portfolio/portfolioDetail";
 import { MoreInfoType } from "../../../../util/interface/portfolio/portfolioDetailType";
 import MoreInfoItem from "./MoreInfoItem";
 import * as S from "./style";
 
 const MoreInfo = () => {
-  const portfolioValue = useRecoilValue(getPortfolioSelecor);
+  const portfolioValue = useRecoilValue(portfoilo);
 
   return (
     <>
