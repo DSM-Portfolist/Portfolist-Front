@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { DateSplitHook } from "../../../../hook/dateSplitHook";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
-import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail/index";
+import { portfoilo } from "../../../../modules/atom/portfolio/portfolioDetail";
 import { deletePortfolio } from "../../../../util/api/portfolio/portfolio";
 import { DefaultImage } from "../../../../util/assets";
 import { mainColor } from "../../../../util/css/color/color";
@@ -13,7 +13,7 @@ const FieldItem = (field: any) => {
 };
 
 const Title = () => {
-  const portfolioValue = useRecoilValue(getPortfolioSelecor);
+  const portfolioValue = useRecoilValue(portfoilo);
   const userId = portfolioValue?.user?.user_id;
   const { push } = useHistory();
 
@@ -55,7 +55,11 @@ const Title = () => {
       </TitleInfo>
       {portfolioValue?.mine ? (
         <ModifyWrap>
-          <button onClick={() => { push(`/portfolio-modify?id=${portfolioValue.portfolio_id}`)}}>
+          <button
+            onClick={() => {
+              push(`/portfolio-modify?id=${portfolioValue.portfolio_id}`);
+            }}
+          >
             포트폴리오 수정
           </button>
           <button

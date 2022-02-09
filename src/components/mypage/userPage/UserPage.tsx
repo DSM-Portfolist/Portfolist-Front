@@ -1,12 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import * as S from "../mypage/style";
-import {
-  myPageSection,
-  column,
-  baseBackground,
-  sectionTitleWrapper,
-  center,
-} from "../../../util/css/mypage/UserPage/style";
 import PortfolioList from "../PortfolioList/PortfolioList";
 import { Header } from "../..";
 import { useRecoilValue } from "recoil";
@@ -15,6 +6,8 @@ import {
   userPortfolioListSelector,
 } from "../../../modules/atom/userpage/userpage";
 import UserProfileHeader from "../ProfileHeader/UserProfileHeader";
+import styled from "@emotion/styled";
+import { grayColor } from "../../../util/css/color/color";
 
 const UserPage = ({ match }: any) => {
   const userPortfolio = useRecoilValue(
@@ -23,19 +16,19 @@ const UserPage = ({ match }: any) => {
   const userInfo = useRecoilValue(userInfoSelector(match.params.userId));
 
   return (
-    <div css={[baseBackground, column]}>
-      <Header></Header>
-      <section css={[myPageSection]}>
+    <UserPageContainer>
+      <Header />
+      <UserPageSection>
         <UserProfileHeader userInfo={userInfo} />
         <article>
-          <div css={[center, sectionTitleWrapper]}>
+          <SectionTitleWrapper>
             <span>{userInfo?.name}</span>
             <span>님의 포트폴리오</span>
-          </div>
+          </SectionTitleWrapper>
           {userPortfolio?.length === 0 ? (
-            <S.NotText>
+            <NotText>
               <span>작성된 포트폴리오가 없습니다.</span>
-            </S.NotText>
+            </NotText>
           ) : (
             <>
               {userPortfolio?.map((portfolio, index) => (
@@ -48,9 +41,56 @@ const UserPage = ({ match }: any) => {
             </>
           )}
         </article>
-      </section>
-    </div>
+      </UserPageSection>
+    </UserPageContainer>
   );
 };
+
+const UserPageContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const UserPageSection = styled.section`
+  width: 750px;
+  margin-top: 130px;
+`;
+
+const NotText = styled.span`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${grayColor};
+  font-size: 20px;
+  padding: 50px 0;
+  font-weight: 500;
+`;
+
+const SectionTitleWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  div {
+    font-weight: 700;
+    font-size: 17px;
+    color: black;
+    margin-left: 10px;
+  }
+  & span {
+    font-size: 24px;
+    line-height: 35px;
+  }
+  & span:first-of-type {
+    font-weight: bold;
+  }
+  & span:nth-of-type(2) {
+    font-weight: 500;
+  }
+`;
 
 export default UserPage;

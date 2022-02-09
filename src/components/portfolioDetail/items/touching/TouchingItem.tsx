@@ -3,7 +3,7 @@ import { useMutation } from "react-query";
 import { useLocation } from "react-router";
 import { useRecoilValue } from "recoil";
 import { CountChangeHook } from "../../../../hook/countChangeHook";
-import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail";
+import { portfoilo } from "../../../../modules/atom/portfolio/portfolioDetail";
 import {
   deleteTouching,
   postTouching,
@@ -17,7 +17,7 @@ const TouchingItem = () => {
   const queryData = QueryString.parse(location.search);
   const id: any = queryData.id;
 
-  const portfolioValue = useRecoilValue(getPortfolioSelecor);
+  const portfolioValue = useRecoilValue(portfoilo);
   const [touchingBoolean, setTouchingBoolean] = useState<boolean>(
     portfolioValue?.touched
   );
