@@ -91,6 +91,8 @@ export const MoreItem = styled.ul`
   overflow: hidden;
   cursor: auto;
   z-index: 1;
+
+  transition: all 0.2s;
 `;
 
 export const MagnifierWrapper = styled.div<Props>`

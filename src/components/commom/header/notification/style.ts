@@ -26,9 +26,15 @@ export const NotiWrapper = styled.li`
 `;
 
 export const Notification = styled.div<Props>`
+  padding-top: ${({ noti }) => (noti ? "10px" : "0")};
+  padding-bottom: ${({ noti }) => (noti ? "10px" : "0")};
+  padding-right: 10px;
+  padding-left: 10px;
   width: 350px;
   background: #ffffff;
-  border: ${({ noti }) => (noti ? "1px solid #eaeaea" : "none")};
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: ${({ noti }) => (noti ? "1px solid #eaeaea" : "0")};
   position: absolute;
   top: 32px;
   right: -30px;
@@ -45,7 +51,7 @@ export const Notification = styled.div<Props>`
 `;
 
 export const NotiMent = styled.div`
-  margin: 7px 10px 0 10px;
+  margin: 5px 0;
   font-size: 16px;
   font-family: "NanumSquare";
   display: flex;
@@ -53,5 +59,6 @@ export const NotiMent = styled.div`
 
   span:nth-of-type(1) {
     color: ${mainColor};
+    font-weight: 600;
   }
 `;
