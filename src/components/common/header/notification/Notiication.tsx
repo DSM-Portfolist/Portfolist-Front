@@ -41,7 +41,7 @@ const Notiication = () => {
 
           <S.Notification
             noti={noti}
-            style={noti ? { height: 200 } : { height: 0 }}
+            style={noti ? { height: "fit-content" } : { height: 0 }}
             onMouseOver={() => setNoti(true)}
             onMouseOut={() => setNoti(false)}
           >

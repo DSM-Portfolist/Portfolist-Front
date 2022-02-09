@@ -31,6 +31,7 @@ export const Notification = styled.div<Props>`
   padding-right: 10px;
   padding-left: 10px;
   width: 350px;
+  max-height: 200px;
   background: #ffffff;
   box-sizing: border-box;
   border-radius: 10px;
