@@ -40,20 +40,20 @@ const CommentItem = ({ comment }: Props) => {
         <S.Content toggle={toggle}>
           <img
             src={
-              comment.user.profile_img === null
+              comment?.user?.profile_img === null
                 ? `${DefaultProfile}`
-                : comment.user.profile_img
+                : comment?.user?.profile_img
             }
             alt="프로필 사진"
           />
           <div className="content">
             <Link
-              to={`/user-page/${comment.user.user_id}`}
+              to={`/user-page/${comment?.user?.user_id}`}
               className="user-name"
             >
-              <strong>{comment.user.name}</strong>
+              <strong>{comment?.user?.name}</strong>
               <div className="comment-date">
-                <span>{comment.cdate}</span>
+                <span>{comment?.cdate}</span>
               </div>
             </Link>
             {comment?.comment_content === null ? (
@@ -65,7 +65,7 @@ const CommentItem = ({ comment }: Props) => {
         </S.Content>
         <S.Util>
           {comment?.mine && (
-            <span onClick={() => deleteComments(comment.comment_id)}>삭제</span>
+            <span onClick={() => deleteComments(comment?.comment_id)}>삭제</span>
           )}
           <span onClick={() => setReportCommentModal(true)}>신고</span>
         </S.Util>
