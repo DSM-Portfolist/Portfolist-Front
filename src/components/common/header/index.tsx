@@ -64,7 +64,7 @@ const Header = () => {
                 <img src={Logo} alt="포트폴리스트 로고" />
               </Link>
               <Link
-                to="list?page=0&size=10&field=&sort=date&query=&searchType="
+                to="/list?page=0&size=10&field=&sort=date&query=&searchType="
                 className="list-item"
               >
                 <span>포트폴리오</span>
@@ -87,7 +87,7 @@ const Header = () => {
             </ul>
           </S.Container>
         ) : (
-          <LoginCompontent /> // 시작하기 컴포넌트
+          <LoginCompontent />
         )}
         <S.MagnifierWrapper isFocusing={isFocusing}>
           <S.Input onChange={(e) => searchHandler(e)}>
