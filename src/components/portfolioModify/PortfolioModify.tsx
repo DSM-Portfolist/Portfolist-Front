@@ -19,7 +19,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getPortfolio } from "../../util/api/portfolio/portfolio";
 import QueryString from "query-string";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { FieldToId } from "../../hook/fieldToIdHook";
+import { CertificateContainerList } from "../../util/interface/portfolio/portfolioDetailType";
 
 interface stateType {
   portfolioID: number;
@@ -35,48 +37,41 @@ const PortfolioModify = () => {
   const location = useLocation<stateType>();
   const query = QueryString.parse(location.search);
 
-  const getPortfolioData = (id: number) => {
-    getPortfolio(id)
-      .then((res) => {
-        const {
-          title,
-          introduce,
-          field,
-          more_info,
-          container_list,
-          link,
-          file,
-        } = res.data;
-        let { certificate_container_list } = res.data;
-
-        certificate_container_list = certificate_container_list.map(
-          (value: any) => {
-            if (value.certificate_list.length <= 0) {
-              return { title: value.title, certificate_list: [""] };
-            } else {
-              return value;
+  const { data: portfolioValue } = useQuery(
+    "portfolio_value",
+    () => getPortfolio(Number(query.id)),
+    {
+      onSuccess: ({ data }) => {
+        const item = data.data;
+        const certificate_container_list =
+          item?.certificate_container_list?.map(
+            (value: CertificateContainerList) => {
+              if (value.certificate_list.length <= 0) {
+                return { title: value.title, certificate_list: [""] };
+              } else {
+                return value;
+              }
             }
-          }
-        );
+          );
 
         setPortfolioModifyArr({
           ...portfolioModifyArr,
-          title: title,
-          introduce: introduce,
-          field: field.map((value: string) => {
-            return fieldToId(value);
+          title: item?.title,
+          introduce: item?.introduce,
+          field: item?.field?.map((value: string) => {
+            return FieldToId(value);
           }),
-          more_info: more_info,
-          container_list: container_list,
+          more_info: item?.more_info,
+          container_list: item?.container_list,
           certificate_container_list: certificate_container_list,
-          link: link,
-          file: file,
+          link: item?.link,
+          file: item?.file,
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+      },
+    }
+  );
+
+  console.log(portfolioValue);
 
   const { mutate: patchPortfolio } = useMutation(
     () => portfolioModifySubmit(portfolioModifyArr, Number(query.id)),
@@ -95,27 +90,8 @@ const PortfolioModify = () => {
   );
 
   useEffect(() => {
-    getPortfolioData(Number(query.id));
+    //getPortfolioData(Number(query.id));
   }, []);
-
-  const fieldToId = (fieldName: string) => {
-    switch (fieldName) {
-      case "FrontEnd":
-        return "1";
-      case "SERVER":
-        return "2";
-      case "ANDROID":
-        return "3";
-      case "AI":
-        return "4";
-      case "DATA ANALYSIS":
-        return "5";
-      case "DESIGN":
-        return "6";
-      case "DevOps":
-        return "7";
-    }
-  };
 
   return (
     <>

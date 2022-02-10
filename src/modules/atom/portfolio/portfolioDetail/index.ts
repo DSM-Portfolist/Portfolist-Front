@@ -36,6 +36,8 @@ export const portfoilo = atom<PortfolioType>({
     title: "",
     total_touching: 0,
     touched: false,
+    open: false,
+    thumbnail: "",
   },
 });
 
