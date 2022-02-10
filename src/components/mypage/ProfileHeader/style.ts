@@ -74,6 +74,12 @@ export const ProfileBottom = styled.div`
     height: 30px;
     position: absolute;
     right: 0;
+
+    & button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   & button {
     width: 120px;

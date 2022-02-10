@@ -1,9 +1,9 @@
 import { useRecoilValue } from "recoil";
-import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail";
+import { portfoilo } from "../../../../modules/atom/portfolio/portfolioDetail";
 import * as S from "./style";
 
 const CertificateList = () => {
-  const portfolioValue = useRecoilValue(getPortfolioSelecor);
+  const portfolioValue = useRecoilValue(portfoilo);
 
   return (
     <>

@@ -1,12 +1,13 @@
 import axios, { AxiosError } from "axios";
-import { ToastError } from "../../../hook/toastHook";
+import { ToastError, ToastSuccess } from "../../../hook/toastHook";
 
 export const MAINURL = process.env.REACT_APP_API_URL;
 export const token = `${localStorage.getItem("access_token_portfolist")}`;
 
+console.log(MAINURL);
+
 const instance = axios.create({
   baseURL: MAINURL,
-  //timeout: 10000,
   headers: {
     "Content-Type": "application/json",
   },
@@ -36,10 +37,13 @@ instance.interceptors.response.use(
       window.location.href = "/";
     } else if (status === 401) {
       //alert("로그인 후 이용해주세요.");
-      //window.location.href = "/login";
+      window.location.href = "/";
+      localStorage.removeItem("access_token_portfolist");
+      localStorage.removeItem("refresh_token_portfolist");
+      ToastSuccess("로그인 후 이용해주세요.");
     } else if (status === 403) {
-      // alert("잘못된 접근 입니다.");
-      // window.location.href = "/";
+      alert("잘못된 접근 입니다.");
+      window.location.href = "/";
     } else if (status === 407) {
       ToastError("서버에 요류가 발생했습니다.");
     } else if (status === 429) {
