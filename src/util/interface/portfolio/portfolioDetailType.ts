@@ -17,6 +17,8 @@ export interface PortfolioType {
   total_touching: number;
   touched: boolean;
   user: UserType;
+  open?: boolean;
+  thumbnail?: string;
 }
 
 export interface CertificateContainerList {
