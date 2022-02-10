@@ -19,7 +19,7 @@ const MoreInfoContainer = () => {
 
   useEffect(() => {
     setMoreInfo(portfolioModifyArr.more_info);
-  }, []);
+  }, [portfolioModifyArr.more_info]);
 
   useEffect(() => {
     setPortfolioModifyArr({
