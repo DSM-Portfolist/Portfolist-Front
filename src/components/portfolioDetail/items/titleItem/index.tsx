@@ -1,21 +1,29 @@
 import styled from "@emotion/styled";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { DateSplitHook } from "../../../../hook/dateSplitHook";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
-import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail/index";
+import { portfoilo } from "../../../../modules/atom/portfolio/portfolioDetail";
 import { deletePortfolio } from "../../../../util/api/portfolio/portfolio";
 import { DefaultImage } from "../../../../util/assets";
 import { mainColor } from "../../../../util/css/color/color";
+import QueryString from "query-string";
 
 const FieldItem = (field: any) => {
   return <FieldItemWrapper>{field.field}</FieldItemWrapper>;
 };
 
 const Title = () => {
-  const portfolioValue = useRecoilValue(getPortfolioSelecor);
+  const portfolioValue = useRecoilValue(portfoilo);
   const userId = portfolioValue?.user?.user_id;
   const { push } = useHistory();
+
+  interface stateType {
+    portfolioID: number;
+  }
+
+  const location = useLocation<stateType>();
+  const query = QueryString.parse(location.search);
 
   function deletePortfolioHandler(id: number) {
     try {
@@ -55,7 +63,11 @@ const Title = () => {
       </TitleInfo>
       {portfolioValue?.mine ? (
         <ModifyWrap>
-          <button onClick={() => { push(`/portfolio-modify?id=${portfolioValue.portfolio_id}`)}}>
+          <button
+            onClick={() => {
+              push(`/portfolio-modify?id=${query.id}`);
+            }}
+          >
             포트폴리오 수정
           </button>
           <button
