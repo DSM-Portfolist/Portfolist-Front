@@ -1,4 +1,5 @@
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Link } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
@@ -20,44 +21,49 @@ interface Props {
 }
 
 const ReComment = ({ comment }: Props) => {
+  const queryClient = useQueryClient();
   const setReportCommentModal = useSetRecoilState(commentReoprt);
-  const [reCommentList, setReCommentList] = useState<ReCommentType[]>([]);
-  const [reCommentText, setReCommentText] = useState<string>("");
-  const commentRef = useRef(null);
+  const commentRef = useRef<null | any>(null);
 
-  const reCommentDeleteHandler = (id: number) => {
-    deleteReComment(id)
-      .then(() => {
-        ToastSuccess("답글이 삭제되었습니다.");
-        reComment();
-      })
-      .catch((e) => {
-        ToastError("답글 삭제가 실패했습니다.");
-        console.log(e);
-      });
-  };
-
-  const reCommentAddHandler = (e: any, id: number, value: string) => {
-    e.preventDefault();
-
-    if (commentRef) {
-      postReComment(id, value)
-        .then(() => {
-          ToastSuccess("답글이 작성되었습니다.");
-          setReCommentText("");
-          reComment();
-        })
-        .catch(() => ToastError("답글 작성에 실패했습니다."));
+  const { data: reCommentValue } = useQuery(
+    ["recomment_value", comment.comment_id],
+    () => getReComment(comment.comment_id),
+    {
+      cacheTime: Infinity,
+      staleTime: Infinity,
+      keepPreviousData: true,
+      enabled: !!comment.comment_id,
     }
-  };
+  );
 
-  const reComment = useCallback(() => {
-    getReComment(comment.comment_id).then((res) => setReCommentList(res.data));
-  }, [comment.comment_id]);
+  const { mutate: reCommentDeleteHandler } = useMutation(
+    (id: number) => deleteReComment(id),
+    {
+      onSuccess: () => {
+        ToastSuccess("답글이 삭제되었습니다.");
 
-  useLayoutEffect(() => {
-    reComment();
-  }, [reComment]);
+        queryClient.invalidateQueries("recomment_value");
+      },
+      onError: () => {
+        ToastError("답글 삭제가 실패했습니다.");
+      },
+    }
+  );
+
+  const { mutate: reCommentAddHandler } = useMutation(
+    (id: number) => postReComment(id, commentRef.current.value),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("recomment_value");
+        ToastSuccess("답글이 작성되었습니다.");
+
+        commentRef.current.value = null;
+      },
+      onError: () => {
+        ToastError("답글 작성에 실패했습니다.");
+      },
+    }
+  );
 
   return (
     <>
@@ -65,24 +71,23 @@ const ReComment = ({ comment }: Props) => {
         <S.Input
           type="text"
           placeholder="답글을 작성해 주세요"
-          onChange={(e) => setReCommentText(e.target.value)}
-          value={reCommentText}
           ref={commentRef}
         />
         <button
-          onClick={(e) =>
-            reCommentAddHandler(e, comment.comment_id, reCommentText)
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            reCommentAddHandler(comment.comment_id);
+          }}
         >
           등록
         </button>
 
-        {reCommentList?.map((rc) => (
+        {reCommentValue?.data?.map((rc: ReCommentType) => (
           <S.ReComment key={rc.re_comment_id}>
             <S.Content>
               <img
                 src={
-                  rc?.user?.profile_img === null
+                  rc?.user?.profile_img === null || rc?.user === null
                     ? `${DefaultProfile}`
                     : rc.user.profile_img
                 }
