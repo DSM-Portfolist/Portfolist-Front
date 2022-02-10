@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, withRouter, useHistory } from "react-router-dom";
 import { Logo, Magnifier } from "../../../util/assets";
 import * as S from "./style";
-import SubMenu from "./SubMenu";
 import Notiication from "./notification/Notiication";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { searchBar } from "../../../modules/atom/header";
@@ -11,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { reload } from "../../../modules/atom/auth";
 import LoginCompontent from "./loginBeforeItem";
+import SubMenuBox from "./subMenu/SubMenu";
 
 const Header = () => {
   const [selectText, setSelectText] = useState<boolean>(true);
@@ -83,7 +83,7 @@ const Header = () => {
                 />
               </li>
               <Notiication />
-              <SubMenu />
+              <SubMenuBox />
             </ul>
           </S.Container>
         ) : (
