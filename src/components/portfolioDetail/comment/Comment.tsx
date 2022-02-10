@@ -9,6 +9,8 @@ import { getComment, postComment } from "../../../util/api/portfolio/comment";
 import { useLocation } from "react-router";
 import QueryString from "query-string";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import { BarLoader } from "react-spinners";
+import { mainColor } from "../../../util/css/color/color";
 
 const Comment = () => {
   const queryClient = useQueryClient();
@@ -18,10 +20,14 @@ const Comment = () => {
   const queryData = QueryString.parse(location.search);
   const id: any = queryData.id;
 
-  const { data: comments } = useQuery(["comment", id], () => getComment(id), {
-    cacheTime: Infinity,
-    staleTime: Infinity,
-  });
+  const { data: comments, isLoading } = useQuery(
+    ["comment", id],
+    () => getComment(id),
+    {
+      cacheTime: Infinity,
+      staleTime: Infinity,
+    }
+  );
 
   const { mutate: postComments } = useMutation(
     (content: string) => postComment(id, content),
@@ -37,6 +43,9 @@ const Comment = () => {
       },
     }
   );
+
+  if (isLoading)
+    return <BarLoader color={mainColor} height="4px" width="100px" />;
 
   return (
     <>
