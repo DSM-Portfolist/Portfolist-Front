@@ -37,33 +37,36 @@ const FirstProgress = ({
   const { name, email, password, field } = inputs;
 
   // 이메일 인증 API
-  const emailAccess = useMutation((email) =>
-    axios
-      .post(`${MAINURL}/email`, { email: email })
-      .then(() => ToastSuccess("이메일 요청에 성공했습니다."))
-      .catch((e) => ToastError("이메일 요청에 실패하였습니다."))
+  const { mutate: emailAccess } = useMutation(
+    () => axios.post(`${MAINURL}/email`, { email: email }),
+    {
+      onSuccess: () => {
+        ToastSuccess("이메일 요청에 성공했습니다.");
+      },
+      onError: () => {
+        ToastError("이메일 요청에 실패하였습니다.");
+      },
+    }
   );
 
-  const EmailAccessHandler = (email: any) => {
-    emailAccess.mutate(email);
-  };
-
   // 회원가입 API
-  const signUp = useMutation((inputs) =>
-    axios
-      .post(`${MAINURL}/join`, inputs)
-      .then(() => {
+  const { mutate: signUp } = useMutation(
+    () => axios.post(`${MAINURL}/join`, inputs),
+    {
+      onSuccess: () => {
         ToastSuccess("회원가입이 완료되었습니다.");
         setTimeout(() => {
           push("/login");
         }, 1000);
-      })
-      .catch((e) => {
-        ToastError("회훤가입에 실패했습니다.");
-        if (e.stauts === 404) {
+      },
+      onError: (e) => {
+        if (e === 404) {
           ToastError("이메일 인증을 다시해주세요.");
+        } else {
+          ToastError("회훤가입을 다시 시도해주세요");
         }
-      })
+      },
+    }
   );
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,16 +82,17 @@ const FirstProgress = ({
   const handleSubmit = (data: any, e: any) => {
     e.preventDefault();
 
-    signUp.mutate(data);
+    signUp(data);
   };
 
   useEffect(() => {
     inputs.name.length >= 2 &&
     inputs.email.length >= 5 &&
-    inputs.password.length >= 4
+    inputs.password.length >= 4 &&
+    passwordCheck === inputs.password
       ? setBtnColor(true)
       : setBtnColor(false);
-  }, [inputs.name.length, inputs.email.length, inputs.password.length]);
+  }, [inputs, passwordCheck]);
 
   return (
     <>
@@ -127,7 +131,7 @@ const FirstProgress = ({
                   onChange={(e) => onChange(e)}
                   placeholder="이메일을 입력해주세요"
                   style={
-                    inputs.email.length >= 5
+                    inputs.email.length >= 4 && inputs.email.includes("@")
                       ? { borderBottom: `2px solid ${mainColor}` }
                       : { borderBottom: "" }
                   }
@@ -137,9 +141,9 @@ const FirstProgress = ({
 
               <div
                 className="email-button"
-                onClick={() => EmailAccessHandler(email)}
+                onClick={() => emailAccess()}
                 style={
-                  inputs.email.length >= 4
+                  inputs.email.length >= 4 && inputs.email.includes("@")
                     ? { backgroundColor: `${mainColor}` }
                     : { backgroundColor: "" }
                 }
@@ -227,9 +231,7 @@ const FirstProgress = ({
               style={{
                 background: `${mainColor}`,
               }}
-              onClick={(e) => {
-                handleSubmit(inputs, e);
-              }}
+              onClick={(e) => handleSubmit(inputs, e)}
             >
               회원가입
             </S.PreButton>
@@ -238,7 +240,8 @@ const FirstProgress = ({
           <>
             <S.NextButton
               btnColor={btnColor}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 setNextLevel(btnColor);
               }}
             >
