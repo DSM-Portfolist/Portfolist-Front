@@ -16,8 +16,6 @@ interface LoginType {
 }
 
 const Login = () => {
-  //const JWT_EXPIRY_TIME = 10000;
-  //const refresh_token = localStorage.getItem("refresh_token_portfolist");
   const { push } = useHistory();
 
   const [buttonColor, setButtonColor] = useState<boolean>(false);
@@ -34,23 +32,25 @@ const Login = () => {
 
   const { email, password } = loginInput;
 
-  const loginNormal = useMutation("login", () =>
-    axios
-      .post(`${MAINURL}/login/normal`, loginInput)
-      .then((res) => {
-        localStorage.setItem("access_token_portfolist", res.data.access_token);
+  const { mutate: login } = useMutation(
+    "login",
+    () => axios.post(`${MAINURL}/login/normal`, loginInput),
+    {
+      onSuccess: (data) => {
+        localStorage.setItem("access_token_portfolist", data.data.access_token);
         localStorage.setItem(
           "refresh_token_portfolist",
-          res.data.refresh_token
+          data.data.refresh_token
         );
-      })
-      .then(() => {
         ToastSuccess("로그인에 성공하였습니다.");
-        push("/");
-      })
-      .catch((e) => {
-        throw e;
-      })
+        setTimeout(() => {
+          push("/");
+        }, 1000);
+      },
+      onError: () => {
+        ToastError("정보를 다시 입력해주세요");
+      },
+    }
   );
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,17 +62,10 @@ const Login = () => {
     });
   };
 
-  const onSubmit = (e: any, data: any) => {
+  const onSubmit = (e: any) => {
     e.preventDefault();
 
-    loginNormal.mutate(data);
-
-    if (loginNormal.isSuccess) {
-      ToastSuccess("로그인에 성공하셨습니다.");
-      push("/");
-    } else if (loginNormal.isError) {
-      ToastError("정보를 다시 입력해주세요");
-    }
+    login();
   };
 
   useEffect(() => {
@@ -116,10 +109,7 @@ const Login = () => {
           />
         </S.InputWrapper>
         <S.ButtonWrapper btnColor={buttonColor}>
-          <button
-            className="login-button"
-            onClick={(e) => onSubmit(e, loginInput)}
-          >
+          <button className="login-button" onClick={(e) => onSubmit(e)}>
             login
           </button>
           <S.GitBtn onClick={onGithubHandler}>
