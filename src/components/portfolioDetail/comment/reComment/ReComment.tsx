@@ -36,7 +36,7 @@ const ReComment = ({ comment }: Props) => {
     }
   );
 
-  const { mutate: reCommentDeleteHandler } = useMutation(
+  const { mutate: deleteReComments } = useMutation(
     (id: number) => deleteReComment(id),
     {
       onSuccess: () => {
@@ -50,7 +50,7 @@ const ReComment = ({ comment }: Props) => {
     }
   );
 
-  const { mutate: reCommentAddHandler } = useMutation(
+  const { mutate: postReComments } = useMutation(
     (id: number) => postReComment(id, commentRef.current.value),
     {
       onSuccess: () => {
@@ -65,6 +65,16 @@ const ReComment = ({ comment }: Props) => {
     }
   );
 
+  const reCommentAddHandler = (e: any) => {
+    e.preventDefault();
+
+    if (commentRef.current.value === "") {
+      ToastError("답변할 내용을 입력해주세요.");
+    } else {
+      postReComments(commentRef.current.value);
+    }
+  };
+
   return (
     <>
       <S.CommentInputWrap>
@@ -73,14 +83,7 @@ const ReComment = ({ comment }: Props) => {
           placeholder="답글을 작성해 주세요"
           ref={commentRef}
         />
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            reCommentAddHandler(comment.comment_id);
-          }}
-        >
-          등록
-        </button>
+        <button onClick={(e) => reCommentAddHandler(e)}>등록</button>
 
         {reCommentValue?.data?.map((rc: ReCommentType) => (
           <S.ReComment key={rc.re_comment_id}>
@@ -108,7 +111,7 @@ const ReComment = ({ comment }: Props) => {
             </S.Content>
             <S.Util>
               {rc?.mine && (
-                <span onClick={() => reCommentDeleteHandler(rc.re_comment_id)}>
+                <span onClick={() => deleteReComments(rc.re_comment_id)}>
                   삭제
                 </span>
               )}
