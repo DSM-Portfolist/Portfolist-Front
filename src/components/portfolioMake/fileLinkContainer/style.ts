@@ -5,7 +5,7 @@ export const MainWrapper = styled.section`
   flex-direction: column;
 
   & h1 {
-    font-size: 22px;
+    font-size: 18px;
     color: #000000;
     margin-bottom: 30px;
     font-weight: 500;
