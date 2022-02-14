@@ -244,15 +244,14 @@ const FirstProgress = ({
             </S.PreButton>
           </div>
         ) : (
-          <>
-            <S.NextButton
-              btnColor={btnColor}
-              onClick={(e) => nextBtnClickHandle(e)}
-            >
-              다음
-            </S.NextButton>
-          </>
+          <S.NextButton
+            btnColor={btnColor}
+            onClick={(e) => nextBtnClickHandle(e)}
+          >
+            다음
+          </S.NextButton>
         )}
+        <Link to="/login">이미 계정이 있어요!</Link>
       </S.SignForm>
     </>
   );

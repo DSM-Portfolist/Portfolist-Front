@@ -32,7 +32,6 @@ export const SignForm = styled.form`
   overflow: hidden;
 
   a {
-    width: 130px;
     margin: 0 auto;
   }
 
@@ -155,7 +154,7 @@ export const InputItem = styled.div`
 `;
 
 export const NextButton = styled.button<Props>`
-  margin: 50px auto;
+  margin: 30px auto;
   cursor: pointer;
   color: white;
   font-size: 18px;
