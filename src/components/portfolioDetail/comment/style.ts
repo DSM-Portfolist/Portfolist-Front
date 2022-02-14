@@ -11,9 +11,10 @@ export const CommentWrapper = styled.div`
   margin: 50px auto 200px 0;
 
   .no_comment {
-    margin: 30px auto;
+    margin: 30px;
+    text-align: center;
     color: ${grayColor};
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
   }
 `;
