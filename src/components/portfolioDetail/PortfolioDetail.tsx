@@ -10,11 +10,11 @@ import MoreInfo from "./items/moreInfo/MoreInfo";
 import PdfFile from "./items/pdfFile";
 import TouchingItem from "./items/touching/TouchingItem";
 import { portfoilo } from "../../modules/atom/portfolio/portfolioDetail";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Title from "./items/titleItem";
 import { useQuery } from "react-query";
 import { getPortfolio } from "../../util/api/portfolio/portfolio";
+import { AxiosError } from "axios";
+import { ToastError } from "../../hook/toastHook";
 
 const PortfolioDetail = () => {
   const setPortfolioId = useSetRecoilState(portfolioId);
@@ -26,18 +26,28 @@ const PortfolioDetail = () => {
 
   setPortfolioId(id);
 
-  const { data: portfolio } = useQuery("portfolio_detail", () => getPortfolio(id), {
-    staleTime: Infinity,
-    cacheTime: Infinity,
-    onSuccess: (data) => {
-      setPortfolioValue(data?.data);
-    },
-  });
+  const { data: portfolio } = useQuery(
+    ["portfolio_detail", id],
+    () => getPortfolio(id),
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      onSuccess: (data) => {
+        setPortfolioValue(data?.data);
+      },
+      onError: (error: AxiosError) => {
+        const status = error.response?.status;
+
+        if (status === 401) {
+          ToastError("로그인 후 이용해주세요.");
+        }
+      },
+    }
+  );
 
   return (
     <>
       <Header />
-      <ToastContainer />
       <S.DetailWrappper>
         <Title />
         <TouchingItem />

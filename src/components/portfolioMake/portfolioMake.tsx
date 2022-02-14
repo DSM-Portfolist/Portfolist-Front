@@ -13,8 +13,6 @@ import { portfolioMakeSubmit } from "../../util/api/portfolio/portfolioPost";
 import OptionContainer from "./optionContainer/OptionContainer";
 import { ToastError, ToastSuccess } from "../../hook/toastHook";
 import { useHistory } from "react-router";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const PortfolioMake = () => {
   const portfolioMakeArr = useRecoilValue(portfolioMakeList);
@@ -38,7 +36,6 @@ const PortfolioMake = () => {
   return (
     <>
       <Header />
-      <ToastContainer />
       <S.MainContainer>
         <PrecautionsContainer /> {/* 주의사항을 적는 Text 컴포넌트 */}
         <OptionContainer /> {/* 분야랑 공개 비공개 설정 컴포넌트 */}

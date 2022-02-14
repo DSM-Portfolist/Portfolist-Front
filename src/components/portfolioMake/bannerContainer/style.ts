@@ -7,7 +7,7 @@ export const BannerWrap = styled.section`
 export const Title = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 20px;
+  font-size: 18px;
 
   span:nth-of-type(2) {
     margin-top: 5px;
@@ -44,6 +44,9 @@ export const ImageWrap = styled.div`
   flex-direction: row;
   justify-content: space-between;
   overflow: auto;
+  flex-wrap: wrap;
+  gap: 10px;
+
   &::-webkit-scrollbar {
     width: 7px;
     height: 6px;
@@ -57,7 +60,7 @@ export const ImageWrap = styled.div`
   }
 
   img {
-    width: 190px;
+    width: 175px;
     height: 280px;
     object-fit: cover;
     box-sizing: border-box;

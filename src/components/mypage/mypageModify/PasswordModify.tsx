@@ -1,8 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
 import { ToastSuccess, ToastError } from "../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import {
   ContentItem,
   ButtonWrapper,
@@ -120,7 +118,6 @@ const PasswordModify = () => {
 
   return (
     <>
-      <ToastContainer />
       <div css={[ContentItem]}>
         <h1>비밀번호 변경</h1>
         <span onClick={openButton}>변경</span>

@@ -2,8 +2,6 @@ import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { Link, useHistory } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../hook/toastHook";
 import { MAINURL } from "../../../util/api/common";
 import { Github, Logo } from "../../../util/assets";
@@ -76,7 +74,6 @@ const Login = () => {
 
   return (
     <S.BackWrapper>
-      <ToastContainer />
       <S.Content>
         <Link to="/">
           <img src={Logo} alt="Portfolist 로고" />
