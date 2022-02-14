@@ -68,7 +68,7 @@ const Comment = () => {
           </div>
         </S.CommentList>
         {comments?.data?.comments?.length === 0 ? (
-          <span className="no_comment">작성된 댓글이 없습니다.</span>
+          <p className="no_comment">작성된 댓글이 없습니다.</p>
         ) : (
           <>
             {comments?.data.comments.map(
