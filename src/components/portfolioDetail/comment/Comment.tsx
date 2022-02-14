@@ -48,8 +48,7 @@ const Comment = () => {
   const commentAddHandle = (e: any) => {
     e.preventDefault();
 
-    if (commentRef.current.value === null || "" || undefined) {
-      console.log(true);
+    if (commentRef.current.value === "") {
       ToastError("작성할 내용을 입력해주세요.");
     } else {
       postComments(commentRef.current.value);
