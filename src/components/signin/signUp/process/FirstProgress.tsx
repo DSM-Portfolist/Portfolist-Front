@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { useHistory } from "react-router";
@@ -32,7 +32,6 @@ const FirstProgress = ({
   const [inputType, setInputType] = useState<boolean>(false);
   const [inputTypeReturn, setInputTypeReturn] = useState<boolean>(false);
   const [passwordCheck, setPasswordCheck] = useState<string>("");
-  let error = false;
 
   const { name, email, password, field } = inputs;
 
@@ -41,10 +40,16 @@ const FirstProgress = ({
     () => axios.post(`${MAINURL}/email`, { email: email }),
     {
       onSuccess: () => {
-        ToastSuccess("이메일 요청에 성공했습니다.");
+        ToastSuccess("이메일 인증 요청에 성공했습니다.");
       },
-      onError: () => {
-        ToastError("이메일 요청에 실패하였습니다.");
+      onError: (error: AxiosError) => {
+        const status = error.response?.status;
+
+        if (status === 409) {
+          ToastError("이미 등록된 이메일입니다.");
+        } else {
+          ToastError("이메일 인증 요청에 실패하였습니다.");
+        }
       },
     }
   );
@@ -55,13 +60,16 @@ const FirstProgress = ({
     {
       onSuccess: () => {
         ToastSuccess("회원가입이 완료되었습니다.");
+
         setTimeout(() => {
           push("/login");
         }, 1000);
       },
-      onError: (e) => {
-        if (e === 404) {
-          ToastError("이메일 인증을 다시해주세요.");
+      onError: (error: AxiosError) => {
+        const status = error.response?.status;
+
+        if (status === 404) {
+          ToastError("이메일 인증을 다시 시도해주세요.");
         } else {
           ToastError("회훤가입을 다시 시도해주세요");
         }
@@ -83,6 +91,16 @@ const FirstProgress = ({
     e.preventDefault();
 
     signUp(data);
+  };
+
+  const nextBtnClickHandle = (e: any) => {
+    e.preventDefault();
+
+    if (!btnColor) {
+      ToastError("모든 항목을 다 입력해주세요.");
+    } else {
+      setNextLevel(btnColor);
+    }
   };
 
   useEffect(() => {
@@ -173,17 +191,6 @@ const FirstProgress = ({
                   alt="비밀번호아이콘"
                   onClick={() => setInputType(!inputType)}
                 />
-                {error ? (
-                  <></>
-                ) : (
-                  <>
-                    {/* <img
-                    className="select-icon"
-                    src={Warning}
-                    alt="비밀번호 경고 아이콘"
-                  /> */}
-                  </>
-                )}
               </S.InputItemWrap>
             </S.InputItem>
             <S.InputItem>
@@ -240,10 +247,7 @@ const FirstProgress = ({
           <>
             <S.NextButton
               btnColor={btnColor}
-              onClick={(e) => {
-                e.preventDefault();
-                setNextLevel(btnColor);
-              }}
+              onClick={(e) => nextBtnClickHandle(e)}
             >
               다음
             </S.NextButton>
