@@ -15,8 +15,6 @@ import { portfolioModifySubmit } from "../../util/api/portfolio/portfolioModify"
 import OptionContainer from "./optionContainer/OptionContainer";
 import { ToastError, ToastSuccess } from "../../hook/toastHook";
 import { useHistory, useLocation } from "react-router";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { getPortfolio } from "../../util/api/portfolio/portfolio";
 import QueryString from "query-string";
 import { useMutation, useQueryClient } from "react-query";
@@ -120,7 +118,6 @@ const PortfolioModify = () => {
   return (
     <>
       <Header />
-      <ToastContainer />
       <S.MainContainer>
         <PrecautionsContainer /> {/* 주의사항을 적는 Text 컴포넌트 */}
         <OptionContainer /> {/* 분야랑 공개 비공개 설정 컴포넌트 */}

@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useRecoilState } from "recoil";
 import { ToastError } from "../../../hook/toastHook";
 import { useFieldValue } from "../../../modules/atom/portfolio/search";
@@ -24,7 +22,6 @@ const Search = () => {
 
   return (
     <S.SearchWrapper>
-      <ToastContainer />
       <S.FieldSelectWrapper>
         <span>분야</span>
         <div className="field-select">

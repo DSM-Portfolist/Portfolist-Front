@@ -3,8 +3,6 @@ import * as S from "./style";
 import CommentItem from "./CommentItem";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
 import { ToastError, ToastSuccess } from "../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { getComment, postComment } from "../../../util/api/portfolio/comment";
 import { useLocation } from "react-router";
 import QueryString from "query-string";
@@ -49,7 +47,6 @@ const Comment = () => {
 
   return (
     <>
-      <ToastContainer />
       <S.CommentWrapper>
         <S.InputWrapper>
           <textarea placeholder="댓글을 입력해주세요" ref={commentRef} />

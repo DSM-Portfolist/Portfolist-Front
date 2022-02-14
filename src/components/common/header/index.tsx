@@ -6,8 +6,6 @@ import Notiication from "./notification/Notiication";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { searchBar } from "../../../modules/atom/header";
 import { searchValue } from "../../../modules/atom/portfolio/search";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { reload } from "../../../modules/atom/auth";
 import LoginCompontent from "./loginBeforeItem";
 import SubMenuBox from "./subMenu/SubMenu";
@@ -55,7 +53,6 @@ const Header = () => {
 
   return (
     <>
-      <ToastContainer />
       <S.HeaderWrapper>
         {token !== null ? (
           <S.Container>
