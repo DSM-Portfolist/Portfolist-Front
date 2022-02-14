@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
 import { MAINURL } from "../../../../util/api/common";
 import { CloseEye, Logo, OpenEye } from "../../../../util/assets";
@@ -114,7 +112,6 @@ const FirstProgress = ({
 
   return (
     <>
-      <ToastContainer />
       <S.SignForm>
         <Link to="/">
           <img src={Logo} alt="logo" className="logo" />

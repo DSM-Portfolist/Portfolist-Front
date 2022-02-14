@@ -10,8 +10,6 @@ import MoreInfo from "./items/moreInfo/MoreInfo";
 import PdfFile from "./items/pdfFile";
 import TouchingItem from "./items/touching/TouchingItem";
 import { portfoilo } from "../../modules/atom/portfolio/portfolioDetail";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Title from "./items/titleItem";
 import { useQuery } from "react-query";
 import { getPortfolio } from "../../util/api/portfolio/portfolio";
@@ -29,7 +27,7 @@ const PortfolioDetail = () => {
   setPortfolioId(id);
 
   const { data: portfolio } = useQuery(
-    "portfolio_detail",
+    ["portfolio_detail", id],
     () => getPortfolio(id),
     {
       staleTime: Infinity,
@@ -50,7 +48,6 @@ const PortfolioDetail = () => {
   return (
     <>
       <Header />
-      <ToastContainer />
       <S.DetailWrappper>
         <Title />
         <TouchingItem />

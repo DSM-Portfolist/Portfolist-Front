@@ -1,8 +1,6 @@
 import { MinusButton } from "../../../../util/assets";
 import * as S from "./style";
 import { ToastError } from "../../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useRecoilState } from "recoil";
 import { container_list_atom } from "../../../../modules/atom/portfolioPost";
 
@@ -80,7 +78,6 @@ const ContentWrapper = (props: any) => {
 
   return (
     <S.ContentContainer>
-      <ToastContainer />
       {containerList[parent_index].container_text_list?.map(
         (value: any, index: number) => {
           const { box_content, box_title } = value;

@@ -10,8 +10,6 @@ import {
   container_list_modify_atom,
 } from "../../../modules/atom/portfolioModify";
 import { ToastError } from "../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const ImageContainerList = () => {
   const [containerListModify, setContainerListModify] = useRecoilState(
@@ -80,7 +78,6 @@ const ImageContainerList = () => {
 
   return (
     <S.MainWrapper className="make-container">
-      <ToastContainer />
       <header>
         <button type="button" onClick={addContainerListItem}>
           + Add new list

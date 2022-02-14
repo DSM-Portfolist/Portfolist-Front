@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { MinusButton } from "../../../../util/assets";
 import * as S from "./style";
 import { ToastError } from "../../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   container_list_modify_atom,
@@ -91,7 +89,6 @@ const ContentWrapper = (props: any) => {
 
   return (
     <S.ContentContainer>
-      <ToastContainer />
       {containerListModify[parent_index].container_text_list?.map(
         (value: any, index: number) => {
           const { box_content, box_title } = value;
