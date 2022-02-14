@@ -4,9 +4,10 @@ import { ToastError } from "../../../hook/toastHook";
 export const MAINURL = process.env.REACT_APP_API_URL;
 export const token = `${localStorage.getItem("access_token_portfolist")}`;
 
+console.log(MAINURL);
+
 const instance = axios.create({
   baseURL: MAINURL,
-  //timeout: 10000,
   headers: {
     "Content-Type": "application/json",
   },
