@@ -45,19 +45,23 @@ const Comment = () => {
   if (isLoading)
     return <BarLoader color={mainColor} height="4px" width="100px" />;
 
+  const commentAddHandle = (e: any) => {
+    e.preventDefault();
+
+    if (commentRef.current.value === null || "" || undefined) {
+      console.log(true);
+      ToastError("작성할 내용을 입력해주세요.");
+    } else {
+      postComments(commentRef.current.value);
+    }
+  };
+
   return (
     <>
       <S.CommentWrapper>
         <S.InputWrapper>
           <textarea placeholder="댓글을 입력해주세요" ref={commentRef} />
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              postComments(commentRef.current.value);
-            }}
-          >
-            등록
-          </button>
+          <button onClick={(e) => commentAddHandle(e)}>등록</button>
         </S.InputWrapper>
         <S.CommentList>
           <div className="comment-info">
