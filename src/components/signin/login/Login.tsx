@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { Link, useHistory } from "react-router-dom";
@@ -45,8 +45,14 @@ const Login = () => {
           push("/");
         }, 1000);
       },
-      onError: () => {
-        ToastError("정보를 다시 입력해주세요");
+      onError: (error: AxiosError) => {
+        const status = error.response?.status;
+
+        if (status === 404) {
+          ToastError("가입된 계정이 없습니다.");
+        } else if (status === 401) {
+          ToastError("비밀번호가 틀렸습니다.");
+        }
       },
     }
   );

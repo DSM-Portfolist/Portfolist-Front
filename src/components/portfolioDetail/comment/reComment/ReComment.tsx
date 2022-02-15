@@ -1,11 +1,13 @@
 import { useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Link } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
-import { commentReoprt } from "../../../../modules/atom/portfolio/comment";
 import {
-  deleteReComment,
+  commentDeleteWarning_atom,
+  commentReoprt,
+} from "../../../../modules/atom/portfolio/comment";
+import {
   getReComment,
   postReComment,
 } from "../../../../util/api/portfolio/comment";
@@ -24,6 +26,9 @@ const ReComment = ({ comment }: Props) => {
   const queryClient = useQueryClient();
   const setReportCommentModal = useSetRecoilState(commentReoprt);
   const commentRef = useRef<null | any>(null);
+  const [commentInfo, setCommentInfo] = useRecoilState(
+    commentDeleteWarning_atom
+  );
 
   const { data: reCommentValue } = useQuery(
     ["recomment_value", comment.comment_id],
@@ -33,20 +38,6 @@ const ReComment = ({ comment }: Props) => {
       staleTime: Infinity,
       keepPreviousData: true,
       enabled: !!comment.comment_id,
-    }
-  );
-
-  const { mutate: deleteReComments } = useMutation(
-    (id: number) => deleteReComment(id),
-    {
-      onSuccess: () => {
-        ToastSuccess("답글이 삭제되었습니다.");
-
-        queryClient.invalidateQueries("recomment_value");
-      },
-      onError: () => {
-        ToastError("답글 삭제가 실패했습니다.");
-      },
     }
   );
 
@@ -64,6 +55,16 @@ const ReComment = ({ comment }: Props) => {
       },
     }
   );
+
+  const deleteCommentHandle = (id: number) => {
+    setCommentInfo({
+      ...commentInfo,
+      id: id,
+      isOpen: true,
+      isRecomment: true,
+      isComment: false,
+    });
+  };
 
   const reCommentAddHandler = (e: any) => {
     e.preventDefault();
@@ -111,7 +112,7 @@ const ReComment = ({ comment }: Props) => {
             </S.Content>
             <S.Util>
               {rc?.mine && (
-                <span onClick={() => deleteReComments(rc.re_comment_id)}>
+                <span onClick={() => deleteCommentHandle(rc.re_comment_id)}>
                   삭제
                 </span>
               )}

@@ -405,7 +405,7 @@ export const ChangePasswordItem = styled.div`
 export const ModalWrapper = styled.section<Props>`
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.37);
+  background: rgb(237 237 237 / 75%);
   position: fixed;
   z-index: 10;
   display: ${({ modal }) => (modal ? "flex" : "none")};

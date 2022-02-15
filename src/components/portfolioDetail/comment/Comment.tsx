@@ -9,6 +9,7 @@ import QueryString from "query-string";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { BarLoader } from "react-spinners";
 import { mainColor } from "../../../util/css/color/color";
+import CommentDeleteWarningModal from "./CommentDeleteWarning";
 
 const Comment = () => {
   const queryClient = useQueryClient();
@@ -57,6 +58,7 @@ const Comment = () => {
 
   return (
     <>
+      <CommentDeleteWarningModal />
       <S.CommentWrapper>
         <S.InputWrapper>
           <textarea placeholder="댓글을 입력해주세요" ref={commentRef} />
