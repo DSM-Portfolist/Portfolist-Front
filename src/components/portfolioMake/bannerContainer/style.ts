@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const BannerWrap = styled.section`
+  width: 100%;
   padding: 60px 0;
 `;
 
@@ -11,7 +12,7 @@ export const Title = styled.div`
 
   span:nth-of-type(2) {
     margin-top: 5px;
-    color: #c7c7c7;
+    color: #7c7c7c;
     font-size: 18px;
   }
 
@@ -28,8 +29,8 @@ export const Title = styled.div`
       display: flex;
       align-items: center;
       p {
-        color: #989898;
-        font-size: 18px;
+        color: #7c7c7c;
+        font-size: 16px;
         margin-left: 10px;
         line-height: 10px; /* 이거 figma 복붙아닙니다 */
       }

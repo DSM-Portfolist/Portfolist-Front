@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 
 export const TextContainer = styled.div`
+  width: 100%;
+  
   & h1 {
     font-size: 20px;
     color: #000000;
