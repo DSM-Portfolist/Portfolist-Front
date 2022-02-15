@@ -45,6 +45,7 @@ const PortfolioModify = () => {
           container_list,
           link,
           file,
+          thumbnail,
         } = res.data;
         let { certificate_container_list } = res.data;
 
@@ -70,6 +71,7 @@ const PortfolioModify = () => {
           certificate_container_list: certificate_container_list,
           link: link,
           file: file,
+          thumbnail: thumbnail,
         });
       })
       .catch((err) => {
