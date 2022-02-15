@@ -17,3 +17,10 @@ export interface ReCommentType {
   re_comment_id: number;
   user: UserType;
 }
+
+export interface CommentDeleteWraningType {
+  isOpen: boolean;
+  id: number | null;
+  isRecomment: boolean;
+  isComment: boolean;
+}
