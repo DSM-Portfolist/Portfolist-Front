@@ -68,6 +68,12 @@ export const portfolioItem = css`
     line-height: 35px;
     margin-top: 28px;
     color: #000000;
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 10px;
+    }
   }
 
   #content {

@@ -32,6 +32,7 @@ export { default as isInFile } from "./icon/isInFile.svg";
 export { default as Link } from "./icon/Link.svg";
 export { default as isInLink } from "./icon/isInLink.svg";
 export { default as TrashCan } from "./icon/trashCan.svg";
+export { default as Lock } from "./icon/lockIcon.svg";
 export const DefaultImage =
   "https://www.ibossedu.co.kr/template/DESIGN_shared/program/theme/01/THUMBNAIL_60_60_icon_rep_box.gif";
 export const DefaultProfile =
