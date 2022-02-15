@@ -8,12 +8,14 @@ import { deletePortfolio } from "../../../../util/api/portfolio/portfolio";
 import { DefaultImage } from "../../../../util/assets";
 import { mainColor } from "../../../../util/css/color/color";
 import QueryString from "query-string";
+import { useMutation, useQueryClient } from "react-query";
 
 const FieldItem = (field: any) => {
   return <FieldItemWrapper>{field.field}</FieldItemWrapper>;
 };
 
 const Title = () => {
+  const queryClient = useQueryClient();
   const portfolioValue = useRecoilValue(portfoilo);
   const userId = portfolioValue?.user?.user_id;
   const { push } = useHistory();
@@ -25,18 +27,21 @@ const Title = () => {
   const location = useLocation<stateType>();
   const query = QueryString.parse(location.search);
 
-  function deletePortfolioHandler(id: number) {
-    try {
-      deletePortfolio(id);
-      ToastSuccess("포트폴리오가 삭제되었습니다.");
-      setTimeout(() => {
-        push("/");
-      }, 1500);
-    } catch (e) {
-      ToastError("포트폴리오 삭제에 실패하였습니다.");
-      console.log(e);
+  const { mutate: portfolioDeleteHandle } = useMutation(
+    (id: number) => deletePortfolio(id),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("portfolio_list");
+        ToastSuccess("포트폴리오가 삭제되었습니다.");
+        setTimeout(() => {
+          push("/");
+        }, 1500);
+      },
+      onError: () => {
+        ToastError("포트폴리오 삭제에 실패하였습니다.");
+      },
     }
-  }
+  );
 
   return (
     <TitleWrapper>
@@ -71,7 +76,7 @@ const Title = () => {
             포트폴리오 수정
           </button>
           <button
-            onClick={() => deletePortfolioHandler(portfolioValue?.portfolio_id)}
+            onClick={() => portfolioDeleteHandle(portfolioValue?.portfolio_id)}
           >
             포트폴리오 삭제
           </button>
