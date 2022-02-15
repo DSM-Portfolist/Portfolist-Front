@@ -52,6 +52,8 @@ export const ContainerBox = styled.div`
       }
 
       .sub-content {
+        white-space: pre-line;
+        line-height: 25px;
         font-size: 18px;
         font-weight: 500;
       }

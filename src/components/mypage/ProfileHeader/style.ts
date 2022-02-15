@@ -28,7 +28,7 @@ export const Wrapper = styled.section`
 export const ProfileImage = styled.img`
   width: 150px;
   height: 150px;
-  border: 1px solid #cccccc;
+  border: 1px solid #ebebeb;
   border-radius: 100%;
   background-size: cover;
   object-fit: cover;

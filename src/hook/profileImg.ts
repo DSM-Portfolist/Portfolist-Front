@@ -1,7 +1,7 @@
-import { DefaultImage } from "../util/assets";
+import { DefaultProfile } from "../util/assets";
 
 export function ProfileImage(img: string | undefined) {
   if (img === null) {
-    return `${DefaultImage}`;
+    return `${DefaultProfile}`;
   } else return img;
 }
