@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import * as S from "./style";
 import { token } from "../../../util/api/common";
 import { UserInfoType } from "../../../util/interface/user";
-import { DefaultProfile } from "../../../util/assets";
+import { DefaultImage } from "../../../util/assets";
 
 interface Props {
   user?: UserInfoType;
@@ -13,9 +13,7 @@ const ProfileHeader = ({ user }: Props) => {
     <S.Wrapper>
       <S.ProfileImage
         alt="프로필 사진"
-        src={
-          user?.profile_img === null ? `${DefaultProfile}` : user?.profile_img
-        }
+        src={user?.profile_img === null ? `${DefaultImage}` : user?.profile_img}
       />
       <S.ProfileWrapper>
         <h1>{user?.name}</h1>

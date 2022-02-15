@@ -2,8 +2,6 @@ import React from "react";
 import deleteButtonX from "../../../../util/assets/icon/deleteButtonX.svg";
 import { MinusButton } from "../../../../util/assets";
 import { ToastError } from "../../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import * as S from "./style";
 
 const TextContainer = (props: any) => {
@@ -103,7 +101,6 @@ const TextContainer = (props: any) => {
         const { certificate_list, title } = list;
         return (
           <S.MapWrapper key={index}>
-            <ToastContainer />
             <S.TitleWrapper>
               <input
                 type="text"

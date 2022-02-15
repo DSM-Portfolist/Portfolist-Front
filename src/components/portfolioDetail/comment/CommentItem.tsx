@@ -40,7 +40,7 @@ const CommentItem = ({ comment }: Props) => {
         <S.Content toggle={toggle}>
           <img
             src={
-              comment?.user?.profile_img === null
+              comment?.user?.profile_img === null || comment?.user === null
                 ? `${DefaultProfile}`
                 : comment?.user?.profile_img
             }
@@ -65,16 +65,16 @@ const CommentItem = ({ comment }: Props) => {
         </S.Content>
         <S.Util>
           {comment?.mine && (
-            <span onClick={() => deleteComments(comment?.comment_id)}>삭제</span>
+            <span onClick={() => deleteComments(comment?.comment_id)}>
+              삭제
+            </span>
           )}
           <span onClick={() => setReportCommentModal(true)}>신고</span>
         </S.Util>
       </div>
-
       <button className="more_text" onClick={() => setToggle(!toggle)}>
         {toggle ? "- 답글 접기" : "+ 답글 달기"}
       </button>
-
       <S.ReCommentWrap toggle={toggle}>
         <ReComment comment={comment} />
       </S.ReCommentWrap>

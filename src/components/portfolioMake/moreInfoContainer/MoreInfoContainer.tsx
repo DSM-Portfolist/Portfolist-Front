@@ -3,8 +3,6 @@ import { useEffect, useState, useCallback } from "react";
 import * as S from "./style";
 import { PlusButton, MinusButton } from "../../../util/assets";
 import { ToastError } from "../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { inputDataArrType } from "../../../util/interface/portfolio/portfolioMakeType";
 import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
 import { useRecoilState } from "recoil";
@@ -61,7 +59,6 @@ const MoreInfoContainer = () => {
 
   return (
     <S.MainWrapper className="make-container">
-      <ToastContainer />
       <div className="titleWrapper">
         <h1>본인의 추가 정보를 입력해 주세요. ex) 학력 / 연락처 / 이메일</h1>
         <img src={PlusButton} alt="" onClick={AddData} />

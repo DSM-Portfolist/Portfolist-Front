@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useCallback } from "react";
 import * as S from "./style";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { CertificateListType } from "../../../util/interface/portfolioPost/postType";
 import TextContainer from "./TextContainer/TextContainer";
 import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
@@ -38,7 +36,6 @@ const LicenseContainer = () => {
 
   return (
     <S.LicenseWrapper className="make-container">
-      <ToastContainer />
       <S.HeaderButton>
         <span className="addContent" onClick={addList}>
           + Add new list

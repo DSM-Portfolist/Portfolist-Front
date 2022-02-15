@@ -17,11 +17,11 @@ const TouchingItem = () => {
   const queryData = QueryString.parse(location.search);
   const id: any = queryData.id;
 
+  const [count, setCount] = useState<number>(0);
   const portfolioValue = useRecoilValue(portfoilo);
   const [touchingBoolean, setTouchingBoolean] = useState<boolean>(
     portfolioValue?.touched
   );
-  const [count, setCount] = useState<number>(0);
 
   const touching = useMutation("touching", postTouching);
   const untouching = useMutation("untouching", deleteTouching);

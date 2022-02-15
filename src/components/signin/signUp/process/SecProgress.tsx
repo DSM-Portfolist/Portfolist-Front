@@ -30,12 +30,15 @@ const SecProgress = (props: Props) => {
     const fieldId = item.map((item: FieldType) => item.id);
 
     props.setFieldList(props.fieldList.concat(fieldId[0]));
+
     setTextList(textList.concat(content));
   }
 
   useEffect(() => {
     fieldItem?.length >= 1 ? setBtnColor(true) : setBtnColor(false);
   }, [fieldItem?.length]);
+
+  
 
   return (
     <>

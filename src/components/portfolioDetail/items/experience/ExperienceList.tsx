@@ -27,7 +27,7 @@ const ExperienceList = () => {
                   (box: ContainerTextType, index: number) => (
                     <div key={index} className="content-box-item">
                       <span className="sub-title">{box?.box_title}</span>
-                      <span className="sub-content">{box?.box_content}</span>
+                      <pre className="sub-content">{box?.box_content}</pre>
                     </div>
                   )
                 )}

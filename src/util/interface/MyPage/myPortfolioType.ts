@@ -11,6 +11,7 @@ export interface MyPortfolioType {
   introduce: string;
   thumbnail: string | "";
   user?: UserType;
+  open?: boolean;
 }
 
 export interface MyTouchingPortfolioType extends MyPortfolioType {}
