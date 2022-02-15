@@ -27,8 +27,8 @@ const itemList = [
 const ItemBox = () => {
   return (
     <ItemBoxContainer>
-      {itemList.map((item) => (
-        <Link to={item.url}>
+      {itemList.map((item, index) => (
+        <Link to={item.url} key={index}>
           <ItemBoxWrap>
             <img src={item.image} alt="" />
             <span>{item.title}</span>

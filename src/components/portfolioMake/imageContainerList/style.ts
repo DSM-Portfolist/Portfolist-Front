@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 
 export const MainWrapper = styled.section`
+  width: 100%;
+
   header {
     width: 100%;
     display: flex;

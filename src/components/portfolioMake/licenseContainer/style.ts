@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 
 export const LicenseWrapper = styled.section`
+  width: 100%;
+
   .infoContainer {
     display: flex;
     justify-content: space-between;

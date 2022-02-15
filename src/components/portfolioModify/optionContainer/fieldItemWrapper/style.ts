@@ -8,17 +8,16 @@ export const MainContainer = styled.div`
 export const FieldItemWrapper = styled.div`
   display: flex;
   select {
-    width: 150px;
-    height: 33px;
+    width: fit-content;
     -webkit-appearance: none; /* 네이티브 외형 감추기 */
     -moz-appearance: none;
     appearance: none;
     background: url(${arrowimg}) no-repeat 98% 50%; /* 화살표 모양의 이미지 */
-    border-bottom: 3px #ff7659 solid;
-    font-size: 17px;
-    line-height: 23px;
-    color: #000000;
-    padding-left: 6px;
+    border-bottom: 2px #ff7659 solid;
+    font-size: 16px;
+    color: #7c7c7c;
+    padding-right: 25px;
+
     cursor: pointer;
   }
   option {
