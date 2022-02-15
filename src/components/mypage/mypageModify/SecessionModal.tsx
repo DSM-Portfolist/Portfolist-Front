@@ -1,4 +1,4 @@
-import React from "react";
+import { useMutation } from "react-query";
 import { useHistory } from "react-router";
 import { ToastError, ToastSuccess } from "../../../hook/toastHook";
 import { deleteUser } from "../../../util/api/mypage";
@@ -14,20 +14,19 @@ const SecessionModal = (props: Props) => {
   const { modal, setModal } = props;
   const history = useHistory();
 
-  const deleteUserHandler = () => {
-    try {
-      deleteUser();
+  const { mutate: deleteUserHandle } = useMutation(() => deleteUser(), {
+    onSuccess: () => {
       ToastSuccess("회원 탈퇴에 성공하셨습니다.");
       setTimeout(() => {
         history.push("/");
         localStorage.removeItem("access_token_portfolist");
         localStorage.removeItem("refresh_token_portfolist");
       }, 1000);
-    } catch (e) {
+    },
+    onError: () => {
       ToastError("회원 탈퇴에 실패하셨습니다.");
-      console.log(e);
-    }
-  };
+    },
+  });
 
   return (
     <>
@@ -45,7 +44,11 @@ const SecessionModal = (props: Props) => {
             >
               취소
             </button>
-            <input type="submit" value="탈퇴" onClick={deleteUserHandler} />
+            <input
+              type="submit"
+              value="탈퇴"
+              onClick={() => deleteUserHandle()}
+            />
           </ModalButtonWrapper>
         </S.ModalBox>
       </S.ModalWrapper>
