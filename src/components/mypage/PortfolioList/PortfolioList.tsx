@@ -11,6 +11,7 @@ import {
 } from "../../../util/css/mypage/UserPage/style";
 import { row } from "../../../util/css/signin/style";
 import { MyPortfolioType } from "../../../util/interface/MyPage/myPortfolioType";
+import LockIcon from "./LockIcon";
 
 interface Props {
   isClickMyPortfolio?: boolean;
@@ -32,7 +33,10 @@ const PortfolioListItem = ({
     <Link to={`/portfolio?id=${portfolio?.id}`} css={[portfolioItem, column]}>
       <img src={portfolio?.thumbnail} alt="이미지" />
       <div css={[FieldWrapper, row]}>{fieldList}</div>
-      <h1>{portfolio?.title}</h1>
+
+      <h1>
+        {!portfolio?.open && <LockIcon />} {portfolio?.title}
+      </h1>
       <p id="content">{portfolio?.introduce}</p>
       <div css={[portfolioItemUnderBar, row]}>
         <div css={[center]}>
