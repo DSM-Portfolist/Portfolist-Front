@@ -18,6 +18,7 @@ import { useHistory, useLocation } from "react-router";
 import { getPortfolio } from "../../util/api/portfolio/portfolio";
 import QueryString from "query-string";
 import { useMutation, useQueryClient } from "react-query";
+import { fieldToId } from "../../hook/fieldNameToIdHook";
 
 interface stateType {
   portfolioID: number;
@@ -81,6 +82,7 @@ const PortfolioModify = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("portfolio_detail");
+        queryClient.invalidateQueries("portfolio_list");
         ToastSuccess("포트폴리오가 수정되었습니다.");
         setTimeout(() => {
           history.push(`/portfolio?id=${Number(query.id)}`);
@@ -91,29 +93,10 @@ const PortfolioModify = () => {
       },
     }
   );
-
+  
   useEffect(() => {
     getPortfolioData(Number(query.id));
-  }, []);
-
-  const fieldToId = (fieldName: string) => {
-    switch (fieldName) {
-      case "FrontEnd":
-        return "1";
-      case "SERVER":
-        return "2";
-      case "ANDROID":
-        return "3";
-      case "AI":
-        return "4";
-      case "DATA ANALYSIS":
-        return "5";
-      case "DESIGN":
-        return "6";
-      case "DevOps":
-        return "7";
-    }
-  };
+  }, [query.id]);
 
   return (
     <>

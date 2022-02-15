@@ -13,24 +13,34 @@ import { portfolioMakeSubmit } from "../../util/api/portfolio/portfolioPost";
 import OptionContainer from "./optionContainer/OptionContainer";
 import { ToastError, ToastSuccess } from "../../hook/toastHook";
 import { useHistory } from "react-router";
+import { useMutation, useQueryClient } from "react-query";
+import { AxiosError } from "axios";
 
 const PortfolioMake = () => {
   const portfolioMakeArr = useRecoilValue(portfolioMakeList);
-  const history = useHistory();
 
-  const portfolioSubmit = () => {
-    portfolioMakeSubmit(portfolioMakeArr)
-      .then(() => {
+  const history = useHistory();
+  const queryClient = useQueryClient();
+
+  const { mutate: portfolioAddHandle } = useMutation(
+    () => portfolioMakeSubmit(portfolioMakeArr),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("portfolio_list");
         ToastSuccess("포트폴리오가 작성되었습니다.");
         setTimeout(() => {
           history.push("/");
         }, 1500);
-      })
-      .catch((err) => {
-        ToastError("포트폴리오 작성에 실패했습니다.");
-        console.log(err);
-      });
-  };
+      },
+      onError: (error: AxiosError) => {
+        if (error?.response?.status === 404) {
+          ToastError("빠진 항목을 모두 채워주세요");
+        } else {
+          ToastError("포트폴리오 작성에 실패했습니다.");
+        }
+      },
+    }
+  );
 
   return (
     <>
@@ -44,7 +54,9 @@ const PortfolioMake = () => {
         <LicenseContainer /> {/* 자격증을 넣을 수 있는 리스트 */}
         <FileLinkContainer /> {/*파일이나 링크를 넣을 수 있는 컴포넌트 */}
         <BannerContainer /> {/* 이미지 배너 선택하는 컴포넌트 */}
-        <S.FinshButton onClick={portfolioSubmit}>작성완료</S.FinshButton>
+        <S.FinshButton onClick={() => portfolioAddHandle()}>
+          작성완료
+        </S.FinshButton>
       </S.MainContainer>
       <Footer />
     </>
