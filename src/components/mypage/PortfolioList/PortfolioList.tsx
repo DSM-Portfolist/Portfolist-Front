@@ -13,7 +13,6 @@ import { row } from "../../../util/css/signin/style";
 import { MyPortfolioType } from "../../../util/interface/MyPage/myPortfolioType";
 import { ListThumbnailHandle } from "../../../hook/listThumbnail";
 import LockIcon from "./LockIcon";
-import { portfoilo } from "../../../modules/atom/portfolio/portfolioDetail";
 
 interface Props {
   isClickMyPortfolio?: boolean;
@@ -30,8 +29,6 @@ const PortfolioListItem = ({
   const fieldList = () => {
     portfolio?.field.map((field, index) => <span key={index}>{field}</span>);
   };
-
-  console.log(portfolio?.open);
 
   return (
     <Link to={`/portfolio?id=${portfolio?.id}`} css={[portfolioItem, column]}>
