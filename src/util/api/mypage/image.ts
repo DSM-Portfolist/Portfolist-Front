@@ -11,9 +11,12 @@ export const deleteProfileImage = () => {
 };
 
 export const postProfileImage = (file: File) => {
+  const formData = new FormData();
+  formData.append("file", file);
+
   return request({
     url: "/user/profile",
     method: "post",
-    data: { file },
+    data: formData,
   });
 };
