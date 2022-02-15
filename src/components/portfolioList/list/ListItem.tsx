@@ -3,17 +3,15 @@ import { useMutation } from "react-query";
 import { Link, useHistory } from "react-router-dom";
 import * as S from "./style";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
-import {
-  BeforeTouching,
-  DefaultProfile,
-  Flower,
-  Touching,
-} from "../../../util/assets";
+import { BeforeTouching, Touching } from "../../../util/assets";
 import {
   deleteTouching,
   postTouching,
 } from "../../../util/api/portfolio/useTouching";
 import { CountChangeHook } from "../../../hook/countChangeHook";
+import { ProfileImage } from "../../../hook/profileImg";
+import { ListThumbnailHandle } from "../../../hook/listThumbnail";
+import { TextSliceHandler } from "../../../hook/textSliceHook";
 
 interface Prop {
   list: PortListType;
@@ -31,19 +29,11 @@ const ListItem = ({ list }: Prop) => {
   const untouching = useMutation("untouching", deleteTouching);
   const history = useHistory();
 
-  function TextSliceHandler(txt: string, len: number) {
-    if (txt.length > len) {
-      txt = txt.substr(0, len) + " ...";
-    }
-
-    return txt;
-  }
-
   return (
     <S.ListItemWrapper>
       <div className="portfoilo-img">
         <img
-          src={list.thumbnail === null ? `${Flower}` : list.thumbnail}
+          src={ListThumbnailHandle(list.thumbnail)}
           alt="포트폴리오 배너"
           onClick={() => history.push(`/portfolio?id=${list.id}`)}
         />
@@ -51,9 +41,7 @@ const ListItem = ({ list }: Prop) => {
       <S.Content touchingBoolean={touchingBoolean}>
         <div className="tag-wrapper">
           <div className="tag">
-            {list.field === null ? (
-              <></>
-            ) : (
+            {list.field && (
               <>
                 {list?.field.map((field: string, index: number) => (
                   <Tag key={index} field={field} />
@@ -87,11 +75,7 @@ const ListItem = ({ list }: Prop) => {
         </Link>
         <div className="user-profile">
           <img
-            src={
-              list.user.profile_img === null
-                ? `${DefaultProfile}`
-                : list.user.profile_img
-            }
+            src={ProfileImage(list.user.profile_img)}
             alt="사용자의 프로필 사진"
           />
           <Link
