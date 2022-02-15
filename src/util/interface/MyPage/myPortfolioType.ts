@@ -10,8 +10,8 @@ export interface MyPortfolioType {
   icon: string;
   introduce: string;
   thumbnail: string | "";
+  open: boolean;
   user?: UserType;
-  open?: boolean;
 }
 
 export interface MyTouchingPortfolioType extends MyPortfolioType {}
