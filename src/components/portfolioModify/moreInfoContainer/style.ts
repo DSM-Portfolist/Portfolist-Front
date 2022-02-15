@@ -6,8 +6,8 @@ export const MainWrapper = styled.section`
     align-items: center;
     h1 {
       font-weight: 500;
-      font-size: 20px;
-      color: #7c7c7c;
+      font-size: 18px;
+      color: black;
       margin-right: 15px;
     }
     img {
