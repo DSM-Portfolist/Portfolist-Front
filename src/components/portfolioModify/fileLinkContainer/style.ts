@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 
 export const MainWrapper = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: column;
 
   & h1 {
-    font-size: 22px;
+    font-size: 18px;
     color: #000000;
     margin-bottom: 30px;
     font-weight: 500;
@@ -27,10 +28,10 @@ export const LinkWrapper = styled.div`
   }
 
   & input {
-    font-size: 18px;
+    font-size: 16px;
 
     &::placeholder {
-      color: #989898;
+      color: #7c7c7c;
     }
   }
 `;
@@ -54,8 +55,8 @@ export const FileWrapper = styled.div`
   }
 
   & p {
-    font-size: 18px;
-    color: #989898;
+    font-size: 16px;
+    color: #7c7c7c;
   }
 
   & label {

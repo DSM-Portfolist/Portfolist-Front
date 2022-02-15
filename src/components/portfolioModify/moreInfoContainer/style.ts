@@ -1,13 +1,14 @@
 import styled from "@emotion/styled";
 
 export const MainWrapper = styled.section`
+  width: 100%;
   .titleWrapper {
     display: flex;
     align-items: center;
     h1 {
       font-weight: 500;
-      font-size: 20px;
-      color: #7c7c7c;
+      font-size: 18px;
+      color: black;
       margin-right: 15px;
     }
     img {

@@ -1,19 +1,21 @@
 import styled from "@emotion/styled";
 
 export const TextContainer = styled.div`
+  width: 100%;
+  
   & h1 {
-    font-size: 24px;
+    font-size: 20px;
     color: #000000;
     margin-bottom: 14px;
   }
   & p {
-    font-size: 22px;
+    font-size: 18px;
     color: #7c7c7c;
     margin-bottom: 6px;
   }
   & span {
     font-size: 18px;
-    color: #c1c1c1;
+    color: #a9a9a9;
     margin-top: 8px;
   }
 `;

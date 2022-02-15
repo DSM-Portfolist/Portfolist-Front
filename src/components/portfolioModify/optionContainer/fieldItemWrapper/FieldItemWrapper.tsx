@@ -56,7 +56,7 @@ const FieldItemWrapper = () => {
           }}
         >
           <option value={100} disabled hidden>
-            분야를 선택하세요
+            분야를 선택해주세요.
           </option>
           {fieldList.map((item: any, index: number) => {
             return (

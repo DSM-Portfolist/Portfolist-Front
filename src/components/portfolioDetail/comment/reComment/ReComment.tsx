@@ -51,7 +51,7 @@ const ReComment = ({ comment }: Props) => {
   );
 
   const { mutate: postReComments } = useMutation(
-    (id: number) => postReComment(id, commentRef.current.value),
+    () => postReComment(comment.comment_id, commentRef.current.value),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("recomment_value");

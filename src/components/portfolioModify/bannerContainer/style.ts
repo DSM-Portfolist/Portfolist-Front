@@ -1,17 +1,18 @@
 import styled from "@emotion/styled";
 
 export const BannerWrap = styled.section`
+  width: 100%;
   padding: 60px 0;
 `;
 
 export const Title = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 20px;
+  font-size: 18px;
 
   span:nth-of-type(2) {
     margin-top: 5px;
-    color: #c7c7c7;
+    color: #7c7c7c;
     font-size: 18px;
   }
 
@@ -28,8 +29,8 @@ export const Title = styled.div`
       display: flex;
       align-items: center;
       p {
-        color: #989898;
-        font-size: 18px;
+        color: #7c7c7c;
+        font-size: 16px;
         margin-left: 10px;
         line-height: 10px; /* 이거 figma 복붙아닙니다 */
       }
@@ -44,6 +45,9 @@ export const ImageWrap = styled.div`
   flex-direction: row;
   justify-content: space-between;
   overflow: auto;
+  flex-wrap: wrap;
+  gap: 10px;
+
   &::-webkit-scrollbar {
     width: 7px;
     height: 6px;
@@ -57,7 +61,7 @@ export const ImageWrap = styled.div`
   }
 
   img {
-    width: 190px;
+    width: 175px;
     height: 280px;
     object-fit: cover;
     box-sizing: border-box;

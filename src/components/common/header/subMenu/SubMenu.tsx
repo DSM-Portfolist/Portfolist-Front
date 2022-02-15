@@ -56,7 +56,7 @@ const SubMenuBox = () => {
         <ItemBox />
         <BottomMenu>
           <span onClick={logoutHandler}>로그아웃</span>
-          <span onClick={() => ToastSuccess("개발중입니다.ㅌ")}>문의하기</span>
+          <span onClick={() => ToastSuccess("개발중입니다.")}>문의하기</span>
         </BottomMenu>
       </SubMenuContainer>
     </NotiWrapper>

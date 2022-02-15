@@ -7,6 +7,8 @@ export const MainContainer = styled.div`
   margin: 150px auto;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+
   .caution {
     font-size: 20px;
     color: #848484;
