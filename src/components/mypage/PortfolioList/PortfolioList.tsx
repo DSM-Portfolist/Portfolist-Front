@@ -11,12 +11,13 @@ import {
 } from "../../../util/css/mypage/UserPage/style";
 import { row } from "../../../util/css/signin/style";
 import { MyPortfolioType } from "../../../util/interface/MyPage/myPortfolioType";
+import { ListThumbnailHandle } from "../../../hook/listThumbnail";
 import LockIcon from "./LockIcon";
 
 interface Props {
   isClickMyPortfolio?: boolean;
   isClickMyTouching?: boolean;
-  portfolio?: MyPortfolioType;
+  portfolio: MyPortfolioType;
   profileimg: string | undefined;
 }
 
@@ -31,11 +32,12 @@ const PortfolioListItem = ({
 
   return (
     <Link to={`/portfolio?id=${portfolio?.id}`} css={[portfolioItem, column]}>
-      <img src={portfolio?.thumbnail} alt="이미지" />
+      <img src={ListThumbnailHandle(portfolio?.thumbnail)} alt="이미지" />
       <div css={[FieldWrapper, row]}>{fieldList}</div>
 
       <h1>
-        {!portfolio?.open && <LockIcon />} {portfolio?.title}
+        {portfolio?.open === undefined || portfolio?.open ? null : <LockIcon />}
+        {portfolio?.title}
       </h1>
       <p id="content">{portfolio?.introduce}</p>
       <div css={[portfolioItemUnderBar, row]}>

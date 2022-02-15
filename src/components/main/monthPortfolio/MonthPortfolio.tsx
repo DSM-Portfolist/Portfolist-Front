@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import { ListThumbnailHandle } from "../../../hook/listThumbnail";
 import { monthPortfolioSelector } from "../../../modules/selector/mainpage";
 import { Crwon } from "../../../util/assets";
 import * as S from "./style";
@@ -18,7 +19,10 @@ const MonthPortfolio = () => {
           to={`/portfolio?id=${monthPortfolio?.id}`}
           className="img-wrapper"
         >
-          <img src={monthPortfolio?.thumbnail} alt="이달의 포트폴리오 이미지" />
+          <img
+            src={ListThumbnailHandle(monthPortfolio?.thumbnail)}
+            alt="이달의 포트폴리오 이미지"
+          />
         </Link>
         <S.Content>
           <h2>이달의 포트폴리오</h2>
