@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
+import { ProfileImage } from "../../../hook/profileImg";
 import { ToastError, ToastSuccess } from "../../../hook/toastHook";
 import { deleteProfileImage } from "../../../util/api/mainpage/image";
 import { postProfileImage } from "../../../util/api/mypage/image";
-import { DefaultProfile } from "../../../util/assets";
 import { ProfileImageWrapper } from "../../../util/css/mypage/mypage/mypageModify/style";
 
 const ImageUploadWrapper = ({ user }: any) => {
@@ -17,6 +17,7 @@ const ImageUploadWrapper = ({ user }: any) => {
     {
       onSuccess: () => {
         setIsCustomImage(false);
+        queryClient.invalidateQueries("user");
         ToastSuccess("프로필 이미지가 삭제되었습니다.");
       },
       onError: () => {
@@ -39,8 +40,8 @@ const ImageUploadWrapper = ({ user }: any) => {
   );
 
   const handleFileOnChange = (e: any) => {
-    //이미지 파일 브리뷰
     e.preventDefault();
+
     const reader = new FileReader();
     const file = e.target.files[0];
 
@@ -55,15 +56,14 @@ const ImageUploadWrapper = ({ user }: any) => {
 
   return (
     <ProfileImageWrapper>
-      {user?.github_user ? (
-        <img className="profileImg" alt="" src={user?.profile_img} />
-      ) : (
+      <img
+        className="profileImg"
+        alt=""
+        src={!isCustomImage ? ProfileImage(user?.profile_img) : `${previewURL}`}
+      />
+
+      {!user?.github_user ? (
         <>
-          <img
-            className="profileImg"
-            alt="기본이미지"
-            src={!isCustomImage ? `${DefaultProfile}` : `${previewURL}`}
-          />
           <input
             type="file"
             accept="image/jpg,impge/png,image/jpeg,image/gif"
@@ -74,7 +74,7 @@ const ImageUploadWrapper = ({ user }: any) => {
           <label htmlFor="input-file">이미지 업로드</label>
           <div onClick={() => deleteImageHandle()}>기본 이미지 변경</div>
         </>
-      )}
+      ) : null}
     </ProfileImageWrapper>
   );
 };
