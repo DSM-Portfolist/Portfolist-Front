@@ -48,7 +48,7 @@ const ReComment = ({ comment, portfolioId }: Props) => {
       postComment(portfolioId, comment.comment_id, commentRef.current.value),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("comment");
+        queryClient.invalidateQueries("recomment_value");
         ToastSuccess("댓글이 작성되었습니다.");
 
         commentRef.current.value = null;
