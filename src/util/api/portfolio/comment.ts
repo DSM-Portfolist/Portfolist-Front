@@ -7,11 +7,15 @@ export async function getComment(id: number) {
   });
 }
 
-export const postComment = (id: number, content: string) => {
+export const postComment = (
+  portfolioId: number,
+  commentId: number | null,
+  content: string
+) => {
   return request({
-    url: `/comment/${id}`,
+    url: `/comment/${portfolioId}`,
     method: "post",
-    data: { content: content },
+    data: { comment_id: commentId, content: content },
   });
 };
 

@@ -8,6 +8,7 @@ export interface CommentType {
   mine: boolean;
   re_comment_list: ReCommentType[];
   user: UserType;
+  re_comment_exist: boolean;
 }
 
 export interface ReCommentType {
@@ -21,6 +22,4 @@ export interface ReCommentType {
 export interface CommentDeleteWraningType {
   isOpen: boolean;
   id: number | null;
-  isRecomment: boolean;
-  isComment: boolean;
 }

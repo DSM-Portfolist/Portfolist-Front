@@ -17,19 +17,21 @@ const Comment = () => {
   const commentRef = useRef<null | any>(null);
 
   const queryData = QueryString.parse(location.search);
-  const id: any = queryData.id;
+  const portfolioId: any = queryData.id;
 
   const { data: comments, isLoading } = useQuery(
-    ["comment", id],
-    () => getComment(id),
+    ["comment", portfolioId],
+    () => getComment(portfolioId),
     {
       cacheTime: Infinity,
       staleTime: Infinity,
+      keepPreviousData: true,
     }
   );
 
+  // 댓글 작성
   const { mutate: postComments } = useMutation(
-    (content: string) => postComment(id, content),
+    (content: string) => postComment(portfolioId, null, content),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("comment");
@@ -43,9 +45,6 @@ const Comment = () => {
     }
   );
 
-  if (isLoading)
-    return <BarLoader color={mainColor} height="4px" width="100px" />;
-
   const commentAddHandle = (e: any) => {
     e.preventDefault();
 
@@ -55,6 +54,9 @@ const Comment = () => {
       postComments(commentRef.current.value);
     }
   };
+
+  if (isLoading)
+    return <BarLoader color={mainColor} height="4px" width="100px" />;
 
   return (
     <>
@@ -75,7 +77,11 @@ const Comment = () => {
           <>
             {comments?.data.comments.map(
               (comment: CommentType, index: number) => (
-                <CommentItem key={index} comment={comment} portfolioId={id} />
+                <CommentItem
+                  key={index}
+                  comment={comment}
+                  portfolioId={portfolioId}
+                />
               )
             )}
           </>
