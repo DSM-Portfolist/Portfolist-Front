@@ -25,9 +25,9 @@ export const portfoilo = atom<PortfolioType>({
     file: "",
     icon: "",
     introduce: "",
-    is_mine: false,
+    mine: false,
     link: "",
-    more_info_list: [{ name: "", content: "" }],
+    more_info: [{ name: "", content: "" }],
     user: {
       name: "",
       profile_img: "",

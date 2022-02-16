@@ -1,4 +1,4 @@
-import request from "../index";
+import request from "../common/index";
 
 const token = `Bearer ${localStorage.getItem("access_token_portfolist")}`;
 
@@ -11,10 +11,12 @@ export const deleteProfileImage = () => {
 };
 
 export const postProfileImage = (file: File) => {
+  const formData = new FormData();
+  formData.append("file", file);
+
   return request({
     url: "/user/profile",
     method: "post",
-    headers: { Authorization: token },
-    data: { file },
+    data: formData,
   });
 };

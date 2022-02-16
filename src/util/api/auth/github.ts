@@ -1,15 +1,14 @@
 import axios from "axios";
-import request from "../index";
 
-export const github = async (data: any) => {
-  return await request({
-    url: "/login/github",
-    method: "post",
-    data: { code: data },
-  }).then((res) => {
-    localStorage.setItem("access_token_portfolist", res.data.access_token);
-    localStorage.setItem("refresh_token_portfolist", res.data.refresh_token);
-  });
+export const github = (data: any) => {
+  return axios
+    .post("/login/github", { data: data })
+    .then((res) => {
+      console.log(res);
+      localStorage.setItem("access_token_portfolist", res.data.access_token);
+      localStorage.setItem("refresh_token_portfolist", res.data.refresh_token);
+    })
+    .catch((e) => console.log(e));
 };
 
 export const githubToken = (

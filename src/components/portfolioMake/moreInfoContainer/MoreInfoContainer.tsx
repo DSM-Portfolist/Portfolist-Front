@@ -1,50 +1,39 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState, useCallback } from "react";
 import * as S from "./style";
 import { PlusButton, MinusButton } from "../../../util/assets";
 import { ToastError } from "../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { inputDataArrType } from "../../../util/interface/portfolio/portfolioMakeType";
+import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
+import { useRecoilState } from "recoil";
 
 const MoreInfoContainer = () => {
+  const [portfolioMakeArr, setPortfolioMakeArr] =
+    useRecoilState(portfolioMakeList);
   const [more_info, setMoreInfo] = useState<inputDataArrType[]>([
-    { id: "11", name: "", content: "" },
+    { name: "", content: "" },
   ]);
 
-  const [DatalastId, setDatalastId] = useState<number>(1);
+  const setApiMoreInfoData = useCallback(() => {
+    setPortfolioMakeArr({
+      ...portfolioMakeArr,
+      more_info: more_info,
+    });
+  }, [more_info]);
 
   useEffect(() => {
-    console.log(more_info);
-    console.log(DatalastId);
-  }, [DatalastId, more_info]);
+    setApiMoreInfoData();
+  }, [setApiMoreInfoData]);
 
-  const newId = (index: number, num: number) => {
-    if (num === 1) {
-      setDatalastId(DatalastId + 1);
-      return `${index}${DatalastId + 1}`;
-    } else if (num === 0) {
-      return `${index}${DatalastId}`;
-    }
-  };
-
-  const handlerOnChange = (event: any) => {
+  const handlerOnChange = (e: any, index: number) => {
     //input content 넣을 배열 찾아서 넣기
-    let parentClassNameId = event.target.parentElement.className.split(" ");
-    let eventNodeId = event.target.id;
-    let eventTargetcontent = event.target.content;
+    const { name, value } = e.target;
     setMoreInfo(
-      more_info.map((more_info: any, index: number) => {
-        console.log(
-          `dataArrid: ${more_info.id} parent: ${parentClassNameId[0]}`
-        );
-        if (more_info.id === parentClassNameId[0]) {
-          if (eventNodeId === "inputName") {
-            return { ...more_info, name: eventTargetcontent };
-          } else {
-            return { ...more_info, content: eventTargetcontent };
-          }
+      more_info.map((item: any, i: number) => {
+        if (index === i) {
+          return { ...item, [name]: value };
         } else {
-          return more_info;
+          return item;
         }
       })
     );
@@ -52,20 +41,17 @@ const MoreInfoContainer = () => {
 
   const AddData = () => {
     //빈 input 추가 하는 함수
-    setMoreInfo((dataArr: any) => [
-      ...dataArr,
-      { id: newId(dataArr.length + 1, 1), name: "", content: "" },
-    ]);
+    setMoreInfo((dataArr: any) => [...dataArr, { name: "", content: "" }]);
   };
 
-  const DeleteData = (id: any) => {
+  const DeleteData = (id: number) => {
     //특정 input 삭제
     if (more_info.length === 1) {
       ToastError("삭제할 수 없습니다");
     } else {
       setMoreInfo(
-        more_info?.filter((arrItem: any) => {
-          return arrItem.id !== id.id;
+        more_info?.filter((arrItem: any, index: number) => {
+          return index !== id;
         })
       );
     }
@@ -73,38 +59,39 @@ const MoreInfoContainer = () => {
 
   return (
     <S.MainWrapper className="make-container">
-      <ToastContainer />
       <div className="titleWrapper">
         <h1>본인의 추가 정보를 입력해 주세요. ex) 학력 / 연락처 / 이메일</h1>
         <img src={PlusButton} alt="" onClick={AddData} />
       </div>
       <div className="infoContainer">
         {more_info.map((more_info: any, index: number) => {
-          console.log(more_info.id);
           return (
             <S.InputBox
               key={index}
-              onChange={handlerOnChange}
-              className={more_info.id}
+              onChange={(e) => {
+                handlerOnChange(e, index);
+              }}
             >
               <input
                 type="text"
                 id="inputName"
                 placeholder="ex)email"
-                value={more_info.name}
+                name="name"
+                defaultValue={more_info.name}
               />
               <div></div>
               <input
                 type="text"
                 id="inputContent"
+                name="content"
                 placeholder="ex)kub0803@gmail.com"
-                value={more_info.content}
+                defaultValue={more_info.content}
               />
               <img
                 src={MinusButton}
                 alt=""
                 onClick={() => {
-                  DeleteData(more_info);
+                  DeleteData(index);
                 }}
               />
             </S.InputBox>

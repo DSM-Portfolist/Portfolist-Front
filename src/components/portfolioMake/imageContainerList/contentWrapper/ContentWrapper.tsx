@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from "react";
 import { MinusButton } from "../../../../util/assets";
 import * as S from "./style";
-import { ToastSuccess, ToastError } from "../../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastError } from "../../../../hook/toastHook";
 import { useRecoilState } from "recoil";
-import { container_list } from "../../../../modules/atom/portfolioPost";
+import { container_list_atom } from "../../../../modules/atom/portfolioPost";
 
 const ContentWrapper = (props: any) => {
   const { parent_index } = props;
-  const [containerList, setContainerList] = useRecoilState(container_list);
-
-  useEffect(() => {
-    console.log(containerList);
-  }, [containerList]);
+  const [containerList, setContainerList] = useRecoilState(container_list_atom);
 
   const onChangeContainerTextList = (
     e: any,
@@ -23,7 +16,6 @@ const ContentWrapper = (props: any) => {
     const { name, value } = e.target;
     setContainerList(
       containerList.map((item: any, i: number) => {
-        console.log(item);
         if (parent_index === i) {
           let newList = containerList[parent_index].container_text_list.map(
             (child_item: any, child_index: number) => {
@@ -86,7 +78,6 @@ const ContentWrapper = (props: any) => {
 
   return (
     <S.ContentContainer>
-      <ToastContainer />
       {containerList[parent_index].container_text_list?.map(
         (value: any, index: number) => {
           const { box_content, box_title } = value;

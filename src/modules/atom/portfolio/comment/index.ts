@@ -1,11 +1,9 @@
 import { atom, atomFamily, selectorFamily } from "recoil";
 import { getComment } from "../../../../util/api/portfolio/comment";
-import { CommentType } from "../../../../util/interface/portfolio/commentType";
-
-export const reCommentControl = atom({
-  key: "reCommentControl",
-  default: false,
-});
+import {
+  CommentDeleteWraningType,
+  CommentType,
+} from "../../../../util/interface/portfolio/commentType";
 
 export const commentList = atomFamily<CommentType[], number>({
   key: "commentList",
@@ -17,7 +15,22 @@ export const commentContent = atom<string>({
   default: "",
 });
 
-export const commentListSelector = selectorFamily<CommentType[], any>({
+export const commentReoprt = atom<boolean>({
+  key: "commentReoprt",
+  default: false,
+});
+
+export const commentDeleteWarning_atom = atom<CommentDeleteWraningType>({
+  key: "commentDeleteWarning_atom",
+  default: {
+    isOpen: false,
+    id: null,
+    isRecomment: false,
+    isComment: false,
+  },
+});
+
+export const commentListSelector = selectorFamily<CommentType[], number>({
   key: "comments/get",
   get: (id) => async () => {
     try {

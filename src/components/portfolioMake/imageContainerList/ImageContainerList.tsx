@@ -1,18 +1,31 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useCallback } from "react";
 import * as S from "./style";
 import ImageWrapper from "./imageWrapper/ImageWrapper";
 import ContentWrapper from "./contentWrapper/ContentWrapper";
 import { MinusButton } from "../../../util/assets";
 import { useRecoilState } from "recoil";
-import { container_list } from "../../../modules/atom/portfolioPost";
+import {
+  container_list_atom,
+  portfolioMakeList,
+} from "../../../modules/atom/portfolioPost";
 import { ToastError } from "../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const ImageContainerList = () => {
-  const [containerList, setContainerList] = useRecoilState(container_list);
+  const [containerList, setContainerList] = useRecoilState(container_list_atom);
+  const [portfolioMakeArr, setPortfolioMakeArr] =
+    useRecoilState(portfolioMakeList);
 
-  console.log(containerList);
+  const setApiContainerListData = useCallback(() => {
+    setPortfolioMakeArr({
+      ...portfolioMakeArr,
+      container_list: containerList,
+    });
+  }, [containerList]);
+
+  useEffect(() => {
+    setApiContainerListData();
+  }, [setApiContainerListData]);
 
   const addContainerListItem = () => {
     // 컨테이너를 추가하는 함수
@@ -63,7 +76,6 @@ const ImageContainerList = () => {
 
   return (
     <S.MainWrapper className="make-container">
-      <ToastContainer />
       <header>
         <button type="button" onClick={addContainerListItem}>
           + Add new list

@@ -1,15 +1,22 @@
 import styled from "@emotion/styled";
-import { mainColor } from "../../../util/css/color/color";
+import { grayColor, mainColor } from "../../../util/css/color/color";
 
 interface Props {
-  reComment?: boolean;
+  toggle?: boolean;
 }
 
 export const CommentWrapper = styled.div`
   width: 100%;
   min-width: 760px;
-  height: 850px;
-  margin: 50px auto;
+  margin: 50px auto 200px 0;
+
+  .no_comment {
+    margin: 30px;
+    text-align: center;
+    color: ${grayColor};
+    font-size: 18px;
+    font-weight: 500;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -55,8 +62,17 @@ export const CommentItemWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   border-top: 1px solid #f0f0f0;
+  padding: 30px 0;
+  box-sizing: border-box;
+
+  .more_text {
+    margin-top: 1%;
+    margin-left: 4.7rem;
+    padding: 7px 10px;
+    width: fit-content;
+    border-radius: 5px;
+  }
 
   .comment {
     width: 100%;
@@ -67,12 +83,22 @@ export const CommentItemWrapper = styled.div`
   }
 `;
 
+export const ReCommentWrap = styled.div<Props>`
+  width: 100%;
+  display: ${({ toggle }) => (toggle ? "flex" : "none")};
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
 export const Content = styled.div<Props>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 0;
+
+  a {
+    color: black;
+  }
 
   img {
     margin: 0 10px;
@@ -80,6 +106,13 @@ export const Content = styled.div<Props>`
     height: 50px;
     object-fit: cover;
     border-radius: 50px;
+  }
+
+  .comment-delete {
+    margin: 30px auto;
+    color: ${grayColor};
+    font-size: 20px;
+    font-weight: 500;
   }
 
   .content {
@@ -113,7 +146,7 @@ export const Content = styled.div<Props>`
 `;
 
 export const Input = styled.input<Props>`
-  display: ${({ reComment }) => (reComment ? "flex" : "none")};
+  display: ${({ toggle }) => (toggle ? "flex" : "none")};
 `;
 
 export const Util = styled.div`
@@ -144,15 +177,4 @@ export const MoreButton = styled.button`
     border: none;
     color: white;
   }
-`;
-
-export const ReComment = styled.div<Props>`
-  width: 90%;
-  margin-left: 10%;
-  border-top: 1px solid #f0f0f0;
-
-  display: ${({ reComment }) => (reComment ? "flex" : "none")};
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
 `;

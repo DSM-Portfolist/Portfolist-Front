@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useState } from "react";
+import { useSetRecoilState } from "recoil";
 import { bannerImgAtom } from "../../../../modules/atom/portfolioPost";
 import { mainColor } from "../../../../util/css/color/color";
 import * as S from "../style";
@@ -29,14 +29,15 @@ export const imageList = [
 
 const ImageSelector = () => {
   const [imgSelect, setImgSelect] = useState<number>(1);
-  const [bannerImg, setBannerImg] = useRecoilState(bannerImgAtom);
+  const setBannerImg = useSetRecoilState(bannerImgAtom);
 
   const backgroundColor = (list: any) => {
     setImgSelect(list.id);
-    setBannerImg(list.url);
+    setBannerImg({
+      thumbnail: list.url,
+      isClickBannder: true,
+    });
   };
-
-  console.log(bannerImg);
 
   return (
     <S.ImageWrap>

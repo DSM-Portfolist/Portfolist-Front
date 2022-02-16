@@ -10,6 +10,7 @@ body {
 p,
 a,
 li,
+pre,
 span,
 strong,
 button,
@@ -108,4 +109,16 @@ option {
   margin: 0 auto;
   width: 73%;
   background-color: #f3f3f38f;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff7659;
+  border-radius: 4px;
 }

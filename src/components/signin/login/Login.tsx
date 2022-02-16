@@ -1,14 +1,9 @@
-/** @jsxImportSource @emotion/react */
-
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { Link, useHistory } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useLocalStorage } from "usehooks-ts";
 import { ToastError, ToastSuccess } from "../../../hook/toastHook";
-import { MAINURL } from "../../../util/api";
+import { MAINURL } from "../../../util/api/common";
 import { Github, Logo } from "../../../util/assets";
 import { mainColor } from "../../../util/css/color/color";
 import * as S from "./style";
@@ -19,9 +14,7 @@ interface LoginType {
 }
 
 const Login = () => {
-  //const JWT_EXPIRY_TIME = 10000;
-  const history = useHistory();
-  //const [token, setToken] = useLocalStorage("access-token", "");
+  const { push } = useHistory();
 
   const [buttonColor, setButtonColor] = useState<boolean>(false);
   const [emailBor, setEmailBor] = useState<boolean>(false);
@@ -31,45 +24,39 @@ const Login = () => {
     password: "",
   });
 
-  const onClick = useCallback(() => {
-    window.open(
-      `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=repo:status%20read:repo_hook%20user:email`
-    );
+  const onGithubHandler = useCallback(() => {
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=repo:status%20read:repo_hook%20user:email`;
   }, []);
-
-  const refresh_token = localStorage.getItem("refresh_token_portfolist");
 
   const { email, password } = loginInput;
 
-  const loginNormal = useMutation("login", () =>
-    axios
-      .post(`${MAINURL}/login/normal`, loginInput)
-      .then((res) => {
-        localStorage.setItem("access_token_portfolist", res.data.access_token);
-        //   setToken(res.data.access_token);
+  const { mutate: login } = useMutation(
+    "login",
+    () => axios.post(`${MAINURL}/login/normal`, loginInput),
+    {
+      onSuccess: (data) => {
+        localStorage.setItem("access_token_portfolist", data.data.access_token);
         localStorage.setItem(
           "refresh_token_portfolist",
-          res.data.refresh_token
+          data.data.refresh_token
         );
-      })
-      .then(() => {
-        history.push("/");
-      })
-      .catch((e) => {
-        throw e;
-      })
+        ToastSuccess("로그인에 성공하였습니다.");
+        setTimeout(() => {
+          push("/");
+        }, 1000);
+      },
+      onError: (error: AxiosError) => {
+        const status = error.response?.status;
+
+        if (status === 404) {
+          ToastError("가입된 계정이 없습니다.");
+        } else if (status === 401) {
+          ToastError("비밀번호가 틀렸습니다.");
+        }
+      },
+    }
   );
 
-  const onClientRefresh = useMutation("refresh", () =>
-    axios.post("/refresh", refresh_token).then((res) => console.log(res))
-  );
-
-  /*   useEffect(() => {
-    setTimeout(() => {
-      onClientRefresh.mutate();
-    }, JWT_EXPIRY_TIME - 1000);
-  }, [onClientRefresh]);
- */
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
@@ -79,17 +66,10 @@ const Login = () => {
     });
   };
 
-  const onSubmit = (e: any, data: any) => {
+  const onSubmit = (e: any) => {
     e.preventDefault();
 
-    loginNormal.mutate(data);
-
-    if (loginNormal.isSuccess) {
-      ToastSuccess("로그인에 성공하셨습니다.");
-      history.push("/");
-    } else if (loginNormal.isError) {
-      ToastError("정보를 다시 입력해주세요");
-    }
+    login();
   };
 
   useEffect(() => {
@@ -100,8 +80,7 @@ const Login = () => {
 
   return (
     <S.BackWrapper>
-      <ToastContainer />
-      <S.Content onSubmit={(e) => onSubmit(e, loginInput)}>
+      <S.Content>
         <Link to="/">
           <img src={Logo} alt="Portfolist 로고" />
         </Link>
@@ -133,8 +112,10 @@ const Login = () => {
           />
         </S.InputWrapper>
         <S.ButtonWrapper btnColor={buttonColor}>
-          <button className="login-button">login</button>
-          <S.GitBtn onClick={onClick}>
+          <button className="login-button" onClick={(e) => onSubmit(e)}>
+            login
+          </button>
+          <S.GitBtn onClick={onGithubHandler}>
             <img src={Github} alt="깃허브 로고"></img>
             <span>Github 로그인</span>
           </S.GitBtn>

@@ -1,72 +1,81 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { DefaultProfile } from "../../../util/assets";
 import * as S from "./style";
 import { CommentType } from "../../../util/interface/portfolio/commentType";
-import { deleteComment } from "../../../util/api/portfolio/comment";
-import { ToastSuccess } from "../../../hook/toastHook";
-import ReComment from "./ReComment";
+import ReComment from "./reComment/ReComment";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { reCommentControl } from "../../../modules/atom/portfolio/comment";
+import {
+  commentDeleteWarning_atom,
+  commentReoprt,
+} from "../../../modules/atom/portfolio/comment";
+import { Link } from "react-router-dom";
 
 interface Props {
   comment: CommentType;
   portfolioId: number;
-  getTest: () => void;
 }
 
-const CommentItem = ({ comment, getTest }: Props) => {
-  const [reComment, setReComment] = useRecoilState(reCommentControl);
+const CommentItem = ({ comment }: Props) => {
+  const [toggle, setToggle] = useState<boolean>(false);
+  const setReportCommentModal = useSetRecoilState(commentReoprt);
+  const [commentInfo, setCommentInfo] = useRecoilState(
+    commentDeleteWarning_atom
+  );
 
-  const CommentDelete = (id: number) => {
-    deleteComment(id)
-      .then(() => {
-        ToastSuccess("댓글이 삭제되었습니다.");
-        getTest();
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+  const deleteCommentHandle = (id: number) => {
+    setCommentInfo({
+      ...commentInfo,
+      id: id,
+      isOpen: true,
+      isRecomment: false,
+      isComment: true,
+    });
   };
 
   return (
     <S.CommentItemWrapper>
       <div className="comment">
-        <S.Content reComment={reComment}>
+        <S.Content toggle={toggle}>
           <img
             src={
-              comment.user.profile_img === null
+              comment?.user?.profile_img === null || comment?.user === null
                 ? `${DefaultProfile}`
-                : comment.user.profile_img
+                : comment?.user?.profile_img
             }
             alt="프로필 사진"
           />
           <div className="content">
-            <div className="user-name">
-              <strong>{comment.user.name}</strong>
+            <Link
+              to={`/user-page/${comment?.user?.user_id}`}
+              className="user-name"
+            >
+              <strong>{comment?.user?.name}</strong>
               <div className="comment-date">
-                <span>{comment.cdate}</span>
+                <span>{comment?.cdate}</span>
               </div>
-            </div>
+            </Link>
             {comment?.comment_content === null ? (
-              <p>삭제된 댓글 입니다.</p>
+              <p className="comment-delete">삭제된 댓글 입니다.</p>
             ) : (
               <pre>{comment?.comment_content}</pre>
             )}
-          
           </div>
         </S.Content>
         <S.Util>
-          {comment?.mine ? (
-            <span onClick={() => CommentDelete(comment.comment_id)}>삭제</span>
-          ) : (
-            ""
+          {comment?.mine && (
+            <span onClick={() => deleteCommentHandle(comment?.comment_id)}>
+              삭제
+            </span>
           )}
-
-          <span>신고</span>
+          <span onClick={() => setReportCommentModal(true)}>신고</span>
         </S.Util>
       </div>
-
-      <ReComment comment={comment} getTest={getTest} />
+      <button className="more_text" onClick={() => setToggle(!toggle)}>
+        {toggle ? "- 답글 접기" : "+ 답글 달기"}
+      </button>
+      <S.ReCommentWrap toggle={toggle}>
+        <ReComment comment={comment} />
+      </S.ReCommentWrap>
     </S.CommentItemWrapper>
   );
 };

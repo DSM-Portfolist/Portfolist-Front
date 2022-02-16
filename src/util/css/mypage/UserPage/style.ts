@@ -3,7 +3,6 @@ import { mainColor } from "../../color/color";
 
 export const baseBackground = css`
   height: 200vh;
-  overflow-x: hidden;
   align-items: center;
 `;
 
@@ -12,7 +11,7 @@ export const center = css`
   justify-content: center;
   align-items: center;
 
-  a {
+  div {
     font-weight: 700;
     font-size: 17px;
     color: black;
@@ -69,6 +68,12 @@ export const portfolioItem = css`
     line-height: 35px;
     margin-top: 28px;
     color: #000000;
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 10px;
+    }
   }
 
   #content {
@@ -97,7 +102,6 @@ export const FieldWrapper = css`
   }
   & div:nth-of-type(n + 2) {
     margin-left: 10px;
-
   }
 `;
 

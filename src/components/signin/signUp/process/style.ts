@@ -31,8 +31,7 @@ export const SignForm = styled.form`
   flex-direction: column;
   overflow: hidden;
 
-  .logo {
-    width: 130px;
+  a {
     margin: 0 auto;
   }
 
@@ -155,14 +154,13 @@ export const InputItem = styled.div`
 `;
 
 export const NextButton = styled.button<Props>`
-  margin: 50px auto;
+  margin: 30px auto;
   cursor: pointer;
   color: white;
   font-size: 18px;
   width: 300px;
   height: 40px;
-  background: ${({ btnColor }: buttonType) =>
-    btnColor ? "#FF7659" : "#DADADA"};
+  background: ${({ btnColor }) => (btnColor ? "#FF7659" : "#DADADA")};
   box-shadow: 0px 2px 6px rgba(119, 119, 119, 0.25);
   border-radius: 5px;
   transition: all 0.3s;
@@ -176,9 +174,9 @@ export const InputItemWrap = styled.div`
   position: relative;
 
   input {
+    font-family: "Noto Sans KR";
     transition: all 0.5s;
-    color : black;
-    
+    color: black;
   }
 
   & p {

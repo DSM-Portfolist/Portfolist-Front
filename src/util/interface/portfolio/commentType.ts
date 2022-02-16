@@ -13,7 +13,14 @@ export interface CommentType {
 export interface ReCommentType {
   mine: boolean;
   rc_date: string;
-  re_comment_id: number;
   re_comment_content: string;
+  re_comment_id: number;
   user: UserType;
+}
+
+export interface CommentDeleteWraningType {
+  isOpen: boolean;
+  id: number | null;
+  isRecomment: boolean;
+  isComment: boolean;
 }

@@ -7,7 +7,7 @@ export const ExperienceWrapper = styled.div`
 
 export const MainTitle = styled.span`
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 500;
 `;
 
 export const ContainerBox = styled.div`
@@ -27,6 +27,8 @@ export const ContainerBox = styled.div`
     flex-direction: column;
 
     img {
+      margin-bottom: 10px;
+      width: 300px;
       margin-bottom: 20px;
     }
   }
@@ -50,6 +52,8 @@ export const ContainerBox = styled.div`
       }
 
       .sub-content {
+        white-space: pre-line;
+        line-height: 25px;
         font-size: 18px;
         font-weight: 500;
       }

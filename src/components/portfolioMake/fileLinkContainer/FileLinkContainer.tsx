@@ -1,27 +1,64 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useCallback } from "react";
 import * as S from "./style";
 import { Link, isInFile, File, isInLink } from "../../../util/assets/index";
+import { pdfFile } from "../../../util/api/portfolio/portfolioPost";
+import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
+import { useRecoilState } from "recoil";
 
 const FileLinkContainer = () => {
-  const [linkInputName, setLinkInputName] = useState("");
-  const [fileInputName, setFileInputName] = useState("");
+  const [portfolioMakeArr, setPortfolioMakeArr] =
+    useRecoilState(portfolioMakeList);
+  const [linkInputName, setLinkInputName] = useState<string>("");
+  const [fileResponse, setFileResponse] = useState<string>("");
+  const [fileInputName, setFileInputName] = useState<string>("");
   const [imageFile, setImageFile] = useState<any>([]);
 
-  let formData = new FormData();
+  useEffect(() => {
+    if (imageFile.length !== 0) {
+      postFile(imageFile);
+    }
+  }, [imageFile]);
 
-  useEffect(() => {},[])
+  const setApiLinkInputName = useCallback(() => {
+    setPortfolioMakeArr({
+      ...portfolioMakeArr,
+      link: linkInputName,
+    });
+  }, [linkInputName]);
+
+  const setApiFileResponse = useCallback(() => {
+    setPortfolioMakeArr({
+      ...portfolioMakeArr,
+      file: fileResponse,
+    });
+  }, [fileResponse]);
+
+  useEffect(() => {
+    setApiLinkInputName();
+  }, [setApiLinkInputName]);
+
+  useEffect(() => {
+    setApiFileResponse();
+  }, [setApiFileResponse]);
 
   const onChangeFileHanddler = (e: any) => {
     const { files } = e.target;
     setFileInputName(files[0].name); //file에 담긴 name useState로 저장
-    let reader = new FileReader();
     let file = e.target.files[0];
-    reader.onloadend = () => {
-      setImageFile(file);
-      formData.append("file", file);
-    };
-    reader.readAsDataURL(file);
-    /* postProfileImage(file); */
+    setImageFile(file);
+  };
+
+  const postFile = (file: any) => {
+    pdfFile(file)
+      .then((res) => {
+        //recoil로 배너 이미지 경로 바꾸면 끝~
+        console.log(res);
+        setFileResponse(res.data.file);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const onChangeLinkValue = (e: any) => {

@@ -18,7 +18,6 @@ export const SearchWrapper = styled.div`
   .field-select {
     display: flex;
     flex-direction: column;
-    position: absolute;
     margin-left: 5%;
   }
 `;
@@ -45,6 +44,7 @@ export const FieldSelectWrapper = styled.div`
       padding-bottom: 2px;
       width: 100%;
       transition: all 0.3s;
+      color: #909090;
     }
   }
 `;
@@ -57,7 +57,7 @@ export const ArrowImg = styled.img`
 `;
 
 export const FieldWrapper = styled.div`
-  margin-left: 15%;
+  margin-left: 20px;
   display: flex;
   flex-direction: row;
 `;
@@ -95,7 +95,7 @@ export const FieldSelectItemWrapper = styled.ul`
   flex-direction: column;
   transition: all 0.5s;
   position: absolute;
-  top: 28px;
+  top: 142px;
   border: ${({ arrowSelect }: SearchProp) =>
     arrowSelect ? "1px solid #eaeaea" : "none"};
 

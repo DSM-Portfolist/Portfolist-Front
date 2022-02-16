@@ -1,10 +1,10 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { ToastError, ToastSuccess } from "../../../../hook/toastHook";
-import { MAINURL } from "../../../../util/api";
+import { MAINURL } from "../../../../util/api/common";
 import { CloseEye, Logo, OpenEye } from "../../../../util/assets";
 import { mainColor } from "../../../../util/css/color/color";
 import { SignUpType } from "../../../../util/interface/Sign/loginType";
@@ -24,28 +24,56 @@ const FirstProgress = ({
   fieldList,
   setFieldList,
 }: Props) => {
+  const { push } = useHistory();
   const [btnColor, setBtnColor] = useState<boolean>(false);
   const [nextLevel, setNextLevel] = useState<boolean>(false);
   const [inputType, setInputType] = useState<boolean>(false);
   const [inputTypeReturn, setInputTypeReturn] = useState<boolean>(false);
-  let error = false;
+  const [passwordCheck, setPasswordCheck] = useState<string>("");
 
   const { name, email, password, field } = inputs;
 
   // 이메일 인증 API
-  const emailAccess = useMutation((email) =>
-    axios
-      .post(`${MAINURL}/email`, { email: email })
-      .then(() => ToastSuccess("이메일 요청에 성공했습니다."))
-      .catch((e) => ToastError("이메일 요청에 실패하였습니다."))
+  const { mutate: emailAccess } = useMutation(
+    () => axios.post(`${MAINURL}/email`, { email: email }),
+    {
+      onSuccess: () => {
+        ToastSuccess("이메일 인증 요청에 성공했습니다.");
+      },
+      onError: (error: AxiosError) => {
+        const status = error.response?.status;
+
+        if (status === 409) {
+          ToastError("이미 등록된 이메일입니다.");
+        } else {
+          ToastError("이메일 인증 요청에 실패하였습니다.");
+        }
+      },
+    }
   );
 
-  const EmailAccessHandler = (email: any) => {
-    emailAccess.mutate(email);
-  };
-
   // 회원가입 API
-  const signUp = useMutation((inputs) => axios.post(`${MAINURL}/join`, inputs));
+  const { mutate: signUp } = useMutation(
+    () => axios.post(`${MAINURL}/join`, inputs),
+    {
+      onSuccess: () => {
+        ToastSuccess("회원가입이 완료되었습니다.");
+
+        setTimeout(() => {
+          push("/login");
+        }, 1000);
+      },
+      onError: (error: AxiosError) => {
+        const status = error.response?.status;
+
+        if (status === 404) {
+          ToastError("이메일 인증을 다시 시도해주세요.");
+        } else {
+          ToastError("회훤가입을 다시 시도해주세요");
+        }
+      },
+    }
+  );
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -60,22 +88,34 @@ const FirstProgress = ({
   const handleSubmit = (data: any, e: any) => {
     e.preventDefault();
 
-    signUp.mutate(data);
+    signUp(data);
+  };
+
+  const nextBtnClickHandle = (e: any) => {
+    e.preventDefault();
+
+    if (!btnColor) {
+      ToastError("모든 항목을 다 입력해주세요.");
+    } else {
+      setNextLevel(btnColor);
+    }
   };
 
   useEffect(() => {
     inputs.name.length >= 2 &&
     inputs.email.length >= 5 &&
-    inputs.password.length >= 4
+    inputs.password.length >= 4 &&
+    passwordCheck === inputs.password
       ? setBtnColor(true)
       : setBtnColor(false);
-  }, [inputs.name.length, inputs.email.length, inputs.password.length]);
+  }, [inputs, passwordCheck]);
 
   return (
     <>
-      <ToastContainer />
       <S.SignForm>
-        <img src={Logo} className="logo" alt="Portfolist 로고" />
+        <Link to="/">
+          <img src={Logo} alt="logo" className="logo" />
+        </Link>
         <ProgressBar nextLevel={nextLevel} />
         <S.SignSlider btnColor={btnColor} nextLevel={nextLevel}>
           <S.InputWrapper>
@@ -106,7 +146,7 @@ const FirstProgress = ({
                   onChange={(e) => onChange(e)}
                   placeholder="이메일을 입력해주세요"
                   style={
-                    inputs.email.length >= 5
+                    inputs.email.length >= 4 && inputs.email.includes("@")
                       ? { borderBottom: `2px solid ${mainColor}` }
                       : { borderBottom: "" }
                   }
@@ -116,9 +156,9 @@ const FirstProgress = ({
 
               <div
                 className="email-button"
-                onClick={() => EmailAccessHandler(email)}
+                onClick={() => emailAccess()}
                 style={
-                  inputs.email.length >= 4
+                  inputs.email.length >= 4 && inputs.email.includes("@")
                     ? { backgroundColor: `${mainColor}` }
                     : { backgroundColor: "" }
                 }
@@ -148,25 +188,22 @@ const FirstProgress = ({
                   alt="비밀번호아이콘"
                   onClick={() => setInputType(!inputType)}
                 />
-                {error ? (
-                  <></>
-                ) : (
-                  <>
-                    {/* <img
-                    className="select-icon"
-                    src={Warning}
-                    alt="비밀번호 경고 아이콘"
-                  /> */}
-                  </>
-                )}
               </S.InputItemWrap>
             </S.InputItem>
             <S.InputItem>
               <span>비밀번호 확인</span>
               <S.InputItemWrap>
                 <input
-                  type={inputType ? "text" : "password"}
+                  name="passwordCheck"
+                  value={passwordCheck}
+                  type={inputTypeReturn ? "text" : "password"}
                   placeholder="비밀번호를 다시입력해주세요"
+                  onChange={(e) => setPasswordCheck(e.target.value)}
+                  style={
+                    passwordCheck.length >= 4
+                      ? { borderBottom: `2px solid ${mainColor}` }
+                      : { borderBottom: "" }
+                  }
                 />
                 <img
                   src={inputTypeReturn ? OpenEye : CloseEye}
@@ -195,26 +232,23 @@ const FirstProgress = ({
               이전
             </S.PreButton>
             <S.PreButton
-              btnColor={btnColor}
-              onClick={(e) => {
-                handleSubmit(inputs, e);
+              style={{
+                background: `${mainColor}`,
               }}
+              onClick={(e) => handleSubmit(inputs, e)}
             >
               회원가입
             </S.PreButton>
           </div>
         ) : (
-          <>
-            <S.NextButton
-              btnColor={btnColor}
-              onClick={() => {
-                setNextLevel(btnColor);
-              }}
-            >
-              다음
-            </S.NextButton>
-          </>
+          <S.NextButton
+            btnColor={btnColor}
+            onClick={(e) => nextBtnClickHandle(e)}
+          >
+            다음
+          </S.NextButton>
         )}
+        <Link to="/login">이미 계정이 있어요!</Link>
       </S.SignForm>
     </>
   );

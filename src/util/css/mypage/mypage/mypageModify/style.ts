@@ -79,6 +79,15 @@ export const ProfileImageWrapper = styled.div`
   & div:hover {
     box-shadow: 0px 4px 8px rgba(153, 153, 153, 0.25);
   }
+
+  .profileImg {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #cccccc;
+    border-radius: 100%;
+    background-size: cover;
+    object-fit: cover;
+  }
 `;
 
 export const FieldItemContainer = styled.div`
@@ -396,7 +405,7 @@ export const ChangePasswordItem = styled.div`
 export const ModalWrapper = styled.section<Props>`
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.37);
+  background: rgb(237 237 237 / 75%);
   position: fixed;
   z-index: 10;
   display: ${({ modal }) => (modal ? "flex" : "none")};
