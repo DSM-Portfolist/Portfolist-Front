@@ -18,7 +18,7 @@ const SearchInput = () => {
 
   useEffect(() => {
     history.push(
-      `/list?page=1&size=10&field=${useField}&sort=date,${sort}&query=&searchType=`
+      `/list?page=0&size=12&field=${useField}&sort=date,${sort}&query=&searchType=`
     );
   }, [history, sort, useField]);
 

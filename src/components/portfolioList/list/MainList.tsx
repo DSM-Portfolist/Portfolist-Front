@@ -28,7 +28,7 @@ const MainList = () => {
   const queryData = QueryString.parse(location.search);
   const query = queryData.query;
 
-  const { isLoading } = useQuery(
+  const { data: portfolioList, isLoading } = useQuery(
     ["portfolio_list", field, sort, search, page],
     () => getPortfolioList(field, sort, search, "title", page),
     {
@@ -36,11 +36,13 @@ const MainList = () => {
       cacheTime: Infinity,
       staleTime: Infinity,
       keepPreviousData: true,
-      onSuccess: (data) => {
-        setArticles(articles.concat(data?.data.portfolio_list));
-      },
     }
   );
+
+  useEffect(() => {
+    setArticles(articles.concat(portfolioList?.data?.portfolio_list));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [portfolioList?.data?.portfolio_list]);
 
   const infiniteScroll = useCallback(() => {
     let scrollHeight = Math.max(
