@@ -18,7 +18,7 @@ const Searchbar = () => {
 
     if (e.key === "Enter") {
       history.push(
-        `/list?page=1&size=10&field=&sort=date&query=${searchContent}&searchType=`
+        `/list?page=0&size=12&field=&sort=date&query=${searchContent}&searchType=`
       );
     }
   };
