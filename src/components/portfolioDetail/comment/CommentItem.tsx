@@ -15,7 +15,7 @@ interface Props {
   portfolioId: number;
 }
 
-const CommentItem = ({ comment }: Props) => {
+const CommentItem = ({ comment, portfolioId }: Props) => {
   const [toggle, setToggle] = useState<boolean>(false);
   const setReportCommentModal = useSetRecoilState(commentReoprt);
   const [commentInfo, setCommentInfo] = useRecoilState(
@@ -27,8 +27,6 @@ const CommentItem = ({ comment }: Props) => {
       ...commentInfo,
       id: id,
       isOpen: true,
-      isRecomment: false,
-      isComment: true,
     });
   };
 
@@ -49,7 +47,11 @@ const CommentItem = ({ comment }: Props) => {
               to={`/user-page/${comment?.user?.user_id}`}
               className="user-name"
             >
-              <strong>{comment?.user?.name}</strong>
+              {comment?.user === null ? (
+                <strong>익명의 유저</strong>
+              ) : (
+                <strong>{comment?.user.name}</strong>
+              )}
               <div className="comment-date">
                 <span>{comment?.cdate}</span>
               </div>
@@ -74,7 +76,7 @@ const CommentItem = ({ comment }: Props) => {
         {toggle ? "- 답글 접기" : "+ 답글 달기"}
       </button>
       <S.ReCommentWrap toggle={toggle}>
-        <ReComment comment={comment} />
+        <ReComment comment={comment} portfolioId={portfolioId} />
       </S.ReCommentWrap>
     </S.CommentItemWrapper>
   );
