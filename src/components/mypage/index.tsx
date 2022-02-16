@@ -14,9 +14,10 @@ import ProfileHeader from "./ProfileHeader/ProfileHeader";
 import { NavWrapper } from "../../util/css/mypage/mypage/style";
 import { MyPortfolioType } from "../../util/interface/MyPage/myPortfolioType";
 import PortfolioListItem from "./PortfolioList/PortfolioList";
+import { isClickMyPortfolioAtom } from "../../modules/atom/mypage";
 
 const MyPage = () => {
-  const [isClickMyPortfolio, setIsClickMyPortfolio] = useState<boolean>(true);
+  const [isClickMyPortfolio, setIsClickMyPortfolio] = useRecoilState(isClickMyPortfolioAtom);
   const [isClickMyTouching, setIsClickMyTouching] = useState<boolean>(false);
   const [portfolioList, setPortoflioList] = useRecoilState(myPortfolioList);
   const myPortfolio = useRecoilValue(myPortfolioListSelector);
@@ -54,7 +55,6 @@ const MyPage = () => {
           <PortfolioContainer>
             <NavWrapper
               isClickMyPortfolio={isClickMyPortfolio}
-              isClickMyTouching={isClickMyTouching}
             >
               <h1 onClick={onClickEvent}>나의 포트폴리오</h1>
               <h1 onClick={onClickEvent}>나의 터칭</h1>

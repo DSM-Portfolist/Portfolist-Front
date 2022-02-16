@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 
 interface NavWrapperProps {
   isClickMyPortfolio: boolean;
-  isClickMyTouching: boolean;
 }
 
 export const baseBackground = css`
@@ -52,7 +51,7 @@ export const NavWrapper = styled.div<NavWrapperProps>`
 
   h1:nth-of-type(2) {
     margin-left: 50px;
-    color: ${(props) => (props.isClickMyTouching ? "#ff7659" : "#000000")};
+    color: ${(props) => (props.isClickMyPortfolio ?  "#000000" : "#ff7659")};
   }
 `;
 
