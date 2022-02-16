@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { isClickMyPortfolioAtom } from "../../../../modules/atom/mypage";
 
 const itemList = [
   {
@@ -25,10 +27,24 @@ const itemList = [
 ];
 
 const ItemBox = () => {
+  const setIsClickMyPortfolio = useSetRecoilState(isClickMyPortfolioAtom);
+  
+  const onClickEvent = (title:string) => {
+    if(title === "나의 터칭") {
+      setIsClickMyPortfolio(false)
+    } else if (title === "작성한 포트폴리오") {
+      setIsClickMyPortfolio(true)
+    } else {
+      return ;
+    }
+  }
+  
   return (
     <ItemBoxContainer>
       {itemList.map((item, index) => (
-        <Link to={item.url} key={index}>
+        <Link to={item.url} onClick={() => {
+          onClickEvent(item.title)
+        }} key={index}>
           <ItemBoxWrap>
             <img src={item.image} alt="" />
             <span>{item.title}</span>
