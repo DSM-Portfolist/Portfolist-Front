@@ -19,7 +19,6 @@ const ImageWrapper = ({ identity }: any) => {
 
   function addImageContainer(res: string, isComponentMounted: boolean) {
     //서버에게 post할때 보낼 이미지 리스트 추가
-    console.log(res);
     if (isComponentMounted) {
       setContainerList(
         containerList.map((value: any, i: number) => {
@@ -109,7 +108,7 @@ const ImageWrapper = ({ identity }: any) => {
         containerList.map((item: any, i: number) => {
           if (i === identity) {
             let newList = item.container_img_list.filter(
-              (value: any, filter_index: number) => {
+              (_: any, filter_index: number) => {
                 return filter_index !== index;
               }
             );
@@ -134,9 +133,9 @@ const ImageWrapper = ({ identity }: any) => {
               <>
                 <input
                   type="file"
+                  accept=".jpg, .png, .jpeg, .gif"
                   id={`input-file${identity}`}
                   style={{ display: "none" }}
-                  accept="image/jpg,impge/png,image/jpeg,image/gif"
                   onChange={(e: any) => {
                     handleFileOnChange(e, v.index);
                   }}
