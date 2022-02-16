@@ -27,7 +27,7 @@ const FilterBar = () => {
         <S.MoreItem
           onClick={() =>
             history.push(
-              `/list?page=1&size=10&field=${useField}&sort=date&query=&searchType=`
+              `/list?page=0&size=12&field=${useField}&sort=date&query=&searchType=`
             )
           }
         >

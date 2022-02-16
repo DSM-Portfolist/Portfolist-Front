@@ -12,13 +12,13 @@ interface Props {
 
 const SecessionModal = (props: Props) => {
   const { modal, setModal } = props;
-  const history = useHistory();
+  const { push } = useHistory();
 
   const { mutate: deleteUserHandle } = useMutation(() => deleteUser(), {
     onSuccess: () => {
       ToastSuccess("회원 탈퇴에 성공하셨습니다.");
       setTimeout(() => {
-        history.push("/");
+        push("/");
         localStorage.removeItem("access_token_portfolist");
         localStorage.removeItem("refresh_token_portfolist");
       }, 1000);

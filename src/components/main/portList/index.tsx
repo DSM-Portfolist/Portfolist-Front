@@ -16,7 +16,7 @@ const List = () => {
         <S.GoWrapper
           onClick={() =>
             history.push(
-              "/list?page=0&size=10&field=&sort=date&query=&searchType="
+              "/list?page=0&size=12&field=&sort=date&query=&searchType="
             )
           }
         >

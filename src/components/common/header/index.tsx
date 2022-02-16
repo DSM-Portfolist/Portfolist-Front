@@ -23,19 +23,21 @@ const Header = () => {
   const searchHandler = (e: any) => {
     if (e.key === "Enter") {
       history.push(
-        `list?page=0&size=10&field=&sort=date&query=${e.target.value}&searchType=`
+        `list?page=0&size=12&field=&sort=date&query=${e.target.value}&searchType=`
       );
       setSearchText("");
     }
   };
 
-  if (test === 1) {
-    window.location.reload();
+  useEffect(() => {
+    if (test === 1) {
+      window.location.reload();
 
-    if (token === null) {
-      setTest(0);
+      if (token === null || undefined || "") {
+        setTest(0);
+      }
     }
-  }
+  }, []);
 
   const focusOn = useCallback(() => {
     setIsFocusing(true);
@@ -61,7 +63,7 @@ const Header = () => {
                 <img src={Logo} alt="포트폴리스트 로고" />
               </Link>
               <Link
-                to="/list?page=0&size=10&field=&sort=date&query=&searchType="
+                to="/list?page=0&size=12&field=&sort=date,desc&query=&searchType="
                 className="list-item"
               >
                 <span>포트폴리오</span>
