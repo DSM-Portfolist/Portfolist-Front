@@ -26,9 +26,8 @@ export const ImageItem = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
+
   .PreviewURL {
-    width: 300px;
-    height: 190px;
     object-fit: cover;
     border: dotted #979797 1px;
     margin-top: 13px;
