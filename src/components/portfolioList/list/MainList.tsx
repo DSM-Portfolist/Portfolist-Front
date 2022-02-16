@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import * as S from "./style";
 import { Search, ListItem } from "../..";
 import { PortListType } from "../../../util/interface/portfolio/portListType";
@@ -21,19 +21,47 @@ const MainList = () => {
   const search = useRecoilValue(searchValue);
   const sort = useRecoilValue(sortValue);
 
+  const [articles, setArticles] = useState<any>([]);
+  const [page, setPage] = useState<number>(0);
+
   const location = useLocation();
   const queryData = QueryString.parse(location.search);
   const query = queryData.query;
 
-  const { data: portfolioList, isLoading } = useQuery(
-    ["portfolio_list", field, sort, search],
-    () => getPortfolioList(field, sort, search, "title"),
+  const { isLoading } = useQuery(
+    ["portfolio_list", field, sort, search, page],
+    () => getPortfolioList(field, sort, search, "title", page),
     {
-      enabled: !!field || !!sort || !!search,
+      enabled: !!field || !!sort || !!search || page,
       cacheTime: Infinity,
       staleTime: Infinity,
+      keepPreviousData: true,
+      onSuccess: (data) => {
+        setArticles(articles.concat(data?.data.portfolio_list));
+      },
     }
   );
+
+  const infiniteScroll = useCallback(() => {
+    let scrollHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+    let scrollTop = Math.max(
+      document.documentElement.scrollTop,
+      document.body.scrollTop
+    );
+    let clientHeight = document.documentElement.clientHeight;
+
+    if (scrollTop + clientHeight === scrollHeight) {
+      setPage((page) => page + 1);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", infiniteScroll, true);
+    return () => window.removeEventListener("scroll", infiniteScroll, true);
+  }, [infiniteScroll]);
 
   useEffect(() => {
     setSearchText(query);
@@ -46,18 +74,16 @@ const MainList = () => {
     <S.MainListWrapper className="container">
       <Search />
       <S.ListWrapper>
-        {portfolioList?.data?.portfolio_list.length === 0 ? (
+        {articles.length === 0 ? (
           <p className="list-not-comment">작성된 포트폴리오가 없습니다</p>
         ) : (
           <>
             {query && <S.SearchContent>{query}의 검색결과...</S.SearchContent>}
 
             <S.ListContent>
-              {portfolioList?.data?.portfolio_list.map(
-                (list: PortListType, index: number) => (
-                  <ListItem key={index} list={list} />
-                )
-              )}
+              {articles.map((list: PortListType, index: number) => (
+                <ListItem key={index} list={list} />
+              ))}
             </S.ListContent>
           </>
         )}

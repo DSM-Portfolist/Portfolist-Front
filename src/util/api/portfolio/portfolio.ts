@@ -7,10 +7,11 @@ export function getPortfolioList(
   field: string[],
   sort: string,
   query: any,
-  type: string
+  type: string,
+  page: number
 ) {
   return request({
-    url: `/portfolio/list?page=0&size=200&field=${
+    url: `/portfolio/list?page=${page}&size=12&field=${
       field === undefined ? "" : field
     }&sort=date,${sort}&query=${query}&searchType=${type}`,
     method: "get",

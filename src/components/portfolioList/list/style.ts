@@ -3,6 +3,7 @@ import { mainColor } from "../../../util/css/color/color";
 import { TouchingProp } from "../../../util/interface/main/mainType";
 
 export const MainListWrapper = styled.section`
+  margin-bottom: 100px;
   background-color: white;
   display: flex;
   flex-direction: column;
