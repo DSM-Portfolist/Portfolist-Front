@@ -29,15 +29,13 @@ const Header = () => {
     }
   };
 
-  useEffect(() => {
-    if (test === 1) {
-      window.location.reload();
+  if (test === 1) {
+    window.location.reload();
 
-      if (token === null || undefined || "") {
-        setTest(0);
-      }
+    if (token === null || undefined || "") {
+      setTest(0);
     }
-  }, []);
+  }
 
   const focusOn = useCallback(() => {
     setIsFocusing(true);

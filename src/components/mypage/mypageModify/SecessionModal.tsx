@@ -19,6 +19,7 @@ const SecessionModal = (props: Props) => {
       ToastSuccess("회원 탈퇴에 성공하셨습니다.");
       setTimeout(() => {
         push("/");
+        window.location.reload();
         localStorage.removeItem("access_token_portfolist");
         localStorage.removeItem("refresh_token_portfolist");
       }, 1000);
