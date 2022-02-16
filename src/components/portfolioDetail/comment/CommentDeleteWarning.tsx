@@ -24,7 +24,10 @@ const CommentDeleteWarningModal = () => {
     deleteComments();
   };
 
-  const { data: user } = useQuery("user", () => getUser());
+  const { data: user } = useQuery("user", () => getUser(), {
+    staleTime: Infinity,
+    cacheTime: Infinity,
+  });
 
   const { mutate: deleteComments } = useMutation(
     () => deleteComment(Number(commentInfo.id)),
@@ -34,6 +37,7 @@ const CommentDeleteWarningModal = () => {
         setCommentInfo({ ...commentInfo, isOpen: false });
 
         queryClient.invalidateQueries("comment");
+        queryClient.invalidateQueries("recomment_value");
       },
       onError: () => {
         ToastError("댓글 삭제 요청에 실패했습니다.");
