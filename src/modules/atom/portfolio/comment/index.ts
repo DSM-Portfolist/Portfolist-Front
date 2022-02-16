@@ -25,8 +25,6 @@ export const commentDeleteWarning_atom = atom<CommentDeleteWraningType>({
   default: {
     isOpen: false,
     id: null,
-    isRecomment: false,
-    isComment: false,
   },
 });
 
