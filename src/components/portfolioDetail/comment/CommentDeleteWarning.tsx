@@ -3,10 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useRecoilState } from "recoil";
 import { ToastError, ToastSuccess } from "../../../hook/toastHook";
 import { commentDeleteWarning_atom } from "../../../modules/atom/portfolio/comment";
-import {
-  deleteComment,
-  deleteReComment,
-} from "../../../util/api/portfolio/comment";
+import { deleteComment } from "../../../util/api/portfolio/comment";
 import { getUser } from "../../../util/api/user/info";
 import { mainColor } from "../../../util/css/color/color";
 
@@ -24,14 +21,13 @@ const CommentDeleteWarningModal = () => {
   };
 
   const deleteBtnClickHandle = () => {
-    if (commentInfo.isComment) {
-      deleteComments();
-    } else {
-      deleteReComments();
-    }
+    deleteComments();
   };
 
-  const { data: user } = useQuery("user", () => getUser());
+  const { data: user } = useQuery("user", () => getUser(), {
+    staleTime: Infinity,
+    cacheTime: Infinity,
+  });
 
   const { mutate: deleteComments } = useMutation(
     () => deleteComment(Number(commentInfo.id)),
@@ -41,24 +37,10 @@ const CommentDeleteWarningModal = () => {
         setCommentInfo({ ...commentInfo, isOpen: false });
 
         queryClient.invalidateQueries("comment");
-      },
-      onError: () => {
-        ToastError("댓글 삭제 요청에 실패했습니다.");
-      },
-    }
-  );
-
-  const { mutate: deleteReComments } = useMutation(
-    () => deleteReComment(Number(commentInfo.id)),
-    {
-      onSuccess: () => {
-        ToastSuccess("답글이 삭제되었습니다.");
-        setCommentInfo({ ...commentInfo, isOpen: false });
-
         queryClient.invalidateQueries("recomment_value");
       },
       onError: () => {
-        ToastError("답글 삭제가 실패했습니다.");
+        ToastError("댓글 삭제 요청에 실패했습니다.");
       },
     }
   );

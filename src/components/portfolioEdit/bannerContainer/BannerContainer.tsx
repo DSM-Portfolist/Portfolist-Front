@@ -1,20 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";
 import { imgFile } from "../../../util/api/portfolio/portfolioPost";
 import {
-  bannerImgAtom,
-  portfolioMakeList,
-} from "../../../modules/atom/portfolioPost";
+  bannerModifyImgAtom,
+  portfolioModifyList,
+} from "../../../modules/atom/portfolioEdit";
 import { useRecoilState } from "recoil";
 
 const BannerContainer = () => {
-  const [portfolioMakeArr, setPortfolioMakeArr] =
-    useRecoilState(portfolioMakeList);
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+    useRecoilState(portfolioModifyList);
   const [fileInputName, setFileInputName] = useState("");
-  const [bannerImg, setBannerImg] = useRecoilState(bannerImgAtom);
+  const [bannerImg, setBannerImg] = useRecoilState(bannerModifyImgAtom);
 
   useEffect(() => {
     if (bannerImg.isClickBannder === true) {
@@ -22,16 +22,12 @@ const BannerContainer = () => {
     }
   }, [bannerImg]);
 
-  const setApiThumbnailData = useCallback(() => {
-    setPortfolioMakeArr({
-      ...portfolioMakeArr,
+  useEffect(() => {
+    setPortfolioModifyArr({
+      ...portfolioModifyArr,
       thumbnail: bannerImg.thumbnail,
     });
-  }, [bannerImg.thumbnail]);
-
-  useEffect(() => {
-    setApiThumbnailData();
-  }, [setApiThumbnailData]);
+  }, [bannerImg]);
 
   const onChangeFileHanddler = (e: any) => {
     let file = e.target.files[0];

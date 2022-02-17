@@ -14,10 +14,12 @@ import {
   EmailAuthFail,
   PortfolioModify,
 } from "../components";
+import ScrollToTop from "../components/common/scrollToTop/ScrollToTop";
 
 const UserRouter = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Switch>
         <Route path="/" component={Main} exact />
         <Route path="/login" component={Login} exact />

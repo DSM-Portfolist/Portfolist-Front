@@ -109,10 +109,9 @@ export const Content = styled.div<Props>`
   }
 
   .comment-delete {
-    margin: 30px auto;
-    color: ${grayColor};
-    font-size: 20px;
-    font-weight: 500;
+    margin: 5px 0;
+    color: #767676;
+    font-size: 16px;
   }
 
   .content {

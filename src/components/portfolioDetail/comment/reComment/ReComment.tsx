@@ -9,7 +9,7 @@ import {
 } from "../../../../modules/atom/portfolio/comment";
 import {
   getReComment,
-  postReComment,
+  postComment,
 } from "../../../../util/api/portfolio/comment";
 import { DefaultProfile } from "../../../../util/assets";
 import {
@@ -20,9 +20,10 @@ import * as S from "./style";
 
 interface Props {
   comment: CommentType;
+  portfolioId: number;
 }
 
-const ReComment = ({ comment }: Props) => {
+const ReComment = ({ comment, portfolioId }: Props) => {
   const queryClient = useQueryClient();
   const setReportCommentModal = useSetRecoilState(commentReoprt);
   const commentRef = useRef<null | any>(null);
@@ -37,21 +38,23 @@ const ReComment = ({ comment }: Props) => {
       cacheTime: Infinity,
       staleTime: Infinity,
       keepPreviousData: true,
-      enabled: !!comment.comment_id,
+      enabled: comment.re_comment_exist && !!comment.comment_id,
     }
   );
 
-  const { mutate: postReComments } = useMutation(
-    () => postReComment(comment.comment_id, commentRef.current.value),
+  // 대댓글 작성
+  const { mutate: postComments } = useMutation(
+    () =>
+      postComment(portfolioId, comment.comment_id, commentRef.current.value),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("recomment_value");
-        ToastSuccess("답글이 작성되었습니다.");
+        ToastSuccess("댓글이 작성되었습니다.");
 
         commentRef.current.value = null;
       },
       onError: () => {
-        ToastError("답글 작성에 실패했습니다.");
+        ToastError("댓글 작성에 실패했습니다.");
       },
     }
   );
@@ -61,8 +64,6 @@ const ReComment = ({ comment }: Props) => {
       ...commentInfo,
       id: id,
       isOpen: true,
-      isRecomment: true,
-      isComment: false,
     });
   };
 
@@ -72,7 +73,7 @@ const ReComment = ({ comment }: Props) => {
     if (commentRef.current.value === "") {
       ToastError("답변할 내용을 입력해주세요.");
     } else {
-      postReComments(commentRef.current.value);
+      postComments(commentRef.current.value);
     }
   };
 
@@ -86,41 +87,45 @@ const ReComment = ({ comment }: Props) => {
         />
         <button onClick={(e) => reCommentAddHandler(e)}>등록</button>
 
-        {reCommentValue?.data?.map((rc: ReCommentType) => (
-          <S.ReComment key={rc.re_comment_id}>
-            <S.Content>
-              <img
-                src={
-                  rc?.user?.profile_img === null || rc?.user === null
-                    ? `${DefaultProfile}`
-                    : rc.user.profile_img
-                }
-                alt="프로필 사진"
-              />
-              <div className="content">
-                <Link
-                  to={`/user-page/${rc.user.user_id}`}
-                  className="user-name"
-                >
-                  <strong>{rc.user.name}</strong>
-                  <div className="comment-date">
-                    <span>{rc.rc_date}</span>
+        {comment.re_comment_exist && (
+          <>
+            {reCommentValue?.data?.map((rc: ReCommentType) => (
+              <S.ReComment key={rc.re_comment_id}>
+                <S.Content>
+                  <img
+                    src={
+                      rc?.user?.profile_img === null || rc?.user === null
+                        ? `${DefaultProfile}`
+                        : rc.user.profile_img
+                    }
+                    alt="프로필 사진"
+                  />
+                  <div className="content">
+                    <Link
+                      to={`/user-page/${rc.user.user_id}`}
+                      className="user-name"
+                    >
+                      <strong>{rc.user.name}</strong>
+                      <div className="comment-date">
+                        <span>{rc.rc_date}</span>
+                      </div>
+                    </Link>
+                    <pre>{rc.re_comment_content}</pre>
                   </div>
-                </Link>
-                <pre>{rc.re_comment_content}</pre>
-              </div>
-            </S.Content>
-            <S.Util>
-              {rc?.mine && (
-                <span onClick={() => deleteCommentHandle(rc.re_comment_id)}>
-                  삭제
-                </span>
-              )}
+                </S.Content>
+                <S.Util>
+                  {rc?.mine && (
+                    <span onClick={() => deleteCommentHandle(rc.re_comment_id)}>
+                      삭제
+                    </span>
+                  )}
 
-              <span onClick={() => setReportCommentModal(true)}>신고</span>
-            </S.Util>
-          </S.ReComment>
-        ))}
+                  <span onClick={() => setReportCommentModal(true)}>신고</span>
+                </S.Util>
+              </S.ReComment>
+            ))}
+          </>
+        )}
       </S.CommentInputWrap>
     </>
   );

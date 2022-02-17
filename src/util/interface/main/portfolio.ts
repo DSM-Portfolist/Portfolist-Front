@@ -15,6 +15,7 @@ export interface monthPortfolioType {
 }
 
 export interface notificationType {
+  portfolio_id: number;
   name: string;
   id: number;
   type: "TOUCHING" | "COMMENT" | "RECOMMENT" | "P_ADD" | "P_MODIFY";

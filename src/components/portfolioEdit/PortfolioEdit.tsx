@@ -1,0 +1,124 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
+import { Footer, Header } from "..";
+import * as S from "./style";
+import TitleContainer from "./titleContainer/TitleContainer";
+import MoreInfoContainer from "./moreInfoContainer/MoreInfoContainer";
+import ImageContainerList from "./imageContainerList/ImageContainerList";
+import LicenseContainer from "./licenseContainer/LicenseContainer";
+import BannerContainer from "./bannerContainer/BannerContainer";
+import FileLinkContainer from "./fileLinkContainer/FileLinkContainer";
+import PrecautionsContainer from "./precautionsContainer/PrecautionsContainer";
+import { useRecoilState } from "recoil";
+import { portfolioModifyList } from "../../modules/atom/portfolioEdit/index";
+import { portfolioModifySubmit } from "../../util/api/portfolio/portfolioModify";
+import OptionContainer from "./optionContainer/OptionContainer";
+import { ToastError, ToastSuccess } from "../../hook/toastHook";
+import { useHistory, useLocation } from "react-router";
+import { getPortfolio } from "../../util/api/portfolio/portfolio";
+import QueryString from "query-string";
+import { useMutation, useQueryClient } from "react-query";
+import { fieldToId } from "../../hook/fieldNameToIdHook";
+
+interface stateType {
+  portfolioID: number;
+}
+
+const PortfolioEdit = () => {
+  const history = useHistory();
+  const queryClient = useQueryClient();
+  const [isOpen, setIsOpen] = useState<boolean | null>(null);
+
+  const [portfolioModifyArr, setPortfolioModifyArr] =
+    useRecoilState(portfolioModifyList);
+
+  const location = useLocation<stateType>();
+  const query = QueryString.parse(location.search);
+
+  const getPortfolioData = (id: number) => {
+    getPortfolio(id)
+      .then((res) => {
+        const {
+          title,
+          introduce,
+          field,
+          more_info,
+          container_list,
+          link,
+          file,
+          thumbnail,
+        } = res.data;
+        let { certificate_container_list } = res.data;
+        setIsOpen(res.data.open);
+
+        certificate_container_list = certificate_container_list.map(
+          (value: any) => {
+            if (value.certificate_list.length <= 0) {
+              return { title: value.title, certificate_list: [""] };
+            } else {
+              return value;
+            }
+          }
+        );
+
+        setPortfolioModifyArr({
+          ...portfolioModifyArr,
+          title: title,
+          introduce: introduce,
+          field: field.map((value: string) => {
+            return fieldToId(value);
+          }),
+          more_info: more_info,
+          container_list: container_list,
+          certificate_container_list: certificate_container_list,
+          link: link,
+          file: file,
+          thumbnail: thumbnail,
+          open: res.data.open,
+        });
+      })
+  };
+
+  const { mutate: patchPortfolio } = useMutation(
+    () => portfolioModifySubmit(portfolioModifyArr, Number(query.id)),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("portfolio_detail");
+        queryClient.invalidateQueries("portfolio_list");
+        ToastSuccess("포트폴리오가 수정되었습니다.");
+        setTimeout(() => {
+          history.push(`/portfolio?id=${Number(query.id)}`);
+        }, 1500);
+      },
+      onError: () => {
+        ToastError("포트폴리오 수정에 실패했습니다.");
+      },
+    }
+  );
+
+  useEffect(() => {
+    console.log(portfolioModifyArr);
+    getPortfolioData(Number(query.id));
+  }, [query.id]);
+
+  return (
+    <>
+      <Header />
+      <S.MainContainer>
+        <PrecautionsContainer /> {/* 주의사항을 적는 Text 컴포넌트 */}
+        <OptionContainer isOpen={isOpen} />
+        {/* 분야랑 공개 비공개 설정 컴포넌트 */}
+        <TitleContainer /> {/* 제목 컴포넌트 */}
+        <MoreInfoContainer /> {/*이메일이나 깃허브 넣는 컴포넌트*/}
+        <ImageContainerList /> {/* 자신의 경험을 넣을 수 있는 이미지 리스트 */}
+        <LicenseContainer /> {/* 자격증을 넣을 수 있는 리스트 */}
+        <FileLinkContainer /> {/*파일이나 링크를 넣을 수 있는 컴포넌트 */}
+        <BannerContainer /> {/* 이미지 배너 선택하는 컴포넌트 */}
+        <S.FinshButton onClick={() => patchPortfolio()}>수정완료</S.FinshButton>
+      </S.MainContainer>
+      <Footer />
+    </>
+  );
+};
+
+export default PortfolioEdit;

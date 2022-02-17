@@ -62,11 +62,11 @@ export const BoxItem = styled.div`
       border-radius: 5px;
     }
   }
+`;
 
-  .addContent {
-    margin-bottom: 15px;
-    font-size: 12px;
-    color: #bbbbbb;
-    cursor: pointer;
-  }
+export const AddContentIcon = styled.p`
+  margin: 15px 0;
+  font-size: 12px;
+  color: #bbbbbb;
+  cursor: pointer;
 `;

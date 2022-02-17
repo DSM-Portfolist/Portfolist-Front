@@ -1,13 +1,25 @@
+import { useEffect, useRef } from "react";
 import { MinusButton } from "../../../../util/assets";
 import * as S from "./style";
 import { ToastError } from "../../../../hook/toastHook";
-import { useRecoilState } from "recoil";
-import { container_list_atom } from "../../../../modules/atom/portfolioPost";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  container_list_modify_atom,
+  portfolioModifyList,
+} from "../../../../modules/atom/portfolioEdit";
 import TextareaAutosize from "react-textarea-autosize";
 
 const ContentWrapper = (props: any) => {
   const { parent_index } = props;
-  const [containerList, setContainerList] = useRecoilState(container_list_atom);
+  const [containerListModify, setContainerListModify] = useRecoilState(
+    container_list_modify_atom
+  );
+  const portfolioModifyArr = useRecoilValue(portfolioModifyList);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    setContainerListModify(portfolioModifyArr.container_list);
+  }, [portfolioModifyArr.container_list, setContainerListModify]);
 
   const onChangeContainerTextList = (
     e: any,
@@ -15,21 +27,21 @@ const ContentWrapper = (props: any) => {
     index: number
   ) => {
     const { name, value } = e.target;
-    setContainerList(
-      containerList.map((item: any, i: number) => {
+    setContainerListModify(
+      containerListModify.map((item: any, i: number) => {
         if (parent_index === i) {
-          let newList = containerList[parent_index].container_text_list.map(
-            (child_item: any, child_index: number) => {
-              if (child_index === index) {
-                return {
-                  ...child_item,
-                  [name]: value,
-                };
-              } else {
-                return child_item;
-              }
+          let newList = containerListModify[
+            parent_index
+          ].container_text_list.map((child_item: any, child_index: number) => {
+            if (child_index === index) {
+              return {
+                ...child_item,
+                [name]: value,
+              };
+            } else {
+              return child_item;
             }
-          );
+          });
           return {
             ...item,
             container_text_list: newList,
@@ -42,28 +54,28 @@ const ContentWrapper = (props: any) => {
   };
 
   const DeleteContainerText = (parent_index: number, index: number) => {
-    if (containerList[parent_index].container_text_list.length <= 1) {
+    if (containerListModify[parent_index].container_text_list.length <= 1) {
       ToastError("삭제할 수 없습니다");
     } else {
-      let newList = containerList[parent_index].container_text_list?.filter(
-        (value: any, i: number) => {
-          return i !== index;
-        }
-      );
-      setContainerList((containerList: any) => [
-        { ...containerList[parent_index], container_text_list: newList },
+      let newList = containerListModify[
+        parent_index
+      ].container_text_list?.filter((value: any, i: number) => {
+        return i !== index;
+      });
+      setContainerListModify((containerListModify: any) => [
+        { ...containerListModify[parent_index], container_text_list: newList },
       ]);
     }
   };
 
   const addContainerText = (parent_index: number) => {
-    setContainerList(
-      containerList.map((value: any, i: number) => {
+    setContainerListModify(
+      containerListModify.map((value: any, i: number) => {
         if (parent_index === i) {
           return {
-            ...containerList[parent_index],
+            ...containerListModify[parent_index],
             container_text_list: [
-              ...containerList[parent_index].container_text_list,
+              ...containerListModify[parent_index].container_text_list,
               {
                 box_title: "",
                 box_content: "",
@@ -79,16 +91,17 @@ const ContentWrapper = (props: any) => {
 
   return (
     <S.ContentContainer>
-      {containerList[parent_index].container_text_list?.map(
+      {containerListModify[parent_index].container_text_list?.map(
         (value: any, index: number) => {
           const { box_content, box_title } = value;
+
           return (
             <S.BoxItem key={index}>
               <div className="Title">
                 <input
                   placeholder="제목을 입력해주세요."
                   name="box_title"
-                  value={box_title}
+                  defaultValue={box_title}
                   onChange={(e: any) =>
                     onChangeContainerTextList(e, parent_index, index)
                   }
@@ -100,26 +113,25 @@ const ContentWrapper = (props: any) => {
                 />
               </div>
               <TextareaAutosize
+                ref={textareaRef}
                 placeholder="내용을 입력해주세요."
-                className="Content"
+                minRows={3}
                 name="box_content"
-                value={box_content}
+                defaultValue={box_content}
+                //onInput={handleResizeHeight}
                 onChange={(e: any) =>
                   onChangeContainerTextList(e, parent_index, index)
                 }
               />
               {index + 1 <
-              containerList[parent_index].container_text_list.length ? (
+              containerListModify[parent_index].container_text_list.length ? (
                 ""
               ) : (
-                <span
-                  className="addContent"
-                  onClick={() => {
-                    addContainerText(parent_index);
-                  }}
+                <S.AddContentIcon
+                  onClick={() => addContainerText(parent_index)}
                 >
                   내용 추가
-                </span>
+                </S.AddContentIcon>
               )}
             </S.BoxItem>
           );
