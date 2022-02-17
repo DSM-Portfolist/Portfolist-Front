@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useCallback } from "react";
 import { File, isInFile } from "../../../util/assets";
 import ImageSelector from "./items/ImageSelector";
 import * as S from "./style";
@@ -16,18 +17,21 @@ const BannerContainer = () => {
   const [bannerImg, setBannerImg] = useRecoilState(bannerImgAtom);
 
   useEffect(() => {
-    console.log(bannerImg);
     if (bannerImg.isClickBannder === true) {
       setFileInputName("");
     }
   }, [bannerImg]);
 
-  useEffect(() => {
+  const setApiThumbnailData = useCallback(() => {
     setPortfolioMakeArr({
       ...portfolioMakeArr,
       thumbnail: bannerImg.thumbnail,
     });
-  }, [bannerImg]);
+  }, [bannerImg.thumbnail]);
+
+  useEffect(() => {
+    setApiThumbnailData();
+  }, [setApiThumbnailData]);
 
   const onChangeFileHanddler = (e: any) => {
     let file = e.target.files[0];
@@ -70,7 +74,7 @@ const BannerContainer = () => {
             <input
               type="file"
               id="file"
-              accept="image/jpg,impge/png,image/jpeg,image/gif"
+              accept=".jpg, .png, .jpeg, .gif"
               onChange={(e) => onChangeFileHanddler(e)}
             />
             <p>{fileInputName ? fileInputName : "파일을 선택해 주세요."}</p>

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import * as S from "./style";
 import { FieldType } from "../../../util/interface/common";
 import { getFieldSelector } from "../../../modules/atom/portfolio";

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
 import { Link } from "react-router-dom";
+import { DateSplitHook } from "../../../hook/dateSplitHook";
 import { ProfileImage } from "../../../hook/profileImg";
 import {
   column,
@@ -11,36 +11,34 @@ import {
 } from "../../../util/css/mypage/UserPage/style";
 import { row } from "../../../util/css/signin/style";
 import { MyPortfolioType } from "../../../util/interface/MyPage/myPortfolioType";
+import { ListThumbnailHandle } from "../../../hook/listThumbnail";
+import LockIcon from "./LockIcon";
 
 interface Props {
   isClickMyPortfolio?: boolean;
   isClickMyTouching?: boolean;
-  portfolio?: MyPortfolioType;
+  portfolio: MyPortfolioType;
   profileimg: string | undefined;
 }
 
-const PortfolioList = ({
+const PortfolioListItem = ({
   isClickMyPortfolio,
   portfolio,
   profileimg,
 }: Props) => {
-  function DateSplitHook(string: any) {
-    const dateArray = string?.split("-");
-    console.log(dateArray);
-    let date = `${dateArray[0]}년 ${dateArray[1]}월 ${dateArray[2]}일`;
-
-    return date;
-  }
+  const fieldList = () => {
+    portfolio?.field.map((field, index) => <span key={index}>{field}</span>);
+  };
 
   return (
     <Link to={`/portfolio?id=${portfolio?.id}`} css={[portfolioItem, column]}>
-      <img src={portfolio?.url} alt="이미지" />
-      <div css={[FieldWrapper, row]}>
-        {portfolio?.field?.map((field, index) => (
-          <span key={index}>{field}</span>
-        ))}
-      </div>
-      <h1>{portfolio?.title}</h1>
+      <img src={ListThumbnailHandle(portfolio?.thumbnail)} alt="이미지" />
+      <div css={[FieldWrapper, row]}>{fieldList}</div>
+
+      <h1>
+        {portfolio?.open === undefined || portfolio?.open ? null : <LockIcon />}
+        {portfolio?.title}
+      </h1>
       <p id="content">{portfolio?.introduce}</p>
       <div css={[portfolioItemUnderBar, row]}>
         <div css={[center]}>
@@ -59,4 +57,4 @@ const PortfolioList = ({
   );
 };
 
-export default PortfolioList;
+export default PortfolioListItem;

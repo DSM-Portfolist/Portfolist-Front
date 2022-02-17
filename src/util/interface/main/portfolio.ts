@@ -1,5 +1,5 @@
 export interface recentPortfolioType {
-  thumbnail: string | null;
+  thumbnail: string;
   introduce: string;
   portfolio_id: number;
   title: string;
@@ -7,7 +7,7 @@ export interface recentPortfolioType {
 
 export interface monthPortfolioType {
   id: number;
-  thumbnail: string | null;
+  thumbnail: string;
   title: string;
   introduce: string;
   name: string;
@@ -15,6 +15,7 @@ export interface monthPortfolioType {
 }
 
 export interface notificationType {
+  portfolio_id: number;
   name: string;
   id: number;
   type: "TOUCHING" | "COMMENT" | "RECOMMENT" | "P_ADD" | "P_MODIFY";

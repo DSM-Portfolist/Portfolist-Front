@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
@@ -18,7 +18,7 @@ const SearchInput = () => {
 
   useEffect(() => {
     history.push(
-      `/list?page=1&size=10&field=${useField}&sort=date,${sort}&query=&searchType=`
+      `/list?page=0&size=12&field=${useField}&sort=date,${sort}&query=&searchType=`
     );
   }, [history, sort, useField]);
 

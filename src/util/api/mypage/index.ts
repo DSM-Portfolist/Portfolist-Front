@@ -30,7 +30,6 @@ export const deleteUser = () => {
   return request({
     url: "/user",
     method: "delete",
-    headers: { Authorization: token },
   });
 };
 
@@ -71,4 +70,3 @@ export const patchPassword = (now_password: any, new_password: any) => {
     },
   });
 };
-

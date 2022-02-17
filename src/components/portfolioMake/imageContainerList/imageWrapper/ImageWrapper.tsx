@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 import * as S from "./style";
 import { imageListType } from "../../../../util/interface/portfolio/portfolioMakeType";
 import { container_list_atom } from "../../../../modules/atom/portfolioPost";
@@ -16,24 +17,8 @@ const ImageWrapper = ({ identity }: any) => {
     { isInFile: false, index: 0 + jbRandom },
   ]);
 
-  useEffect(() => {
-    let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
-    if (imageFile.length !== 0) {
-      imgFile(imageFile)
-        .then((res: any) => {
-          addImageContainer(res.data.file, isComponentMounted);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    } else {
-      return;
-    }
-  }, [imageFile]);
-
-  const addImageContainer = (res: string, isComponentMounted: boolean) => {
+  function addImageContainer(res: string, isComponentMounted: boolean) {
     //서버에게 post할때 보낼 이미지 리스트 추가
-    console.log(res);
     if (isComponentMounted) {
       setContainerList(
         containerList.map((value: any, i: number) => {
@@ -50,7 +35,22 @@ const ImageWrapper = ({ identity }: any) => {
     } else {
       return;
     }
-  };
+  }
+
+  useEffect(() => {
+    let isComponentMounted = true; //useEffect 메모리 누수를 방지 하기 위한 boolean 값
+    if (imageFile.length !== 0) {
+      imgFile(imageFile)
+        .then((res: any) => {
+          addImageContainer(res.data.file, isComponentMounted);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } else {
+      return;
+    }
+  }, [imageFile]);
 
   const updateFieldChanged = (item: boolean, index: number) => {
     //isInFile boolean 함수 변경
@@ -86,7 +86,8 @@ const ImageWrapper = ({ identity }: any) => {
     ]);
   };
 
-  const deleteImage = (index: number) => { //이미지 삭제 이벤트
+  const deleteImage = (index: number) => {
+    //이미지 삭제 이벤트
     if (imageList.length <= 1) {
       ToastError("이미지는 최소한 1개는 있어야 합니다");
     } else {
@@ -105,11 +106,9 @@ const ImageWrapper = ({ identity }: any) => {
       setContainerList(
         //제작에 올라갈 이미지 리스트 삭제
         containerList.map((item: any, i: number) => {
-          console.log(i, index);
           if (i === identity) {
-            console.log(item);
             let newList = item.container_img_list.filter(
-              (value: any, filter_index: number) => {
+              (_: any, filter_index: number) => {
                 return filter_index !== index;
               }
             );
@@ -118,7 +117,6 @@ const ImageWrapper = ({ identity }: any) => {
               container_img_list: newList,
             };
           } else {
-            console.log("else");
             return item;
           }
         })
@@ -135,9 +133,9 @@ const ImageWrapper = ({ identity }: any) => {
               <>
                 <input
                   type="file"
+                  accept=".jpg, .png, .jpeg, .gif"
                   id={`input-file${identity}`}
                   style={{ display: "none" }}
-                  accept="image/jpg,impge/png,image/jpeg,image/gif"
                   onChange={(e: any) => {
                     handleFileOnChange(e, v.index);
                   }}

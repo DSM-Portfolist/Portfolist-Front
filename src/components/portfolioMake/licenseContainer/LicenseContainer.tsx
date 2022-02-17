@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useCallback } from "react";
 import * as S from "./style";
-import { ToastError } from "../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { CertificateListType } from "../../../util/interface/portfolioPost/postType";
 import TextContainer from "./TextContainer/TextContainer";
 import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
@@ -11,17 +9,20 @@ import { useRecoilState } from "recoil";
 const LicenseContainer = () => {
   const [portfolioMakeArr, setPortfolioMakeArr] =
     useRecoilState(portfolioMakeList);
-  const [textList, setTextList] = useState<any>([[""]]);
   const [certificateList, setCertificateList] = useState<any>([
     { title: "", certificate_list: [""] },
   ]);
 
-  useEffect(() => {
+  const setApiCertificateListData = useCallback(() => {
     setPortfolioMakeArr({
       ...portfolioMakeArr,
       certificate_container_list: certificateList,
     });
   }, [certificateList]);
+
+  useEffect(() => {
+    setApiCertificateListData();
+  }, [setApiCertificateListData]);
 
   const addList = () => {
     setCertificateList((certificateList: CertificateListType[]) => [
@@ -35,14 +36,13 @@ const LicenseContainer = () => {
 
   return (
     <S.LicenseWrapper className="make-container">
-      <ToastContainer />
       <S.HeaderButton>
         <span className="addContent" onClick={addList}>
           + Add new list
         </span>
       </S.HeaderButton>
       <TextContainer
-        certificateList={certificateList}
+        certificateList={certificateList || []}
         setCertificateList={setCertificateList}
       />
     </S.LicenseWrapper>

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { useLocation } from "react-router";
 import { useRecoilValue } from "recoil";
 import { CountChangeHook } from "../../../../hook/countChangeHook";
-import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail";
+import { portfoilo } from "../../../../modules/atom/portfolio/portfolioDetail";
 import {
   deleteTouching,
   postTouching,
@@ -16,16 +16,20 @@ const TouchingItem = () => {
   const location = useLocation();
   const queryData = QueryString.parse(location.search);
   const id: any = queryData.id;
-  const portfolioValue = useRecoilValue(getPortfolioSelecor);
+
+  const [count, setCount] = useState<number>(0);
+  const portfolioValue = useRecoilValue(portfoilo);
   const [touchingBoolean, setTouchingBoolean] = useState<boolean>(
     portfolioValue?.touched
   );
-  const [count, setCount] = useState<number>(portfolioValue?.total_touching);
 
   const touching = useMutation("touching", postTouching);
   const untouching = useMutation("untouching", deleteTouching);
 
-  console.log(count);
+  useLayoutEffect(() => {
+    setCount(portfolioValue?.total_touching);
+    setTouchingBoolean(portfolioValue?.touched);
+  }, [portfolioValue?.total_touching, portfolioValue?.touched]);
 
   return (
     <S.Touching>

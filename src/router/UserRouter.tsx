@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import {
   Login,
@@ -13,11 +12,14 @@ import {
   UserPage,
   EmailAuth,
   EmailAuthFail,
+  PortfolioModify,
 } from "../components";
+import ScrollToTop from "../components/common/ScrollToTop";
 
 const UserRouter = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Switch>
         <Route path="/" component={Main} exact />
         <Route path="/login" component={Login} exact />
@@ -29,6 +31,7 @@ const UserRouter = () => {
         <Route path="/my-page-modify" component={MypageModify} exact />
         <Route path="/user-page/:userId" component={UserPage} exact />
         <Route path="/portfolio-make" component={PortfolioMake} exact />
+        <Route path="/portfolio-modify" component={PortfolioModify} exact />
         <Route path="/sign/emailauth" component={EmailAuth} exact />
         <Route path="/sign/emailauthfail" component={EmailAuthFail} exact />
       </Switch>

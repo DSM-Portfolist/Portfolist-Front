@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState, useCallback } from "react";
 import * as S from "./style";
 import { PlusButton, MinusButton } from "../../../util/assets";
 import { ToastError } from "../../../hook/toastHook";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { inputDataArrType } from "../../../util/interface/portfolio/portfolioMakeType";
 import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
 import { useRecoilState } from "recoil";
@@ -15,12 +14,16 @@ const MoreInfoContainer = () => {
     { name: "", content: "" },
   ]);
 
-  useEffect(() => {
+  const setApiMoreInfoData = useCallback(() => {
     setPortfolioMakeArr({
       ...portfolioMakeArr,
       more_info: more_info,
     });
   }, [more_info]);
+
+  useEffect(() => {
+    setApiMoreInfoData();
+  }, [setApiMoreInfoData]);
 
   const handlerOnChange = (e: any, index: number) => {
     //input content 넣을 배열 찾아서 넣기
@@ -56,7 +59,6 @@ const MoreInfoContainer = () => {
 
   return (
     <S.MainWrapper className="make-container">
-      <ToastContainer />
       <div className="titleWrapper">
         <h1>본인의 추가 정보를 입력해 주세요. ex) 학력 / 연락처 / 이메일</h1>
         <img src={PlusButton} alt="" onClick={AddData} />
@@ -75,7 +77,7 @@ const MoreInfoContainer = () => {
                 id="inputName"
                 placeholder="ex)email"
                 name="name"
-                value={more_info.name}
+                defaultValue={more_info.name}
               />
               <div></div>
               <input
@@ -83,7 +85,7 @@ const MoreInfoContainer = () => {
                 id="inputContent"
                 name="content"
                 placeholder="ex)kub0803@gmail.com"
-                value={more_info.content}
+                defaultValue={more_info.content}
               />
               <img
                 src={MinusButton}

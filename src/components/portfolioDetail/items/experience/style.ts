@@ -27,9 +27,8 @@ export const ContainerBox = styled.div`
     flex-direction: column;
 
     img {
+      margin-bottom: 10px;
       width: 300px;
-      height: 200px;
-      object-fit: cover;
       margin-bottom: 20px;
     }
   }
@@ -40,6 +39,8 @@ export const ContainerBox = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    gap: 25px;
 
     .content-box-item {
       display: flex;
@@ -53,6 +54,8 @@ export const ContainerBox = styled.div`
       }
 
       .sub-content {
+        white-space: pre-line;
+        line-height: 25px;
         font-size: 18px;
         font-weight: 500;
       }

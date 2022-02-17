@@ -1,4 +1,3 @@
-import React from "react";
 import { Header, MainList } from "..";
 
 const PortfolioList = () => {

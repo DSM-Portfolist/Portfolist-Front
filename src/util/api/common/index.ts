@@ -6,7 +6,6 @@ export const token = `${localStorage.getItem("access_token_portfolist")}`;
 
 const instance = axios.create({
   baseURL: MAINURL,
-  //timeout: 10000,
   headers: {
     "Content-Type": "application/json",
   },
@@ -35,10 +34,15 @@ instance.interceptors.response.use(
       ToastError("유효하지 않은 요청이 발생했습니다.");
       window.location.href = "/";
     } else if (status === 401) {
-      //alert("로그인 후 이용해주세요.");
-      //window.location.href = "/login";
+      localStorage.removeItem("access_token_portfolist");
+      localStorage.removeItem("refresh_token_portfolist");
+      ToastError("로그인 후 이용해주세요.");
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
     } else if (status === 403) {
       alert("잘못된 접근 입니다.");
+      ToastError("로그인 후 이용해주세요.");
       window.location.href = "/";
     } else if (status === 407) {
       ToastError("서버에 요류가 발생했습니다.");

@@ -5,10 +5,10 @@ import {
   ContainerListType,
   ContainerTextType,
 } from "../../../../util/interface/portfolio/portfolioDetailType";
-import { getPortfolioSelecor } from "../../../../modules/atom/portfolio/portfolioDetail/index";
+import { portfoilo } from "../../../../modules/atom/portfolio/portfolioDetail/index";
 
 const ExperienceList = () => {
-  const portfolioValue = useRecoilValue(getPortfolioSelecor);
+  const portfolioValue = useRecoilValue(portfoilo);
 
   return (
     <>
@@ -27,7 +27,7 @@ const ExperienceList = () => {
                   (box: ContainerTextType, index: number) => (
                     <div key={index} className="content-box-item">
                       <span className="sub-title">{box?.box_title}</span>
-                      <span className="sub-content">{box?.box_content}</span>
+                      <pre className="sub-content">{box?.box_content}</pre>
                     </div>
                   )
                 )}

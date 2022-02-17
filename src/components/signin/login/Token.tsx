@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import queryString from "query-string";
 import { useHistory } from "react-router";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { reload } from "../../../modules/atom/auth";
+import { MAINURL } from "../../../util/api/common";
 
 const Token = ({ location }: any) => {
   const [test, setTest] = useRecoilState(reload);
@@ -12,7 +13,7 @@ const Token = ({ location }: any) => {
 
   useEffect(() => {
     axios
-      .post("http://3.37.14.42:8081/login/github", { code: code.code })
+      .post(`${MAINURL}/login/github`, { code: code.code })
       .then((res) => {
         console.log(res);
         localStorage.setItem("access_token_portfolist", res.data.access_token);
@@ -25,7 +26,7 @@ const Token = ({ location }: any) => {
       .catch((e) => console.log(e));
 
     history.push("/");
-  }, [code, code.code, history]);
+  }, [code, code.code, history, setTest, test]);
 
   return <div>hello</div>;
 };

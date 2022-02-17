@@ -1,7 +1,4 @@
-import React from "react";
 import { CloseIcon } from "../../../util/assets";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import * as S from "./style";
 
 interface Props {
@@ -16,19 +13,16 @@ const FieldItem = ({ field, setUseField, useField }: Props) => {
   }
 
   return (
-    <>
-      <ToastContainer />
-      <S.FieldItemWrapper>
-        <span>{field}</span>
-        <img
-          src={CloseIcon}
-          alt="닫기 아이콘"
-          onClick={() => {
-            UseFieldDelete(field);
-          }}
-        />
-      </S.FieldItemWrapper>
-    </>
+    <S.FieldItemWrapper>
+      <span>{field}</span>
+      <img
+        src={CloseIcon}
+        alt="닫기 아이콘"
+        onClick={() => {
+          UseFieldDelete(field);
+        }}
+      />
+    </S.FieldItemWrapper>
   );
 };
 

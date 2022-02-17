@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useCallback } from "react";
 import * as S from "./style";
 import { Link, isInFile, File, isInLink } from "../../../util/assets/index";
-import { imgFile, pdfFile } from "../../../util/api/portfolio/portfolioPost";
+import { pdfFile } from "../../../util/api/portfolio/portfolioPost";
 import { portfolioMakeList } from "../../../modules/atom/portfolioPost";
 import { useRecoilState } from "recoil";
 
@@ -19,19 +20,27 @@ const FileLinkContainer = () => {
     }
   }, [imageFile]);
 
-  useEffect(() => {
+  const setApiLinkInputName = useCallback(() => {
     setPortfolioMakeArr({
       ...portfolioMakeArr,
       link: linkInputName,
     });
   }, [linkInputName]);
 
-  useEffect(() => {
+  const setApiFileResponse = useCallback(() => {
     setPortfolioMakeArr({
       ...portfolioMakeArr,
       file: fileResponse,
     });
   }, [fileResponse]);
+
+  useEffect(() => {
+    setApiLinkInputName();
+  }, [setApiLinkInputName]);
+
+  useEffect(() => {
+    setApiFileResponse();
+  }, [setApiFileResponse]);
 
   const onChangeFileHanddler = (e: any) => {
     const { files } = e.target;

@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 
 interface NavWrapperProps {
   isClickMyPortfolio: boolean;
-  isClickMyTouching: boolean;
 }
 
 export const baseBackground = css`
@@ -48,15 +47,11 @@ export const NavWrapper = styled.div<NavWrapperProps>`
 
   h1:first-of-type {
     color: ${(props) => (props.isClickMyPortfolio ? "#ff7659" : "#000000")};
-    border-bottom: ${(props) =>
-      props.isClickMyPortfolio ? "solid 3px #ff7659" : "none"};
   }
 
   h1:nth-of-type(2) {
     margin-left: 50px;
-    color: ${(props) => (props.isClickMyTouching ? "#ff7659" : "#000000")};
-    border-bottom: ${(props) =>
-      props.isClickMyTouching ? "solid 3px #ff7659" : "none"};
+    color: ${(props) => (props.isClickMyPortfolio ?  "#000000" : "#ff7659")};
   }
 `;
 
