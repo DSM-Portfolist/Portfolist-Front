@@ -3,6 +3,7 @@ import * as S from "./style";
 import { ToastError } from "../../../../hook/toastHook";
 import { useRecoilState } from "recoil";
 import { container_list_atom } from "../../../../modules/atom/portfolioPost";
+import TextareaAutosize from "react-textarea-autosize";
 
 const ContentWrapper = (props: any) => {
   const { parent_index } = props;
@@ -88,27 +89,25 @@ const ContentWrapper = (props: any) => {
                   placeholder="제목을 입력해주세요."
                   name="box_title"
                   value={box_title}
-                  onChange={(e: any) => {
-                    onChangeContainerTextList(e, parent_index, index);
-                  }}
+                  onChange={(e: any) =>
+                    onChangeContainerTextList(e, parent_index, index)
+                  }
                 />
                 <img
                   src={MinusButton}
                   alt="MinusButton"
-                  onClick={() => {
-                    DeleteContainerText(parent_index, index);
-                  }}
+                  onClick={() => DeleteContainerText(parent_index, index)}
                 />
               </div>
-              <textarea
+              <TextareaAutosize
                 placeholder="내용을 입력해주세요."
                 className="Content"
                 name="box_content"
                 value={box_content}
-                onChange={(e: any) => {
-                  onChangeContainerTextList(e, parent_index, index);
-                }}
-              ></textarea>
+                onChange={(e: any) =>
+                  onChangeContainerTextList(e, parent_index, index)
+                }
+              />
               {index + 1 <
               containerList[parent_index].container_text_list.length ? (
                 ""
