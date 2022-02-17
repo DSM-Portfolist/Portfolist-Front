@@ -5,9 +5,9 @@ import { portfolioModifyList } from "../../../../modules/atom/portfolioModify";
 import * as S from "./style";
 
 const IsOpenContainer = () => {
-  const [isClick, setIsClick] = useState<boolean>(true);
   const [portfolioModifyArr, setPortfolioModifyArr] =
     useRecoilState(portfolioModifyList);
+  const [isClick, setIsClick] = useState<boolean>(portfolioModifyArr.open);
 
   useEffect(() => {
     setPortfolioModifyArr({
