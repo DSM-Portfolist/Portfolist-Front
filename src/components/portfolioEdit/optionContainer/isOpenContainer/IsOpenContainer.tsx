@@ -4,10 +4,14 @@ import { useRecoilState } from "recoil";
 import { portfolioModifyList } from "../../../../modules/atom/portfolioEdit";
 import * as S from "./style";
 
-const IsOpenContainer = () => {
+interface Props {
+  isOpen: boolean | null;
+}
+
+const IsOpenContainer = (isOpen: Props) => {
   const [portfolioModifyArr, setPortfolioModifyArr] =
     useRecoilState(portfolioModifyList);
-  const [isClick, setIsClick] = useState<boolean>(portfolioModifyArr.open);
+  const [isClick, setIsClick] = useState<any>(isOpen.isOpen);
 
   useEffect(() => {
     setPortfolioModifyArr({

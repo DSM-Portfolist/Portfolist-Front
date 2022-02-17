@@ -2,11 +2,15 @@ import FieldItemWrapper from "./fieldItemWrapper/FieldItemWrapper";
 import IsOpenContainer from "./isOpenContainer/IsOpenContainer";
 import * as S from "./style";
 
-const OptionContainer = () => {
+interface Props {
+  isOpen: boolean | null;
+}
+
+const OptionContainer = ({ isOpen }: Props) => {
   return (
     <S.OptionContainer>
       <FieldItemWrapper />
-      <IsOpenContainer />
+      <IsOpenContainer isOpen={isOpen} />
     </S.OptionContainer>
   );
 };

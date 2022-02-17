@@ -69,7 +69,7 @@ const FieldItemWrapper = () => {
         {selectIdList.map((item: any, index: number) => {
           return (
             <S.FieldItemContainer key={index}>
-              <span>{fieldList[item - 1].content}</span>
+              <span>{fieldList[item - 1]?.content}</span>
               <img
                 src={CloseIcon}
                 alt="닫기 아이콘"
