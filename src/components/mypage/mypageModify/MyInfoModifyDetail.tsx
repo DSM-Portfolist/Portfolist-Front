@@ -37,7 +37,7 @@ const MyInfoModifyDetail = ({ user }: any) => {
   const fieldSelectHandler = (e: any) => {
     const { value } = e.target;
     if (selectIdArr.length !== 3) {
-      if (!selectIdArr.includes(e)) {
+      if (!selectIdArr.includes(value)) {
         setSelectIdArr([...selectIdArr, value]);
       }
     } else {
