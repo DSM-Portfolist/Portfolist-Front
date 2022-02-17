@@ -70,7 +70,7 @@ const BannerContainer = () => {
             <input
               type="file"
               id="file"
-              accept="image/jpg,impge/png,image/jpeg,image/gif"
+              accept=".jpg, .png, .jpeg, .gif"
               onChange={(e) => onChangeFileHanddler(e)}
             />
             <p>{fileInputName ? fileInputName : "파일을 선택해 주세요."}</p>

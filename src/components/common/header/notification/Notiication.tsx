@@ -50,7 +50,7 @@ const Notiication = () => {
             ) : (
               <>
                 {notification?.map((item: notificationType) => (
-                  <NotiItem key={item.id} name={item.name} type={item.type} />
+                  <NotiItem key={item.id} item={item} />
                 ))}
               </>
             )}

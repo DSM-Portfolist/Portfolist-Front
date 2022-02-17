@@ -41,9 +41,7 @@ const ImageWrapper = ({ identity }: any) => {
           if (i === identity) {
             return {
               ...value,
-              container_img_list: value.container_img_list.concat(
-                String(res)
-              ),
+              container_img_list: value.container_img_list.concat(String(res)),
             };
           } else {
             return value;
@@ -153,7 +151,7 @@ const ImageWrapper = ({ identity }: any) => {
                   type="file"
                   id={`input-file${identity}`}
                   style={{ display: "none" }}
-                  accept="image/jpg,impge/png,image/jpeg,image/gif"
+                  accept=".jpg, .png, .jpeg, .gif"
                   onChange={(e: any) => {
                     handleFileOnChange(e, v.index);
                   }}
