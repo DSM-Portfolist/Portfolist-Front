@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Footer, Header } from "..";
 import * as S from "./style";
 import TitleContainer from "./titleContainer/TitleContainer";
@@ -27,6 +27,7 @@ interface stateType {
 const PortfolioEdit = () => {
   const history = useHistory();
   const queryClient = useQueryClient();
+  const [isOpen, setIsOpen] = useState<boolean | null>(null);
 
   const [portfolioModifyArr, setPortfolioModifyArr] =
     useRecoilState(portfolioModifyList);
@@ -48,6 +49,7 @@ const PortfolioEdit = () => {
           thumbnail,
         } = res.data;
         let { certificate_container_list } = res.data;
+        setIsOpen(res.data.open);
 
         certificate_container_list = certificate_container_list.map(
           (value: any) => {
@@ -72,11 +74,9 @@ const PortfolioEdit = () => {
           link: link,
           file: file,
           thumbnail: thumbnail,
+          open: res.data.open,
         });
       })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   const { mutate: patchPortfolio } = useMutation(
@@ -97,6 +97,7 @@ const PortfolioEdit = () => {
   );
 
   useEffect(() => {
+    console.log(portfolioModifyArr);
     getPortfolioData(Number(query.id));
   }, [query.id]);
 
@@ -105,7 +106,8 @@ const PortfolioEdit = () => {
       <Header />
       <S.MainContainer>
         <PrecautionsContainer /> {/* 주의사항을 적는 Text 컴포넌트 */}
-        <OptionContainer /> {/* 분야랑 공개 비공개 설정 컴포넌트 */}
+        <OptionContainer isOpen={isOpen} />
+        {/* 분야랑 공개 비공개 설정 컴포넌트 */}
         <TitleContainer /> {/* 제목 컴포넌트 */}
         <MoreInfoContainer /> {/*이메일이나 깃허브 넣는 컴포넌트*/}
         <ImageContainerList /> {/* 자신의 경험을 넣을 수 있는 이미지 리스트 */}
