@@ -39,6 +39,8 @@ export const ContainerBox = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    gap: 25px;
 
     .content-box-item {
       display: flex;

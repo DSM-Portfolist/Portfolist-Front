@@ -3,11 +3,17 @@ import styled from "@emotion/styled";
 export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 13px 0 0 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 10px 0 20px 40px;
   width: 100%;
+  height: 100%;
 `;
 
 export const BoxItem = styled.div`
+  width: 100%;
+  height: fit-content;
+
   &:nth-of-type(n + 2) {
     margin-top: 10px;
   }
@@ -15,10 +21,13 @@ export const BoxItem = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
+
     input {
+      line-height: 25px;
+      font-size: 18px;
       width: 100%;
       height: 30px;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 20px;
       color: #000000;
     }
@@ -29,15 +38,16 @@ export const BoxItem = styled.div`
       cursor: pointer;
     }
   }
-  .Content {
+
+  & textarea {
     font-size: 16px;
     margin-top: 10px;
-    color: #000000;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    line-height: 30px;
+    display: block;
     width: 100%;
-    height: 70px;
     resize: none;
+    // overflow: hidden;
+
     &::placeholder {
       color: #bbbbbb;
     }
@@ -52,6 +62,7 @@ export const BoxItem = styled.div`
       border-radius: 5px;
     }
   }
+
   .addContent {
     margin-bottom: 15px;
     font-size: 12px;

@@ -41,7 +41,7 @@ export const GoWrapper = styled.div`
 
 export const ListItemWrapper = styled.div`
   width: 80%;
-  height: 80%;
+  height: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -58,6 +58,7 @@ export const ItemWrapper = styled.div`
     width: 170px;
     height: 275px;
   }
+
   span {
     margin-bottom: 10px;
   }
