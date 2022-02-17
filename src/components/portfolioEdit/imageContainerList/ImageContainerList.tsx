@@ -8,7 +8,7 @@ import { useRecoilState } from "recoil";
 import {
   portfolioModifyList,
   container_list_modify_atom,
-} from "../../../modules/atom/portfolioModify";
+} from "../../../modules/atom/portfolioEdit";
 import { ToastError } from "../../../hook/toastHook";
 
 const ImageContainerList = () => {

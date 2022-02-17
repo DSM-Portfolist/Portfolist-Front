@@ -4,7 +4,7 @@ import * as S from "./style";
 import { PlusButton, MinusButton } from "../../../util/assets";
 import { ToastError } from "../../../hook/toastHook";
 import { inputDataArrType } from "../../../util/interface/portfolio/portfolioMakeType";
-import { portfolioModifyList } from "../../../modules/atom/portfolioModify";
+import { portfolioModifyList } from "../../../modules/atom/portfolioEdit";
 import { useRecoilState } from "recoil";
 
 const MoreInfoContainer = () => {

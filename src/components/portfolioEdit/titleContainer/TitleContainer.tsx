@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import * as S from "./style";
 import { InputIsNullType } from "../../../util/interface/portfolio/portfolioMakeType";
 import { useRecoilState } from "recoil";
-import { portfolioModifyList } from "../../../modules/atom/portfolioModify";
+import { portfolioModifyList } from "../../../modules/atom/portfolioEdit";
 
 const TitleContainer = () => {
   const [portfolioModifyArr, setPortfolioModifyArr] =

@@ -14,7 +14,7 @@ import {
   EmailAuthFail,
   PortfolioModify,
 } from "../components";
-import ScrollToTop from "../components/common/ScrollToTop";
+import ScrollToTop from "../components/common/scrollToTop/ScrollToTop";
 
 const UserRouter = () => {
   return (

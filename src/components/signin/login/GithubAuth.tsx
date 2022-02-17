@@ -6,7 +6,7 @@ import { useRecoilState } from "recoil";
 import { reload } from "../../../modules/atom/auth";
 import { MAINURL } from "../../../util/api/common";
 
-const Token = ({ location }: any) => {
+const GithubAuth = ({ location }: any) => {
   const [test, setTest] = useRecoilState(reload);
   const history = useHistory();
   const code = queryString.parse(location.search);
@@ -31,4 +31,4 @@ const Token = ({ location }: any) => {
   return <div>hello</div>;
 };
 
-export default Token;
+export default GithubAuth;

@@ -5,7 +5,7 @@ import { imageListType } from "../../../../util/interface/portfolio/portfolioMak
 import {
   container_list_modify_atom,
   portfolioModifyList,
-} from "../../../../modules/atom/portfolioModify";
+} from "../../../../modules/atom/portfolioEdit";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { imgFile } from "../../../../util/api/portfolio/portfolioPost";
 import { TrashCan } from "../../../../util/assets";

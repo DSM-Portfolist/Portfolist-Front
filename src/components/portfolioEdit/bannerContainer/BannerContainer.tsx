@@ -7,7 +7,7 @@ import { imgFile } from "../../../util/api/portfolio/portfolioPost";
 import {
   bannerModifyImgAtom,
   portfolioModifyList,
-} from "../../../modules/atom/portfolioModify";
+} from "../../../modules/atom/portfolioEdit";
 import { useRecoilState } from "recoil";
 
 const BannerContainer = () => {

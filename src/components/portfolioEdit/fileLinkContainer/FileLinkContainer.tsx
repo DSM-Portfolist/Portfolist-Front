@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import * as S from "./style";
 import { Link, isInFile, File, isInLink } from "../../../util/assets/index";
 import { pdfFile } from "../../../util/api/portfolio/portfolioPost";
-import { portfolioModifyList } from "../../../modules/atom/portfolioModify";
+import { portfolioModifyList } from "../../../modules/atom/portfolioEdit";
 import { useRecoilState } from "recoil";
 
 const FileLinkContainer = () => {

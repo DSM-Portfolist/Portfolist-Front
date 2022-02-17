@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import * as S from "./style";
 import { CertificateListType } from "../../../util/interface/portfolioPost/postType";
 import TextContainer from "./TextContainer/TextContainer";
-import { portfolioModifyList } from "../../../modules/atom/portfolioModify";
+import { portfolioModifyList } from "../../../modules/atom/portfolioEdit";
 import { useRecoilState } from "recoil";
 
 const LicenseContainer = () => {

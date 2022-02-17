@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
-import { bannerModifyImgAtom } from "../../../../modules/atom/portfolioModify";
+import { bannerModifyImgAtom } from "../../../../modules/atom/portfolioEdit";
 import { mainColor } from "../../../../util/css/color/color";
 import * as S from "../style";
 

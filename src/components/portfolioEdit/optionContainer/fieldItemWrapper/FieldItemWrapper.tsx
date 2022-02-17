@@ -6,7 +6,7 @@ import { CloseIcon } from "../../../../util/assets";
 import { ToastError } from "../../../../hook/toastHook";
 import "react-toastify/dist/ReactToastify.css";
 import * as S from "./style";
-import { portfolioModifyList } from "../../../../modules/atom/portfolioModify";
+import { portfolioModifyList } from "../../../../modules/atom/portfolioEdit";
 
 const FieldItemWrapper = () => {
   const fieldList = useRecoilValue(getFieldSelector);

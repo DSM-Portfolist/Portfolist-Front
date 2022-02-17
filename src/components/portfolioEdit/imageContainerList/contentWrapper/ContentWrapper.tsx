@@ -6,7 +6,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import {
   container_list_modify_atom,
   portfolioModifyList,
-} from "../../../../modules/atom/portfolioModify";
+} from "../../../../modules/atom/portfolioEdit";
 import TextareaAutosize from "react-textarea-autosize";
 
 const ContentWrapper = (props: any) => {

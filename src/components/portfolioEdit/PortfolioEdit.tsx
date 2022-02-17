@@ -10,7 +10,7 @@ import BannerContainer from "./bannerContainer/BannerContainer";
 import FileLinkContainer from "./fileLinkContainer/FileLinkContainer";
 import PrecautionsContainer from "./precautionsContainer/PrecautionsContainer";
 import { useRecoilState } from "recoil";
-import { portfolioModifyList } from "../../modules/atom/portfolioModify/index";
+import { portfolioModifyList } from "../../modules/atom/portfolioEdit/index";
 import { portfolioModifySubmit } from "../../util/api/portfolio/portfolioModify";
 import OptionContainer from "./optionContainer/OptionContainer";
 import { ToastError, ToastSuccess } from "../../hook/toastHook";
@@ -24,7 +24,7 @@ interface stateType {
   portfolioID: number;
 }
 
-const PortfolioModify = () => {
+const PortfolioEdit = () => {
   const history = useHistory();
   const queryClient = useQueryClient();
 
@@ -95,7 +95,7 @@ const PortfolioModify = () => {
       },
     }
   );
-  
+
   useEffect(() => {
     getPortfolioData(Number(query.id));
   }, [query.id]);
@@ -119,4 +119,4 @@ const PortfolioModify = () => {
   );
 };
 
-export default PortfolioModify;
+export default PortfolioEdit;
