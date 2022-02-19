@@ -36,10 +36,6 @@ const MainList = () => {
       cacheTime: Infinity,
       staleTime: Infinity,
       keepPreviousData: true,
-
-      onSuccess: (data) => {
-        setArticles(articles?.concat(data?.data?.portfolio_list));
-      },
     }
   );
 
@@ -47,7 +43,6 @@ const MainList = () => {
   // 다음 데이터를 불러오고 난후, 기존 데이터와 연결시켜준다.
   // 2. 페이지가 0 일때 필터링이 되어야 하며, 또 그에 맞게 무한스크롤을 해야한다.
   // 3. 전체 선택일 경우 일반적이게 잘 된다. 하지만 분야가 들어가는 순간 막힌다.
-  
 
   useEffect(() => {
     setPage(0);
@@ -56,7 +51,8 @@ const MainList = () => {
   }, [field]);
 
   useEffect(() => {
-    setArticles(articles.concat(portfolioList?.data?.portfolio_list));
+    console.log(portfolioList);
+    //setArticles(articles.concat(portfolioList?.data?.portfolio_list));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [portfolioList?.data?.portfolio_list]);
 
@@ -98,16 +94,18 @@ const MainList = () => {
     <S.MainListWrapper className="container">
       <Search />
       <S.ListWrapper>
-        {articles?.length === 0 ? (
+        {portfolioList?.data.portfolio_list?.length === 0 ? (
           <p className="list-not-comment">작성된 포트폴리오가 없습니다</p>
         ) : (
           <>
             {query && <S.SearchContent>{query}의 검색결과...</S.SearchContent>}
 
             <S.ListContent>
-              {articles?.map((list: PortListType, index: number) => (
-                <ListItem key={index} list={list} />
-              ))}
+              {portfolioList?.data.portfolio_list.map(
+                (list: PortListType, index: number) => (
+                  <ListItem key={index} list={list} />
+                )
+              )}
             </S.ListContent>
           </>
         )}
