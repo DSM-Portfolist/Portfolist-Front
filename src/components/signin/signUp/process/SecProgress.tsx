@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import "react-toastify/dist/ReactToastify.css";
 import { getField } from "../../../../util/api/portfolio/portfolio";
 import { FieldType } from "../../../../util/interface/Sign/loginType";
+import { ToastError } from "../../../../hook/toastHook";
 import FieldItemBox from "./FieldItemBox";
 import * as S from "./style";
 
@@ -23,22 +24,23 @@ const SecProgress = (props: Props) => {
 
   // 필드 추가하기 최대 3개
   function FieldAdd(content: string, textList: any) {
-    const item = fieldItem.filter(
-      (item: FieldType) => item.content === content
-    );
-
-    const fieldId = item.map((item: FieldType) => item.id);
-
-    props.setFieldList(props.fieldList.concat(fieldId[0]));
-
-    setTextList(textList.concat(content));
+    if (textList.length !== 3) {
+      if (!textList.includes(content)) {
+        const item = fieldItem.filter(
+          (item: FieldType) => item.content === content
+        );
+        const fieldId = item.map((item: FieldType) => item.id);
+        props.setFieldList(props.fieldList.concat(fieldId[0]));
+        setTextList(textList.concat(content));
+      }
+    } else {
+      ToastError("분야를 3개 이상 등록할 수 없습니다.");
+    }
   }
 
   useEffect(() => {
     fieldItem?.length >= 1 ? setBtnColor(true) : setBtnColor(false);
   }, [fieldItem?.length]);
-
-  
 
   return (
     <>
