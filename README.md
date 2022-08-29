@@ -11,6 +11,12 @@ TypeScript, emotion, react-query, recoil
 https://youtu.be/TE1TaYrIe44
 
 
+
+#### 소개 블로그
+[![Velog's GitHub stats](https://velog-readme-stats.vercel.app/api?name=silverbeen&slug=개발자를-위한-Portfolist-제작기)](https://velog.io/@silverbeen/개발자를-위한-Portfolist-제작기)
+
+
+
 ### 메인페이지
 ![localhost_3000_ (2)](https://user-images.githubusercontent.com/63506240/145490786-82676967-5050-4ef7-b5c6-756bc9e805cd.png)
 
